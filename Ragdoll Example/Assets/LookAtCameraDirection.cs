@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class LookAtCameraDirection : MonoBehaviour
 {
@@ -52,33 +53,88 @@ public class LookAtCameraDirection : MonoBehaviour
     private void OnMouseDown()
     {
         throwItem(rotation);
-        
+        updateLine();
+
+    }
+    private void OnMouseUp()
+    {
+        //move direction
+        clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
+        clone.useGravity = true;
+        Destroy(clone.gameObject, 3f);
+
+    }
+    
+    public float angle;
+    public int resolution;
+
+    private float g;
+    private float radianAngle; 
+    void updateLine()
+    {
+        g = Mathf.Abs(Physics.gravity.y);
         //For creating line renderer object
         lineRenderer = new GameObject("Line").AddComponent<LineRenderer>();
         lineRenderer.startColor = Color.black;
         lineRenderer.endColor = Color.black;
         lineRenderer.startWidth = 0.11f;
         lineRenderer.endWidth = 0.11f;
-        lineRenderer.positionCount = 2;
-        lineRenderer.useWorldSpace = true;    
-                
-
+        
+        //Comment this out
+        lineRenderer.positionCount = resolution+1;
+        
+        
+        lineRenderer.useWorldSpace = true;
+        
+        
         lineRenderer.SetPosition(0, clone.transform.position); //x,y and z position of the starting point of the line
-
-        
-        lineRenderer.SetPosition(1, clone.transform.TransformDirection(Vector3.forward * 360)); //x,y and z position of the end point of the line
-       
-        
+        lineRenderer.SetPosition(1, clone.transform.TransformDirection(Vector3.forward * 3600)); //x,y and z position of the end point of the line
+        //lineRenderer.SetPositions(UpdateTrajectory(clone.transform.TransformDirection(Vector3.forward * 3600), clone, clone.transform.position));
         Destroy(lineRenderer.gameObject, 3f);
         
-
+        
     }
-    private void OnMouseUp()
+    
+    [SerializeField] private LineRenderer _lineRenderer;
+
+    [SerializeField] [Range(3, 30)] private int _lineSegmentCount = 20;
+    
+    private List<Vector3> _linePoints = new List<Vector3>();
+    
+    public Vector3[] UpdateTrajectory(Vector3 forceVector, Rigidbody rigidbody, Vector3 startingPoint)
     {
-        //move direction
-        clone.velocity = clone.transform.TransformDirection(Vector3.forward * 100);
-        clone.useGravity = true;
-        Destroy(clone.gameObject, 3f);
+        Vector3 velocity = (forceVector / rigidbody.mass) * Time.fixedDeltaTime;
 
+        float FlightDuration = (2 * velocity.y) / Physics.gravity.y;
+
+        float stepTime = FlightDuration / _lineSegmentCount; 
+        
+        _linePoints.Clear();
+
+        for (int i = 0; i < _lineSegmentCount; i++)
+        {
+            float stepTimePassed = stepTime * i; 
+            
+            Vector3 MovementVector = new Vector3(velocity.x * stepTimePassed, velocity.y*stepTimePassed-0.5f * Physics.gravity.y*stepTimePassed*stepTimePassed, velocity.z*stepTimePassed);
+
+            RaycastHit hit;
+            if (Physics.Raycast(startingPoint, -MovementVector, out hit, MovementVector.magnitude))
+            {
+                break;
+            }
+            _linePoints.Add(-MovementVector + startingPoint);
+        }
+
+        //_lineRenderer.positionCount = _linePoints.Count;
+        lineRenderer.positionCount = _linePoints.Count;
+        return _linePoints.ToArray(); 
+        _lineRenderer.SetPositions(_linePoints.ToArray());
     }
+    
+    
+
+    
+
+
 }
+
