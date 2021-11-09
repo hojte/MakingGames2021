@@ -20,10 +20,10 @@ MonoBehaviour:
     y: 30
     width: 1904
     height: 931
-  m_MinSize: {x: 881, y: 492}
-  m_MaxSize: {x: 16006, y: 14042}
+  m_MinSize: {x: 880, y: 492}
+  m_MaxSize: {x: 16005, y: 14042}
   vertical: 0
-  controlID: 37095
+  controlID: 38733
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 1904
     height: 931
-  m_MinSize: {x: 881, y: 492}
-  m_MaxSize: {x: 16006, y: 14042}
+  m_MinSize: {x: 880, y: 492}
+  m_MaxSize: {x: 16005, y: 14042}
   vertical: 1
-  controlID: 37096
+  controlID: 38734
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,10 +164,10 @@ MonoBehaviour:
     y: 0
     width: 1904
     height: 586
-  m_MinSize: {x: 881, y: 221}
-  m_MaxSize: {x: 16006, y: 4021}
+  m_MinSize: {x: 880, y: 221}
+  m_MaxSize: {x: 16005, y: 4021}
   vertical: 0
-  controlID: 37097
+  controlID: 38735
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -225,7 +225,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 34f2fffffaf2ffff36f6ffff16f7ffffa6faffff
+      m_ExpandedIDs: ae58fdff685bfdff34f2fffffaf2ffff36f6ffff16f7ffffa6faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -313,9 +313,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 14.243708, y: -14.880238, z: 46.529385}
+    m_Target: {x: -11.89014, y: -17.5718, z: 46.148495}
     speed: 2
-    m_Value: {x: 14.243708, y: -14.880238, z: 46.529385}
+    m_Value: {x: -11.89014, y: -17.5718, z: 46.148495}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -361,13 +361,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.26475638, y: 0.043940403, z: -0.012093495, w: -0.9633422}
+    m_Target: {x: -0.29515806, y: -0.026674015, z: 0.008226389, w: -0.95514584}
     speed: 2
-    m_Value: {x: -0.26472977, y: 0.043935988, z: -0.012092279, w: -0.9632454}
+    m_Value: {x: -0.2951284, y: -0.026671335, z: 0.008225562, w: -0.9550499}
   m_Size:
-    m_Target: 78.3537
+    m_Target: 44.991932
     speed: 2
-    m_Value: 78.3537
+    m_Value: 44.991932
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -501,8 +501,8 @@ MonoBehaviour:
     y: 0
     width: 430
     height: 586
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -527,8 +527,8 @@ MonoBehaviour:
     y: 0
     width: 342
     height: 586
-  m_MinSize: {x: 276, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -638,19 +638,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\pilfr\Desktop\MakingGames2021\Ragdoll Example
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 703b0000
-    m_LastClickedID: 15216
+    m_SelectedIDs: 843b0000
+    m_LastClickedID: 15236
     m_ExpandedIDs: 00000000703b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
