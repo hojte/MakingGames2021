@@ -52,10 +52,4 @@ public class DragAndShoot : MonoBehaviour
         //isShoot = true;
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

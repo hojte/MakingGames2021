@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class LookAtCameraDirection : MonoBehaviour
     private Quaternion rotation; 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    Rigidbody clone;
     void Start()
     {
         
@@ -18,41 +20,65 @@ public class LookAtCameraDirection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         rotation = Quaternion.LookRotation(cam.forward, cam.up);
+        rotation = Quaternion.LookRotation(cam.forward, cam.up);
 
-         if (Input.GetMouseButtonDown(0))
-         {
-             //Spawn
-             Debug.Log(cam.transform.rotation);
-             float x = this.gameObject.transform.position.x;
-             float y = this.gameObject.transform.position.y+5;
-             float z = this.gameObject.transform.position.z; 
-             Rigidbody clone;
-             clone = Instantiate(ball, new Vector3(x,y,z), rotation);
-          
-             clone.velocity = clone.transform.TransformDirection(Vector3.forward * 60);
-             Destroy(clone.gameObject, 3f);
-         }
-           
-
-
+        /*if (Input.GetMouseButtonDown(0))
+        {
+            throwItem(rotation);
+        }*/
     }
-
-      void throwItem(Quaternion rotation)
+    
+    void throwItem(Quaternion rotation)
     {
-        Debug.Log(cam.transform.rotation);
+        //Spawn
         float x = this.gameObject.transform.position.x;
         float y = this.gameObject.transform.position.y+5;
         float z = this.gameObject.transform.position.z; 
-        Rigidbody clone;
-        Vector3 camDir = cam.transform.forward;
-        clone = Instantiate(ball, new Vector3(x,y,z), cam.transform.rotation);
-        //clone.transform.LookAt(camDir);
-        //clone.transform.LookAt(new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z));
-        clone.velocity = clone.transform.TransformDirection(cam.transform.forward * 30);
-        
-        
+            
+        clone = Instantiate(ball, new Vector3(x,y,z), rotation);
+        clone.useGravity = false;
+
+        //move direction
+        //clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
+        //Destroy(clone.gameObject, 3f);
     }
-    
-    
+
+    private Vector3 mousePressDownPos;
+
+    private Vector3 mouseReleasePos;
+
+
+    private LineRenderer lineRenderer;
+    private void OnMouseDown()
+    {
+        throwItem(rotation);
+        
+        //For creating line renderer object
+        lineRenderer = new GameObject("Line").AddComponent<LineRenderer>();
+        lineRenderer.startColor = Color.black;
+        lineRenderer.endColor = Color.black;
+        lineRenderer.startWidth = 0.11f;
+        lineRenderer.endWidth = 0.11f;
+        lineRenderer.positionCount = 2;
+        lineRenderer.useWorldSpace = true;    
+                
+
+        lineRenderer.SetPosition(0, clone.transform.position); //x,y and z position of the starting point of the line
+
+        
+        lineRenderer.SetPosition(1, clone.transform.TransformDirection(Vector3.forward * 360)); //x,y and z position of the end point of the line
+       
+        
+        Destroy(lineRenderer.gameObject, 3f);
+        
+
+    }
+    private void OnMouseUp()
+    {
+        //move direction
+        clone.velocity = clone.transform.TransformDirection(Vector3.forward * 100);
+        clone.useGravity = true;
+        Destroy(clone.gameObject, 3f);
+
+    }
 }
