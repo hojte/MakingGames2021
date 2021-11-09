@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f)* Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
-            
         }
 
         //Gravity
@@ -53,6 +53,13 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void OnGUI()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        //Press the space bar to apply no locking to the Cursor
+        if (Input.GetKey(KeyCode.F1))
+            Cursor.lockState = CursorLockMode.None;
+    }
 
     public float pushPower = 2.0F;
     void OnControllerColliderHit(ControllerColliderHit hit)
