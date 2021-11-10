@@ -44,22 +44,20 @@ public class LookAtCameraDirection : MonoBehaviour
         //Destroy(clone.gameObject, 3f);
     }
 
-    private Vector3 mousePressDownPos;
-
-    private Vector3 mouseReleasePos;
-
 
     private LineRenderer lineRenderer;
     private void OnMouseDown()
     {
+        
         throwItem(rotation);
-        updateLine();
+        //updateLine();
 
     }
     private void OnMouseUp()
     {
         //move direction
         clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
+        
         clone.useGravity = true;
         Destroy(clone.gameObject, 3f);
 
@@ -85,11 +83,14 @@ public class LookAtCameraDirection : MonoBehaviour
         
         
         lineRenderer.useWorldSpace = true;
-        
-        
-        lineRenderer.SetPosition(0, clone.transform.position); //x,y and z position of the starting point of the line
-        lineRenderer.SetPosition(1, clone.transform.TransformDirection(Vector3.forward * 3600)); //x,y and z position of the end point of the line
+
+
+        //lineRenderer.SetPosition(0, clone.transform.position); //x,y and z position of the starting point of the line
+        //lineRenderer.SetPosition(1, clone.transform.TransformDirection(Vector3.forward * 3600)); //x,y and z position of the end point of the line
         //lineRenderer.SetPositions(UpdateTrajectory(clone.transform.TransformDirection(Vector3.forward * 3600), clone, clone.transform.position));
+        
+        lineRenderer.SetPositions(UpdateTrajectory2(clone.transform.TransformDirection(Vector3.forward * 3600), clone, clone.transform.position));
+
         Destroy(lineRenderer.gameObject, 3f);
         
         
@@ -130,10 +131,40 @@ public class LookAtCameraDirection : MonoBehaviour
         return _linePoints.ToArray(); 
         _lineRenderer.SetPositions(_linePoints.ToArray());
     }
-    
-    
 
-    
+    public Vector3[] UpdateTrajectory2(Vector3 targetVector, Rigidbody rigidbody, Vector3 startingPoint)
+    {
+        Vector3 velocity = (targetVector / rigidbody.mass); //* Time.fixedDeltaTime;
+        Debug.Log(velocity);
+        float FlightDuration = (2 * velocity.y) / Physics.gravity.y;
+        float stepTime = FlightDuration / _lineSegmentCount;
+        _linePoints.Clear();
+
+        Debug.Log(_lineSegmentCount);
+        for (int i =0; i<_lineSegmentCount; i++) {
+            float stepTimePassed = stepTime * i;
+
+            Vector3 MovementVector = new Vector3(velocity.x * stepTimePassed, velocity.y * stepTimePassed - 0.5f * Physics.gravity.y * stepTimePassed * stepTimePassed, velocity.z * stepTimePassed);
+
+            
+            _linePoints.Add(-MovementVector + startingPoint);
+
+        }
+
+
+        Vector3[] pos = new Vector3[2];
+        pos[0] = clone.transform.position;
+        pos[1] = velocity;
+
+        //return _linePoints.ToArray();
+        return pos; 
+        
+
+    }
+
+
+
+
 
 
 }
