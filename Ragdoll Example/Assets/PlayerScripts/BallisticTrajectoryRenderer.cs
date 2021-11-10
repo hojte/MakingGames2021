@@ -66,10 +66,12 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
 
 
         rotation = Quaternion.LookRotation(cam.forward, cam.up);
-        //very expensive 
+        
+        //very expensive //todo --> make better
         clone = Instantiate(throwItem, pPos, rotation);
         clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
         this.startVelocity = clone.velocity;
+        
         Destroy(clone.gameObject); 
     }
     /// Sets ballistic values for trajectory.
