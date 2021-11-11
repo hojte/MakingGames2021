@@ -63,16 +63,21 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
         }
         
         Vector3 pPos = new Vector3(playPos.gameObject.transform.position.x, playPos.gameObject.transform.position.y+5, playPos.gameObject.transform.position.z);
-        this.startPosition = pPos;
+        //this.startPosition = pPos;
 
 
         rotation = Quaternion.LookRotation(cam.forward, cam.up);
-        
+
         //very expensive //todo --> make better
         clone = Instantiate(throwItem, pPos, rotation);
+        //Optimizing performance by disabling collision
+        clone.GetComponent<Rigidbody>().detectCollisions = false;
+
         clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
-        this.startVelocity = clone.velocity;
-        
+        //this.startVelocity = clone.velocity;
+        SetBallisticValues(pPos, clone.velocity);
+
+
         Destroy(clone.gameObject);
         
     }
@@ -80,9 +85,9 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
   
     public void SetBallisticValues(Vector3 startPosition, Vector3 startVelocity)
     {
-        //this.startPosition = startPosition;
+        this.startPosition = startPosition;
         //this.startPosition = playPos.gameObject.transform.position;
-        //this.startVelocity = startVelocity;
+        this.startVelocity = startVelocity;
     }
 
     /// Draws the trajectory with line renderer.
