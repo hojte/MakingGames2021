@@ -11,8 +11,14 @@ GameObject:
   - component: {fileID: 8443021534357143690}
   - component: {fileID: 4793088735969005359}
   - component: {fileID: 7304996403804847077}
-  - component: {fileID: 8259911947242660057}
   - component: {fileID: 8259911947242660069}
+  - component: {fileID: 865877044998286001}
+  - component: {fileID: 6496115731398009382}
+  - component: {fileID: 5787991473210537741}
+  - component: {fileID: 5136571754581000470}
+  - component: {fileID: 260193181983450995}
+  - component: {fileID: 609626451569113006}
+  - component: {fileID: 8911284898230349791}
   m_Layer: 0
   m_Name: shelf_low
   m_TagString: Untagged
@@ -81,19 +87,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8259911947242660057
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9106405949641628208}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.05, y: 0.024, z: 0.02}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!208 &8259911947242660069
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -110,3 +103,94 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &865877044998286001
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106405949641628208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0008981324, y: 0.0236487, z: 0.0009410515}
+  m_Center: {x: -0.024922654, y: 0, z: 0.009901091}
+--- !u!65 &6496115731398009382
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106405949641628208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.00075984193, y: 0.0236487, z: 0.00071608357}
+  m_Center: {x: -0.02499173, y: 0, z: -0.0100136055}
+--- !u!65 &5787991473210537741
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106405949641628208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0007082482, y: 0.0236487, z: 0.000804307}
+  m_Center: {x: 0.02501778, y: 0, z: -0.009969467}
+--- !u!65 &5136571754581000470
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106405949641628208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0008547745, y: 0.0236487, z: 0.00095540815}
+  m_Center: {x: 0.02494434, y: 0, z: 0.009893994}
+--- !u!65 &260193181983450995
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106405949641628208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.050743185, y: 0.0007370148, z: 0.020743173}
+  m_Center: {x: 0, y: 0.00029678727, z: 0}
+--- !u!65 &609626451569113006
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106405949641628208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.050743185, y: 0.00045969585, z: 0.020743173}
+  m_Center: {x: 0, y: 0.01032774, z: 0}
+--- !u!65 &8911284898230349791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106405949641628208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.050743185, y: 0.0007601653, z: 0.020743173}
+  m_Center: {x: 0, y: -0.009501786, z: 0}
