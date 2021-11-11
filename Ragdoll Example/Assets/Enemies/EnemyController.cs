@@ -20,7 +20,9 @@ public class EnemyController : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision");
         if (collision.gameObject.tag == "Item") {
+            Debug.Log("Collision Item");
             die();
         }
        
