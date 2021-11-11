@@ -651,8 +651,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  far clip plane: 150
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -678,7 +678,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131464420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.46078748, y: 8.57744, z: -32.190002}
+  m_LocalPosition: {x: 3.2262104, y: 7.743124, z: -32.190002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -877,6 +877,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1818965474932572222, guid: 4c86a6aad3920b74f968518af9392b0a,
         type: 3}
+    - target: {fileID: 3437478676070342437, guid: 528a356bef8b7304cb3190d591dafffd,
+        type: 3}
+      propertyPath: speed
+      value: 14.77
+      objectReference: {fileID: 0}
     - target: {fileID: 9142013730403929550, guid: 528a356bef8b7304cb3190d591dafffd,
         type: 3}
       propertyPath: m_Controller
@@ -923,10 +928,10 @@ MonoBehaviour:
   m_LookAt: {fileID: 2092851153}
   m_Follow: {fileID: 2092851153}
   m_Lens:
-    FieldOfView: 60
+    FieldOfView: 40
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 150
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -945,7 +950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468038717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.46078748, y: 8.57744, z: -32.190002}
+  m_LocalPosition: {x: 3.2262104, y: 7.743124, z: -32.190002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 618148071}
@@ -1186,8 +1191,8 @@ GameObject:
   - component: {fileID: 618148071}
   - component: {fileID: 618148074}
   - component: {fileID: 618148072}
-  - component: {fileID: 618148073}
   - component: {fileID: 618148075}
+  - component: {fileID: 618148073}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -1225,11 +1230,11 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0.2
+  m_YDamping: 0.2
+  m_ZDamping: 0.2
   m_TargetMovementOnly: 1
-  m_ScreenX: 0.39
+  m_ScreenX: 0.25
   m_ScreenY: 0.67
   m_CameraDistance: 11.5
   m_DeadZoneWidth: 0
@@ -1264,11 +1269,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9beda531928fc40968802117a5d256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RecenterTarget: 2
+  m_RecenterTarget: 0
   m_VerticalAxis:
     Value: 0
     m_SpeedMode: 1
-    m_MaxSpeed: 0.5
+    m_MaxSpeed: 1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -1292,7 +1297,7 @@ MonoBehaviour:
   m_HorizontalAxis:
     Value: 0
     m_SpeedMode: 1
-    m_MaxSpeed: 0.5
+    m_MaxSpeed: 1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -1950,7 +1955,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   startVelocity: {x: 0, y: 3.64, z: 8.3}
   trajectoryVertDist: 0.25
-  maxCurveLength: 3600
+  maxCurveLength: 75
   _debugAlwaysDrawTrajectory: 1
   playPos: {fileID: 2092851148}
   cam: {fileID: 131464423}
@@ -3582,7 +3587,7 @@ Transform:
   m_GameObject: {fileID: 1727700543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.05803, y: 15.25, z: -0.007058814}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.98, y: 1, z: 1}
   m_Children:
   - {fileID: 1226937790}
   - {fileID: 71469881}
