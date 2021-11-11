@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class EnemyController : MonoBehaviour
     {
         Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
         setRigidBodyState(false);
         setColliderState(true);
 
