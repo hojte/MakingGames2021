@@ -26,7 +26,36 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Collision Item");
             die();
         }
+
+        if (collision.gameObject.tag == "Shelf") {
+            Debug.Log("Collision shelf");
+            if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false)
+            {
+                Debug.Log("Collision Moving Shelf");
+                die();
+            }
+        }
        
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log("Collision");
+        if (collision.gameObject.tag == "Item")
+        {
+            Debug.Log("Collision Item");
+            die();
+        }
+
+        if (collision.gameObject.tag == "Shelf")
+        {
+            Debug.Log("Collision shelf");
+            if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false)
+            {
+                Debug.Log("Collision Moving Shelf");
+                die();
+            }
+        }
     }
 
     void die()

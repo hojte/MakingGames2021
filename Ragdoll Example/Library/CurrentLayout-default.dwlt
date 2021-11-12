@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 682, y: 492}
   m_MaxSize: {x: 16007, y: 14042}
   vertical: 0
-  controlID: 2325
+  controlID: 18811
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 682, y: 492}
   m_MaxSize: {x: 16007, y: 14042}
   vertical: 1
-  controlID: 2326
+  controlID: 18812
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 682, y: 221}
   m_MaxSize: {x: 16007, y: 4021}
   vertical: 0
-  controlID: 2327
+  controlID: 18813
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -424,7 +424,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 22c1fffff2c4ffff58efffff82f4ffff
+      m_ExpandedIDs: 9ef3ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -574,9 +574,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.980792, y: 4.2264132, z: -10.392904}
+    m_Target: {x: 13.230164, y: -2.2018845, z: 31.129017}
     speed: 2
-    m_Value: {x: 7.980792, y: 4.2264132, z: -10.392904}
+    m_Value: {x: 13.230164, y: -2.2018845, z: 31.129017}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -622,13 +622,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.29147667, y: -0.01549967, z: 0.0047252104, w: 0.9564419}
+    m_Target: {x: 0.06270174, y: 0.37820387, z: -0.025683977, w: 0.92324257}
     speed: 2
-    m_Value: {x: -0.29147667, y: 0.01549967, z: -0.004725211, w: -0.9564419}
+    m_Value: {x: -0.06270174, y: -0.37820387, z: 0.025683979, w: -0.9232426}
   m_Size:
-    m_Target: 13.182096
+    m_Target: 8.297281
     speed: 2
-    m_Value: 13.182096
+    m_Value: 8.297281
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -756,20 +756,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Enemies
+    - Assets/Environment
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Enemies
+  - Assets/Environment
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\MakingGames\MakingGames2021\Ragdoll Example
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 463d0000
-    m_LastClickedID: 15686
-    m_ExpandedIDs: 00000000303d000000ca9a3b
+    m_SelectedIDs: ae3d0000
+    m_LastClickedID: 15790
+    m_ExpandedIDs: 00000000a03d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -797,7 +797,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000303d000000ca9a3b
+    m_ExpandedIDs: 00000000a03d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
