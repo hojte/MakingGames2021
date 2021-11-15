@@ -61,6 +61,7 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
             // Clear trajectory
             ClearTrajectory();
         }
+        
         Vector3 pPos = new Vector3(playPos.gameObject.transform.position.x, playPos.gameObject.transform.position.y+5, playPos.gameObject.transform.position.z);
         this.startPosition = pPos;
 
@@ -72,7 +73,8 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
         clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
         this.startVelocity = clone.velocity;
         
-        Destroy(clone.gameObject); 
+        Destroy(clone.gameObject);
+        
     }
     /// Sets ballistic values for trajectory.
   
