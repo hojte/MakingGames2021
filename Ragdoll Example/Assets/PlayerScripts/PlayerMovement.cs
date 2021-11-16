@@ -64,9 +64,7 @@ public class PlayerMovement : MonoBehaviour
     public float pushPower = 2.0F;
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        
-        if (hit.collider.gameObject.tag == "Box" || hit.collider.gameObject.tag == "Ball") {
-
+        if (hit.collider.gameObject.tag == "Item" || hit.collider.gameObject.tag == "Ball") {
             Rigidbody body = hit.collider.attachedRigidbody;
 
             // no rigidbody
@@ -89,7 +87,27 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
+
+        if (hit.collider.gameObject.tag == "Enemy")
+        {
+            print("touched by enemy");
+            die();
+        }
         
+    }
+    void die()
+    {
+        GetComponent<Animator>().enabled = false;
+        setRigidBodyState(false);
+    }
+    
+    void setRigidBodyState(bool state)
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rigidbody in rigidbodies) {
+            rigidbody.isKinematic = state;
+        }
+        GetComponent<Rigidbody>().isKinematic = !state;
     }
 
 }
