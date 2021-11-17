@@ -10,7 +10,7 @@ public class PickupController : MonoBehaviour
     {
         try
         { // todo might lag??
-            other.GetComponent<PlayerController>().pickupables.Add(GetComponent<Rigidbody>());
+            other.GetComponent<PlayerController>().Pickupables.Add(GetComponent<Rigidbody>());
         }
         catch (Exception e)
         {
@@ -21,7 +21,7 @@ public class PickupController : MonoBehaviour
     {
         try
         {
-            other.GetComponent<PlayerController>().pickupables.Remove(GetComponent<Rigidbody>());
+            other.GetComponent<PlayerController>().Pickupables.Remove(GetComponent<Rigidbody>());
         }
         catch (Exception e)
         {
