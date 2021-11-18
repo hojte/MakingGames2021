@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
     }
 
-    public float pushPower = 2F;
+    public float pushPower = 20000F;
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.collider.gameObject.tag == "Item" || hit.collider.gameObject.tag == "Shelf") {
@@ -77,13 +77,14 @@ public class PlayerMovement : MonoBehaviour
 
             // Calculate push direction from move direction,
             // we only push objects to the sides never up and down
-            Vector3 pushDir = new Vector3(hit.moveDirection.x, -10, hit.moveDirection.z);
+            Debug.Log("push");
+            Vector3 pushDir = new Vector3(-hit.moveDirection.x, -10, -hit.moveDirection.z);
 
             // If you know how fast your character is trying to move,
             // then you can also multiply the push velocity by that.
 
             // Apply the push
-            body.velocity = pushDir * pushPower;
+            //body.velocity = pushDir * pushPower;
         }
   
     }

@@ -2928,6 +2928,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupBox (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7792545244401568298, guid: 640abe7fc81b66146873057f3089321f,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 640abe7fc81b66146873057f3089321f, type: 3}
 --- !u!1 &1617496402

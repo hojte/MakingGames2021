@@ -26,6 +26,7 @@ public class ShelfImpact : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player"))
         {
             this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.gameObject.GetComponent<Rigidbody>().velocity.x, 0, this.gameObject.GetComponent<Rigidbody>().velocity.z);
+
         }
     }
 }
