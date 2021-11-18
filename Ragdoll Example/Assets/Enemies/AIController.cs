@@ -28,7 +28,11 @@ public class AIController : MonoBehaviour
         {
             if ((Vector3.Distance(transform.position, Player.position) < aggroRange) || inCombat)
             {
-                inCombat = true;
+                if (!inCombat)
+                {
+                    inCombat = true;
+                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().newEnemyInCombat();
+                }
 
                 if (Vector3.Distance(transform.position, Player.position) >= minDist)
                 {
