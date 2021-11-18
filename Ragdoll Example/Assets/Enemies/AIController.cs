@@ -8,7 +8,7 @@ public class AIController : MonoBehaviour
 
     public Transform Player;
     int moveSpeed = 4;
-    int maxDist = 10;
+    int maxDist = 20;
     int minDist = 5;
     int aggroRange = 30;
     bool inCombat = false;
@@ -40,7 +40,10 @@ public class AIController : MonoBehaviour
 
                     if (Vector3.Distance(transform.position, Player.position) <= maxDist)
                     {
-                        // Attack
+                        if (GetComponent<ScrewdriverAttack>())
+                            GetComponent<ScrewdriverAttack>().attack(transform, Player);
+                        else
+                            Debug.Log("No attack");
                     }
                 }
             }

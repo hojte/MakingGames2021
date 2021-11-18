@@ -20,8 +20,7 @@ public class ShelfImpact : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("HeavyItem"))
         {
-            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
-                this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
