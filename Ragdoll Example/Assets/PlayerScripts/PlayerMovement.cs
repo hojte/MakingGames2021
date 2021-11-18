@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public Transform cam;
 
-    public float speed = 6f; 
+    public float speed; 
+    
+    public float runSpeed; 
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
@@ -23,12 +25,22 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
 
     public float jumpHeight = 3f;
+    
+    
+    public float slideSpeed = 20; // slide speed
+    public bool isSliding = false;
+    private Vector3 slideForward; // direction of slide
+    private float slideTimer = 0.0f;
+    public float slideTimerMax = 2.5f; // time while sliding
 
 
     void Update()
     {
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        bool isCrouching = Input.GetKey(KeyCode.C);
+        
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -41,9 +53,41 @@ public class PlayerMovement : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f)* Vector3.forward;
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+
+            
+            if (isGrounded && isRunning){
+                controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
+                if (isCrouching) {
+                    Debug.Log("Sliding");
+                    isSliding = true;
+                    controller.height = 4;
+                }
+            }
+            else {
+                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+            }
+
+            if (isSliding) {
+                this.gameObject.transform.Rotate(-60.0f, 0.0f, 0.0f, Space.Self);
+
+                slideTimer += Time.deltaTime;
+                controller.Move(moveDir.normalized * slideSpeed * Time.deltaTime);
+                if (slideTimer > slideTimerMax)
+                {
+                    controller.height = 7.07f;
+                    this.gameObject.transform.Rotate(60.0f, 0.0f, 0.0f, Space.Self);
+                    isSliding = false;
+                    Debug.Log("Done sliding");
+                    slideTimer = 0; 
+                }
+            }
+
+
+
+
+
+
         }
 
 
@@ -60,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Gravity
         if (isGrounded && velocity.y <0) {
-            velocity.y = -2f;
+            velocity.y = -12f;
         }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);

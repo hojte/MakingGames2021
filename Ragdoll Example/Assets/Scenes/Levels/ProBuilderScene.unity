@@ -712,7 +712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998838441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.08817, y: 7.883124, z: -197.09}
+  m_LocalPosition: {x: 25.312437, y: 7.883124, z: -197.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 888722604}
@@ -746,7 +746,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054581981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.08817, y: 7.883124, z: -197.09}
+  m_LocalPosition: {x: 25.312437, y: 7.883124, z: -197.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -867,17 +867,17 @@ PrefabInstance:
     - target: {fileID: 2611729034740364717, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.92
+      value: 30.94
       objectReference: {fileID: 0}
     - target: {fileID: 2611729034740364717, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 10.35
       objectReference: {fileID: 0}
     - target: {fileID: 2611729034740364717, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -165.4
+      value: -174.36
       objectReference: {fileID: 0}
     - target: {fileID: 2611729034740364717, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
         type: 3}
@@ -3820,6 +3820,21 @@ PrefabInstance:
       propertyPath: speed
       value: 14.77
       objectReference: {fileID: 0}
+    - target: {fileID: 3437478676070342437, guid: 528a356bef8b7304cb3190d591dafffd,
+        type: 3}
+      propertyPath: runSpeed
+      value: 22.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437478676070342437, guid: 528a356bef8b7304cb3190d591dafffd,
+        type: 3}
+      propertyPath: slideSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437478676070342437, guid: 528a356bef8b7304cb3190d591dafffd,
+        type: 3}
+      propertyPath: slideTimerMax
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4333973522996399440, guid: 528a356bef8b7304cb3190d591dafffd,
         type: 3}
       propertyPath: m_RootOrder
@@ -4722,7 +4737,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3440420
+  m_Name: pb_Mesh-545770
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
