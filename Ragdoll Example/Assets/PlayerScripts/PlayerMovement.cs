@@ -84,30 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Apply the push
             body.velocity = pushDir * pushPower;
-
-
         }
-
-        if (hit.collider.gameObject.tag == "Enemy")
-        {
-            print("touched by enemy");
-            die();
-        }
-        
+  
     }
-    void die()
-    {
-        GetComponent<Animator>().enabled = false;
-        setRigidBodyState(false);
-    }
-    
-    void setRigidBodyState(bool state)
-    {
-        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
-        foreach (Rigidbody rigidbody in rigidbodies) {
-            rigidbody.isKinematic = state;
-        }
-        GetComponent<Rigidbody>().isKinematic = !state;
-    }
-
 }

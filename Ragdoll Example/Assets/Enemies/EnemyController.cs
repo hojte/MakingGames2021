@@ -65,7 +65,6 @@ public class EnemyController : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = false;
         setRigidBodyState(false);
         setColliderState(true);
-
     }
     void setRigidBodyState(bool state)
     {
