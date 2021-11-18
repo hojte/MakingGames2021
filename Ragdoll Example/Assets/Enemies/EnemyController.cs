@@ -22,9 +22,10 @@ public class EnemyController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision");
-        if (collision.gameObject.tag == "Item") {
+        if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem") {
             Debug.Log("Collision Item");
-            die();
+            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
+                die();
         }
 
         if (collision.gameObject.tag == "Shelf") {
@@ -41,10 +42,11 @@ public class EnemyController : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         Debug.Log("Collision");
-        if (collision.gameObject.tag == "Item")
+        if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem")
         {
             Debug.Log("Collision Item");
-            die();
+            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
+                die();
         }
 
         if (collision.gameObject.tag == "Shelf")

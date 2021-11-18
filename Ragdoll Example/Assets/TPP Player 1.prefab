@@ -106,7 +106,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  pushPower: 4.43
+  pushPower: 0
 --- !u!114 &6533555108736182189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,8 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da27c0dfb324876816135eb98a12db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwable: {fileID: 0}
-  throwablePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &7494524849092799442
 GameObject:
   m_ObjectHideFlags: 0

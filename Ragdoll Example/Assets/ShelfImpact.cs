@@ -18,9 +18,14 @@ public class ShelfImpact : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Item"))
+        if (collision.gameObject.CompareTag("HeavyItem"))
         {
-            this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.gameObject.GetComponent<Rigidbody>().velocity.x, 0, this.gameObject.GetComponent<Rigidbody>().velocity.z);
         }
     }
 }
