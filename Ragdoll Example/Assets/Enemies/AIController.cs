@@ -12,14 +12,25 @@ public class AIController : MonoBehaviour
     int minDist = 5;
     int aggroRange = 30;
     bool inCombat = false;
-    Vector3 patrollingWayPoint;
+    public Vector3 patrollingWayPoint;
     int newWayPointDistance = 10;
     NavMeshAgent agent;
+    float timeOfLastAttack = 0;
+    public bool patrollingEnemy = false;
+    bool firstHalfOfPatrol = true;
+    Vector3 spawnPoint;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        Wander();
+        if (patrollingEnemy)
+        {
+            spawnPoint = transform.position;
+            patrollingWayPoint = spawnPoint + new Vector3(20, 0, 0);
+        }
+        else
+            Wander();
+
     }
 
     void Update()
@@ -40,25 +51,38 @@ public class AIController : MonoBehaviour
 
                     if (Vector3.Distance(transform.position, Player.position) <= maxDist)
                     {
-                        if (GetComponent<ScrewdriverAttack>())
-                            GetComponent<ScrewdriverAttack>().attack(transform, Player);
-                        else
-                            Debug.Log("No attack");
+                        if (Time.time > timeOfLastAttack + 2.0)
+                        {
+                            if (GetComponent<ScrewdriverAttack>())
+                                GetComponent<ScrewdriverAttack>().attack(transform, Player);
+                            else
+                                Debug.Log("No attack");
+                            timeOfLastAttack = Time.time;
+                        }
                     }
                 }
             }
             else
             {
-                //transform.position += transform.forward * moveSpeed * Time.deltaTime;
-                patrollingWayPoint.y = transform.position.y;
-
-                if (Vector3.Distance(transform.position, patrollingWayPoint) <= 3)
+                if (patrollingEnemy)
                 {
-                    // when the distance between us and the target is less than 3
-                    // create a new way point target
-                    Wander();
+                    patrollingWayPoint.y = transform.position.y;
+                    spawnPoint.y = transform.position.y;
+                    Patrol();
+                }
+                else
+                {
+                    //transform.position += transform.forward * moveSpeed * Time.deltaTime;
+                    patrollingWayPoint.y = transform.position.y;
+
+                    if (Vector3.Distance(transform.position, patrollingWayPoint) <= 3)
+                    {
+                        // when the distance between us and the target is less than 3
+                        // create a new way point target
+                        Wander();
 
 
+                    }
                 }
             }
         }
@@ -77,4 +101,28 @@ public class AIController : MonoBehaviour
             // Debug.Log(patrollingWayPoint + " and " + (transform.position - patrollingWayPoint).magnitude);
         }
     }
+
+    void Patrol()
+    {
+        if (firstHalfOfPatrol)
+        {
+            transform.LookAt(patrollingWayPoint);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            agent.destination = patrollingWayPoint;
+
+            if (Vector3.Distance(transform.position, patrollingWayPoint) <= 3)
+                firstHalfOfPatrol = false;
+        }
+        else
+        {
+            transform.LookAt(spawnPoint);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            agent.destination = spawnPoint;
+
+            if (Vector3.Distance(transform.position, spawnPoint) <= 3)
+                firstHalfOfPatrol = true;
+        }
+    }
+
+
 }

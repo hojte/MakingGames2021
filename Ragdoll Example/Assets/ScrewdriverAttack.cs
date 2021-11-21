@@ -19,6 +19,9 @@ public class ScrewdriverAttack : MonoBehaviour
 
     public void attack(Transform spawnPoint, Transform Player)
     {
-        Instantiate(throwable, spawnPoint.transform.position, spawnPoint.rotation);
+        Vector3 dir = Player.transform.position - spawnPoint.transform.position - new Vector3(0,3,0);
+        GameObject projectile = Instantiate(throwable, spawnPoint.transform.position + new Vector3(0,4,0) + 0.2f*dir, spawnPoint.rotation);
+        projectile.GetComponent<Rigidbody>().AddForce(dir.normalized * 3000, ForceMode.Impulse);
+
     }
 }
