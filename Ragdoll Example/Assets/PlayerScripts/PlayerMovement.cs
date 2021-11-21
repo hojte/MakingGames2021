@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -119,6 +120,43 @@ public class PlayerMovement : MonoBehaviour
         //Press the space bar to apply no locking to the Cursor
         if (Input.GetKey(KeyCode.F1))
             Cursor.lockState = CursorLockMode.None;
+    }
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (isSliding)
+            {
+                Debug.Log("Enemy stun");
+                collision.gameObject.GetComponent<EnemyController>().stun(); 
+            }
+
+            
+            else 
+                playerDie( GameObject.FindWithTag("Player"));
+        }
+        
+
+        
+    }
+    
+    void playerDie( GameObject player)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+
+        //Destroy(gameObject, 7f);
+        // player.GetComponent<CapsuleCollider>().enabled = false;
+        //player.GetComponent<CharacterController>().enabled = false; 
+
+        //playerAnimator.GetComponent<Animator>().enabled = false;
+
+
+        //gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        //setRigidBodyState(false);
+        //setColliderState(true);
     }
 
     public float pushPower = 2.0F;

@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    public GameObject enemyPrefab; 
+    private bool isStunned = false;
+
+    private float returnFromStunTimer =0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +20,17 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+        if (isStunned)
+        {
+            returnFromStunTimer += Time.deltaTime;
+            if (returnFromStunTimer > 3f)
+            {
+                returnFromStun();
+                returnFromStunTimer = 0;
+            }
+        }
+
+
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -40,7 +53,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log("Collision");
         if (collision.gameObject.tag == "Item")
         {
             Debug.Log("Collision Item");
@@ -58,7 +70,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void die()
+     void die()
     {
         Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
@@ -66,6 +78,24 @@ public class EnemyController : MonoBehaviour
         setRigidBodyState(false);
         setColliderState(true);
     }
+    public void stun()
+    {
+        isStunned = true; 
+        GetComponent<Animator>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+        setRigidBodyState(false);
+        setColliderState(true);
+    }
+    void returnFromStun()
+    {
+        var clone = Instantiate(enemyPrefab, transform.position, transform.rotation);
+        clone.GetComponent<AIController>().Player = GameObject.FindGameObjectWithTag("Player").transform;
+        clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab; 
+        Destroy(this.gameObject);
+        isStunned = false;
+        
+    }
+    
     void setRigidBodyState(bool state)
     {
         Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
