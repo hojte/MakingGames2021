@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Interactions;
 using UnityEngine;
 
 namespace PlayerScripts
@@ -17,6 +18,12 @@ namespace PlayerScripts
         }
 
         private void Update()
+        {
+            UpdateThrow();
+            UpdateDoor();
+        }
+
+        private void UpdateThrow()
         {
             _throwablePosition = transform.position;
             _throwablePosition.y += 5;
@@ -55,6 +62,19 @@ namespace PlayerScripts
             finalPickup.transform.position = _throwablePosition;
             _throwSlot = finalPickup;
             return true;
+        }
+
+        private void UpdateDoor()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+              Ray ray = new Ray(transform.position, _mainCam.forward);
+                          Physics.Raycast(ray, out var hit,10);
+                          if(!hit.collider) return;
+                          var doorCast = hit.collider.gameObject.GetComponent<DoorController>();
+                          if (doorCast)
+                              doorCast.SetClosed(!doorCast.closed);  
+            }
         }
     }
 }
