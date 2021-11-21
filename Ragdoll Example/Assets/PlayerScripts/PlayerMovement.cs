@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+     private Animator anim;
+    
     public CharacterController controller;
     public Transform cam;
 
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public bool isRunning = false;  
+    public bool isWalking = false; 
 
     bool isGrounded;
 
@@ -34,12 +38,18 @@ public class PlayerMovement : MonoBehaviour
     private float slideTimer = 0.0f;
     public float slideTimerMax = 2.5f; // time while sliding
 
+    private void Start()
+    {
+        anim = this.GetComponentInChildren<Animator>();
+
+    }
 
     void Update()
     {
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        isRunning = Input.GetKey(KeyCode.LeftShift);
+        
         bool isCrouching = Input.GetKey(KeyCode.C);
         
 
@@ -49,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         if (direction.magnitude >= 0.1f) {
+            isWalking = !isRunning; 
 
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -79,16 +90,16 @@ public class PlayerMovement : MonoBehaviour
                     controller.height = 7.07f;
                     this.gameObject.transform.Rotate(60.0f, 0.0f, 0.0f, Space.Self);
                     isSliding = false;
-                    Debug.Log("Done sliding");
                     slideTimer = 0; 
                 }
             }
+            
 
-
-
-
-
-
+        }
+        else
+        {
+            isWalking = false;
+            isRunning = false; 
         }
 
 
@@ -109,6 +120,24 @@ public class PlayerMovement : MonoBehaviour
         }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+        
+        if (isRunning)
+        {
+           anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+        }
+        
+        if (isWalking)
+        {
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
 
         
 
