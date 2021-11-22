@@ -51,20 +51,18 @@ namespace PlayerScripts
         }
         private bool TryTakeNearbyItem()
         {
-            if (_throwSlot != null) return false;
-            Rigidbody finalPickup = null;
-            foreach (Rigidbody pickup in Pickupables)
-            {
-                if (!finalPickup) finalPickup = pickup;
-                if (Vector3.Distance(pickup.transform.position, transform.position) <
-                    Vector3.Distance(finalPickup.transform.position, transform.position))
-                    finalPickup = pickup;
-            }
+            var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (finalPickup == null) return false;
-            finalPickup.transform.position = throwablePosition;
-            _throwSlot = finalPickup;
-            return true;
+            if (_throwSlot != null) return false;
+            if (Physics.Raycast(mouseRay, out var hit, 20f))
+            {
+                if (hit.transform.CompareTag("Item"))
+                {
+                    _throwSlot = hit.collider.attachedRigidbody;
+                    return true; 
+                }
+            }
+            return false;
         }
     }
 }
