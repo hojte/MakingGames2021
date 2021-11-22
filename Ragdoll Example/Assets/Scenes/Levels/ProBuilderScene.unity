@@ -2017,7 +2017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998838441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.937899, y: 8.699873, z: -156.3}
+  m_LocalPosition: {x: 20.884722, y: 8.699873, z: -156.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 888722604}
@@ -2051,7 +2051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054581981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.937899, y: 8.699873, z: -156.3}
+  m_LocalPosition: {x: 20.884722, y: 8.699873, z: -156.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5237,7 +5237,7 @@ PrefabInstance:
     - target: {fileID: 3437478676070342437, guid: 528a356bef8b7304cb3190d591dafffd,
         type: 3}
       propertyPath: stopJumpingTimer
-      value: 0.51
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3437478676070342437, guid: 528a356bef8b7304cb3190d591dafffd,
         type: 3}
@@ -5313,7 +5313,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1429422
+  m_Name: pb_Mesh-5961884
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
