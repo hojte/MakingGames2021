@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    public GameObject enemyPrefab; 
+    private bool isStunned = false;
+
+    private float returnFromStunTimer =0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,59 +20,82 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+        if (isStunned)
+        {
+            returnFromStunTimer += Time.deltaTime;
+            if (returnFromStunTimer > 3f)
+            {
+                returnFromStun();
+                returnFromStunTimer = 0;
+            }
+        }
+
+
     }
     void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("Collision");
-        if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem") {
-            //Debug.Log("Collision Item");
-            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
-                die();
+        Debug.Log("Collision");
+        if (collision.gameObject.tag == "Item") {
+            Debug.Log("Collision Item");
+            die();
         }
 
         if (collision.gameObject.tag == "Shelf") {
-            //Debug.Log("Collision shelf");
+            Debug.Log("Collision shelf");
             if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false)
             {
-                //Debug.Log("Collision Moving Shelf");
+                Debug.Log("Collision Moving Shelf");
                 die();
             }
         }
        
     }
 
-    /*private void OnCollisionStay(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        //Debug.Log("Collision");
-        if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem")
+        if (collision.gameObject.tag == "Item")
         {
-            //Debug.Log("Collision Item");
-            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
-                die();
+            Debug.Log("Collision Item");
+            die();
         }
 
         if (collision.gameObject.tag == "Shelf")
         {
-            //Debug.Log("Collision shelf");
+            Debug.Log("Collision shelf");
             if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false)
             {
-                //Debug.Log("Collision Moving Shelf");
+                Debug.Log("Collision Moving Shelf");
                 die();
             }
         }
-    }*/
+    }
 
-    void die()
+     void die()
     {
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
         Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         setRigidBodyState(false);
         setColliderState(true);
     }
+    public void stun()
+    {
+        isStunned = true; 
+        GetComponent<Animator>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+        setRigidBodyState(false);
+        setColliderState(true);
+    }
+    void returnFromStun()
+    {
+        var clone = Instantiate(enemyPrefab, transform.position, transform.rotation);
+        clone.GetComponent<AIController>().Player = GameObject.FindGameObjectWithTag("Player").transform;
+        clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab; 
+        Destroy(this.gameObject);
+        isStunned = false;
+        
+    }
+    
     void setRigidBodyState(bool state)
     {
         Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
