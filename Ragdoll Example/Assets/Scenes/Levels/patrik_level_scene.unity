@@ -1353,6 +1353,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1744195946}
+    - target: {fileID: 480258792883812347, guid: 72cfe82bb2087d346a7970752865e495,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 495267229486250981, guid: 72cfe82bb2087d346a7970752865e495,
         type: 3}
       propertyPath: m_Mesh
@@ -1373,6 +1378,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 549606159}
+    - target: {fileID: 1747994579688585892, guid: 72cfe82bb2087d346a7970752865e495,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098530181904134472, guid: 72cfe82bb2087d346a7970752865e495,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199942533367863749, guid: 72cfe82bb2087d346a7970752865e495,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2584041024804669503, guid: 72cfe82bb2087d346a7970752865e495,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -2308,6 +2328,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patrik3
       objectReference: {fileID: 0}
+    - target: {fileID: 4265083918607854095, guid: 72cfe82bb2087d346a7970752865e495,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4545529159833120619, guid: 72cfe82bb2087d346a7970752865e495,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -2457,6 +2482,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: -0.000003322956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770581375844508191, guid: 72cfe82bb2087d346a7970752865e495,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5162407999902310119, guid: 72cfe82bb2087d346a7970752865e495,
         type: 3}
@@ -3233,6 +3263,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2067329205}
+    - target: {fileID: 7177694596599977451, guid: 72cfe82bb2087d346a7970752865e495,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7222136136944076591, guid: 72cfe82bb2087d346a7970752865e495,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
