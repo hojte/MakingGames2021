@@ -6,7 +6,6 @@ namespace PlayerScripts
 {
     public class PlayerController : MonoBehaviour
     {
-        public HashSet<Rigidbody> Pickupables = new HashSet<Rigidbody>();
         private Rigidbody _throwSlot;
         public Vector3 throwablePosition;
         private Transform _mainCam;
