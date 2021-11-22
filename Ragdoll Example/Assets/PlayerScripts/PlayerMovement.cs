@@ -25,7 +25,10 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public bool isRunning = false;  
-    public bool isWalking = false; 
+    public bool isWalking = false;
+    public bool isJumping = false;
+    public float isJumpingTimer = 0f; 
+    public float stopJumpingTimer;
 
     bool isGrounded;
 
@@ -71,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded && isRunning){
                 controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
                 if (isCrouching) {
-                    Debug.Log("Sliding");
                     isSliding = true;
                     controller.height = 4;
                 }
@@ -93,8 +95,6 @@ public class PlayerMovement : MonoBehaviour
                     slideTimer = 0; 
                 }
             }
-            
-
         }
         else
         {
@@ -105,9 +105,26 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded && !isSliding)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            isJumping = true;
         }
-
+        //Todo --> make this better 
+        if (isJumping)
+        {
+            anim.SetBool("isJumping", true);
+            isJumpingTimer += Time.deltaTime;
+            
+            if (isJumpingTimer>stopJumpingTimer)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                isJumping = false;
+                isJumpingTimer = 0; 
+            }
+        }
+        else
+        {
+            anim.SetBool("isJumping", false);
+        }
+        
 
 
 
@@ -138,9 +155,8 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isWalking", false);
         }
-
         
-
+       
     }
 
     private void OnGUI()

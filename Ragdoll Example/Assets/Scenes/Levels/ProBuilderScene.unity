@@ -5236,6 +5236,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3437478676070342437, guid: 528a356bef8b7304cb3190d591dafffd,
         type: 3}
+      propertyPath: stopJumpingTimer
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437478676070342437, guid: 528a356bef8b7304cb3190d591dafffd,
+        type: 3}
       propertyPath: groundMask.m_Bits
       value: 256
       objectReference: {fileID: 0}
