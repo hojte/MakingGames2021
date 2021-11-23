@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision");
-        if (collision.gameObject.tag == "Item") {
+        if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem") {
             Debug.Log("Collision Item");
             die();
         }
@@ -53,7 +53,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Item")
+        if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem")
         {
             Debug.Log("Collision Item");
             die();
