@@ -98,8 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 3437478676070342436}
   cam: {fileID: 0}
-  speed: 9.6
-  runSpeed: 0
+  speed: 14.77
+  runSpeed: 22.68
   turnSmoothTime: 0.1
   gravity: -19.62
   groundCheck: {fileID: 3437478675767789918}
@@ -111,11 +111,11 @@ MonoBehaviour:
   isWalking: 0
   isJumping: 0
   isJumpingTimer: 0
-  stopJumpingTimer: 0
+  stopJumpingTimer: 0.25
   jumpHeight: 3
-  slideSpeed: 20
+  slideSpeed: 7
   isSliding: 0
-  slideTimerMax: 2.5
+  slideTimerMax: 0.8
   pushPower: 4.43
 --- !u!114 &6533555108736182189
 MonoBehaviour:
@@ -303,6 +303,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7e3dd39e87c55134a9f9088dd0aea088, type: 2}
+    - target: {fileID: 5866666021909216657, guid: f301ae3abd80cff489e7491ce9e8e1e5,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8417361359673230750, guid: f301ae3abd80cff489e7491ce9e8e1e5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
