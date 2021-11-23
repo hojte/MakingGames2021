@@ -6,7 +6,7 @@ namespace PlayerScripts
 {
     public class PlayerController : MonoBehaviour
     {
-        public GameObject test;
+        public GameObject testSpawnObject;
         private Rigidbody _throwSlot;
         public Vector3 throwablePosition;
         private Transform _mainCam;
@@ -26,7 +26,7 @@ namespace PlayerScripts
             throwablePosition.y += 5;
             if (/*_gameController.debugMode &&*/ Input.GetKey(KeyCode.Keypad0))
             {
-                var item = Instantiate(test, throwablePosition, Quaternion.LookRotation(_mainCam.forward, _mainCam.up));
+                var item = Instantiate(testSpawnObject, throwablePosition, Quaternion.LookRotation(_mainCam.forward, _mainCam.up));
                 // item.GetComponent<Rigidbody>().velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
             }
             if (_throwSlot && !Input.GetButtonDown("Fire2"))
