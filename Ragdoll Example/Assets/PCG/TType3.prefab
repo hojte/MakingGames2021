@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4265083918607854099}
   - component: {fileID: 4265083918607854096}
   - component: {fileID: 4265083918607854097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TType3
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -178,6 +178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: shelf_high
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316437616586027457, guid: 6d01d161a584d594bb077db9b73693d3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d01d161a584d594bb077db9b73693d3, type: 3}
@@ -358,6 +363,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: shelf_mid
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
