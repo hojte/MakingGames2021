@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7731593602679717635}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Office stuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 763277808095357635}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 4608844872663439668}
   - component: {fileID: 2503314398047833359}
   - component: {fileID: 7251272004492912}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 1058947180264366617}
   - component: {fileID: 8689679959932168144}
   - component: {fileID: 2931050683670482935}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7293597990325302466}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shelves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 4265083918607854099}
   - component: {fileID: 4265083918607854096}
   - component: {fileID: 4265083918607854097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mandel2
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 3803911629393300339}
   - component: {fileID: 8169680749413556397}
   - component: {fileID: 3468042801112338281}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 350524601149277090}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shelves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 2461478818435117794}
   - component: {fileID: 7099014230624168313}
   - component: {fileID: 8820818925885103001}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 1331127784373189433}
   - component: {fileID: 449904980436032480}
   - component: {fileID: 8637701455691121860}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8549872812557200161}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 672864022478821681}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 5061243903852137308}
   - component: {fileID: 1155858437262531305}
   - component: {fileID: 4903839594481204951}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7910024282730997494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -973,7 +973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4039486922889119468}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other Paletts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,7 +1006,7 @@ GameObject:
   - component: {fileID: 73010808824113908}
   - component: {fileID: 7289009638353045788}
   - component: {fileID: 2909432333928992952}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 3208220719533773259}
   - component: {fileID: 5708170726447058937}
   - component: {fileID: 5778828847258878076}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1262,6 +1262,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &2628979404974981972 stripped
@@ -1280,6 +1285,10 @@ PrefabInstance:
     - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_Name
       value: FilingCabinet_Drawer (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4137810033084392, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_RootOrder
@@ -1356,6 +1365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carton_02 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158904695118786999, guid: 6b0ee4a1ac3b2394e88158800ec90495,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7499154497979951885, guid: 6b0ee4a1ac3b2394e88158800ec90495,
         type: 3}
@@ -1446,6 +1460,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FilingCabinetThreeStack_Case
       objectReference: {fileID: 0}
+    - target: {fileID: 1077311097942904, guid: 4f34910326e789e4f9b1781fe5d280e8, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4132520325593564, guid: 4f34910326e789e4f9b1781fe5d280e8, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1521,6 +1539,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carton_02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158904695118786999, guid: 6b0ee4a1ac3b2394e88158800ec90495,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7499154497979951885, guid: 6b0ee4a1ac3b2394e88158800ec90495,
         type: 3}
@@ -1611,6 +1634,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pen
       objectReference: {fileID: 0}
+    - target: {fileID: 1997056383728078, guid: 25a0ecfef2d64e744a3a13f1e8d37a38, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4036623906530160, guid: 25a0ecfef2d64e744a3a13f1e8d37a38, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -1686,6 +1713,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -1777,6 +1809,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PackingTable (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
       propertyPath: m_RootOrder
@@ -1866,6 +1903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -2027,6 +2069,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &4044522918663669115 stripped
@@ -2136,6 +2183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantTypeA
       objectReference: {fileID: 0}
+    - target: {fileID: 1176644185775656, guid: 5016dee2f2df1774e9c4ea33160fca26, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4114935976081480, guid: 5016dee2f2df1774e9c4ea33160fca26, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -2211,6 +2262,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -2301,6 +2357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FilingCabinet_Drawer (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4137810033084392, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -2375,6 +2435,10 @@ PrefabInstance:
     - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_Name
       value: FilingCabinet_Drawer (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4137810033084392, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_RootOrder
@@ -2451,6 +2515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table_OfficeDesk (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1412888549052842, guid: 683ef653b4b09b94993b7fd393c95978, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4996593761235138, guid: 683ef653b4b09b94993b7fd393c95978, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2525,6 +2593,10 @@ PrefabInstance:
     - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_Name
       value: FilingCabinet_Drawer (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4137810033084392, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_RootOrder
@@ -2601,6 +2673,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carton_02 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158904695118786999, guid: 6b0ee4a1ac3b2394e88158800ec90495,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7499154497979951885, guid: 6b0ee4a1ac3b2394e88158800ec90495,
         type: 3}
@@ -2691,6 +2768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair_Conference
       objectReference: {fileID: 0}
+    - target: {fileID: 1862155987202886, guid: 7d255bce5b634604dbc1ed9f1e878f20, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4629217466970814, guid: 7d255bce5b634604dbc1ed9f1e878f20, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2766,6 +2847,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carton_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158904695118786999, guid: 6b0ee4a1ac3b2394e88158800ec90495,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7499154497979951885, guid: 6b0ee4a1ac3b2394e88158800ec90495,
         type: 3}
@@ -2856,6 +2942,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laptop_On
       objectReference: {fileID: 0}
+    - target: {fileID: 1382680370001608, guid: 112cc81e36e745449bf229e4dbb3e073, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4225381643663648, guid: 112cc81e36e745449bf229e4dbb3e073, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -2930,6 +3020,10 @@ PrefabInstance:
     - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_Name
       value: FilingCabinet_Drawer (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4137810033084392, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_RootOrder
@@ -3006,6 +3100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -3167,6 +3266,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &1511075561873402114 stripped
@@ -3185,6 +3289,10 @@ PrefabInstance:
     - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_Name
       value: FilingCabinet_Drawer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4137810033084392, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_RootOrder
@@ -3332,6 +3440,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &1680726842326346608 stripped
@@ -3351,6 +3464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -3512,6 +3630,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3123299735552127682, guid: 27e4effa687a01a49ba56a68436ffac1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e4effa687a01a49ba56a68436ffac1, type: 3}
 --- !u!4 &1488521031435905180 stripped
@@ -3601,6 +3724,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carton_03 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140614522304520493, guid: b06197d487b17684280c210a8cc917e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06197d487b17684280c210a8cc917e3, type: 3}
@@ -3692,6 +3820,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_01
       objectReference: {fileID: 0}
+    - target: {fileID: 3123299735552127682, guid: 27e4effa687a01a49ba56a68436ffac1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e4effa687a01a49ba56a68436ffac1, type: 3}
 --- !u!4 &1672580081958209405 stripped
@@ -3710,6 +3843,10 @@ PrefabInstance:
     - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_Name
       value: FilingCabinet_Drawer (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4137810033084392, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_RootOrder
@@ -3857,6 +3994,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &1798015462676989763 stripped
@@ -3876,6 +4018,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carton_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158904695118786999, guid: 6b0ee4a1ac3b2394e88158800ec90495,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7499154497979951885, guid: 6b0ee4a1ac3b2394e88158800ec90495,
         type: 3}
@@ -4037,6 +4184,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3123299735552127682, guid: 27e4effa687a01a49ba56a68436ffac1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e4effa687a01a49ba56a68436ffac1, type: 3}
 --- !u!4 &6997566566626928962 stripped
@@ -4126,6 +4278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carton_03 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140614522304520493, guid: b06197d487b17684280c210a8cc917e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06197d487b17684280c210a8cc917e3, type: 3}
@@ -4217,6 +4374,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &7472051805226081807 stripped
@@ -4235,6 +4397,10 @@ PrefabInstance:
     - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_Name
       value: FilingCabinet_Drawer (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4137810033084392, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_RootOrder
@@ -4311,6 +4477,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -4472,6 +4643,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_03 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 9140614522304520493, guid: b06197d487b17684280c210a8cc917e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06197d487b17684280c210a8cc917e3, type: 3}
 --- !u!4 &4405207593466165826 stripped
@@ -4490,6 +4666,10 @@ PrefabInstance:
     - target: {fileID: 1176282754583594, guid: 5e6c0a296760d204c9e34091c18540fd, type: 3}
       propertyPath: m_Name
       value: PlantPotLargeA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176282754583594, guid: 5e6c0a296760d204c9e34091c18540fd, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4804184306378262, guid: 5e6c0a296760d204c9e34091c18540fd, type: 3}
       propertyPath: m_RootOrder
@@ -4637,6 +4817,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &7962771355430753045 stripped
@@ -4656,6 +4841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -4817,6 +5007,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &8019881895100269200 stripped
@@ -4906,6 +5101,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: shelf_mid (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
@@ -4997,6 +5197,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_03
       objectReference: {fileID: 0}
+    - target: {fileID: 9140614522304520493, guid: b06197d487b17684280c210a8cc917e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06197d487b17684280c210a8cc917e3, type: 3}
 --- !u!4 &4255106986558388445 stripped
@@ -5086,6 +5291,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: shelf_mid (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
@@ -5177,6 +5387,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &8545375893331103632 stripped
@@ -5267,6 +5482,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3123299735552127682, guid: 27e4effa687a01a49ba56a68436ffac1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e4effa687a01a49ba56a68436ffac1, type: 3}
 --- !u!4 &8696976710546215246 stripped
@@ -5285,6 +5505,10 @@ PrefabInstance:
     - target: {fileID: 1862155987202886, guid: 7d255bce5b634604dbc1ed9f1e878f20, type: 3}
       propertyPath: m_Name
       value: Chair_Conference (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862155987202886, guid: 7d255bce5b634604dbc1ed9f1e878f20, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4629217466970814, guid: 7d255bce5b634604dbc1ed9f1e878f20, type: 3}
       propertyPath: m_RootOrder
@@ -5432,6 +5656,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_03 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9140614522304520493, guid: b06197d487b17684280c210a8cc917e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06197d487b17684280c210a8cc917e3, type: 3}
 --- !u!4 &1645657529452197961 stripped
@@ -5450,6 +5679,10 @@ PrefabInstance:
     - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_Name
       value: FilingCabinet_Drawer (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187395464441800, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4137810033084392, guid: bf955aa6cf5b1774180125d6b6201b35, type: 3}
       propertyPath: m_RootOrder
@@ -5525,6 +5758,10 @@ PrefabInstance:
     - target: {fileID: 1189782351792700, guid: 20661e78605491946911818aa730569b, type: 3}
       propertyPath: m_Name
       value: Laptop_Closed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189782351792700, guid: 20661e78605491946911818aa730569b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4839676560386254, guid: 20661e78605491946911818aa730569b, type: 3}
       propertyPath: m_RootOrder
@@ -5672,6 +5909,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3123299735552127682, guid: 27e4effa687a01a49ba56a68436ffac1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e4effa687a01a49ba56a68436ffac1, type: 3}
 --- !u!4 &5372244053947859816 stripped
@@ -5691,6 +5933,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -5781,6 +6028,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CellPhone
       objectReference: {fileID: 0}
+    - target: {fileID: 1092883800961010, guid: bd7dac146a034144fb4a57250777c4d9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4461402307424116, guid: bd7dac146a034144fb4a57250777c4d9, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -5856,6 +6107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FilingCabinetThreeStack_Case (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1077311097942904, guid: 4f34910326e789e4f9b1781fe5d280e8, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4132520325593564, guid: 4f34910326e789e4f9b1781fe5d280e8, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -5930,6 +6185,10 @@ PrefabInstance:
     - target: {fileID: 1550026871934628, guid: 1f1181424ea20d64ea8a1054356fb358, type: 3}
       propertyPath: m_Name
       value: Briefcase
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550026871934628, guid: 1f1181424ea20d64ea8a1054356fb358, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4180469323904254, guid: 1f1181424ea20d64ea8a1054356fb358, type: 3}
       propertyPath: m_RootOrder
@@ -6012,6 +6271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -6103,6 +6367,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PackingTable (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
       propertyPath: m_RootOrder
@@ -6192,6 +6461,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -6353,6 +6627,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: shelf_mid (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3419755029630136087, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9f4fcfb0b23d84d88a60f2f61af4cf, type: 3}
 --- !u!4 &6282120817768912100 stripped
@@ -6371,6 +6650,10 @@ PrefabInstance:
     - target: {fileID: 1077311097942904, guid: 4f34910326e789e4f9b1781fe5d280e8, type: 3}
       propertyPath: m_Name
       value: FilingCabinetThreeStack_Case (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077311097942904, guid: 4f34910326e789e4f9b1781fe5d280e8, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4132520325593564, guid: 4f34910326e789e4f9b1781fe5d280e8, type: 3}
       propertyPath: m_RootOrder
@@ -6518,6 +6801,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_03 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9140614522304520493, guid: b06197d487b17684280c210a8cc917e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06197d487b17684280c210a8cc917e3, type: 3}
 --- !u!4 &451352906707663116 stripped
@@ -6537,6 +6825,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PackingTable (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 242910677314427473, guid: 8ed39daa24f7321499263696d2b927af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 582421573194580203, guid: 8ed39daa24f7321499263696d2b927af,
         type: 3}
@@ -6788,6 +7081,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_03 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 9140614522304520493, guid: b06197d487b17684280c210a8cc917e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06197d487b17684280c210a8cc917e3, type: 3}
 --- !u!4 &245440316765545695 stripped
@@ -6877,6 +7175,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carton_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123299735552127682, guid: 27e4effa687a01a49ba56a68436ffac1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e4effa687a01a49ba56a68436ffac1, type: 3}
@@ -6968,6 +7271,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carton_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3123299735552127682, guid: 27e4effa687a01a49ba56a68436ffac1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e4effa687a01a49ba56a68436ffac1, type: 3}
 --- !u!4 &6416387074180314049 stripped
@@ -6986,6 +7294,10 @@ PrefabInstance:
     - target: {fileID: 1412888549052842, guid: 683ef653b4b09b94993b7fd393c95978, type: 3}
       propertyPath: m_Name
       value: Table_OfficeDesk
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412888549052842, guid: 683ef653b4b09b94993b7fd393c95978, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4996593761235138, guid: 683ef653b4b09b94993b7fd393c95978, type: 3}
       propertyPath: m_RootOrder
@@ -7132,6 +7444,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carton_03 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140614522304520493, guid: b06197d487b17684280c210a8cc917e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06197d487b17684280c210a8cc917e3, type: 3}
