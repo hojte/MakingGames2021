@@ -6,13 +6,16 @@ namespace PlayerScripts
 {
     public class PlayerController : MonoBehaviour
     {
+        public GameObject test;
         private Rigidbody _throwSlot;
         public Vector3 throwablePosition;
         private Transform _mainCam;
         private BallisticTrajectoryRenderer _trajectoryRenderer;
+        // private GameController _gameController;
 
         private void Start()
         {
+            // _gameController = GetComponent<GameController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
             _trajectoryRenderer = GetComponentInChildren<BallisticTrajectoryRenderer>();
         }
@@ -21,7 +24,11 @@ namespace PlayerScripts
         {
             throwablePosition = transform.position;
             throwablePosition.y += 5;
-            
+            if (/*_gameController.debugMode &&*/ Input.GetKey(KeyCode.Keypad0))
+            {
+                var item = Instantiate(test, throwablePosition, Quaternion.LookRotation(_mainCam.forward, _mainCam.up));
+                // item.GetComponent<Rigidbody>().velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
+            }
             if (_throwSlot && !Input.GetButtonDown("Fire2"))
             { // Update position of filled throwSlot
                 var playerPos = transform.position;
