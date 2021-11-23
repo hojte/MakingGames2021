@@ -34,44 +34,48 @@ public class EnemyController : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision");
+        //Debug.Log("Collision");
         if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem") {
-            Debug.Log("Collision Item");
-            die();
+            //Debug.Log("Collision Item");
+            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
+                die();
         }
 
         if (collision.gameObject.tag == "Shelf") {
-            Debug.Log("Collision shelf");
+            //Debug.Log("Collision shelf");
             if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false)
             {
-                Debug.Log("Collision Moving Shelf");
+                //Debug.Log("Collision Moving Shelf");
                 die();
             }
         }
        
     }
 
-    private void OnCollisionStay(Collision collision)
+    /*private void OnCollisionStay(Collision collision)
     {
+        //Debug.Log("Collision");
         if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem")
         {
-            Debug.Log("Collision Item");
-            die();
+            //Debug.Log("Collision Item");
+            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
+                die();
         }
 
         if (collision.gameObject.tag == "Shelf")
         {
-            Debug.Log("Collision shelf");
+            //Debug.Log("Collision shelf");
             if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false)
             {
-                Debug.Log("Collision Moving Shelf");
+                //Debug.Log("Collision Moving Shelf");
                 die();
             }
         }
-    }
+    }*/
 
      void die()
     {
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
         Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;

@@ -80,12 +80,12 @@ namespace PlayerScripts
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-              Ray ray = new Ray(transform.position, _mainCam.forward);
-                          Physics.Raycast(ray, out var hit,10);
-                          if(!hit.collider) return;
-                          var doorCast = hit.collider.gameObject.GetComponent<DoorController>();
-                          if (doorCast)
-                              doorCast.SetClosed(!doorCast.closed);  
+                var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Physics.Raycast(mouseRay, out var hit,25);
+                if(!hit.collider) return;
+                var doorCast = hit.collider.gameObject.GetComponent<DoorController>();
+                if (doorCast)
+                    doorCast.SetClosed(!doorCast.closed);  
             }
         }
     }
