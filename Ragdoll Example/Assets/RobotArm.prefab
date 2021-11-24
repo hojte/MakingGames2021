@@ -23,6 +23,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8266895221812645950}
   - component: {fileID: 2212338104151518277}
+  - component: {fileID: 1093591713977196684}
   m_Layer: 0
   m_Name: RobotArm
   m_TagString: Untagged
@@ -59,6 +60,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plate: {fileID: 8266895221812645950}
   player: {fileID: 0}
+--- !u!65 &1093591713977196684
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7258348186683316432}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.361829, y: 8.272539, z: 12.6352625}
+  m_Center: {x: -0.08675051, y: 3.6362696, z: -0.07089186}
 --- !u!1001 &5638303038967724728
 PrefabInstance:
   m_ObjectHideFlags: 0
