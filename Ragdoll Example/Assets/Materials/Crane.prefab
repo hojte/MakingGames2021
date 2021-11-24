@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431262236444466116}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.26, y: 0, z: 0}
+  m_LocalPosition: {x: -3.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7377300712296443339}
@@ -1488,7 +1488,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1618690442269544877}
+  - {fileID: 7495590697086655631}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1510,6 +1510,8 @@ MonoBehaviour:
   tip1: {fileID: 5013491229973490493}
   rotate2: {fileID: 6828523014134232893}
   tip2: {fileID: 2771727078082205640}
+  player: {fileID: 0}
+  tip1Flip: 0
 --- !u!1 &3864653931327879715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2998,11 +3000,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5719424232796256598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.29, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7166310187350609291}
-  m_Father: {fileID: 6752890405222685400}
+  m_Father: {fileID: 7495590697086655631}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4066887968721894686
@@ -4430,6 +4432,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &6212029654042541797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7495590697086655631}
+  m_Layer: 0
+  m_Name: PlatePivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7495590697086655631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6212029654042541797}
+  m_LocalRotation: {x: 0, y: -0.8560413, z: 0, w: 0.5169075}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1618690442269544877}
+  m_Father: {fileID: 6752890405222685400}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -837.75, z: 0}
 --- !u!1 &6305824452618493457
 GameObject:
   m_ObjectHideFlags: 0
@@ -10329,15 +10362,9 @@ MonoBehaviour:
   assetGuid: 
   m_Mesh: {fileID: 0}
   m_IsSelectable: 1
-  m_SelectedFaces: 12000000
-  m_SelectedEdges:
-  - a: 54
-    b: 55
-  - a: 55
-    b: 56
-  - a: 56
-    b: 54
-  m_SelectedVertices: 360000003700000038000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!23 &2201786534571320095
 MeshRenderer:
   m_ObjectHideFlags: 0

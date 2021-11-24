@@ -207,6 +207,11 @@ public class PlayerMovement : MonoBehaviour
     public float pushPower = 20000F;
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (hit.gameObject.tag == "RobotArmHead")
+        {
+            playerDie(this.gameObject);
+
+        }
         if (hit.collider.gameObject.tag == "Item" || hit.collider.gameObject.tag == "Shelf") {
             Rigidbody body = hit.collider.attachedRigidbody;
 
