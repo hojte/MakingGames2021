@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sound;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class BetterMovement : MonoBehaviour
@@ -226,19 +227,20 @@ public class BetterMovement : MonoBehaviour
     
     void playerDie( GameObject player)
     {
-        // FindObjectOfType<AudioManager>().Play("Death1");
+         //FindObjectOfType<AudioManager>().Play("Death1");
         
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+         
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
-
+        
         //Destroy(gameObject, 7f);
-        // player.GetComponent<CapsuleCollider>().enabled = false;
-        //player.GetComponent<CharacterController>().enabled = false; 
+        player.GetComponent<CapsuleCollider>().enabled = false;
+        player.GetComponent<CharacterController>().enabled = false; 
 
-        //playerAnimator.GetComponent<Animator>().enabled = false;
+        anim.GetComponent<Animator>().enabled = false;
 
 
-        //gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
         //setRigidBodyState(false);
         //setColliderState(true);
     }
