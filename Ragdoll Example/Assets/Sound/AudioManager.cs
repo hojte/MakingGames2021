@@ -27,6 +27,16 @@ namespace Sound
             s.source.loop = loop;
             s.source.Play();
         }
+        public void PlayFrom(string soundName, GameObject fromObject)
+        {
+            Sound s = Array.Find(sounds, sound => sound.name == soundName);
+            var clip = s.clip;
+            s.source = fromObject.gameObject.AddComponent<AudioSource>();
+            s.clip = clip;
+            s.source.volume = s.volume;
+            s.source.rolloffMode = AudioRolloffMode.Linear;
+            s.source.Play();
+        }
         public void Stop(string soundName)
         {
             Sound s = Array.Find(sounds, sound => sound.name == soundName);

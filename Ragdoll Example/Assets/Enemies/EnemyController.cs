@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Sound;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,6 +29,11 @@ public class EnemyController : MonoBehaviour
                 returnFromStun();
                 returnFromStunTimer = 0;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            FindObjectOfType<AudioManager>().PlayFrom("EnemyHit", gameObject);
         }
 
 
