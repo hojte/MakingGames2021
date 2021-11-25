@@ -1,5 +1,6 @@
 ﻿using Interactions;
 using Sound;
+using UnityEditor;
 using UnityEngine;
 
 namespace PlayerScripts
@@ -21,6 +22,8 @@ namespace PlayerScripts
             // _gameController = GetComponent<GameController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
             _trajectoryRenderer = GetComponentInChildren<BallisticTrajectoryRenderer>();
+            if (testSpawnObject == null)
+                testSpawnObject = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Ball.prefab", typeof(GameObject));
         }
 
         private void Update()

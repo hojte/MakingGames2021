@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Sound;
+using UnityEditor;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -13,6 +14,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         AudioUtility.CreateMainSFX(mainTheme);
+        Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject)));
     }
 
     // Update is called once per frame
