@@ -3523,6 +3523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498834d010421be46b2935899be05a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: 
 --- !u!1 &5134194698343452005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3642,6 +3643,16 @@ PrefabInstance:
     - target: {fileID: 1344739647982059236, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344739647982059237, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
+        type: 3}
+      propertyPath: closed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344739647982059237, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
+        type: 3}
+      propertyPath: doorLocked
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1344739647982059239, guid: 13f6086d930ab9a4fad4f5faebaaac7c,

@@ -17,10 +17,10 @@ namespace Interactions
         {
             bool inCombat = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().getEnemiesInCombat() > 0;
 
-            if (!inCombat && closed && transform.rotation == Quaternion.Euler(0, -90, 0))
-                transform.parent.rotation = Quaternion.Euler(0, 0, 0);
-            if (!inCombat && !closed && transform.parent.rotation == Quaternion.Euler(0, 0, 0))
+            if (!inCombat && closed && transform.rotation == Quaternion.Euler(0, 0, 0))
                 transform.parent.rotation = Quaternion.Euler(0, -90, 0);
+            if (!inCombat && !closed && transform.parent.rotation == Quaternion.Euler(0, -90, 0))
+                transform.parent.rotation = Quaternion.Euler(0, 0, 0);
             if (inCombat) GetComponent<Renderer>().material.color = Color.red;
             else GetComponent<Renderer>().material.color = Color.green;
         }
