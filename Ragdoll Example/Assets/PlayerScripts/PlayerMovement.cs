@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -74,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded && isRunning){
                 controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
                 if (isCrouching) {
+                    FindObjectOfType<AudioManager>().Play("Slide");
                     isSliding = true;
                     controller.height = 4;
                 }
@@ -189,6 +191,8 @@ public class PlayerMovement : MonoBehaviour
     
     void playerDie( GameObject player)
     {
+        FindObjectOfType<AudioManager>().Play("Death1");
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
 

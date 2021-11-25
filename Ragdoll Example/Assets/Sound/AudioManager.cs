@@ -20,14 +20,14 @@ namespace Sound
             Play("MainTheme", true);
         }
 
-        void Play(string soundName, bool loop)
+        public void Play(string soundName, bool loop = false)
         {
             Sound s = Array.Find(sounds, sound => sound.name == soundName);
             s.source.volume = s.volume;
             s.source.loop = loop;
             s.source.Play();
         }
-        void Stop(string soundName)
+        public void Stop(string soundName)
         {
             Sound s = Array.Find(sounds, sound => sound.name == soundName);
             s.source.Stop();
