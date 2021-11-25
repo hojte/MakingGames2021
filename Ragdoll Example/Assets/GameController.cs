@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Sound;
+using UnityEditor;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [Header("Sounds")]
+    [Tooltip("Sound played continously in 2D")]
+    public AudioClip mainTheme;
     int enemiesInCombat = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioUtility.CreateMainSFX(mainTheme);
+        Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject)));
     }
 
     // Update is called once per frame

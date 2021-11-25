@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
      private Animator anim;
+
+     [Header("Sounds")]
+     [Tooltip("Sound played when sliding")]
+     public AudioClip onSlide;
+     [Tooltip("Sound played when stunning enemy")]
+     public AudioClip onStun = null;
     
     public CharacterController controller;
     public Transform cam;
@@ -74,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded && isRunning){
                 controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
                 if (isCrouching) {
+                    AudioUtility.CreateSFX(onSlide, transform.position, 0f);
                     isSliding = true;
                     controller.height = 4;
                 }
@@ -174,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isSliding)
             {
+                AudioUtility.CreateSFX(onStun, transform.position, 0);
                 Debug.Log("Enemy stun");
                 collision.gameObject.GetComponent<EnemyController>().stun(); 
             }
@@ -189,6 +198,8 @@ public class PlayerMovement : MonoBehaviour
     
     void playerDie( GameObject player)
     {
+        // FindObjectOfType<AudioManager>().Play("Death1");
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
 
