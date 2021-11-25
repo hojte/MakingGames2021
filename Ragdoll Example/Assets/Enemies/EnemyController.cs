@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     {
         setRigidBodyState(true);
         setColliderState(false);
-        
+
     }
 
     // Update is called once per frame
@@ -98,6 +98,7 @@ public class EnemyController : MonoBehaviour
     void returnFromStun()
     {
         var clone = Instantiate(enemyPrefab, transform.position, transform.rotation);
+        //clone.GetComponent<Animator>().enabled = true;
         clone.GetComponent<AIController>().Player = GameObject.FindGameObjectWithTag("Player").transform;
         clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab; 
         Destroy(this.gameObject);

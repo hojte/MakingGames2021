@@ -40,6 +40,8 @@ public class BetterMovement : MonoBehaviour
     private bool isSliding = false;
     Vector3 lastMoveDir;
 
+    private bool playerAlive = true; 
+
     private void Start()
     {
         //controller = gameObject.AddComponent<CharacterController>();
@@ -49,91 +51,97 @@ public class BetterMovement : MonoBehaviour
 
     void Update()
     {
-        //Set animator
-        anim.SetBool("isJumping", false);
-        anim.SetBool("isRunning", false);
-        anim.SetBool("isWalking", false);
-        
-        
-        groundedPlayer = controller.isGrounded;
-        isRunning = Input.GetKey(KeyCode.LeftShift);
-        bool isCrouching = Input.GetKey(KeyCode.C);
-        slideCooldown -= Time.deltaTime;
-        
-        if (groundedPlayer && playerVelocity.y < 0)
+        if (playerAlive)
         {
-            playerVelocity.y = 0f;
-        }
 
-         
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector3(horizontal, 0f, vertical).normalized;
+            //Set animator
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isWalking", false);
 
-        //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-       
-        //controller.Move(move * Time.deltaTime * playerSpeed);
 
-        if (move != Vector3.zero)
-        {
-            float targetAngle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            groundedPlayer = controller.isGrounded;
+            isRunning = Input.GetKey(KeyCode.LeftShift);
+            bool isCrouching = Input.GetKey(KeyCode.C);
+            slideCooldown -= Time.deltaTime;
 
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f)* Vector3.forward;
-
-            //Walking
-            if (!isRunning)
+            if (groundedPlayer && playerVelocity.y < 0)
             {
-                anim.SetBool("isWalking", true);
-                controller.Move(moveDir.normalized * playerSpeed * Time.deltaTime);
+                playerVelocity.y = 0f;
             }
 
-            
-            //Walking
-            if (isRunning)
-            {
-                anim.SetBool("isRunning", true);
-                controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
-            }
 
-            if (slideCooldown < 0.0f)
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+
+            Vector3 move = new Vector3(horizontal, 0f, vertical).normalized;
+
+            //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+            //controller.Move(move * Time.deltaTime * playerSpeed);
+
+            if (move != Vector3.zero)
             {
-                if (isCrouching && isCrouching)
+                float targetAngle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
+                    turnSmoothTime);
+
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+                //Walking
+                if (!isRunning)
                 {
-                    isSliding = true;
-                    lastMoveDir = moveDir;
-                    controller.height = 1;
+                    anim.SetBool("isWalking", true);
+                    controller.Move(moveDir.normalized * playerSpeed * Time.deltaTime);
+                }
+
+
+                //Walking
+                if (isRunning)
+                {
+                    anim.SetBool("isRunning", true);
+                    controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
+                }
+
+                if (slideCooldown < 0.0f)
+                {
+                    if (isCrouching && isCrouching)
+                    {
+                        isSliding = true;
+                        lastMoveDir = moveDir;
+                        controller.height = 1;
+                    }
                 }
             }
-        }
-        
-        //Sliding
-        if (isSliding)
-        {
-            slideTimer += Time.deltaTime;
-            controller.Move(lastMoveDir.normalized * slideSpeed * Time.deltaTime);
-            if (slideTimer > slideTimerMax)
+
+            //Sliding
+            if (isSliding)
             {
-                controller.height = initialHeight;
-                slideTimer = 0;
-                slideCooldown = 1f;
-                isSliding = false;
+                slideTimer += Time.deltaTime;
+                controller.Move(lastMoveDir.normalized * slideSpeed * Time.deltaTime);
+                if (slideTimer > slideTimerMax)
+                {
+                    controller.height = initialHeight;
+                    slideTimer = 0;
+                    slideCooldown = 1f;
+                    isSliding = false;
+                }
             }
+
+            // Changes the height position of the player..
+            if (Input.GetButtonDown("Jump") && groundedPlayer)
+            {
+                anim.SetBool("isJumping", true);
+                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            }
+
+
+            //Gravity
+            playerVelocity.y += gravityValue * Time.deltaTime;
+            controller.Move(playerVelocity * Time.deltaTime);
         }
-
-        // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
-        {
-            anim.SetBool("isJumping", true);
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-        }
-
-
-        //Gravity
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
     }
     
     private void OnGUI()
@@ -227,6 +235,7 @@ public class BetterMovement : MonoBehaviour
     
     void playerDie( GameObject player)
     {
+        playerAlive = false; 
          //FindObjectOfType<AudioManager>().Play("Death1");
         
          
