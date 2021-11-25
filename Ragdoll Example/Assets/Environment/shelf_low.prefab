@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 5848874336651764737}
   - component: {fileID: -742249753085427624}
   - component: {fileID: -7552064396965007776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shelf_low
   m_TagString: Shelf
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9106405949641628208}
   serializedVersion: 2
-  m_Mass: 30
+  m_Mass: 3000
   m_Drag: 0.05
   m_AngularDrag: 0.05
   m_UseGravity: 1

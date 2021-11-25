@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
 
 /// <summary>
@@ -31,11 +32,12 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
     [SerializeField]
     private bool _debugAlwaysDrawTrajectory = false;
 
-    public GameObject playPos;
+    private Vector3 playPos;
     private Quaternion rotation;
-    public Transform cam;
+    private Transform _mainCam;
     public Rigidbody throwItem;
     Rigidbody clone;
+    public bool draw = false;
     
 
 
@@ -44,38 +46,41 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
     {
         // Get line renderer reference
         line = GetComponent<LineRenderer>();
+        ClearTrajectory();
+        _mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        
     }
 
     /// Method called on every frame.
     private void Update()
     {
+        playPos = GetComponentInParent<PlayerController>().throwablePosition;
         // Draw trajectory while pressing button
-        if (Input.GetButton("Fire2") || _debugAlwaysDrawTrajectory)
+        if (draw || _debugAlwaysDrawTrajectory)
         {
             // Draw trajectory
             DrawTrajectory();
         }
         // Clear trajectory after releasing button
-        if (Input.GetButtonUp("Fire2") && !_debugAlwaysDrawTrajectory)
+        if (!draw && !_debugAlwaysDrawTrajectory)
         {
             // Clear trajectory
             ClearTrajectory();
         }
         
-        Vector3 pPos = new Vector3(playPos.gameObject.transform.position.x, playPos.gameObject.transform.position.y+5, playPos.gameObject.transform.position.z);
         //this.startPosition = pPos;
 
 
-        rotation = Quaternion.LookRotation(cam.forward, cam.up);
+        rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
 
         //very expensive //todo --> make better
-        clone = Instantiate(throwItem, pPos, rotation);
+        clone = Instantiate(throwItem, playPos, rotation);
         //Optimizing performance by disabling collision
         clone.GetComponent<Rigidbody>().detectCollisions = false;
 
         clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
         //this.startVelocity = clone.velocity;
-        SetBallisticValues(pPos, clone.velocity);
+        SetBallisticValues(playPos, clone.velocity);
 
 
         Destroy(clone.gameObject);
@@ -91,7 +96,6 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
     }
 
     /// Draws the trajectory with line renderer.
-
     private void DrawTrajectory()
     {
         // Create a list of trajectory points
@@ -131,7 +135,6 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
     {
         // Hide line
         line.positionCount = 0;
-
     }
 
 

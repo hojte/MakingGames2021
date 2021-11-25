@@ -8,12 +8,15 @@ TagManager:
   - Ball
   - Ground
   - Wall
-  - Item
   - Shelf
   - Enemy
+  - Item
   - PlayerAnimator
-  - PlayAnimator
   - PlayerRig
+  - HeavyItem
+  - EnemyAttack
+  - Door
+  - RobotArmHead
   layers:
   - Default
   - TransparentFX
