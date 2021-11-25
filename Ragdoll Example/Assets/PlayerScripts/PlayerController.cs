@@ -1,5 +1,7 @@
-﻿using Interactions;
+﻿using System.Collections.Generic;
+using Interactions;
 using Sound;
+using UI;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,9 +18,13 @@ namespace PlayerScripts
         private Transform _mainCam;
         private BallisticTrajectoryRenderer _trajectoryRenderer;
         // private GameController _gameController;
+        public List<PickupType> pickups = new List<PickupType>();
+
+        private ScoreController _scoreController;
 
         private void Start()
         {
+            _scoreController = FindObjectOfType<ScoreController>();
             // _gameController = GetComponent<GameController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
             _trajectoryRenderer = GetComponentInChildren<BallisticTrajectoryRenderer>();
@@ -95,6 +101,28 @@ namespace PlayerScripts
                 if (doorCast)
                     doorCast.SetClosed(!doorCast.closed);  
             }
+        }
+
+        public void AddPickup(PickupType type)
+        {
+            print("picked up a "+type);
+            
+            switch (type)
+            {
+                case PickupType.ScoreIncrement:
+                    _scoreController.Pickup(true);
+                    break;
+                case PickupType.ScoreDecrement:
+                    _scoreController.Pickup(false);
+                    break;
+                case PickupType.SlowDown:
+                    pickups.Add(type);
+                    break;
+                case PickupType.SpeedBoost:
+                    pickups.Add(type);
+                    break;
+            }
+            pickups.Add(type);
         }
     }
 }

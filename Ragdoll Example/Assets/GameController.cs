@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     {
         AudioUtility.CreateMainSFX(mainTheme);
         Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject)));
+        Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject)));
     }
 
     // Update is called once per frame
