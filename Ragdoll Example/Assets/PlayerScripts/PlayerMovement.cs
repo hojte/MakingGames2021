@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
      [Header("Sounds")]
      [Tooltip("Sound played when sliding")]
      public AudioClip onSlide;
+     [Tooltip("Sound played when stunning enemy")]
+     public AudioClip onStun = null;
     
     public CharacterController controller;
     public Transform cam;
@@ -180,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isSliding)
             {
+                AudioUtility.CreateSFX(onStun, transform.position, 0);
                 Debug.Log("Enemy stun");
                 collision.gameObject.GetComponent<EnemyController>().stun(); 
             }

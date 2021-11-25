@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Sound
 {
@@ -12,6 +13,7 @@ namespace Sound
             source.clip = clip;
             source.spatialBlend = spatialBlend;
             source.minDistance = rolloffDistanceMin;
+            // source.mute = Object.FindObjectOfType<GameController>().muteSound;
             source.Play();
 
             TimedSelfDestruct timedSelfDestruct = impactSFXInstance.AddComponent<TimedSelfDestruct>();
@@ -19,11 +21,13 @@ namespace Sound
         }
         public static void CreateMainSFX(AudioClip clip)
         {
+            if (clip == null) Console.WriteLine("No audio supplied");
             GameObject SFXInstance = new GameObject();
             AudioSource source = SFXInstance.AddComponent<AudioSource>();
             source.clip = clip;
             source.spatialBlend = 0;
             source.loop = true;
+            // source.mute = Object.FindObjectOfType<GameController>().muteSound;
             source.Play();
         }
     }
