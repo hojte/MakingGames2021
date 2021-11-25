@@ -1,10 +1,14 @@
 ﻿using Interactions;
+using Sound;
 using UnityEngine;
 
 namespace PlayerScripts
 {
     public class PlayerController : MonoBehaviour
     {
+        [Header("Sounds")]
+        [Tooltip("Sound on throw")]
+        public AudioClip onThrow;
         public GameObject testSpawnObject;
         private Rigidbody _throwSlot;
         public Vector3 throwablePosition;
@@ -43,6 +47,7 @@ namespace PlayerScripts
             }
             else if (_throwSlot && Input.GetButtonDown("Fire2"))
             { // Throw Item
+                AudioUtility.CreateSFX(onThrow, transform.position, 1);
                 _throwSlot.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
                 _throwSlot = null;
                 _trajectoryRenderer.draw = false;

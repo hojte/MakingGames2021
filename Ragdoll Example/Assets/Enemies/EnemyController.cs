@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Sound;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("Sounds")]
+    [Tooltip("Sound played when recieving damages")]
+    public AudioClip onDamage;
     public GameObject enemyPrefab; 
     private bool isStunned = false;
 
@@ -29,8 +33,8 @@ public class EnemyController : MonoBehaviour
                 returnFromStunTimer = 0;
             }
         }
-
-
+        if(Input.GetKeyDown(KeyCode.Keypad1))
+            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -75,6 +79,7 @@ public class EnemyController : MonoBehaviour
 
      void die()
     {
+        AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
         Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
