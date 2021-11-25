@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
      void die()
     {
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
-        Destroy(gameObject, 7f);
+        //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         setRigidBodyState(false);
