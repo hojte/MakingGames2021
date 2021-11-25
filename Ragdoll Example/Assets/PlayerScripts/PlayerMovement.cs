@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
      private Animator anim;
+
+     [Header("Sounds")]
+     [Tooltip("Sound played when sliding")]
+     public AudioClip onSlide;
     
     public CharacterController controller;
     public Transform cam;
@@ -75,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded && isRunning){
                 controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
                 if (isCrouching) {
-                    FindObjectOfType<AudioManager>().Play("Slide");
+                    AudioUtility.CreateSFX(onSlide, transform.position, 0f);
                     isSliding = true;
                     controller.height = 4;
                 }
@@ -191,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
     
     void playerDie( GameObject player)
     {
-        FindObjectOfType<AudioManager>().Play("Death1");
+        // FindObjectOfType<AudioManager>().Play("Death1");
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         

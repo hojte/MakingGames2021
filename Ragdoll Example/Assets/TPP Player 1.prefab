@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ba0c7b96cf57a4ea9bd03aeb4ce566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onSlide: {fileID: 8300000, guid: d6071fcfd9058134fb76bf5dd7cfc5da, type: 3}
   controller: {fileID: 3437478676070342436}
   cam: {fileID: 0}
   speed: 14.77
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da27c0dfb324876816135eb98a12db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onThrow: {fileID: 8300000, guid: 8c69e678ceae21a40a21fbf28285da09, type: 3}
   testSpawnObject: {fileID: 0}
   throwablePosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &7983043441587546346
