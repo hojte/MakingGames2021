@@ -26,7 +26,8 @@ public class GameController : MonoBehaviour
 
     public void enemySlain()
     {
-        enemiesInCombat--;
+        if (enemiesInCombat > 0)
+            enemiesInCombat--;
         Debug.Log("enemy killed");
     }
 
