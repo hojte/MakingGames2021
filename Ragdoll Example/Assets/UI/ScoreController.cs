@@ -25,7 +25,7 @@ namespace UI
             if (m_AccumulatedDeltaTime >= 0.5f) // time to update Score board
             {
                 int framerate = Mathf.RoundToInt((float)m_AccumulatedFrameCount / m_AccumulatedDeltaTime);
-                uiText.text = "Score: "+playerScore+ " Framerate: "+ framerate; // todo fix duplication of score!!
+                uiText.text = "Score: "+playerScore+ "\nFramerate: "+ framerate;
 
                 m_AccumulatedDeltaTime = 0f;
                 m_AccumulatedFrameCount = 0;

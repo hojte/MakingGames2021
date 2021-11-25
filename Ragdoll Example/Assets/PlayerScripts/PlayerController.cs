@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Interactions;
 using Sound;
 using UI;
@@ -17,15 +20,31 @@ namespace PlayerScripts
         public Vector3 throwablePosition;
         private Transform _mainCam;
         private BallisticTrajectoryRenderer _trajectoryRenderer;
-        // private GameController _gameController;
+        private GameController _gameController;
+        
+        [Header("Pickups")]
+        [Tooltip("List of consumed/active pickups")]
         public List<PickupType> pickups = new List<PickupType>();
+        [Tooltip("The time for slowdown effect to be restored")]
+        public int slowDownRestoreTime = 5000;
+        public int slowDownValue = 5;
+        [Tooltip("The time for speed boost effect to be restored")]
+        public int speedBoostRestoreTime = 20000;
+        public int speedBoostValue = 10;
+        [Tooltip("The time for jump boost effect to be restored")]
+        public int jumpBoostRestoreTime = 5000;
+        public float jumpBoostValue = 15f;
+        [Tooltip("The time for undetected effect to be gone")]
+        public int undetectedTime = 10000;
+        [Tooltip("The time for invulnerability effect to be gone")]
+        public int invulnerabilityTime = 10000;
 
         private ScoreController _scoreController;
 
         private void Start()
         {
             _scoreController = FindObjectOfType<ScoreController>();
-            // _gameController = GetComponent<GameController>();
+            _gameController = FindObjectOfType<GameController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
             _trajectoryRenderer = GetComponentInChildren<BallisticTrajectoryRenderer>();
             if (testSpawnObject == null)
@@ -43,7 +62,7 @@ namespace PlayerScripts
             throwablePosition = transform.position;
             throwablePosition.y += 5;
             
-            if (/*_gameController.debugMode &&*/ Input.GetKey(KeyCode.Keypad0))
+            if (_gameController.debugMode && Input.GetKey(KeyCode.Keypad0))
             {
                 Instantiate(testSpawnObject, throwablePosition, Quaternion.LookRotation(_mainCam.forward, _mainCam.up));
             }
@@ -102,9 +121,12 @@ namespace PlayerScripts
                     doorCast.SetClosed(!doorCast.closed);  
             }
         }
-
+        /*
+         * ---------- Pickup Logic ----------
+         */
         public void AddPickup(PickupType type)
         {
+            if (_scoreController == null) _scoreController = FindObjectOfType<ScoreController>(); // fix buggy exception
             print("picked up a "+type);
             
             switch (type)
@@ -116,10 +138,59 @@ namespace PlayerScripts
                     _scoreController.Pickup(false);
                     break;
                 case PickupType.SlowDown:
+                    GetComponent<PlayerMovement>().speed -= slowDownValue;
+                    GetComponent<PlayerMovement>().runSpeed -= slowDownValue;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(slowDownRestoreTime);
+                        GetComponent<PlayerMovement>().speed += slowDownValue; 
+                        GetComponent<PlayerMovement>().runSpeed += slowDownValue;
+                        pickups.Remove(PickupType.SlowDown);
+                    }))();
                     pickups.Add(type);
                     break;
                 case PickupType.SpeedBoost:
+                    GetComponent<PlayerMovement>().speed += speedBoostValue;
+                    GetComponent<PlayerMovement>().runSpeed += speedBoostValue;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(speedBoostRestoreTime);
+                        GetComponent<PlayerMovement>().speed -= speedBoostValue; 
+                        GetComponent<PlayerMovement>().runSpeed -= speedBoostValue;
+                        pickups.Remove(PickupType.SpeedBoost);
+                    }))();
                     pickups.Add(type);
+                    break;
+                case PickupType.JumpBoost:
+                    GetComponent<PlayerMovement>().jumpHeight += jumpBoostValue;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(jumpBoostRestoreTime);
+                        GetComponent<PlayerMovement>().jumpHeight -= jumpBoostValue; 
+                        pickups.Remove(PickupType.JumpBoost);
+                    }))();
+                    pickups.Add(type);
+                    break;
+                case PickupType.Undetectability:
+                    var tmpGO = Instantiate(new GameObject(), new Vector3(-300000,-300000, -300000), Quaternion.identity);
+                    FindObjectsOfType<AIController>().ToList().ForEach(x =>
+                    {
+                        x.Player = tmpGO.transform;
+                        x.inCombat = false;
+                        x.Wander();
+                    });
+                    _gameController.enemiesInCombat = 0;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(undetectedTime);
+                        FindObjectsOfType<AIController>().ToList().ForEach(x => x.Player = GameObject.FindWithTag("Player").transform);
+                        pickups.Remove(PickupType.Undetectability);
+                        Destroy(tmpGO, 1);
+                    }))();
+                    pickups.Add(type);
+                    break;
+                case PickupType.Invulnerability:
+                    GetComponent<PlayerMovement>().isInvulnerable = true;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(invulnerabilityTime);    
+                        GetComponent<PlayerMovement>().isInvulnerable = false;
+                    }))();
                     break;
             }
             pickups.Add(type);

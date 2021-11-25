@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sound;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 slideForward; // direction of slide
     private float slideTimer = 0.0f;
     public float slideTimerMax = 2.5f; // time while sliding
+    public bool isInvulnerable;
 
     private void Start()
     {
@@ -199,8 +201,12 @@ public class PlayerMovement : MonoBehaviour
     void playerDie( GameObject player)
     {
         // FindObjectOfType<AudioManager>().Play("Death1");
-        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if (!isInvulnerable)
+        {
+            FindObjectOfType<ScoreController>().PlayerDied();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         
 
         //Destroy(gameObject, 7f);

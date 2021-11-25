@@ -7,10 +7,15 @@ namespace Interactions
 {
     public enum PickupType
     {
-        SpeedBoost, // Coffee ability
+        /*Instant*/
+        SpeedBoost, // Coffee ability (for 20 seconds)
         ScoreIncrement, // score++!
         ScoreDecrement, // score--!
-        SlowDown, // After noon slowdown
+        SlowDown, // After noon slowdown / no running at work / etc. (for 10 seconds)
+        JumpBoost, // Helping hand / jump boost / boots on fire (for 3 jumps)
+        Undetectability, // disguise (for 10 seconds)
+        Invulnerability, // punch out (for 10 seconds)
+        JetPack, // jetpack... (limited fuel)
     }
     public class Pickup : MonoBehaviour
     {
@@ -25,7 +30,7 @@ namespace Interactions
         public AudioClip pickupSFX;
         
         public PickupType pickupType = PickupType.SpeedBoost;
-
+        
 
         private Collider m_Collider;
         private Vector3 m_StartPosition;

@@ -11,7 +11,7 @@ public class AIController : MonoBehaviour
     int maxDist = 20;
     int minDist = 5;
     int aggroRange = 30;
-    bool inCombat = false;
+    public bool inCombat = false;
     public Vector3 patrollingWayPoint;
     int newWayPointDistance = 10;
     NavMeshAgent agent;
@@ -88,7 +88,7 @@ public class AIController : MonoBehaviour
         }
     }
 
-    void Wander()
+    public void Wander()
     {
         if (agent.enabled)
         {

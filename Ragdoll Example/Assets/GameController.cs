@@ -1,18 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Sound;
+using UI;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameController : MonoBehaviour
 {
     [Header("Sounds")]
     [Tooltip("Sound played continously in 2D")]
     public AudioClip mainTheme;
-    int enemiesInCombat = 0;
+    [Tooltip("Mute all sound")]
+    public bool muteSound;
+    [Header("MISC")]
+    [Tooltip("Toggle global debug for entire game to show/do various things")]
+    public bool debugMode;
+    
+    public int enemiesInCombat = 0;
+
+    public float levelStartTime;
+    public float levelCompleteTime;
+    public Vector3 checkPoint;
+
+    private ScoreController _scoreController;
     // Start is called before the first frame update
     void Start()
     {
+        levelStartTime = Time.time;
+        _scoreController = FindObjectOfType<ScoreController>();
         AudioUtility.CreateMainSFX(mainTheme);
         Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject)));
         Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject)));
@@ -34,7 +50,11 @@ public class GameController : MonoBehaviour
     public void enemySlain()
     {
         if (enemiesInCombat > 0)
+        {
             enemiesInCombat--;
+            _scoreController.EnemyKilled();
+            
+        }
         Debug.Log("enemy killed");
     }
 
