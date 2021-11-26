@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using PlayerScripts;
 using Sound;
+using UI;
 using UnityEngine;
 
 namespace Interactions
@@ -29,14 +32,40 @@ namespace Interactions
         [Tooltip("Sound played on pickup")]
         public AudioClip pickupSFX;
         
-        public PickupType pickupType = PickupType.SpeedBoost;
-        
+        [Header("Pickup Effects")]
+        [Tooltip("The time for slowdown effect to be restored")]
+        public int slowDownRestoreTime = 5000;
+        public int slowDownValue = 5;
+        [Tooltip("The time for speed boost effect to be restored")]
+        public int speedBoostRestoreTime = 20000;
+        public int speedBoostValue = 10;
+        [Tooltip("The time for jump boost effect to be restored")]
+        public int jumpBoostRestoreTime = 5000;
+        public float jumpBoostValue = 15f;
+        [Tooltip("The time for undetected effect to be gone")]
+        public int undetectedTime = 10000;
+        [Tooltip("The time for invulnerability effect to be gone")]
+        public int invulnerabilityTime = 10000;
 
+
+        public PickupType pickupType;
+
+        private ScoreController _scoreController;
+        private PickupDisplay _pickupDisplay;
+        private PlayerMovement _playerMovement;
+        private GameController _gameController;
         private Collider m_Collider;
         private Vector3 m_StartPosition;
         private Rigidbody pickupRigidbody;
 
-    
+
+        private void Awake()
+        {
+            _pickupDisplay = FindObjectOfType<PickupDisplay>();
+            _scoreController = FindObjectOfType<ScoreController>();
+            _playerMovement = FindObjectOfType<PlayerMovement>();
+            _gameController = FindObjectOfType<GameController>();
+        }
 
         private void Start()
         {
@@ -49,11 +78,8 @@ namespace Interactions
         
         private void Update()
         {
-            // Handle bobbing
             float bobbingAnimationPhase = ((Mathf.Sin(Time.time * verticalBobFrequency) * 0.5f) + 0.5f) * bobbingAmount;
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
-
-            // Handle rotating
             transform.Rotate(Vector3.up, rotatingSpeed * Time.deltaTime, Space.Self);
         }
         private void OnTriggerEnter(Collider other)
@@ -66,8 +92,77 @@ namespace Interactions
                 {
                     AudioUtility.CreateSFX(pickupSFX, transform.position, 0f);
                 }
-                playerController.AddPickup(pickupType);
+                HandlePickup();
                 Destroy(gameObject);
+            }
+        }
+
+        private void HandlePickup()
+        {
+            print("picked up a "+pickupType);
+            switch (pickupType)
+            {
+                case PickupType.ScoreIncrement:
+                    _scoreController.Pickup(true);
+                    break;
+                case PickupType.ScoreDecrement:
+                    _scoreController.Pickup(false);
+                    break;
+                case PickupType.SlowDown:
+                    _playerMovement.speed -= slowDownValue;
+                    _playerMovement.runSpeed -= slowDownValue;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(slowDownRestoreTime);
+                        _playerMovement.speed += slowDownValue; 
+                        _playerMovement.runSpeed += slowDownValue;
+                        _pickupDisplay.AddPickup(this);
+                    }))();
+                    _pickupDisplay.AddPickup(this);
+                    break;
+                case PickupType.SpeedBoost:
+                    _playerMovement.speed += speedBoostValue;
+                    _playerMovement.runSpeed += speedBoostValue;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(speedBoostRestoreTime);
+                        _playerMovement.speed -= speedBoostValue; 
+                        _playerMovement.runSpeed -= speedBoostValue;
+                        _pickupDisplay.AddPickup(this);
+                    }))();
+                    _pickupDisplay.AddPickup(this);
+                    break;
+                case PickupType.JumpBoost:
+                    _playerMovement.jumpHeight += jumpBoostValue;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(jumpBoostRestoreTime);
+                        _playerMovement.jumpHeight -= jumpBoostValue; 
+                        _pickupDisplay.AddPickup(this);
+                    }))();
+                    _pickupDisplay.AddPickup(this);
+                    break;
+                case PickupType.Undetectability:
+                    var tmpGO = Instantiate(new GameObject(), new Vector3(-300000,-300000, -300000), Quaternion.identity);
+                    FindObjectsOfType<AIController>().ToList().ForEach(x =>
+                    {
+                        x.Player = tmpGO.transform;
+                        x.inCombat = false;
+                        x.Wander();
+                    });
+                    _gameController.enemiesInCombat = 0;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(undetectedTime);
+                        FindObjectsOfType<AIController>().ToList().ForEach(x => x.Player = GameObject.FindWithTag("Player").transform);
+                        _pickupDisplay.AddPickup(this);
+                        Destroy(tmpGO, 1);
+                    }))();
+                    _pickupDisplay.AddPickup(this);
+                    break;
+                case PickupType.Invulnerability:
+                    _playerMovement.isInvulnerable = true;
+                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+                        await Task.Delay(invulnerabilityTime);    
+                        _playerMovement.isInvulnerable = false;
+                    }))();
+                    break;
             }
         }
     }

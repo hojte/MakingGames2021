@@ -24,7 +24,7 @@ namespace PlayerScripts
         
         [Header("Pickups")]
         [Tooltip("List of consumed/active pickups")]
-        public List<PickupType> pickups = new List<PickupType>();
+        public List<Pickup> pickups = new List<Pickup>();
         [Tooltip("The time for slowdown effect to be restored")]
         public int slowDownRestoreTime = 5000;
         public int slowDownValue = 5;
@@ -124,80 +124,6 @@ namespace PlayerScripts
                 if (doorCast)
                     doorCast.SetClosed(!doorCast.closed);  
             }
-        }
-        /*
-         * ---------- Pickup Logic ----------
-         */
-        public void AddPickup(PickupType type)
-        {
-            // if (_scoreController == null) _scoreController = FindObjectOfType<ScoreController>(); // to fix buggy noRef exception
-            print("picked up a "+type);
-            
-            switch (type)
-            {
-                case PickupType.ScoreIncrement:
-                    _scoreController.Pickup(true);
-                    break;
-                case PickupType.ScoreDecrement:
-                    _scoreController.Pickup(false);
-                    break;
-                case PickupType.SlowDown:
-                    GetComponent<PlayerMovement>().speed -= slowDownValue;
-                    GetComponent<PlayerMovement>().runSpeed -= slowDownValue;
-                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-                        await Task.Delay(slowDownRestoreTime);
-                        GetComponent<PlayerMovement>().speed += slowDownValue; 
-                        GetComponent<PlayerMovement>().runSpeed += slowDownValue;
-                        pickups.Remove(PickupType.SlowDown);
-                    }))();
-                    pickups.Add(type);
-                    break;
-                case PickupType.SpeedBoost:
-                    GetComponent<PlayerMovement>().speed += speedBoostValue;
-                    GetComponent<PlayerMovement>().runSpeed += speedBoostValue;
-                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-                        await Task.Delay(speedBoostRestoreTime);
-                        GetComponent<PlayerMovement>().speed -= speedBoostValue; 
-                        GetComponent<PlayerMovement>().runSpeed -= speedBoostValue;
-                        pickups.Remove(PickupType.SpeedBoost);
-                    }))();
-                    pickups.Add(type);
-                    break;
-                case PickupType.JumpBoost:
-                    GetComponent<PlayerMovement>().jumpHeight += jumpBoostValue;
-                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-                        await Task.Delay(jumpBoostRestoreTime);
-                        GetComponent<PlayerMovement>().jumpHeight -= jumpBoostValue; 
-                        pickups.Remove(PickupType.JumpBoost);
-                    }))();
-                    pickups.Add(type);
-                    break;
-                case PickupType.Undetectability:
-                    var tmpGO = Instantiate(new GameObject(), new Vector3(-300000,-300000, -300000), Quaternion.identity);
-                    FindObjectsOfType<AIController>().ToList().ForEach(x =>
-                    {
-                        x.Player = tmpGO.transform;
-                        x.inCombat = false;
-                        x.Wander();
-                    });
-                    _gameController.enemiesInCombat = 0;
-                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-                        await Task.Delay(undetectedTime);
-                        FindObjectsOfType<AIController>().ToList().ForEach(x => x.Player = GameObject.FindWithTag("Player").transform);
-                        pickups.Remove(PickupType.Undetectability);
-                        Destroy(tmpGO, 1);
-                    }))();
-                    pickups.Add(type);
-                    break;
-                case PickupType.Invulnerability:
-                    GetComponent<PlayerMovement>().isInvulnerable = true;
-                    ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-                        await Task.Delay(invulnerabilityTime);    
-                        GetComponent<PlayerMovement>().isInvulnerable = false;
-                    }))();
-                    break;
-            }
-            pickups.Add(type);
         }
     }
 }

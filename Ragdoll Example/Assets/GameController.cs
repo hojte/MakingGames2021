@@ -27,9 +27,17 @@ public class GameController : MonoBehaviour
     private ScoreController _scoreController;
     private void Awake()
     {
+        // QuickFix for duplicate Controllers:
+        if (FindObjectsOfType<GameController>().Length != 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
         Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject)));
         Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject)));
-        DontDestroyOnLoad(this.gameObject);
+        Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/PickupDisplay.prefab", typeof(GameObject)));
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
