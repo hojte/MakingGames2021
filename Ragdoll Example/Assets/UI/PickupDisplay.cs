@@ -20,5 +20,9 @@ namespace UI
         {
             pickups.Add(pickup);
         }
+        public void RemovePickup(Pickup pickup)
+        {
+            pickups.Remove(pickup);
+        }
     }
 }

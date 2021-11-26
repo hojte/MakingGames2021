@@ -22,13 +22,10 @@ namespace Interactions
     }
     public class Pickup : MonoBehaviour
     {
-        [Tooltip("Frequency at which the item will move up and down")]
-        public float verticalBobFrequency = 1f;
-        [Tooltip("Distance the item will move up and down")]
-        public float bobbingAmount = 1f;
-        [Tooltip("Rotation angle per second")]
-        public float rotatingSpeed = 360f;
-
+        [Tooltip("Apply effect on acquisition or use later as trigger effect")]
+        public bool useInstantly = true;
+        [Tooltip("The type of the pickup")]
+        public PickupType pickupType;
         [Tooltip("Sound played on pickup")]
         public AudioClip pickupSFX;
         
@@ -46,9 +43,14 @@ namespace Interactions
         public int undetectedTime = 10000;
         [Tooltip("The time for invulnerability effect to be gone")]
         public int invulnerabilityTime = 10000;
-
-
-        public PickupType pickupType;
+        
+        [Header("Other")]
+        [Tooltip("Frequency at which the item will move up and down")]
+        public float verticalBobFrequency = 1f;
+        [Tooltip("Distance the item will move up and down")]
+        public float bobbingAmount = 1f;
+        [Tooltip("Rotation angle per second")]
+        public float rotatingSpeed = 360f;
 
         private ScoreController _scoreController;
         private PickupDisplay _pickupDisplay;
@@ -61,6 +63,7 @@ namespace Interactions
 
         private void Awake()
         {
+            DontDestroyOnLoad(gameObject); // We need to save what pickups we are bringing to next level
             _pickupDisplay = FindObjectOfType<PickupDisplay>();
             _scoreController = FindObjectOfType<ScoreController>();
             _playerMovement = FindObjectOfType<PlayerMovement>();
@@ -92,8 +95,8 @@ namespace Interactions
                 {
                     AudioUtility.CreateSFX(pickupSFX, transform.position, 0f);
                 }
-                HandlePickup();
-                Destroy(gameObject);
+                if (useInstantly) HandlePickup();
+                gameObject.SetActive(false);
             }
         }
 
@@ -115,7 +118,7 @@ namespace Interactions
                         await Task.Delay(slowDownRestoreTime);
                         _playerMovement.speed += slowDownValue; 
                         _playerMovement.runSpeed += slowDownValue;
-                        _pickupDisplay.AddPickup(this);
+                        _pickupDisplay.RemovePickup(this);
                     }))();
                     _pickupDisplay.AddPickup(this);
                     break;
@@ -126,7 +129,7 @@ namespace Interactions
                         await Task.Delay(speedBoostRestoreTime);
                         _playerMovement.speed -= speedBoostValue; 
                         _playerMovement.runSpeed -= speedBoostValue;
-                        _pickupDisplay.AddPickup(this);
+                        _pickupDisplay.RemovePickup(this);
                     }))();
                     _pickupDisplay.AddPickup(this);
                     break;
@@ -135,7 +138,7 @@ namespace Interactions
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(jumpBoostRestoreTime);
                         _playerMovement.jumpHeight -= jumpBoostValue; 
-                        _pickupDisplay.AddPickup(this);
+                        _pickupDisplay.RemovePickup(this);
                     }))();
                     _pickupDisplay.AddPickup(this);
                     break;
@@ -151,16 +154,18 @@ namespace Interactions
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(undetectedTime);
                         FindObjectsOfType<AIController>().ToList().ForEach(x => x.Player = GameObject.FindWithTag("Player").transform);
-                        _pickupDisplay.AddPickup(this);
+                        _pickupDisplay.RemovePickup(this);
                         Destroy(tmpGO, 1);
                     }))();
                     _pickupDisplay.AddPickup(this);
                     break;
                 case PickupType.Invulnerability:
                     _playerMovement.isInvulnerable = true;
+                    _pickupDisplay.AddPickup(this);
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(invulnerabilityTime);    
                         _playerMovement.isInvulnerable = false;
+                        _pickupDisplay.RemovePickup(this);
                     }))();
                     break;
             }
