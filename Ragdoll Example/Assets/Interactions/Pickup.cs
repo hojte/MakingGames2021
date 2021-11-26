@@ -28,6 +28,9 @@ namespace Interactions
         public PickupType pickupType;
         [Tooltip("Sound played on pickup")]
         public AudioClip pickupSFX;
+
+        public float timeOfActivation;  // > 0 = Has been used
+        public float timeLeft;
         
         [Header("Pickup Effects")]
         [Tooltip("The time for slowdown effect to be restored")]
@@ -40,9 +43,9 @@ namespace Interactions
         public int jumpBoostRestoreTime = 5000;
         public float jumpBoostValue = 15f;
         [Tooltip("The time for undetected effect to be gone")]
-        public int undetectedTime = 10000;
+        public int undetectedRestoreTime = 10000;
         [Tooltip("The time for invulnerability effect to be gone")]
-        public int invulnerabilityTime = 10000;
+        public int invulnerabilityRestoreTime = 10000;
         
         [Header("Other")]
         [Tooltip("Frequency at which the item will move up and down")]
@@ -84,7 +87,20 @@ namespace Interactions
             float bobbingAnimationPhase = ((Mathf.Sin(Time.time * verticalBobFrequency) * 0.5f) + 0.5f) * bobbingAmount;
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
             transform.Rotate(Vector3.up, rotatingSpeed * Time.deltaTime, Space.Self);
+
+            if (Input.GetKeyDown(KeyCode.R))
+                HandlePickup();
+            if (timeOfActivation > 0) // Has been used
+            {
+                timeLeft = GetCurrentRestoreTime() - (Time.time - timeOfActivation)*1000;
+                if (timeLeft < 0)
+                {
+                    _pickupDisplay.pickups.Remove(this);
+                    Destroy(gameObject);
+                }
+            }
         }
+
         private void OnTriggerEnter(Collider other)
         {
             PlayerController playerController = other.GetComponent<PlayerController>();
@@ -96,12 +112,15 @@ namespace Interactions
                     AudioUtility.CreateSFX(pickupSFX, transform.position, 0f);
                 }
                 if (useInstantly) HandlePickup();
-                gameObject.SetActive(false);
+                Destroy(pickupRigidbody);
+                Destroy(m_Collider);
+                GetComponent<Renderer>().enabled = false;
             }
         }
 
         private void HandlePickup()
         {
+            timeOfActivation = Time.time;
             print("picked up a "+pickupType);
             switch (pickupType)
             {
@@ -120,7 +139,7 @@ namespace Interactions
                         _playerMovement.runSpeed += slowDownValue;
                         _pickupDisplay.RemovePickup(this);
                     }))();
-                    _pickupDisplay.AddPickup(this);
+                    if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
                 case PickupType.SpeedBoost:
                     _playerMovement.speed += speedBoostValue;
@@ -131,7 +150,7 @@ namespace Interactions
                         _playerMovement.runSpeed -= speedBoostValue;
                         _pickupDisplay.RemovePickup(this);
                     }))();
-                    _pickupDisplay.AddPickup(this);
+                    if (useInstantly)  _pickupDisplay.AddPickup(this);
                     break;
                 case PickupType.JumpBoost:
                     _playerMovement.jumpHeight += jumpBoostValue;
@@ -140,7 +159,7 @@ namespace Interactions
                         _playerMovement.jumpHeight -= jumpBoostValue; 
                         _pickupDisplay.RemovePickup(this);
                     }))();
-                    _pickupDisplay.AddPickup(this);
+                    if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
                 case PickupType.Undetectability:
                     var tmpGO = Instantiate(new GameObject(), new Vector3(-300000,-300000, -300000), Quaternion.identity);
@@ -152,22 +171,40 @@ namespace Interactions
                     });
                     _gameController.enemiesInCombat = 0;
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-                        await Task.Delay(undetectedTime);
+                        await Task.Delay(undetectedRestoreTime);
                         FindObjectsOfType<AIController>().ToList().ForEach(x => x.Player = GameObject.FindWithTag("Player").transform);
                         _pickupDisplay.RemovePickup(this);
                         Destroy(tmpGO, 1);
                     }))();
-                    _pickupDisplay.AddPickup(this);
+                    if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
                 case PickupType.Invulnerability:
                     _playerMovement.isInvulnerable = true;
-                    _pickupDisplay.AddPickup(this);
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-                        await Task.Delay(invulnerabilityTime);    
+                        await Task.Delay(invulnerabilityRestoreTime);    
                         _playerMovement.isInvulnerable = false;
                         _pickupDisplay.RemovePickup(this);
                     }))();
+                    if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
+            }
+        }
+        private float GetCurrentRestoreTime()
+        {
+            switch (pickupType)
+            {
+                case PickupType.Invulnerability:
+                    return invulnerabilityRestoreTime;
+                case PickupType.Undetectability:
+                    return undetectedRestoreTime;
+                case PickupType.JumpBoost:
+                    return jumpBoostRestoreTime;
+                case PickupType.SlowDown:
+                    return slowDownRestoreTime;
+                case PickupType.SpeedBoost:
+                    return speedBoostRestoreTime;
+                default:
+                    return 0;
             }
         }
     }

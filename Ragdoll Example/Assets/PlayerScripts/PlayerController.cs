@@ -22,28 +22,8 @@ namespace PlayerScripts
         private BallisticTrajectoryRenderer _trajectoryRenderer;
         private GameController _gameController;
         
-        [Header("Pickups")]
-        [Tooltip("List of consumed/active pickups")]
-        public List<Pickup> pickups = new List<Pickup>();
-        [Tooltip("The time for slowdown effect to be restored")]
-        public int slowDownRestoreTime = 5000;
-        public int slowDownValue = 5;
-        [Tooltip("The time for speed boost effect to be restored")]
-        public int speedBoostRestoreTime = 20000;
-        public int speedBoostValue = 10;
-        [Tooltip("The time for jump boost effect to be restored")]
-        public int jumpBoostRestoreTime = 5000;
-        public float jumpBoostValue = 15f;
-        [Tooltip("The time for undetected effect to be gone")]
-        public int undetectedTime = 10000;
-        [Tooltip("The time for invulnerability effect to be gone")]
-        public int invulnerabilityTime = 10000;
-
-        private ScoreController _scoreController;
-
         private void Start()
         {
-            _scoreController = FindObjectOfType<ScoreController>();
             _gameController = FindObjectOfType<GameController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
             _trajectoryRenderer = GetComponentInChildren<BallisticTrajectoryRenderer>();

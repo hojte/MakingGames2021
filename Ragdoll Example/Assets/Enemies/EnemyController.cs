@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Interactions;
 using Sound;
 using UnityEngine;
 using UnityEngine.AI;
@@ -39,7 +40,7 @@ public class EnemyController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Collision");
-        if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem") {
+        if (collision.gameObject.GetComponent<Throwable>()) {
             //Debug.Log("Collision Item");
             if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
                 die();
