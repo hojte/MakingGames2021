@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Sound;
 using UI;
@@ -24,17 +25,20 @@ public class GameController : MonoBehaviour
     public Vector3 checkPoint;
 
     private ScoreController _scoreController;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        levelStartTime = Time.time;
-        _scoreController = FindObjectOfType<ScoreController>();
-        AudioUtility.CreateMainSFX(mainTheme);
         Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject)));
         Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject)));
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        _scoreController = FindObjectOfType<ScoreController>();
+        levelStartTime = Time.time; // todo move to when move out of startRoom
+        AudioUtility.CreateMainSFX(mainTheme);
+    }
+
     void Update()
     {
         if (enemiesInCombat > 0)

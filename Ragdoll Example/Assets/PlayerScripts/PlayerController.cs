@@ -106,7 +106,6 @@ namespace PlayerScripts
                 if (throwable != null)
                 {
                     _throwSlot = throwable;
-                    print("Speed pen: "+_throwSlot.speedPenalty);
                     _throwSlot.EnableEffects();
                     return true; 
                 }
@@ -131,7 +130,7 @@ namespace PlayerScripts
          */
         public void AddPickup(PickupType type)
         {
-            if (_scoreController == null) _scoreController = FindObjectOfType<ScoreController>(); // fix buggy exception
+            // if (_scoreController == null) _scoreController = FindObjectOfType<ScoreController>(); // to fix buggy noRef exception
             print("picked up a "+type);
             
             switch (type)
