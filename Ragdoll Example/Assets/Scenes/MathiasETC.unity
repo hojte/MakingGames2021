@@ -1019,6 +1019,11 @@ PrefabInstance:
       propertyPath: pickupType
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5443680831551886681, guid: 207071c0214059c4d8f385417f7526d9,
+        type: 3}
+      propertyPath: useInstantly
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 207071c0214059c4d8f385417f7526d9, type: 3}
 --- !u!1001 &741391165
