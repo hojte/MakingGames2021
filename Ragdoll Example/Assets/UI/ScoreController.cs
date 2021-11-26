@@ -7,7 +7,7 @@ namespace UI
     public class ScoreController : MonoBehaviour
     {
         public int playerScore;
-        public int usedScore;
+        public int scoreSpent;
         private TextMeshProUGUI uiText;
         float m_AccumulatedDeltaTime = 0f;
         int m_AccumulatedFrameCount = 0;

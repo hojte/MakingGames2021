@@ -31,6 +31,7 @@ namespace Interactions
 
         public float timeOfActivation;  // > 0 = Has been used
         public float timeLeft;
+        public bool isPickedUp;
         
         [Header("Pickup Effects")]
         [Tooltip("The time for slowdown effect to be restored")]
@@ -88,14 +89,14 @@ namespace Interactions
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
             transform.Rotate(Vector3.up, rotatingSpeed * Time.deltaTime, Space.Self);
 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && isPickedUp)
                 HandlePickup();
             if (timeOfActivation > 0) // Has been used
             {
                 timeLeft = GetCurrentRestoreTime() - (Time.time - timeOfActivation)*1000;
                 if (timeLeft < 0)
                 {
-                    _pickupDisplay.pickups.Remove(this);
+                    _pickupDisplay.RemovePickup(this);
                     Destroy(gameObject);
                 }
             }
@@ -105,17 +106,21 @@ namespace Interactions
         {
             PlayerController playerController = other.GetComponent<PlayerController>();
 
-            if (playerController != null) // player that entered
+            if (playerController == null) return;
+            if (pickupSFX)
             {
-                if (pickupSFX)
-                {
-                    AudioUtility.CreateSFX(pickupSFX, transform.position, 0f);
-                }
-                if (useInstantly) HandlePickup();
-                Destroy(pickupRigidbody);
-                Destroy(m_Collider);
-                GetComponent<Renderer>().enabled = false;
+                AudioUtility.CreateSFX(pickupSFX, transform.position, 0f);
             }
+
+            isPickedUp = true;
+            if (useInstantly) HandlePickup();
+            else _pickupDisplay.AddPickup(this);
+                
+            // Remove visuals
+            Destroy(pickupRigidbody);
+            Destroy(m_Collider);
+            Destroy(GetComponent<Renderer>());
+            Destroy(transform.GetChild(0).gameObject); // particle system
         }
 
         private void HandlePickup()
@@ -137,7 +142,7 @@ namespace Interactions
                         await Task.Delay(slowDownRestoreTime);
                         _playerMovement.speed += slowDownValue; 
                         _playerMovement.runSpeed += slowDownValue;
-                        _pickupDisplay.RemovePickup(this);
+                        if (useInstantly) _pickupDisplay.RemovePickup(this);
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
@@ -148,7 +153,7 @@ namespace Interactions
                         await Task.Delay(speedBoostRestoreTime);
                         _playerMovement.speed -= speedBoostValue; 
                         _playerMovement.runSpeed -= speedBoostValue;
-                        _pickupDisplay.RemovePickup(this);
+                        if (useInstantly) _pickupDisplay.RemovePickup(this);
                     }))();
                     if (useInstantly)  _pickupDisplay.AddPickup(this);
                     break;
@@ -157,7 +162,7 @@ namespace Interactions
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(jumpBoostRestoreTime);
                         _playerMovement.jumpHeight -= jumpBoostValue; 
-                        _pickupDisplay.RemovePickup(this);
+                        if (useInstantly) _pickupDisplay.RemovePickup(this);
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
@@ -173,7 +178,7 @@ namespace Interactions
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(undetectedRestoreTime);
                         FindObjectsOfType<AIController>().ToList().ForEach(x => x.Player = GameObject.FindWithTag("Player").transform);
-                        _pickupDisplay.RemovePickup(this);
+                        if (useInstantly) _pickupDisplay.RemovePickup(this);
                         Destroy(tmpGO, 1);
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
@@ -183,7 +188,7 @@ namespace Interactions
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(invulnerabilityRestoreTime);    
                         _playerMovement.isInvulnerable = false;
-                        _pickupDisplay.RemovePickup(this);
+                        if (useInstantly) _pickupDisplay.RemovePickup(this);
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
