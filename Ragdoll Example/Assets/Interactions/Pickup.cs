@@ -60,6 +60,8 @@ namespace Interactions
         private PickupDisplay _pickupDisplay;
         private PlayerMovement _playerMovement;
         private GameController _gameController;
+        public PickupButtonController buttonController;
+
         private Collider m_Collider;
         private Vector3 m_StartPosition;
         private Rigidbody pickupRigidbody;
@@ -67,7 +69,6 @@ namespace Interactions
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject); // We need to save what pickups we are bringing to next level
             _pickupDisplay = FindObjectOfType<PickupDisplay>();
             _scoreController = FindObjectOfType<ScoreController>();
             _playerMovement = FindObjectOfType<PlayerMovement>();
@@ -81,6 +82,7 @@ namespace Interactions
             pickupRigidbody.isKinematic = true;
             m_Collider.isTrigger = true;
             m_StartPosition = transform.position;
+            timeLeft = GetCurrentRestoreTime()/1000;
         }
         
         private void Update()
@@ -89,14 +91,16 @@ namespace Interactions
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
             transform.Rotate(Vector3.up, rotatingSpeed * Time.deltaTime, Space.Self);
 
-            if (Input.GetKeyDown(KeyCode.R) && isPickedUp)
+            if (Input.GetKeyDown(KeyCode.R) && isPickedUp && timeOfActivation==0 && buttonController.isQuickSelected) // todo && isQuickUseSelected
                 HandlePickup();
             if (timeOfActivation > 0) // Has been used
             {
-                timeLeft = GetCurrentRestoreTime() - (Time.time - timeOfActivation)*1000;
+                timeLeft = GetCurrentRestoreTime()/1000 - (Time.time - timeOfActivation);
+                if (buttonController != null) buttonController.timeLeft = timeLeft;
                 if (timeLeft < 0)
                 {
                     _pickupDisplay.RemovePickup(this);
+                    Destroy(buttonController.gameObject);
                     Destroy(gameObject);
                 }
             }
@@ -113,6 +117,7 @@ namespace Interactions
             }
 
             isPickedUp = true;
+            DontDestroyOnLoad(gameObject); // We need to save what pickups we are bringing to next level
             if (useInstantly) HandlePickup();
             else _pickupDisplay.AddPickup(this);
                 
@@ -211,6 +216,13 @@ namespace Interactions
                 default:
                     return 0;
             }
+        }
+
+        public void SetButtonController(PickupButtonController bController)
+        {
+            buttonController = bController;
+            buttonController.pickupType = pickupType.ToString();
+            buttonController.timeLeft = timeLeft;
         }
     }
 }

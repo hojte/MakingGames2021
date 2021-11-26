@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3136829611148764434}
   - component: {fileID: 2545152538007166988}
   - component: {fileID: 8536429124311276710}
+  - component: {fileID: 6638951126577832721}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -36,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 297.3, y: -7}
+  m_AnchoredPosition: {x: 333, y: 123}
   m_SizeDelta: {x: 83.852234, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3136829611148764434
@@ -119,6 +120,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6638951126577832721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89552272142171407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd607450bf81ed4c821941b5576b707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
+  timeLeft: 0
+  pickupType: 
+  isQuickSelected: 0
 --- !u!1 &2959445012899324800
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,12 +340,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 26.85
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 4
+  m_fontSizeMax: 60
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
