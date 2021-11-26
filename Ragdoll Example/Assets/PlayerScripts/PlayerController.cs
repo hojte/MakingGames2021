@@ -10,7 +10,7 @@ namespace PlayerScripts
         [Tooltip("Sound on throw")]
         public AudioClip onThrow;
         public GameObject testSpawnObject;
-        private Rigidbody _throwSlot;
+        private Throwable _throwSlot;
         public Vector3 throwablePosition;
         private Transform _mainCam;
         private BallisticTrajectoryRenderer _trajectoryRenderer;
@@ -42,13 +42,15 @@ namespace PlayerScripts
             { // Update position of filled throwSlot
                 var playerPos = transform.position;
                 _throwSlot.transform.position = new Vector3(playerPos.x, playerPos.y+5, playerPos.z);
-                _throwSlot.angularVelocity = Vector3.zero;
-                _throwSlot.rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
+                _throwSlot.rigidbody.angularVelocity = Vector3.zero;
+                _throwSlot.rigidbody.rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
             }
             else if (_throwSlot && Input.GetButtonDown("Fire2"))
             { // Throw Item
                 AudioUtility.CreateSFX(onThrow, transform.position, 1);
-                _throwSlot.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
+                _throwSlot.rigidbody.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
+                _throwSlot.DisableEffects();
+                
                 _throwSlot = null;
                 _trajectoryRenderer.draw = false;
             }
@@ -58,7 +60,7 @@ namespace PlayerScripts
                 if (TryTakeNearbyItem())
                 {
                     print("woo! item taken!");
-                    _trajectoryRenderer.throwItem = _throwSlot;
+                    _trajectoryRenderer.throwItem = _throwSlot.rigidbody;
                     _trajectoryRenderer.draw = true;
                 }
                 else print("couldn't take an item");
@@ -72,16 +74,12 @@ namespace PlayerScripts
             if (_throwSlot != null) return false;
             if (Physics.Raycast(mouseRay, out var hit, 20f))
             {
-                if (hit.transform.CompareTag("Item"))
+                var throwable = hit.transform.GetComponent<Throwable>();
+                if (throwable != null)
                 {
-                    _throwSlot = hit.collider.attachedRigidbody;
-                    return true; 
-                }
-                if (hit.transform.CompareTag("HeavyItem"))
-                {
-                    _throwSlot = hit.collider.attachedRigidbody;
-                    FindObjectOfType<PlayerMovement>().speed -= 5;
-                    FindObjectOfType<PlayerMovement>().runSpeed -= 10;
+                    _throwSlot = throwable;
+                    print("Speed pen: "+_throwSlot.speedPenalty);
+                    _throwSlot.EnableEffects();
                     return true; 
                 }
             }
