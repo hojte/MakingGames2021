@@ -77,6 +77,13 @@ namespace PlayerScripts
                     _throwSlot = hit.collider.attachedRigidbody;
                     return true; 
                 }
+                if (hit.transform.CompareTag("HeavyItem"))
+                {
+                    _throwSlot = hit.collider.attachedRigidbody;
+                    FindObjectOfType<PlayerMovement>().speed -= 5;
+                    FindObjectOfType<PlayerMovement>().runSpeed -= 10;
+                    return true; 
+                }
             }
             return false;
         }
