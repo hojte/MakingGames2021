@@ -6,7 +6,6 @@ namespace UI
     {
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
         }
     }
 }

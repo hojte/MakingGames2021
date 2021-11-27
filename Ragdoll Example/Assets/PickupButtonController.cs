@@ -19,8 +19,9 @@ public class PickupButtonController : MonoBehaviour
 
     void Update()
     {
-        if (isQuickSelected) _selectStr = ">";
-        else _selectStr = "";
+        _selectStr = isQuickSelected ? ">" : "";
         _textMeshProUGUI.text = _selectStr+pickupType+":\n"+timeLeft.ToString().Split('.')[0];
+        
+        if (isQuickSelected) GetComponent<Image>().color = new Color(0,0,1,0.4f);
     }
 }

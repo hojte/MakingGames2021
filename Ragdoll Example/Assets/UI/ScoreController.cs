@@ -14,7 +14,6 @@ namespace UI
 
         private void Start()
         {
-            DontDestroyOnLoad(this.gameObject);
             uiText = GetComponentInChildren<TextMeshProUGUI>();
         }
 

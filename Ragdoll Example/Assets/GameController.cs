@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Sound;
+﻿using Sound;
 using UI;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class GameController : MonoBehaviour
 {
@@ -34,9 +30,9 @@ public class GameController : MonoBehaviour
             return;
         }
         
-        Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject)));
-        Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject)));
-        Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/PickupDisplay.prefab", typeof(GameObject)));
+        DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject))));
+        DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject))));
+        DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/PickupCanvas.prefab", typeof(GameObject))));
         DontDestroyOnLoad(gameObject);
     }
 
