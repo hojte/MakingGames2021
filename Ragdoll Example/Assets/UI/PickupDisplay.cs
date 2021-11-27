@@ -54,13 +54,13 @@ namespace UI
         private void NewQuickSelect()
         {
             ValidateQuickSelect();
-            bool SelectNextPickup(Pickup x) => !x.useInstantly && x != _currentQuickPickup && pickups.IndexOf(x) < pickups.IndexOf(_currentQuickPickup);
-            Pickup quickCandidate = pickups.SkipWhile(SelectNextPickup).FirstOrDefault();
-            if (quickCandidate == null) // select a trigger pickup placed before current
-                quickCandidate = pickups.SkipWhile(x => !x.useInstantly && x != _currentQuickPickup).FirstOrDefault();
+            bool SelectNextPickup(Pickup x) => !x.useInstantly && x != _currentQuickPickup && pickups.IndexOf(x) > pickups.IndexOf(_currentQuickPickup);
+            Pickup quickCandidate = pickups.FirstOrDefault(SelectNextPickup);
+            if (quickCandidate == null) // do select a trigger pickup placed before current
+                quickCandidate = pickups.FirstOrDefault(x => !x.useInstantly);
 
             if (quickCandidate == null || quickCandidate == _currentQuickPickup) return;
-            
+            print("update next quick yay");
             _currentQuickPickup.buttonController.isQuickSelected = false;
             quickCandidate.buttonController.isQuickSelected = true;
             _currentQuickPickup = quickCandidate;

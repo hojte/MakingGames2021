@@ -173,7 +173,7 @@ namespace Interactions
                 case PickupType.Undetectability:
                     var tmpGO = Instantiate(new GameObject(), new Vector3(-300000,-300000, -300000), Quaternion.identity);
                     FindObjectsOfType<AIController>().ToList().ForEach(x =>
-                    {
+                    { // todo will need to be reapplied if scene is reloaded
                         x.Player = tmpGO.transform;
                         x.inCombat = false;
                         x.Wander();
