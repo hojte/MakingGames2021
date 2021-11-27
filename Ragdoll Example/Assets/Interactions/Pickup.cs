@@ -58,7 +58,7 @@ namespace Interactions
 
         private ScoreController _scoreController;
         private PickupDisplay _pickupDisplay;
-        private PlayerMovement _playerMovement;
+        private BetterMovement _playerMovement;
         private GameController _gameController;
         public PickupButtonController buttonController;
 
@@ -71,7 +71,7 @@ namespace Interactions
         {
             _pickupDisplay = FindObjectOfType<PickupDisplay>();
             _scoreController = FindObjectOfType<ScoreController>();
-            _playerMovement = FindObjectOfType<PlayerMovement>();
+            _playerMovement = FindObjectOfType<BetterMovement>();
             _gameController = FindObjectOfType<GameController>();
         }
 
@@ -140,22 +140,22 @@ namespace Interactions
                     _scoreController.Pickup(false);
                     break;
                 case PickupType.SlowDown:
-                    _playerMovement.speed -= slowDownValue;
+                    _playerMovement.walkingSpeed -= slowDownValue;
                     _playerMovement.runSpeed -= slowDownValue;
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(slowDownRestoreTime);
-                        _playerMovement.speed += slowDownValue; 
+                        _playerMovement.walkingSpeed += slowDownValue; 
                         _playerMovement.runSpeed += slowDownValue;
                         if (useInstantly) _pickupDisplay.RemovePickup(this);
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
                 case PickupType.SpeedBoost:
-                    _playerMovement.speed += speedBoostValue;
+                    _playerMovement.walkingSpeed += speedBoostValue;
                     _playerMovement.runSpeed += speedBoostValue;
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(speedBoostRestoreTime);
-                        _playerMovement.speed -= speedBoostValue; 
+                        _playerMovement.walkingSpeed -= speedBoostValue; 
                         _playerMovement.runSpeed -= speedBoostValue;
                         if (useInstantly) _pickupDisplay.RemovePickup(this);
                     }))();

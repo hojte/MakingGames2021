@@ -8,6 +8,7 @@ namespace Sound
     {
         public static void CreateSFX(AudioClip clip, Vector3 position, float spatialBlend, float rolloffDistanceMin = 1f)
         {
+            if (!clip) return;
             GameObject impactSFXInstance = new GameObject();
             impactSFXInstance.transform.position = position;
             AudioSource source = impactSFXInstance.AddComponent<AudioSource>();

@@ -1,27 +1,37 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Interactions
 {
     public class DoorController : MonoBehaviour
     {
-        public bool closed = true;
+        private GameController _gameController;
         public bool doorLocked;
-        private static readonly int Albedo = Shader.PropertyToID("Albedo");
 
-        public void SetClosed(bool state)
+        private void Awake()
         {
-            if (!doorLocked) closed = state;
+            _gameController = FindObjectOfType<GameController>();
+        }
+
+        public void SetClosed(bool close)
+        {
+            if (doorLocked) return;
+            if (!close && GetClosed())
+                transform.parent.rotation = Quaternion.Euler(0, -90, 0);
+            if (close && !GetClosed())
+                transform.parent.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        public bool GetClosed()
+        {
+            return transform.parent.rotation == Quaternion.Euler(0, 0, 0);
         }
 
         private void Update()
         {
-            bool inCombat = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().getEnemiesInCombat() > 0;
-
-            if (!inCombat && closed && transform.rotation == Quaternion.Euler(0, 0, 0))
-                transform.parent.rotation = Quaternion.Euler(0, -90, 0);
-            if (!inCombat && !closed && transform.parent.rotation == Quaternion.Euler(0, -90, 0))
-                transform.parent.rotation = Quaternion.Euler(0, 0, 0);
-            if (inCombat) GetComponent<Renderer>().material.color = Color.red;
+            if (_gameController.getEnemiesInCombat() > 0) doorLocked = true;
+            
+            if (doorLocked) GetComponent<Renderer>().material.color = Color.red;
             else GetComponent<Renderer>().material.color = Color.green;
         }
     }

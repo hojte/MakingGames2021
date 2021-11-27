@@ -16,14 +16,14 @@ namespace Interactions
 
         public void EnableEffects()
         {
-            FindObjectOfType<PlayerMovement>().speed -= speedPenalty;
-            FindObjectOfType<PlayerMovement>().runSpeed -= speedPenalty;
+            FindObjectOfType<BetterMovement>().walkingSpeed -= speedPenalty;
+            FindObjectOfType<BetterMovement>().runSpeed -= speedPenalty;
         }
 
         public void DisableEffects()
         {
-            FindObjectOfType<PlayerMovement>().speed += speedPenalty;
-            FindObjectOfType<PlayerMovement>().runSpeed += speedPenalty;
+            FindObjectOfType<BetterMovement>().walkingSpeed += speedPenalty;
+            FindObjectOfType<BetterMovement>().runSpeed += speedPenalty;
         }
     }
 }

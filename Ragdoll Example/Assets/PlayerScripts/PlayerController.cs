@@ -26,7 +26,11 @@ namespace PlayerScripts
         {
             _gameController = FindObjectOfType<GameController>();
             _mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
-            _trajectoryRenderer = GetComponentInChildren<BallisticTrajectoryRenderer>();
+            var btRendererPrefab =
+                (GameObject)AssetDatabase.LoadAssetAtPath("Assets/PlayerScripts/BallisticTrajectory.prefab",
+                    typeof(GameObject));
+            Instantiate(btRendererPrefab, transform).GetComponent<BallisticTrajectoryRenderer>();
+            _trajectoryRenderer = Instantiate(btRendererPrefab, transform).GetComponent<BallisticTrajectoryRenderer>();
             if (testSpawnObject == null)
                 testSpawnObject = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Ball.prefab", typeof(GameObject));
         }
@@ -49,8 +53,8 @@ namespace PlayerScripts
             if (_throwSlot && !Input.GetButtonDown("Fire2"))
             { // Update position of filled throwSlot
                 _throwSlot.transform.position = throwablePosition;
-                _throwSlot.angularVelocity = Vector3.zero;
-                _throwSlot.rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
+                _throwSlot.rigidbody.angularVelocity = Vector3.zero;
+                _throwSlot.rigidbody.rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
             }
             else if (_throwSlot && Input.GetButtonDown("Fire2"))
             { // Throw Item
@@ -98,10 +102,16 @@ namespace PlayerScripts
             {
                 var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
                 Physics.Raycast(mouseRay, out var hit,25);
-                if(!hit.collider) return;
+                if (!hit.collider)
+                {
+                    print("no hit on door E pressed");
+                    return;
+                }
+
+                print("hit a: "+hit.transform.name);
                 var doorCast = hit.collider.gameObject.GetComponent<DoorController>();
                 if (doorCast)
-                    doorCast.SetClosed(!doorCast.closed);  
+                    doorCast.SetClosed(!doorCast.GetClosed());  
             }
         }
     }

@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Sound;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,16 +20,16 @@ public class BetterMovement : MonoBehaviour
     public CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    public float playerSpeed = 10.0f;
+    public float walkingSpeed = 10.0f;
     public float runSpeed = 15.0f;
-    private float jumpHeight = 3.0f;
+    public float jumpHeight = 3.0f;
     private float gravityValue = -60.81f;
 
     private float initialHeight; 
     
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
-    public Transform cam;
+    private Transform cam;
 
     private bool isRunning; 
     
@@ -40,13 +41,15 @@ public class BetterMovement : MonoBehaviour
     private bool isSliding = false;
     Vector3 lastMoveDir;
 
-    private bool playerAlive = true; 
+    private bool playerAlive = true;
+    public bool isInvulnerable = false;
 
     private void Start()
     {
         //controller = gameObject.AddComponent<CharacterController>();
         initialHeight = controller.height;
         anim = this.GetComponentInChildren<Animator>();
+        cam = Camera.main.transform;
     }
 
     void Update()
@@ -94,7 +97,7 @@ public class BetterMovement : MonoBehaviour
                 if (!isRunning)
                 {
                     anim.SetBool("isWalking", true);
-                    controller.Move(moveDir.normalized * playerSpeed * Time.deltaTime);
+                    controller.Move(moveDir.normalized * walkingSpeed * Time.deltaTime);
                 }
 
 
@@ -184,9 +187,8 @@ public class BetterMovement : MonoBehaviour
                 collision.gameObject.GetComponent<EnemyController>().stun(); 
             }
 
-            
             else 
-                playerDie( GameObject.FindWithTag("Player"));
+                playerDie( gameObject);
         }
     }
     
@@ -235,11 +237,11 @@ public class BetterMovement : MonoBehaviour
     
     void playerDie( GameObject player)
     {
+        if (isInvulnerable) return;
         playerAlive = false; 
          //FindObjectOfType<AudioManager>().Play("Death1");
         
          
-       // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
         
         //Destroy(gameObject, 7f);
@@ -248,8 +250,11 @@ public class BetterMovement : MonoBehaviour
 
         anim.GetComponent<Animator>().enabled = false;
 
+        ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+            await Task.Delay(5000);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }))();
 
-        gameObject.GetComponent<NavMeshAgent>().enabled = false;
         //setRigidBodyState(false);
         //setColliderState(true);
     }
