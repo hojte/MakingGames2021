@@ -187,7 +187,7 @@ namespace Interactions
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
-                case PickupType.Invulnerability:
+                case PickupType.Invulnerability: 
                     _playerMovement.isInvulnerable = true;
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(invulnerabilityRestoreTime);    

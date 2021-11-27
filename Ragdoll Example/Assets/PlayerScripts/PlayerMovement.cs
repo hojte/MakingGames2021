@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isInvulnerable)
         {
             FindObjectOfType<ScoreController>().PlayerDied();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // todo move LoadScene calls to a gameController method!
         }
         
 

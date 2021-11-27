@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         _scoreController = FindObjectOfType<ScoreController>();
-        levelStartTime = Time.time; // todo move to when move out of startRoom
+        levelStartTime = Time.time; // todo move statement to when player moves out of startRoom
         AudioUtility.CreateMainSFX(mainTheme);
     }
 
