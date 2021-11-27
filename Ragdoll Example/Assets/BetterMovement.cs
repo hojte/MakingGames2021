@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Sound;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -39,14 +41,21 @@ public class BetterMovement : MonoBehaviour
     public float slideTimerMax = 2.5f; // time while sliding
     private bool isSliding = false;
     Vector3 lastMoveDir;
+    public GameObject lookAtMePivot; 
 
-    private bool playerAlive = true; 
+    private bool playerAlive = true;
+    public float respawnTime = 0.0f;
+    //public CinemachineVirtualCamera vCam; 
+    public GameObject vCam;
+
+    public GameObject spawnPosition; 
 
     private void Start()
     {
         //controller = gameObject.AddComponent<CharacterController>();
         initialHeight = controller.height;
         anim = this.GetComponentInChildren<Animator>();
+        vCam = GameObject.Find("CM vcam1");
     }
 
     void Update()
@@ -142,6 +151,18 @@ public class BetterMovement : MonoBehaviour
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
         }
+
+        if (!playerAlive)
+        {
+            respawnTime += Time.deltaTime;
+            if (respawnTime > 3.0f)
+            {
+                playerAlive = true;
+                respawnTime = 0.0f;
+                respawn();
+            }
+
+        }
     }
     
     private void OnGUI()
@@ -236,6 +257,7 @@ public class BetterMovement : MonoBehaviour
     void playerDie( GameObject player)
     {
         playerAlive = false; 
+       // var clone = Instantiate((GameObject) AssetDatabase.LoadAssetAtPath("Assets/Player.prefab", typeof(GameObject)),spawnPosition.transform.position, transform.rotation); 
          //FindObjectOfType<AudioManager>().Play("Death1");
         
          
@@ -249,8 +271,18 @@ public class BetterMovement : MonoBehaviour
         anim.GetComponent<Animator>().enabled = false;
 
 
-        gameObject.GetComponent<NavMeshAgent>().enabled = false;
         //setRigidBodyState(false);
         //setColliderState(true);
+    }
+
+    void respawn()
+    {
+        var clone = Instantiate(
+            (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Player.prefab", typeof(GameObject)),spawnPosition.transform.position, transform.rotation);
+        vCam.GetComponent<CinemachineVirtualCamera>().LookAt = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
+        vCam.GetComponent<CinemachineVirtualCamera>().Follow = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
+        clone.GetComponent<BetterMovement>().cam = cam;
+        
+        Destroy(this.gameObject);
     }
 }
