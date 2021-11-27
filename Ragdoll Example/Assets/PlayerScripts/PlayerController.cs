@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Interactions;
+﻿using Interactions;
 using Sound;
-using UI;
 using UnityEditor;
 using UnityEngine;
 
