@@ -11,7 +11,7 @@ namespace PlayerScripts
         [Tooltip("Sound on throw")]
         public AudioClip onThrow;
         public GameObject testSpawnObject;
-        private Rigidbody _throwSlot;
+        public Rigidbody _throwSlot;
         public Vector3 throwablePosition;
         private Transform _mainCam;
         private BallisticTrajectoryRenderer _trajectoryRenderer;
@@ -35,7 +35,7 @@ namespace PlayerScripts
         private void UpdateThrow()
         {
             throwablePosition = transform.position;
-            throwablePosition.y += 5;
+            throwablePosition.y += 9;
             
             if (/*_gameController.debugMode &&*/ Input.GetKey(KeyCode.Keypad0))
             {
@@ -44,7 +44,7 @@ namespace PlayerScripts
             if (_throwSlot && !Input.GetButtonDown("Fire2"))
             { // Update position of filled throwSlot
                 var playerPos = transform.position;
-                _throwSlot.transform.position = new Vector3(playerPos.x, playerPos.y+5, playerPos.z);
+                _throwSlot.transform.position = new Vector3(playerPos.x,  throwablePosition.y, playerPos.z);
                 _throwSlot.angularVelocity = Vector3.zero;
                 _throwSlot.rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
             }

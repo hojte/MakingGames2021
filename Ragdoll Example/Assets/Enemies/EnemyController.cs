@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Sound;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public AudioClip onDamage;
     public GameObject enemyPrefab; 
     private bool isStunned = false;
+    public GameObject rig; 
 
     private float returnFromStunTimer =0f;
     // Start is called before the first frame update
@@ -97,10 +99,13 @@ public class EnemyController : MonoBehaviour
     }
     void returnFromStun()
     {
-        var clone = Instantiate(enemyPrefab, transform.position, transform.rotation);
-        //clone.GetComponent<Animator>().enabled = true;
+
+        var clone = Instantiate(
+            (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Enemies/AIEnemy.prefab", typeof(GameObject)),rig.transform.position, transform.rotation); 
+        clone.GetComponent<Animator>().enabled = true;
         clone.GetComponent<AIController>().Player = GameObject.FindGameObjectWithTag("Player").transform;
         clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab; 
+        
         Destroy(this.gameObject);
         isStunned = false;
         
