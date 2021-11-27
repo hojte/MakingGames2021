@@ -75,7 +75,7 @@ namespace PlayerScripts
             if (_throwSlot != null) return false;
             if (Physics.Raycast(mouseRay, out var hit, 20f))
             {
-                if (hit.transform.CompareTag("Item"))
+                if (hit.transform.CompareTag("Item") || hit.transform.CompareTag("HeavyItem"))
                 {
                     _throwSlot = hit.collider.attachedRigidbody;
                     return true; 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeakPoint : MonoBehaviour
 {
+    float timeOfLastHit = 0;
+    float damageIntakeCooldown = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +20,12 @@ public class WeakPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit registered");
-        if (other.gameObject.tag == "Item" || other.gameObject.tag == "HeavyItem")
+        
+        if (other.gameObject.tag == "Item" || other.gameObject.tag == "HeavyItem" && Time.time > (timeOfLastHit + damageIntakeCooldown))
         {
+            Debug.Log("hit registered");
             GetComponentInParent<ForkliftController>().die();
+            timeOfLastHit = Time.time;
         }
     }
 }

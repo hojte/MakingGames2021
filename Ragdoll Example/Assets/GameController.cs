@@ -20,8 +20,8 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemiesInCombat > 0)
-            Debug.Log("in combat");
+        /*if (enemiesInCombat > 0)
+            Debug.Log("in combat");*/
     }
 
     public void newEnemyInCombat()

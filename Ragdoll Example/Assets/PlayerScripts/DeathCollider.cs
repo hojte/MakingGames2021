@@ -20,6 +20,7 @@ public class DeathCollider : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyAttack")
         {
             
