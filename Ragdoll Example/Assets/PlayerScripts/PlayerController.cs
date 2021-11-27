@@ -40,7 +40,7 @@ namespace PlayerScripts
         private void UpdateThrow()
         {
             throwablePosition = transform.position;
-            throwablePosition.y += 5;
+            throwablePosition.y += 9;
             
             if (_gameController.debugMode && Input.GetKey(KeyCode.Keypad0))
             {
@@ -48,10 +48,9 @@ namespace PlayerScripts
             }
             if (_throwSlot && !Input.GetButtonDown("Fire2"))
             { // Update position of filled throwSlot
-                var playerPos = transform.position;
-                _throwSlot.transform.position = new Vector3(playerPos.x, playerPos.y+5, playerPos.z);
-                _throwSlot.rigidbody.angularVelocity = Vector3.zero;
-                _throwSlot.rigidbody.rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
+                _throwSlot.transform.position = throwablePosition;
+                _throwSlot.angularVelocity = Vector3.zero;
+                _throwSlot.rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
             }
             else if (_throwSlot && Input.GetButtonDown("Fire2"))
             { // Throw Item

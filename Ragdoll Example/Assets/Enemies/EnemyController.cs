@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Interactions;
 using Sound;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,7 @@ public class EnemyController : MonoBehaviour
     public AudioClip onDamage;
     public GameObject enemyPrefab; 
     private bool isStunned = false;
+    public GameObject rig; 
 
     private float returnFromStunTimer =0f;
     // Start is called before the first frame update
@@ -19,7 +21,7 @@ public class EnemyController : MonoBehaviour
     {
         setRigidBodyState(true);
         setColliderState(false);
-        
+
     }
 
     // Update is called once per frame
@@ -82,7 +84,7 @@ public class EnemyController : MonoBehaviour
     {
         AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
-        Destroy(gameObject, 7f);
+        //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         setRigidBodyState(false);
@@ -98,9 +100,13 @@ public class EnemyController : MonoBehaviour
     }
     void returnFromStun()
     {
-        var clone = Instantiate(enemyPrefab, transform.position, transform.rotation);
+
+        var clone = Instantiate(
+            (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Enemies/AIEnemy.prefab", typeof(GameObject)),rig.transform.position, transform.rotation); 
+        clone.GetComponent<Animator>().enabled = true;
         clone.GetComponent<AIController>().Player = GameObject.FindGameObjectWithTag("Player").transform;
         clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab; 
+        
         Destroy(this.gameObject);
         isStunned = false;
         
