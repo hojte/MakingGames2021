@@ -91,12 +91,11 @@ namespace Interactions
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
             transform.Rotate(Vector3.up, rotatingSpeed * Time.deltaTime, Space.Self);
 
-            if (Input.GetKeyDown(KeyCode.R) && isPickedUp && timeOfActivation==0 && buttonController.isQuickSelected) // todo && isQuickUseSelected
+            if (Input.GetKeyDown(KeyCode.R) && isPickedUp && timeOfActivation==0 && buttonController.isQuickSelected)
                 HandlePickup();
             if (timeOfActivation > 0) // Has been used
             {
                 timeLeft = GetCurrentRestoreTime()/1000 - (Time.time - timeOfActivation);
-                if (buttonController != null) buttonController.timeLeft = timeLeft;
                 if (timeLeft < 0)
                 {
                     _pickupDisplay.RemovePickup(this);
@@ -221,8 +220,7 @@ namespace Interactions
         public void SetButtonController(PickupButtonController bController)
         {
             buttonController = bController;
-            buttonController.pickupType = pickupType.ToString();
-            buttonController.timeLeft = timeLeft;
+            buttonController.pickup = this;
         }
     }
 }

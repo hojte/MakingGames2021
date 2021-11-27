@@ -1,27 +1,26 @@
 ﻿using System.Linq;
+using Interactions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PickupButtonController : MonoBehaviour
 {
-    public Button button;
     private TextMeshProUGUI _textMeshProUGUI;
-    public float timeLeft;
-    public string pickupType;
+    public Pickup pickup;
     public bool isQuickSelected;
-    private string _selectStr = "";
     void Awake()
     {
-        button = GetComponent<Button>();
         _textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     void Update()
     {
-        _selectStr = isQuickSelected ? ">" : "";
-        _textMeshProUGUI.text = _selectStr+pickupType+":\n"+timeLeft.ToString().Split('.')[0];
-        
-        if (isQuickSelected) GetComponent<Image>().color = new Color(0,0,1,0.4f);
+        _textMeshProUGUI.text = pickup.pickupType+":\n"+pickup.timeLeft.ToString().Split('.')[0];
+
+        var image = GetComponent<Image>();
+        if (pickup.timeOfActivation!=0) image.color = new Color(0f, 1f, 0f, 0.4f);
+        else if (isQuickSelected) image.color = new Color(0f, 0.68f, 1f, 0.4f);
+        else image.color = new Color(1,1,1,0.4f);
     }
 }
