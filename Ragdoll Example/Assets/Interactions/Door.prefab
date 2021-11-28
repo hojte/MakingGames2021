@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1344739647982059238}
   - component: {fileID: 1344739647982059237}
   m_Layer: 0
-  m_Name: DoorCube
+  m_Name: DoorControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorLocked: 0
   doorClosed: 1
+  isLockedOnCombat: 1
 --- !u!1 &6497866591934948332
 GameObject:
   m_ObjectHideFlags: 0
