@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Interactions;
 using UnityEngine;
 
 public class WeakPoint : MonoBehaviour
@@ -21,7 +22,7 @@ public class WeakPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.gameObject.tag == "Item" || other.gameObject.tag == "HeavyItem" && Time.time > (timeOfLastHit + damageIntakeCooldown))
+        if (other.gameObject.GetComponent<Throwable>() && Time.time > (timeOfLastHit + damageIntakeCooldown))
         {
             Debug.Log("hit registered");
             GetComponentInParent<ForkliftController>().die();

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Interactions;
+using PlayerScripts;
 using UnityEngine;
 
 public class ShelfImpact : MonoBehaviour
@@ -18,11 +20,13 @@ public class ShelfImpact : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("HeavyItem"))
+        Throwable throwable = collision.gameObject.gameObject.GetComponent<Throwable>();
+        if (throwable && throwable.canTiltShelves)
         {
+            
             this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
-        else if (collision.gameObject.CompareTag("Player"))
+        else if (collision.gameObject.GetComponent<PlayerController>())
         {
             this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(this.gameObject.GetComponent<Rigidbody>().velocity.x, 0, this.gameObject.GetComponent<Rigidbody>().velocity.z);
 

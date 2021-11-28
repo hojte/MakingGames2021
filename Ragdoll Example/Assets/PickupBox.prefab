@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 0}
   speedPenalty: 3
+  canTiltShelves: 1
 --- !u!23 &7316761104782564649
 MeshRenderer:
   m_ObjectHideFlags: 0

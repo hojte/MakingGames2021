@@ -8,6 +8,7 @@ namespace Interactions
         [HideInInspector]
         public Rigidbody rigidbody;
         public int speedPenalty = 0;
+        public bool canTiltShelves = false;
 
         private void Start()
         {

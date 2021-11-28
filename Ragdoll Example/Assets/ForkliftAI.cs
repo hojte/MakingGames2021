@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
@@ -32,6 +33,7 @@ public class ForkliftAI : MonoBehaviour
     Quaternion defaultLiftRotation;
     void Start()
     {
+        Player = FindObjectOfType<PlayerController>().transform;
         agent = GetComponent<NavMeshAgent>();
         anim = this.GetComponentInChildren<Animator>();
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().newEnemyInCombat();
@@ -52,6 +54,7 @@ public class ForkliftAI : MonoBehaviour
 
     void Update()
     {
+        if (!Player) Player = FindObjectOfType<PlayerController>().transform;
         if (agent.enabled)
         {
             if (!isStunned)

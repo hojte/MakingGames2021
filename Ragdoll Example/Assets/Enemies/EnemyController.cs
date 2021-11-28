@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour
     /*private void OnCollisionStay(Collision collision)
     {
         //Debug.Log("Collision");
-        if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem")
+        if (collision.gameObject.GetComponent<Throwable>()))
         {
             //Debug.Log("Collision Item");
             if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
