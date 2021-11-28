@@ -47,9 +47,9 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
-        if (Player == null)
+        if (TargetObject == null)
         {
-            Player = GameObject.FindWithTag("Player").transform; 
+            TargetObject = FindObjectOfType<PlayerController>().transform; 
         }
 
         if (agent.enabled)

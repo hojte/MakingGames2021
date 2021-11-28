@@ -1,11 +1,8 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Cinemachine;
+using Interactions;
 using Sound;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class BetterMovement : MonoBehaviour
@@ -194,7 +191,7 @@ public class BetterMovement : MonoBehaviour
 
         if (isSliding)
         {
-            if (hit.collider.gameObject.tag == "Item" || hit.collider.gameObject.tag == "Shelf") {
+            if (hit.collider.gameObject.GetComponent<Throwable>() || hit.collider.gameObject.tag == "Shelf") {
                 Rigidbody body = hit.collider.attachedRigidbody;
 
                 // no rigidbody
@@ -207,7 +204,7 @@ public class BetterMovement : MonoBehaviour
 
                 // Calculate push direction from move direction,
                 // we only push objects to the sides never up and down
-                Debug.Log("push");
+                // Debug.Log("push");
                 Vector3 pushDir = new Vector3(-hit.moveDirection.x, 1, -hit.moveDirection.z);
 
                 // If you know how fast your character is trying to move,
