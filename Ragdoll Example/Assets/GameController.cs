@@ -1,9 +1,15 @@
-﻿using Cinemachine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Cinemachine;
+using Interactions;
 using PlayerScripts;
 using Sound;
 using UI;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -23,6 +29,7 @@ public class GameController : MonoBehaviour
     public Vector3 checkPoint;
 
     private ScoreController _scoreController;
+    private List<DoorController> _doorControllers;
     private CinemachineVirtualCamera _cinemachineVirtualCamera;
     private void Awake()
     {
@@ -32,7 +39,6 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         _cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
         Transform camLookAtMe = FindObjectOfType<PlayerController>().transform.Find("CamLookAtMe"); 
         _cinemachineVirtualCamera.m_Follow = camLookAtMe;
@@ -46,6 +52,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        _doorControllers = FindObjectsOfType<DoorController>().ToList();
         _scoreController = FindObjectOfType<ScoreController>();
         levelStartTime = Time.time; // todo move statement to when player moves out of startRoom
         AudioUtility.CreateMainSFX(mainTheme);
@@ -54,7 +61,35 @@ public class GameController : MonoBehaviour
     void Update()
     {
         if (enemiesInCombat > 0)
-            Debug.Log("in combat");
+        {
+            if(debugMode) Debug.Log("in combat");
+            if (_doorControllers?.Count > 0) _doorControllers.ForEach(door => door.doorLocked = true);
+        }
+        else if (_doorControllers?.Count > 0)
+            _doorControllers.ForEach(door => door.doorLocked = false);
+        if(Input.GetKeyDown(KeyCode.L)) _doorControllers = FindObjectsOfType<DoorController>().ToList();
+
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+            await Task.Delay(5000);
+            var loadScene = SceneManager.LoadSceneAsync(sceneName);
+            while (!loadScene.isDone)
+            {
+                await Task.Delay(20);
+            }
+
+            Debug.Log("Game Reloaded");
+            UpdateReferences();
+        }))();
+    }
+
+    private void UpdateReferences()
+    {
+        enemiesInCombat = 0;
+        _doorControllers = FindObjectsOfType<DoorController>().ToList();
     }
 
     public void newEnemyInCombat()

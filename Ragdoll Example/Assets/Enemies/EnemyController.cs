@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Interactions;
+﻿using Interactions;
 using Sound;
 using UnityEditor;
 using UnityEngine;
@@ -104,7 +102,6 @@ public class EnemyController : MonoBehaviour
         var clone = Instantiate(
             (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Enemies/AIEnemy.prefab", typeof(GameObject)),rig.transform.position, transform.rotation); 
         clone.GetComponent<Animator>().enabled = true;
-        clone.GetComponent<AIController>().Player = GameObject.FindGameObjectWithTag("Player").transform;
         clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab; 
         
         Destroy(this.gameObject);

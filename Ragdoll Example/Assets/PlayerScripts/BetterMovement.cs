@@ -250,10 +250,7 @@ public class BetterMovement : MonoBehaviour
 
         anim.GetComponent<Animator>().enabled = false;
 
-        ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-            await Task.Delay(5000);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }))();
+        FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name);
 
         //setRigidBodyState(false);
         //setColliderState(true);

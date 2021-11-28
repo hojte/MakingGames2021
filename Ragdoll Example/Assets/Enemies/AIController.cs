@@ -54,7 +54,7 @@ public class AIController : MonoBehaviour
                 if (!inCombat)
                 {
                     inCombat = true;
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().newEnemyInCombat();
+                    FindObjectOfType<GameController>().newEnemyInCombat();
                 }
 
                 if (Vector3.Distance(transform.position, TargetObject.position) >= minDist)
