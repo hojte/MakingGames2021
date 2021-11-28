@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
+
 public class AIController : MonoBehaviour
 {
 
-    public Transform Player;
+    public Transform TargetObject;
     int moveSpeed = 4;
     int maxDist = 20;
     int minDist = 5;
@@ -19,6 +23,14 @@ public class AIController : MonoBehaviour
     public bool patrollingEnemy = false;
     bool firstHalfOfPatrol = true;
     Vector3 spawnPoint;
+
+    private void Awake()
+    {
+        if (!TargetObject)
+        {
+            TargetObject = FindObjectOfType<PlayerController>().transform;
+        }
+    }
 
     void Start()
     {
@@ -37,7 +49,7 @@ public class AIController : MonoBehaviour
     {
         if (agent.enabled)
         {
-            if ((Vector3.Distance(transform.position, Player.position) < aggroRange) || inCombat)
+            if ((Vector3.Distance(transform.position, TargetObject.position) < aggroRange) || inCombat)
             {
                 if (!inCombat)
                 {
@@ -45,16 +57,16 @@ public class AIController : MonoBehaviour
                     GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().newEnemyInCombat();
                 }
 
-                if (Vector3.Distance(transform.position, Player.position) >= minDist)
+                if (Vector3.Distance(transform.position, TargetObject.position) >= minDist)
                 {
-                    agent.destination = Player.position;
+                    agent.destination = TargetObject.position;
 
-                    if (Vector3.Distance(transform.position, Player.position) <= maxDist)
+                    if (Vector3.Distance(transform.position, TargetObject.position) <= maxDist)
                     {
                         if (Time.time > timeOfLastAttack + 2.0)
                         {
                             if (GetComponent<ScrewdriverAttack>())
-                                GetComponent<ScrewdriverAttack>().attack(transform, Player);
+                                GetComponent<ScrewdriverAttack>().attack(transform, TargetObject);
                             else
                                 Debug.Log("No attack");
                             timeOfLastAttack = Time.time;
