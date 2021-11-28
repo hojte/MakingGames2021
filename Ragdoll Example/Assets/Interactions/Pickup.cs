@@ -87,6 +87,7 @@ namespace Interactions
         
         private void Update()
         {
+            if (_playerMovement == null) _playerMovement = FindObjectOfType<BetterMovement>();
             float bobbingAnimationPhase = ((Mathf.Sin(Time.time * verticalBobFrequency) * 0.5f) + 0.5f) * bobbingAmount;
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
             transform.Rotate(Vector3.up, rotatingSpeed * Time.deltaTime, Space.Self);
@@ -174,14 +175,24 @@ namespace Interactions
                     var tmpGO = Instantiate(new GameObject(), new Vector3(-300000,-300000, -300000), Quaternion.identity);
                     FindObjectsOfType<AIController>().ToList().ForEach(x =>
                     { // todo will need to be reapplied if scene is reloaded
-                        x.Player = tmpGO.transform;
-                        x.inCombat = false;
-                        x.Wander();
+                        if (x.TargetObject == _playerMovement.transform)
+                        {
+                            x.TargetObject = tmpGO.transform;
+                            x.inCombat = false;
+                            x.Wander();
+                        }
+                        
                     });
                     _gameController.enemiesInCombat = 0;
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(undetectedRestoreTime);
-                        FindObjectsOfType<AIController>().ToList().ForEach(x => x.Player = GameObject.FindWithTag("Player").transform);
+                        FindObjectsOfType<AIController>().ToList().ForEach(x =>
+                        {
+                            if (x.TargetObject == tmpGO.transform)
+                            {
+                                x.TargetObject = _playerMovement.transform;
+                            }
+                        });
                         if (useInstantly) _pickupDisplay.RemovePickup(this);
                         Destroy(tmpGO, 1);
                     }))();

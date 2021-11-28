@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7338897113546440952}
   - component: {fileID: 5727644859414672175}
   - component: {fileID: 4868009014991523606}
+  - component: {fileID: 4435933370531230395}
   m_Layer: 0
   m_Name: Carton_03
-  m_TagString: Item
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,3 +111,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1192577, y: 1.5256377, z: 1.9640491}
   m_Center: {x: -0.00000023841858, y: 0.7628189, z: 0.0000053346157}
+--- !u!114 &4435933370531230395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140614522304520493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cfa27242ef14c37b433526375e877a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody: {fileID: 0}
+  speedPenalty: 0
+  canTiltShelves: 0

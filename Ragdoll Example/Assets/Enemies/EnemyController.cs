@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Interactions;
+﻿using Interactions;
 using Sound;
 using UnityEditor;
 using UnityEngine;
@@ -62,7 +60,7 @@ public class EnemyController : MonoBehaviour
     /*private void OnCollisionStay(Collision collision)
     {
         //Debug.Log("Collision");
-        if (collision.gameObject.tag == "Item" || collision.gameObject.tag == "HeavyItem")
+        if (collision.gameObject.GetComponent<Throwable>()))
         {
             //Debug.Log("Collision Item");
             if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
@@ -83,7 +81,7 @@ public class EnemyController : MonoBehaviour
      void die()
     {
         AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
+        FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
@@ -104,7 +102,6 @@ public class EnemyController : MonoBehaviour
         var clone = Instantiate(
             (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Enemies/AIEnemy.prefab", typeof(GameObject)),rig.transform.position, transform.rotation); 
         clone.GetComponent<Animator>().enabled = true;
-        clone.GetComponent<AIController>().Player = GameObject.FindGameObjectWithTag("Player").transform;
         clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab; 
         
         Destroy(this.gameObject);

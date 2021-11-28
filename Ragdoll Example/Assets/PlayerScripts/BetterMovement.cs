@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+using Cinemachine;
+using Interactions;
 using Sound;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class BetterMovement : MonoBehaviour
@@ -40,24 +39,27 @@ public class BetterMovement : MonoBehaviour
     public float slideTimerMax = 2.5f; // time while sliding
     private bool isSliding = false;
     Vector3 lastMoveDir;
+    public GameObject lookAtMePivot; 
 
     private bool playerAlive = true;
+    public float respawnTime = 0.0f;
+    public GameObject vCam;
+
+    public GameObject spawnPosition; 
     public bool isInvulnerable = false;
 
     private void Start()
     {
-        //controller = gameObject.AddComponent<CharacterController>();
         initialHeight = controller.height;
         anim = this.GetComponentInChildren<Animator>();
         cam = Camera.main.transform;
+        vCam = GameObject.Find("CM vcam1");
     }
 
     void Update()
     {
         if (playerAlive)
-        {
-
-
+        { 
             //Set animator
             anim.SetBool("isJumping", false);
             anim.SetBool("isRunning", false);
@@ -79,11 +81,7 @@ public class BetterMovement : MonoBehaviour
             float vertical = Input.GetAxis("Vertical");
 
             Vector3 move = new Vector3(horizontal, 0f, vertical).normalized;
-
-            //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-            //controller.Move(move * Time.deltaTime * playerSpeed);
-
+            
             if (move != Vector3.zero)
             {
                 float targetAngle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -99,7 +97,6 @@ public class BetterMovement : MonoBehaviour
                     anim.SetBool("isWalking", true);
                     controller.Move(moveDir.normalized * walkingSpeed * Time.deltaTime);
                 }
-
 
                 //Walking
                 if (isRunning)
@@ -140,45 +137,35 @@ public class BetterMovement : MonoBehaviour
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             }
 
-
             //Gravity
             playerVelocity.y += gravityValue * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
+        }
+
+        if (!playerAlive)
+        {
+            respawnTime += Time.deltaTime;
+            if (respawnTime > 3.0f)
+            {
+                playerAlive = true;
+                respawnTime = 0.0f;
+                returnFromStun();
+            }
+
         }
     }
     
     private void OnGUI()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        //Press the space bar to apply no locking to the Cursor
+        //Press the f1 key to apply no locking to the Cursor
         if (Input.GetKey(KeyCode.F1))
             Cursor.lockState = CursorLockMode.None;
     }
-    
-    /*
-    void OnCollisionEnter(Collision collision)
-    {
-        
-        if (collision.gameObject.tag == "Enemy")
-        {
-            if (isSliding)
-            {
-                AudioUtility.CreateSFX(onStun, transform.position, 0);
-                Debug.Log("Enemy stun");
-                collision.gameObject.GetComponent<EnemyController>().stun(); 
-            }
 
-            
-            else 
-                playerDie( GameObject.FindWithTag("Player"));
-        }
-      
-    }
-    */
-    
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.GetComponent<EnemyController>())
         {
             if (isSliding)
             {
@@ -187,8 +174,8 @@ public class BetterMovement : MonoBehaviour
                 collision.gameObject.GetComponent<EnemyController>().stun(); 
             }
 
-            else 
-                playerDie( gameObject);
+            else if (!isInvulnerable)
+                stun( gameObject);
         }
     }
     
@@ -199,13 +186,12 @@ public class BetterMovement : MonoBehaviour
     {
         if (hit.gameObject.tag == "RobotArmHead")
         {
-            playerDie(this.gameObject);
-
+            stun(this.gameObject);
         }
 
         if (isSliding)
         {
-            if (hit.collider.gameObject.tag == "Item" || hit.collider.gameObject.tag == "Shelf") {
+            if (hit.collider.gameObject.GetComponent<Throwable>() || hit.collider.gameObject.tag == "Shelf") {
                 Rigidbody body = hit.collider.attachedRigidbody;
 
                 // no rigidbody
@@ -218,44 +204,39 @@ public class BetterMovement : MonoBehaviour
 
                 // Calculate push direction from move direction,
                 // we only push objects to the sides never up and down
-                Debug.Log("push");
+                // Debug.Log("push");
                 Vector3 pushDir = new Vector3(-hit.moveDirection.x, 1, -hit.moveDirection.z);
 
                 // If you know how fast your character is trying to move,
                 // then you can also multiply the push velocity by that.
 
-                //body.AddForce(pushDir*200);
                 // Apply the push
                 body.velocity = pushDir * 6;
             }
             
         }
-
-        
-  
     }
     
-    void playerDie( GameObject player)
+    void stun( GameObject player)
     {
         if (isInvulnerable) return;
-        playerAlive = false; 
-         //FindObjectOfType<AudioManager>().Play("Death1");
-        
-         
-        
-        
-        //Destroy(gameObject, 7f);
+        playerAlive = false;
         player.GetComponent<CapsuleCollider>().enabled = false;
-        player.GetComponent<CharacterController>().enabled = false; 
-
+        player.GetComponent<CharacterController>().enabled = false;
         anim.GetComponent<Animator>().enabled = false;
+    }
 
-        ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-            await Task.Delay(5000);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }))();
-
-        //setRigidBodyState(false);
-        //setColliderState(true);
+    void returnFromStun()
+    {
+        var clone = Instantiate(
+            (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Player.prefab", typeof(GameObject)),spawnPosition.transform.position, transform.rotation);
+        vCam.GetComponent<CinemachineVirtualCamera>().LookAt = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
+        vCam.GetComponent<CinemachineVirtualCamera>().Follow = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
+        clone.GetComponent<BetterMovement>().cam = cam;
+        Destroy(this.gameObject);
+    }
+    void die()
+    {
+        FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name);
     }
 }

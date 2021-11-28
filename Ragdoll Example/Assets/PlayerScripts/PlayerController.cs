@@ -20,7 +20,7 @@ namespace PlayerScripts
         private void Start()
         {
             _gameController = FindObjectOfType<GameController>();
-            _mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+            _mainCam = Camera.main.transform;
             var btRendererPrefab =
                 (GameObject)AssetDatabase.LoadAssetAtPath("Assets/PlayerScripts/BallisticTrajectory.prefab",
                     typeof(GameObject));
