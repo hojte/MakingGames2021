@@ -103,7 +103,6 @@ public class GameController : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         ((Func<Task>)(async () =>{ // Async call to restore prev conditions
-            await Task.Delay(5000);
             var loadScene = SceneManager.LoadSceneAsync(sceneName);
             while (!loadScene.isDone)
             {

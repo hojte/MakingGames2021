@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7316761104782564649}
   - component: {fileID: 5743007679926951289}
   - component: {fileID: 7792545244401568298}
+  - component: {fileID: 5708287327946229622}
   m_Layer: 0
   m_Name: PickupBox
   m_TagString: HeavyItem
@@ -126,3 +127,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5708287327946229622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228165885228699018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc26f3fb2daf4deaa93f556afcf7dd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsToPlay:
+  - {fileID: 8300000, guid: f0e8ed4daabbd4978875d6290ed019bc, type: 3}
+  - {fileID: 8300000, guid: a57dd44fee788469f92654a1aa02b680, type: 3}
+  - {fileID: 8300000, guid: d50fdcf5a94ab467c98541d9b704ec17, type: 3}
+  muteSound: 0
+  playOnCollision: 1
+  playOnAwake: 0
+  playInLoop: 0
+  volume: 0.25
+  spatialBlend: 1
+  minDistance: 5
+  maxDistance: 25

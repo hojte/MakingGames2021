@@ -1,7 +1,7 @@
-﻿using Interactions;
+﻿using System.Collections.Generic;
+using Interactions;
 using Interactions.Shop;
 using Sound;
-using UI;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ namespace PlayerScripts
     {
         [Header("Sounds")]
         [Tooltip("Sound on throw")]
-        public AudioClip onThrow;
+        public List<AudioClip> onThrowClips;
         public GameObject testSpawnObject;
         private Throwable _throwSlot;
         public Vector3 throwablePosition;
@@ -63,7 +63,7 @@ namespace PlayerScripts
         private void UpdateThrow()
         {
             throwablePosition = transform.position;
-            throwablePosition.y += 9;
+            throwablePosition.y += 10;
             
             if (_gameController.debugMode && Input.GetKey(KeyCode.Keypad0))
             {
@@ -77,7 +77,8 @@ namespace PlayerScripts
             }
             else if (_throwSlot && Input.GetButtonDown("Fire1"))
             { // Throw Item
-                AudioUtility.CreateSFX(onThrow, transform, 1); // todo sound
+                var onThrow = onThrowClips[new System.Random().Next(onThrowClips.Count)];
+                Destroy(AudioUtility.CreateSFX(onThrow, transform, 0, volume: 0.05f), onThrow.length);
                 _throwSlot.rigidbody.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
                 _throwSlot.DisableEffects();
                 _throwSlot = null;
