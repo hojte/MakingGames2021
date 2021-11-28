@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
     [Header("MISC")]
     [Tooltip("Toggle global debug for entire game to show/do various things")]
     public bool debugMode;
+    [Tooltip("Will use force sun - no shadows (if no other lights in the scene)")]
+    public bool forceSun = true;
     
     public int enemiesInCombat = 0;
 
@@ -47,6 +49,10 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject))));
         DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject))));
         DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/PickupCanvas.prefab", typeof(GameObject))));
+        Light currentLight = FindObjectOfType<Light>();
+        if (!currentLight && forceSun)
+            DontDestroyOnLoad(
+                Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/ForceSun.prefab", typeof(GameObject))));
         DontDestroyOnLoad(gameObject);
     }
 
