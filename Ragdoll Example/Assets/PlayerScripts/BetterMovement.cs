@@ -175,7 +175,8 @@ public class BetterMovement : MonoBehaviour
             }
 
             else if (!isInvulnerable)
-                stun( gameObject);
+                // stun( gameObject);
+                die(gameObject);
         }
     }
     
@@ -235,8 +236,12 @@ public class BetterMovement : MonoBehaviour
         clone.GetComponent<BetterMovement>().cam = cam;
         Destroy(this.gameObject);
     }
-    void die()
+    void die(GameObject player)
     {
+        if (isInvulnerable) return;
+        player.GetComponent<CapsuleCollider>().enabled = false;
+        player.GetComponent<CharacterController>().enabled = false;
+        anim.GetComponent<Animator>().enabled = false;
         FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name);
     }
 }
