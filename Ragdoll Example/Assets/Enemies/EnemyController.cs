@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
             }
         }
         if(Input.GetKeyDown(KeyCode.Keypad1))
-            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 0.5f, 15f);
+            AudioUtility.CreateSFX(onDamage, transform, 1f, 0.5f, 15f); //todo sound
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour
 
      void die()
     {
-        AudioUtility.CreateSFX(onDamage, transform.position, 1f, 0.5f, 15f);
+        AudioUtility.CreateSFX(onDamage, transform, 1f, 0.5f, 15f);//todo sound
         FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;

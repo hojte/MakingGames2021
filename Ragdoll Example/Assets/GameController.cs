@@ -14,8 +14,12 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     [Header("Sounds")]
-    [Tooltip("Sound played continuously in 2D")]
-    public AudioClip mainTheme;
+    [Tooltip("Sound played continuously while out of combat")]
+    public AudioClip onOutOfCombat;
+    [Tooltip("Sound played continuously while in normal combat")]
+    public AudioClip onCombat;
+    [Tooltip("Sound played continuously while in boss combat")]
+    public AudioClip onBossCombat;
     [Tooltip("Mute all sound")]
     public bool muteSound;
     [Header("MISC")]
@@ -34,6 +38,9 @@ public class GameController : MonoBehaviour
     private List<DoorController> _doorControllers;
     public CinemachineVirtualCamera _cinemachineVirtualCamera;
     public Transform _camLookAtMe;
+    private bool combatMusicPlaying = false;
+    public bool bossCombat = false; // todo set this in the boss fight
+    private AudioSource _audioSource;
     private void Awake()
     {
         // QuickFix for duplicate Controllers:
@@ -62,20 +69,35 @@ public class GameController : MonoBehaviour
         _doorControllers = FindObjectsOfType<DoorController>().ToList();
         _scoreController = FindObjectOfType<ScoreController>();
         levelStartTime = Time.time; // todo move statement to when player moves out of startRoom
-        AudioUtility.CreateMainSFX(mainTheme);
+        _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.05f);
     }
 
     void Update()
     {
         if (enemiesInCombat > 0)
         {
+            if (!combatMusicPlaying)
+            {
+                _audioSource.clip = bossCombat ? onBossCombat : onCombat;
+                _audioSource.Play();
+                combatMusicPlaying = true;
+            }
             if(debugMode) Debug.Log("in combat");
             if (_doorControllers?.Count > 0) _doorControllers.ForEach(door => door.doorLocked = true);
         }
         else if (_doorControllers?.Count > 0)
             _doorControllers.ForEach(door => door.doorLocked = false);
         if(Input.GetKeyDown(KeyCode.L)) _doorControllers = FindObjectsOfType<DoorController>().ToList();
-
+        if (enemiesInCombat == 0)
+        {
+            if (combatMusicPlaying)
+            {
+                _audioSource.clip = onOutOfCombat;
+                _audioSource.Play();
+                combatMusicPlaying = false;
+            }
+            
+        }
     }
 
     public void LoadScene(string sceneName)

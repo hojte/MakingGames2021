@@ -123,7 +123,7 @@ namespace Interactions
         {
             if (pickupSFX)
             {
-                AudioUtility.CreateSFX(pickupSFX, transform.position, 0f);
+                AudioUtility.CreateSFX(pickupSFX, transform, 0f); // todo sound
             }
 
             isPickedUp = true;

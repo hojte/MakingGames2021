@@ -77,7 +77,7 @@ namespace PlayerScripts
             }
             else if (_throwSlot && Input.GetButtonDown("Fire1"))
             { // Throw Item
-                AudioUtility.CreateSFX(onThrow, transform.position, 1);
+                AudioUtility.CreateSFX(onThrow, transform, 1); // todo sound
                 _throwSlot.rigidbody.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
                 _throwSlot.DisableEffects();
                 _throwSlot = null;

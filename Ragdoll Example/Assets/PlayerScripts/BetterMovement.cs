@@ -169,7 +169,7 @@ public class BetterMovement : MonoBehaviour
         {
             if (isSliding)
             {
-                AudioUtility.CreateSFX(onStun, transform.position, 0);
+                AudioUtility.CreateSFX(onStun, transform, 0); // todo sound
                 Debug.Log("Enemy stun");
                 collision.gameObject.GetComponent<EnemyController>().stun(); 
             }
