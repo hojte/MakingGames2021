@@ -73,22 +73,21 @@ namespace Interactions
         private Rigidbody pickupRigidbody;
 
 
-        private void Awake()
+
+        private void Start()
         {
             _pickupDisplay = FindObjectOfType<PickupDisplay>();
             _scoreController = FindObjectOfType<ScoreController>();
             _playerMovement = FindObjectOfType<BetterMovement>();
             _gameController = FindObjectOfType<GameController>();
-        }
-
-        private void Start()
-        {
+            
+            
             pickupRigidbody = GetComponent<Rigidbody>();
             m_Collider = GetComponent<Collider>();
             pickupRigidbody.isKinematic = true;
             m_Collider.isTrigger = true;
             m_StartPosition = transform.position;
-            timeLeft = GetCurrentRestoreTime()/1000;
+            timeLeft = GetCurrentRestoreTimeMillis()/1000;
         }
         
         private void Update()
@@ -102,7 +101,7 @@ namespace Interactions
                 UsePickup();
             if (timeOfActivation > 0) // Has been used
             {
-                timeLeft = GetCurrentRestoreTime()/1000 - (Time.time - timeOfActivation);
+                timeLeft = GetCurrentRestoreTimeMillis()/1000 - (Time.time - timeOfActivation);
                 if (timeLeft < 0)
                 {
                     _pickupDisplay.RemovePickup(this);
@@ -233,9 +232,18 @@ namespace Interactions
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
+                case PickupType.Random:
+                    var values = Enum.GetValues(typeof(PickupType));
+                    pickupType = (PickupType)values.GetValue(new System.Random().Next(2, values.Length));
+                    useInstantly = false;
+                    timeOfActivation = 0;
+                    timeLeft = GetCurrentRestoreTimeMillis()/1000;
+                    pickupSFX = null; // dont play twice
+                    OnPickup();
+                    break;
             }
         }
-        private float GetCurrentRestoreTime()
+        private float GetCurrentRestoreTimeMillis()
         {
             switch (pickupType)
             {

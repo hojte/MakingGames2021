@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
 
 public class CraneMovement : MonoBehaviour
@@ -16,7 +17,7 @@ public class CraneMovement : MonoBehaviour
 
     //public Transform tip2;
 
-    public Transform player; 
+    private Transform _player; 
 
    // private float tip1MinX = 0.35f;
     //private float tip1MaxX = -0.35f;
@@ -30,7 +31,7 @@ public class CraneMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _player = FindObjectOfType<PlayerController>().transform;
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class CraneMovement : MonoBehaviour
     {
         
         
-        Vector3 relativePos = player.position - plate.position;
+        Vector3 relativePos = _player.position - plate.position;
         relativePos.y = 0;
 
         // the second argument, upwards, defaults to Vector3.up
