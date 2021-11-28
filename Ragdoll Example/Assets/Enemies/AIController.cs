@@ -35,6 +35,11 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
+        if (Player == null)
+        {
+            Player = GameObject.FindWithTag("Player").transform; 
+        }
+
         if (agent.enabled)
         {
             if ((Vector3.Distance(transform.position, Player.position) < aggroRange) || inCombat)
