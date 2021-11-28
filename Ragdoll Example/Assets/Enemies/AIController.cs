@@ -102,8 +102,6 @@ public class AIController : MonoBehaviour
             transform.LookAt(patrollingWayPoint);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             agent.destination = patrollingWayPoint;
-
-            // Debug.Log(patrollingWayPoint + " and " + (transform.position - patrollingWayPoint).magnitude);
         }
     }
 
@@ -128,6 +126,4 @@ public class AIController : MonoBehaviour
                 firstHalfOfPatrol = true;
         }
     }
-
-
 }
