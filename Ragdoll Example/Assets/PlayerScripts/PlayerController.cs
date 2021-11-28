@@ -1,5 +1,7 @@
 ﻿using Interactions;
+using Interactions.Shop;
 using Sound;
+using UI;
 using UnityEditor;
 using UnityEngine;
 
@@ -34,6 +36,28 @@ namespace PlayerScripts
         {
             UpdateThrow();
             UpdateDoor();
+            UpdateBuy();
+        }
+
+        private void UpdateBuy()
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Physics.Raycast(mouseRay, out var hit,25);
+                if (!hit.collider)
+                {
+                    print("no hit on shop interaction");
+                    return;
+                }
+
+                print("hit a: "+hit.transform.name);
+                var shopItemCast = hit.collider.gameObject.GetComponent<ShopItemController>();
+                if (shopItemCast)
+                {
+                    shopItemCast.BuyPickup();
+                }
+            }
         }
 
         private void UpdateThrow()
@@ -45,22 +69,21 @@ namespace PlayerScripts
             {
                 Instantiate(testSpawnObject, throwablePosition, Quaternion.LookRotation(_mainCam.forward, _mainCam.up));
             }
-            if (_throwSlot && !Input.GetButtonDown("Fire2"))
+            if (_throwSlot && !Input.GetButtonDown("Fire1"))
             { // Update position of filled throwSlot
                 _throwSlot.transform.position = throwablePosition;
                 _throwSlot.rigidbody.angularVelocity = Vector3.zero;
                 _throwSlot.rigidbody.rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
             }
-            else if (_throwSlot && Input.GetButtonDown("Fire2"))
+            else if (_throwSlot && Input.GetButtonDown("Fire1"))
             { // Throw Item
                 AudioUtility.CreateSFX(onThrow, transform.position, 1);
                 _throwSlot.rigidbody.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
                 _throwSlot.DisableEffects();
-                
                 _throwSlot = null;
                 _trajectoryRenderer.draw = false;
             }
-            else if (Input.GetButtonDown("Fire2"))
+            else if (Input.GetButtonDown("Fire1"))
             {
                 print("trying to take an item...");
                 if (TryTakeNearbyItem())

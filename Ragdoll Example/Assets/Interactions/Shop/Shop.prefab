@@ -208,6 +208,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItems: []
+  pickupToSellInSlot1: 0
+  pickupToSellInSlot2: 0
+  pickupToSellInSlot3: 0
+  discountOnItems: 0
 --- !u!1 &3886987708636149942
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +495,7 @@ GameObject:
   - component: {fileID: 5641812943447969571}
   - component: {fileID: 2989327076408922145}
   m_Layer: 0
-  m_Name: Cylinder (1)
+  m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

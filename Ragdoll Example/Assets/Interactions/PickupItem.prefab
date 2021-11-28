@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1818965474932572222}
   - component: {fileID: 5443680831551886681}
   m_Layer: 0
-  m_Name: PickupDummy
+  m_Name: PickupItem
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,11 +124,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1965080c0664a9da7c69b31569cb48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useInstantly: 1
+  pickupType: 0
+  pickupSFX: {fileID: 8300000, guid: 8efa6aedc959735418f6d4eeba29c40c, type: 3}
+  timeOfActivation: 0
+  timeLeft: 0
+  isPickedUp: 0
+  slowDownRestoreTime: 5000
+  slowDownValue: 5
+  speedBoostRestoreTime: 20000
+  speedBoostValue: 10
+  jumpBoostRestoreTime: 5000
+  jumpBoostValue: 15
+  undetectedRestoreTime: 10000
+  invulnerabilityRestoreTime: 10000
   verticalBobFrequency: 1
   bobbingAmount: 1
   rotatingSpeed: 360
-  pickupSFX: {fileID: 8300000, guid: 8efa6aedc959735418f6d4eeba29c40c, type: 3}
-  type: 0
+  buttonController: {fileID: 0}
 --- !u!1001 &8867471723315706969
 PrefabInstance:
   m_ObjectHideFlags: 0
