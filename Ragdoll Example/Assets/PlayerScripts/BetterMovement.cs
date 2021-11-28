@@ -165,7 +165,7 @@ public class BetterMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.GetComponent<EnemyController>())
         {
             if (isSliding)
             {
@@ -174,7 +174,7 @@ public class BetterMovement : MonoBehaviour
                 collision.gameObject.GetComponent<EnemyController>().stun(); 
             }
 
-            else 
+            else if (!isInvulnerable)
                 stun( gameObject);
         }
     }
