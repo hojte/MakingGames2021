@@ -32,7 +32,8 @@ public class GameController : MonoBehaviour
 
     private ScoreController _scoreController;
     private List<DoorController> _doorControllers;
-    private CinemachineVirtualCamera _cinemachineVirtualCamera;
+    public CinemachineVirtualCamera _cinemachineVirtualCamera;
+    public Transform _camLookAtMe;
     private void Awake()
     {
         // QuickFix for duplicate Controllers:
@@ -42,9 +43,9 @@ public class GameController : MonoBehaviour
             return;
         }
         _cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        Transform camLookAtMe = FindObjectOfType<PlayerController>().transform.Find("CamLookAtMe"); 
-        _cinemachineVirtualCamera.m_Follow = camLookAtMe;
-        _cinemachineVirtualCamera.m_LookAt = camLookAtMe;
+        _camLookAtMe = FindObjectOfType<PlayerController>().transform.Find("CamLookAtMe").transform; 
+        _cinemachineVirtualCamera.m_Follow = _camLookAtMe;
+        _cinemachineVirtualCamera.m_LookAt = _camLookAtMe;
         
         DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject))));
         DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject))));
@@ -96,6 +97,11 @@ public class GameController : MonoBehaviour
     {
         enemiesInCombat = 0;
         _doorControllers = FindObjectsOfType<DoorController>().ToList();
+        _cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        _camLookAtMe = FindObjectOfType<PlayerController>().transform.Find("CamLookAtMe").transform; 
+        _cinemachineVirtualCamera.m_Follow = _camLookAtMe;
+        _cinemachineVirtualCamera.m_LookAt = _camLookAtMe;
+        
     }
 
     public void newEnemyInCombat()
