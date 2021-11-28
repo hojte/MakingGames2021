@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
         _doorControllers = FindObjectsOfType<DoorController>().ToList();
         _scoreController = FindObjectOfType<ScoreController>();
         levelStartTime = Time.time; // todo move statement to when player moves out of startRoom
-        _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.05f);
+        _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.03f);
     }
 
     void Update()
