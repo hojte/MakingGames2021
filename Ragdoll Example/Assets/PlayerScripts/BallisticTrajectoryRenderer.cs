@@ -47,7 +47,7 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
         // Get line renderer reference
         line = GetComponent<LineRenderer>();
         ClearTrajectory();
-        _mainCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        _mainCam = Camera.main.transform;
         
     }
 

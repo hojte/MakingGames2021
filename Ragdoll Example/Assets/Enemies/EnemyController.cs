@@ -81,7 +81,7 @@ public class EnemyController : MonoBehaviour
      void die()
     {
         AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
+        FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
