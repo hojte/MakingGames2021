@@ -47,6 +47,10 @@ public class BetterMovement : MonoBehaviour
 
     public GameObject spawnPosition; 
     public bool isInvulnerable = false;
+    bool isFlying = false;
+    bool ignoreTriggers = true;
+    float timeLastBounce = 0;
+    public float timeToSpendFlying = 6.0f;
 
     private void Start()
     {
@@ -54,11 +58,13 @@ public class BetterMovement : MonoBehaviour
         anim = this.GetComponentInChildren<Animator>();
         cam = Camera.main.transform;
         vCam = GameObject.Find("CM vcam1");
+        controller = GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        if (playerAlive)
+        
+        if (playerAlive && !isFlying)
         { 
             //Set animator
             anim.SetBool("isJumping", false);
@@ -67,6 +73,7 @@ public class BetterMovement : MonoBehaviour
 
 
             groundedPlayer = controller.isGrounded;
+            Debug.Log(groundedPlayer);
             isRunning = Input.GetKey(KeyCode.LeftShift);
             bool isCrouching = Input.GetKey(KeyCode.C);
             slideCooldown -= Time.deltaTime;
@@ -153,6 +160,22 @@ public class BetterMovement : MonoBehaviour
             }
 
         }
+
+        if (ignoreTriggers)
+        {
+            if (Time.time > timeLastBounce + 1.0f)
+                ignoreTriggers = false;
+        }
+
+        if (isFlying)
+        {
+            if (Time.time > timeLastBounce + timeToSpendFlying)
+            {
+                GetComponent<CharacterController>().enabled = false;
+                returnFromStun();
+                isFlying = false;
+            }
+        }
     }
     
     private void OnGUI()
@@ -165,6 +188,7 @@ public class BetterMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+
         if (collision.gameObject.GetComponent<EnemyController>())
         {
             if (isSliding)
@@ -184,10 +208,13 @@ public class BetterMovement : MonoBehaviour
     
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+
         if (hit.gameObject.tag == "RobotArmHead")
         {
             stun(this.gameObject);
         }
+
+
 
         if (isSliding)
         {
@@ -216,13 +243,23 @@ public class BetterMovement : MonoBehaviour
             
         }
     }
-    
+
     void stun( GameObject player)
     {
         if (isInvulnerable) return;
         playerAlive = false;
         player.GetComponent<CapsuleCollider>().enabled = false;
         player.GetComponent<CharacterController>().enabled = false;
+        anim.GetComponent<Animator>().enabled = false;
+    }
+
+    public void flyRagdoll(GameObject player)
+    {
+        if (isInvulnerable) return;
+        timeLastBounce = Time.time;
+        isFlying = true;
+        player.GetComponent<CapsuleCollider>().enabled = false;
+        //player.GetComponent<CharacterController>().enabled = false;
         anim.GetComponent<Animator>().enabled = false;
     }
 

@@ -1871,6 +1871,7 @@ GameObject:
   - component: {fileID: 5865603165609474758}
   - component: {fileID: 5865603165609474759}
   - component: {fileID: 5865603165609474756}
+  - component: {fileID: 1442105500724495058}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1910,16 +1911,18 @@ MonoBehaviour:
   onSlide: {fileID: 8300000, guid: d6071fcfd9058134fb76bf5dd7cfc5da, type: 3}
   onStun: {fileID: 8300000, guid: 908657b7778660b4787c440adaa23fd7, type: 3}
   controller: {fileID: 5865603165609474758}
-  playerSpeed: 10
+  walkingSpeed: 10
   runSpeed: 15
+  jumpHeight: 3
   turnSmoothTime: 0.1
-  cam: {fileID: 0}
   slideSpeed: 17
   slideTimerMax: 0.6
   lookAtMePivot: {fileID: 5865603165150125870}
   respawnTime: 0
   vCam: {fileID: 0}
   spawnPosition: {fileID: 5865603164051604703}
+  isInvulnerable: 0
+  timeToSpendFlying: 6
 --- !u!143 &5865603165609474758
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1966,8 +1969,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onThrow: {fileID: 8300000, guid: 8c69e678ceae21a40a21fbf28285da09, type: 3}
   testSpawnObject: {fileID: 0}
-  _throwSlot: {fileID: 0}
   throwablePosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1442105500724495058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5865603165609474754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00c610bdc3789640875dc2561f3c509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5865603165629652366
 GameObject:
   m_ObjectHideFlags: 0
