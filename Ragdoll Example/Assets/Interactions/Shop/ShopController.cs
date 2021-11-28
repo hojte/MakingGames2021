@@ -37,16 +37,19 @@ namespace Interactions.Shop
                 (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Interactions/PickupItem.prefab", typeof(GameObject));
             
             var tmpPickup = Instantiate(pickupPrefab, transform).GetComponent<Pickup>();
+            tmpPickup.RemoveVisuals();
             tmpPickup.useInstantly = false;
             tmpPickup.pickupType = pickupToSellInSlot1;
             shopItems[0].SetShopItem(tmpPickup, tmpPickup.ShopPrice - discountOnItems);
             
             tmpPickup = Instantiate(pickupPrefab, transform).GetComponent<Pickup>();
+            tmpPickup.RemoveVisuals();
             tmpPickup.useInstantly = false;
             tmpPickup.pickupType = pickupToSellInSlot2;
             shopItems[1].SetShopItem(tmpPickup, tmpPickup.ShopPrice - discountOnItems);
             
             tmpPickup = Instantiate(pickupPrefab, transform).GetComponent<Pickup>();
+            tmpPickup.RemoveVisuals();
             tmpPickup.useInstantly = false;
             tmpPickup.pickupType = pickupToSellInSlot3;
             shopItems[2].SetShopItem(tmpPickup, tmpPickup.ShopPrice - discountOnItems);

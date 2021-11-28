@@ -131,6 +131,11 @@ namespace Interactions
             if (useInstantly) UsePickup();
             else _pickupDisplay.AddPickup(this);
 
+            RemoveVisuals();
+        }
+
+        public void RemoveVisuals()
+        {
             // Remove visuals
             Destroy(pickupRigidbody);
             Destroy(m_Collider);
