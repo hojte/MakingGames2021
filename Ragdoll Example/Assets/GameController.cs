@@ -1,4 +1,6 @@
-﻿using Sound;
+﻿using Cinemachine;
+using PlayerScripts;
+using Sound;
 using UI;
 using UnityEditor;
 using UnityEngine;
@@ -21,6 +23,7 @@ public class GameController : MonoBehaviour
     public Vector3 checkPoint;
 
     private ScoreController _scoreController;
+    private CinemachineVirtualCamera _cinemachineVirtualCamera;
     private void Awake()
     {
         // QuickFix for duplicate Controllers:
@@ -29,6 +32,11 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        _cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        Transform camLookAtMe = FindObjectOfType<PlayerController>().transform.Find("CamLookAtMe"); 
+        _cinemachineVirtualCamera.m_Follow = camLookAtMe;
+        _cinemachineVirtualCamera.m_LookAt = camLookAtMe;
         
         DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject))));
         DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject))));
