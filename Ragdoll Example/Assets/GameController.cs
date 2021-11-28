@@ -14,7 +14,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     [Header("Sounds")]
-    [Tooltip("Sound played continously in 2D")]
+    [Tooltip("Sound played continuously in 2D")]
     public AudioClip mainTheme;
     [Tooltip("Mute all sound")]
     public bool muteSound;

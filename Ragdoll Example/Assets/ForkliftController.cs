@@ -35,7 +35,7 @@ public class ForkliftController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
-            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
+            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 0.5f, 15f);
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -51,7 +51,7 @@ public class ForkliftController : MonoBehaviour
         if (Time.time > (lastHitTime + 3.0f))
         {
             lastHitTime = Time.time;
-            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
+            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 0.5f, 15f);
             hp--;
             if (hp == 2)
                 GetComponentInChildren<ParticleSystem>().enableEmission = true;
@@ -63,13 +63,13 @@ public class ForkliftController : MonoBehaviour
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
                 GameObject deathExplosion = Instantiate(deathParticles, GetComponentInChildren<ParticleSystem>().transform.position, Quaternion.identity);
                 deathExplosion.transform.localScale = new Vector3(30, 30, 30);
-                AudioUtility.CreateSFX(onDeath, transform.position, 1f, 15f);
+                AudioUtility.CreateSFX(onDeath, transform.position, 1f, 0.5f, 15f);
 
                 for (int i = 0; i < GetComponentsInChildren<MeshRenderer>().Length; i++)
                 {
                     GameObject d = Instantiate(deathParticles, GetComponentsInChildren<MeshRenderer>()[i].transform.position, Quaternion.identity);
                     d.transform.localScale = new Vector3(30, 30, 30);
-                    AudioUtility.CreateSFX(onDeath, transform.position, 1f, 15f);
+                    AudioUtility.CreateSFX(onDeath, transform.position, 1f, 0.5f, 15f);
 
                     GameObject f = Instantiate(fireParticles, GetComponentsInChildren<MeshRenderer>()[i].transform.position, Quaternion.identity);
                     f.transform.localScale = new Vector3(30, 30, 30);
@@ -88,6 +88,6 @@ public class ForkliftController : MonoBehaviour
 
     public void futileHit()
     {
-        AudioUtility.CreateSFX(onHit, transform.position, 1f, 15f);
+        AudioUtility.CreateSFX(onHit, transform.position, 1f, 0.5f, 15f);
     }
 }
