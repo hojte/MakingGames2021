@@ -7,28 +7,11 @@ public class CraneMovement : MonoBehaviour
 {
     public Transform plate;
 
-    //public Transform cyl1;
-
-    //public Transform rotate1;
-
-    //public Transform tip1;
-
-    //public Transform rotate2;
-
-    //public Transform tip2;
+   
 
     private Transform _player; 
 
-   // private float tip1MinX = 0.35f;
-    //private float tip1MaxX = -0.35f;
-
-    //private double flipTime = 1.5;
-    //private float flipTimeCounter = 0f;
-
-    //public bool tip1Flip = false;
-
-   // private float speed = 60; 
-    // Start is called before the first frame update
+  
     void Start()
     {
         _player = FindObjectOfType<PlayerController>().transform;
@@ -37,8 +20,11 @@ public class CraneMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+        if (_player == null)
+        {
+            _player = FindObjectOfType<PlayerController>().transform;
+        }
+
         Vector3 relativePos = _player.position - plate.position;
         relativePos.y = 0;
 
