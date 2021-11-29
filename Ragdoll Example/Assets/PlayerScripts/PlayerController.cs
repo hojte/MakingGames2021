@@ -84,7 +84,7 @@ namespace PlayerScripts
                 _throwSlot = null;
                 _trajectoryRenderer.draw = false;
             }
-            else if (Input.GetButtonDown("Fire1"))
+            else if (Input.GetButtonDown("Fire2"))
             {
                 print("trying to take an item...");
                 if (TryTakeNearbyItem())
