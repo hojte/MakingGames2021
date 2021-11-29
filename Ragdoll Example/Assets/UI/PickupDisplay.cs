@@ -22,7 +22,11 @@ namespace UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f ) // forward
+            {
+                NewQuickSelect(true);
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0f ) // backwards
             {
                 NewQuickSelect();
             }
@@ -51,14 +55,19 @@ namespace UI
                     _currentQuickPickup.buttonController.isQuickSelected = true;
             }
         }
-        private void NewQuickSelect()
+        private void NewQuickSelect(bool selectBackwards = false)
         {
+            
             ValidateQuickSelect();
             bool SelectNextPickup(Pickup x) => !x.useInstantly && x != _currentQuickPickup && pickups.IndexOf(x) > pickups.IndexOf(_currentQuickPickup);
+
+            if (selectBackwards) pickups.Reverse();
             Pickup quickCandidate = pickups.FirstOrDefault(SelectNextPickup);
             if (quickCandidate == null) // do select a trigger pickup placed before current
                 quickCandidate = pickups.FirstOrDefault(x => !x.useInstantly);
 
+            if (selectBackwards) pickups.Reverse();
+            
             if (quickCandidate == null || quickCandidate == _currentQuickPickup) return;
             print("update next quick yay");
             _currentQuickPickup.buttonController.isQuickSelected = false;

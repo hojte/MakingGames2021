@@ -97,7 +97,7 @@ namespace Interactions
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
             transform.Rotate(Vector3.up, rotatingSpeed * Time.deltaTime, Space.Self);
 
-            if (Input.GetKeyDown(KeyCode.R) && isPickedUp && timeOfActivation==0 && buttonController.isQuickSelected)
+            if (Input.GetKeyDown(KeyCode.Q) && isPickedUp && timeOfActivation==0 && buttonController.isQuickSelected)
                 UsePickup();
             if (timeOfActivation > 0) // Has been used
             {
