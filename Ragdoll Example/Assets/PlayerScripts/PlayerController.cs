@@ -100,10 +100,10 @@ namespace PlayerScripts
         private bool TryTakeNearbyItem()
         {
             var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
             if (_throwSlot != null) return false;
             if (Physics.Raycast(mouseRay, out var hit, 20f))
             {
+                print("raycast hit a: "+hit.transform.name);
                 var throwable = hit.transform.GetComponent<Throwable>();
                 if (throwable != null)
                 {
