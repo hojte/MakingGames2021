@@ -16,6 +16,7 @@ public class PickupButtonController : MonoBehaviour
 
     void Update()
     {
+        if (pickup == null) Destroy(gameObject);
         _textMeshProUGUI.text = pickup.pickupType+":\n"+pickup.timeLeft.ToString().Split('.')[0];
 
         var image = GetComponent<Image>();

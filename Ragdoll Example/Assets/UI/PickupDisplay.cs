@@ -40,6 +40,7 @@ namespace UI
         }
         public void RemovePickup(Pickup pickup)
         {
+            if (pickup == null) return;
             if (pickup.buttonController.isQuickSelected) NewQuickSelect();
             pickups.Remove(pickup);
             ValidateQuickSelect();
@@ -47,6 +48,7 @@ namespace UI
 
         private void ValidateQuickSelect()
         {
+            pickups.RemoveAll(pickup=> pickup == null || pickup.buttonController==null);
             if (pickups.Count(z => z.buttonController.isQuickSelected)>1) // Quickfix for multi quick-use appearing
                 pickups.ForEach(p=>p.buttonController.isQuickSelected = false);
             
