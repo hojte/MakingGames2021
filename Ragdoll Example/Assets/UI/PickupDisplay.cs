@@ -55,7 +55,7 @@ namespace UI
             _currentQuickPickup = pickups.FirstOrDefault(x => x.buttonController.isQuickSelected);
             if (_currentQuickPickup == null)
             {
-                _currentQuickPickup = pickups.FirstOrDefault(x => !x.useInstantly);
+                _currentQuickPickup = pickups.FirstOrDefault(x => !x.useInstantly && x.timeOfActivation==0);
                 if (_currentQuickPickup != null)
                     _currentQuickPickup.buttonController.isQuickSelected = true;
             }
@@ -64,12 +64,12 @@ namespace UI
         {
             
             ValidateQuickSelect();
-            bool SelectNextPickup(Pickup x) => !x.useInstantly && x != _currentQuickPickup && pickups.IndexOf(x) > pickups.IndexOf(_currentQuickPickup);
+            bool SelectNextPickup(Pickup x) => !x.useInstantly && x != _currentQuickPickup && pickups.IndexOf(x) > pickups.IndexOf(_currentQuickPickup) && x.timeOfActivation==0;
 
             if (selectBackwards) pickups.Reverse();
             Pickup quickCandidate = pickups.FirstOrDefault(SelectNextPickup);
             if (quickCandidate == null) // do select a trigger pickup placed before current
-                quickCandidate = pickups.FirstOrDefault(x => !x.useInstantly);
+                quickCandidate = pickups.FirstOrDefault(x => !x.useInstantly && x.timeOfActivation==0);
 
             if (selectBackwards) pickups.Reverse();
             

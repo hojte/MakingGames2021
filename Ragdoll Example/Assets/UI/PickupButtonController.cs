@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Interactions;
+﻿using Interactions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
