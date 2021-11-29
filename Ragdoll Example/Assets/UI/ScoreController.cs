@@ -62,5 +62,10 @@ namespace UI
             scoreSpent += amount;
             return true;
         }
+
+        public void PlayerStunned()
+        {
+            playerScore -= 2;
+        }
     }
 }

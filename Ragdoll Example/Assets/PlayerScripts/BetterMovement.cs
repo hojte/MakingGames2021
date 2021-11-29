@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Cinemachine;
 using Interactions;
 using Sound;
+using UI;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -212,8 +213,10 @@ public class BetterMovement : MonoBehaviour
             }
 
             else if (!isInvulnerable)
+            {
                 // stun( gameObject);
                 die(gameObject);
+            }
         }
     }
     
@@ -261,6 +264,7 @@ public class BetterMovement : MonoBehaviour
     void stun( GameObject player)
     {
         if (isInvulnerable) return;
+        FindObjectOfType<ScoreController>().PlayerStunned();
         playerAlive = false;
         player.GetComponent<CapsuleCollider>().enabled = false;
         player.GetComponent<CharacterController>().enabled = false;
@@ -288,7 +292,7 @@ public class BetterMovement : MonoBehaviour
     }
     void die(GameObject player)
     {
-        if (isInvulnerable) return;
+        FindObjectOfType<ScoreController>().PlayerDied();
         var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
         Destroy(AudioUtility.CreateSFX(onDie, transform, 0, volume: 0.05f), onDie.length);
         player.GetComponent<CapsuleCollider>().enabled = false;
