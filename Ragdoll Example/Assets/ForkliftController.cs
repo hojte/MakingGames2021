@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Interactions;
 using Sound;
+using UI;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,6 +26,7 @@ public class ForkliftController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FindObjectOfType<GameController>().bossCombat = true;
         for (int i = 0; i < GetComponentsInChildren <ParticleSystem>().Length; i++)
         {
             GetComponentsInChildren<ParticleSystem>()[i].enableEmission = false;
@@ -60,7 +62,14 @@ public class ForkliftController : MonoBehaviour
                     GetComponentsInChildren<ParticleSystem>()[i].enableEmission = true;
             else if (hp <= 0)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
+                FindObjectOfType<GameController>().bossCombat = false;
+                FindObjectOfType<GameController>().enemySlain();
+                FindObjectOfType<ScoreController>().EnemyKilled();
+                FindObjectOfType<ScoreController>().EnemyKilled();
+                FindObjectOfType<ScoreController>().EnemyKilled();
+                FindObjectOfType<ScoreController>().EnemyKilled();
+                
+
                 GameObject deathExplosion = Instantiate(deathParticles, GetComponentInChildren<ParticleSystem>().transform.position, Quaternion.identity);
                 deathExplosion.transform.localScale = new Vector3(30, 30, 30);
                 Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);

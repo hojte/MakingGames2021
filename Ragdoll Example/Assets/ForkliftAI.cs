@@ -31,12 +31,16 @@ public class ForkliftAI : MonoBehaviour
     float baseSpeed = 15;
     GameObject lift;
     Quaternion defaultLiftRotation;
+    private GameController _gameController;
     void Start()
     {
+        _gameController = FindObjectOfType<GameController>();
         Player = FindObjectOfType<PlayerController>().transform;
         agent = GetComponent<NavMeshAgent>();
         anim = this.GetComponentInChildren<Animator>();
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().newEnemyInCombat();
+
+        _gameController.bossCombat = true;
+        _gameController.newEnemyInCombat();
         if (patrollingEnemy)
         {
             spawnPoint = transform.position;

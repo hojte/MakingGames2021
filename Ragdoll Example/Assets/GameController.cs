@@ -38,8 +38,8 @@ public class GameController : MonoBehaviour
     private List<DoorController> _doorControllers;
     public CinemachineVirtualCamera _cinemachineVirtualCamera;
     public Transform _camLookAtMe;
-    private bool combatMusicPlaying = false;
-    public bool bossCombat = false; // todo set this in the boss fight
+    private bool combatMusicPlaying;
+    public bool bossCombat;
     private AudioSource _audioSource;
     private void Awake()
     {
@@ -87,7 +87,6 @@ public class GameController : MonoBehaviour
         }
         else if (_doorControllers?.Count > 0)
             _doorControllers.ForEach(door => door.doorLocked = false);
-        if(Input.GetKeyDown(KeyCode.L)) _doorControllers = FindObjectsOfType<DoorController>().ToList();
         if (enemiesInCombat == 0)
         {
             if (combatMusicPlaying)
