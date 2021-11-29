@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
     float timeOfCatapult = 0.0f;
     Vector3 catapultDirection;
     float returnFromCatapultTimer = 0;
+    public AudioClip midairScream;
 
     private float returnFromStunTimer =0f;
     // Start is called before the first frame update
@@ -47,6 +48,7 @@ public class EnemyController : MonoBehaviour
             {
                 GetComponent<Rigidbody>().AddForce(800 * catapultDirection, ForceMode.Impulse);
                 beenCatapulted = false;
+                AudioUtility.CreateSFX(midairScream, transform.position, 1f, 15f);
             }
 
         if (isCatapulted)
