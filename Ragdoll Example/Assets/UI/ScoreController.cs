@@ -19,6 +19,7 @@ namespace UI
         private void Update()
         {
             if (playerScore < 0) playerScore = 0; // never negative score
+            if (shopBalance < 0) shopBalance = 0; // never negative bal
             m_AccumulatedDeltaTime += Time.deltaTime;
             m_AccumulatedFrameCount++;
 
