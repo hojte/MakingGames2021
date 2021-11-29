@@ -73,7 +73,6 @@ public class BetterMovement : MonoBehaviour
 
 
             groundedPlayer = controller.isGrounded;
-            Debug.Log(groundedPlayer);
             isRunning = Input.GetKey(KeyCode.LeftShift);
             bool isCrouching = Input.GetKey(KeyCode.C);
             slideCooldown -= Time.deltaTime;

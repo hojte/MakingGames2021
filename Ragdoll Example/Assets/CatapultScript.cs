@@ -21,15 +21,26 @@ public class CatapultScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("entry");
         if (other.gameObject.GetComponent<PlayerController>())
         {
             Debug.Log(forceDirection);
             other.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, 500);
             other.gameObject.GetComponent<BetterMovement>().flyRagdoll(other.gameObject);
         }
-        else if (other.gameObject.GetComponent<Throwable>())
+        
+        if (other.gameObject.GetComponent<Throwable>())
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(300, 700, 0), ForceMode.Impulse);
+            Debug.Log("entry2");
+            other.gameObject.GetComponent<Rigidbody>().AddForce(3000*forceDirection, ForceMode.Impulse);
+        }
+
+        if (other.gameObject.GetComponent<EnemyController>())
+        {
+            Debug.Log(forceDirection);
+            
+            other.gameObject.GetComponent<EnemyController>().getCatapulted(forceDirection);
+            //other.gameObject.GetComponent<Rigidbody>().AddForce(800 * forceDirection, ForceMode.Impulse);
         }
     }
 }
