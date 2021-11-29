@@ -47,6 +47,9 @@ namespace UI
 
         private void ValidateQuickSelect()
         {
+            if (pickups.Count(z => z.buttonController.isQuickSelected)>1) // Quickfix for multi quick-use appearing
+                pickups.ForEach(p=>p.buttonController.isQuickSelected = false);
+            
             _currentQuickPickup = pickups.FirstOrDefault(x => x.buttonController.isQuickSelected);
             if (_currentQuickPickup == null)
             {

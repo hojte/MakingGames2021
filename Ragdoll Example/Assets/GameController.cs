@@ -101,11 +101,12 @@ public class GameController : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+        DestroyActivePickups();
+        ((Func<Task>)(async () =>{
             var loadScene = SceneManager.LoadSceneAsync(sceneName);
             while (!loadScene.isDone)
             {
-                await Task.Delay(20);
+                await Task.Delay(10);
             }
 
             Debug.Log("Game Reloaded");
@@ -144,5 +145,20 @@ public class GameController : MonoBehaviour
     public int getEnemiesInCombat()
     {
         return enemiesInCombat;
+    }
+    
+    private void DestroyActivePickups()
+    {
+        List<Pickup> toRemove = new List<Pickup>();
+        var pickupDisplay = FindObjectOfType<PickupDisplay>();
+        FindObjectOfType<PickupDisplay>().pickups.ForEach(pickup =>
+        {
+            if (pickup.timeOfActivation > 0) {
+                toRemove.Add(pickup); // cant alter list while iterating thought it
+                Destroy(pickup.buttonController.gameObject);
+                Destroy(pickup.gameObject);
+            }
+        });
+        toRemove.ForEach(pickup=>pickupDisplay.RemovePickup(pickup)); 
     }
 }
