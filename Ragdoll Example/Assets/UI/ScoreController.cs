@@ -25,7 +25,8 @@ namespace UI
             if (m_AccumulatedDeltaTime >= 0.5f) // time to update Score board
             {
                 int framerate = Mathf.RoundToInt((float)m_AccumulatedFrameCount / m_AccumulatedDeltaTime);
-                uiText.text = "Score: "+playerScore+ "\nFramerate: "+ framerate;
+                uiText.text = "Score: "+playerScore+ "("+GetShopFunds()+")"+
+                              "\nFramerate: "+ framerate;
 
                 m_AccumulatedDeltaTime = 0f;
                 m_AccumulatedFrameCount = 0;
@@ -47,6 +48,19 @@ namespace UI
         public void LevelCompleted()
         {
             playerScore += 15;
+        }
+
+        public int GetShopFunds()
+        {
+            return playerScore - scoreSpent;
+        }
+
+        public bool BuyAmount(int amount)
+        {
+            if (amount > GetShopFunds()) return false;
+
+            scoreSpent += amount;
+            return true;
         }
     }
 }

@@ -24,16 +24,13 @@ public class AIController : MonoBehaviour
     bool firstHalfOfPatrol = true;
     Vector3 spawnPoint;
 
-    private void Awake()
+
+    void Start()
     {
         if (!TargetObject)
         {
             TargetObject = FindObjectOfType<PlayerController>().transform;
         }
-    }
-
-    void Start()
-    {
         agent = GetComponent<NavMeshAgent>();
         if (patrollingEnemy)
         {

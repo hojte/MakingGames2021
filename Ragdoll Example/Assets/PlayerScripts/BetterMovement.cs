@@ -1,19 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cinemachine;
 using Interactions;
 using Sound;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = System.Random;
 
 public class BetterMovement : MonoBehaviour
 {
     
     
     [Header("Sounds")]
-    [Tooltip("Sound played when sliding")]
-    public AudioClip onSlide;
-    [Tooltip("Sound played when stunning enemy")]
-    public AudioClip onStun = null;
+    [Tooltip("Sounds played when sliding")]
+    public List<AudioClip> onSlideClips;
+    [Tooltip("Sounds played when stunning enemy")]
+    public List<AudioClip> onStunClips;
+    [Tooltip("Sounds played when player dies")]
+    public List<AudioClip> onDieClips;
     
     private Animator anim;
     public CharacterController controller;
@@ -47,6 +53,10 @@ public class BetterMovement : MonoBehaviour
 
     public GameObject spawnPosition; 
     public bool isInvulnerable = false;
+    bool isFlying = false;
+    bool ignoreTriggers = true;
+    float timeLastBounce = 0;
+    public float timeToSpendFlying = 6.0f;
 
     private void Start()
     {
@@ -54,11 +64,13 @@ public class BetterMovement : MonoBehaviour
         anim = this.GetComponentInChildren<Animator>();
         cam = Camera.main.transform;
         vCam = GameObject.Find("CM vcam1");
+        controller = GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        if (playerAlive)
+        
+        if (playerAlive && !isFlying)
         { 
             //Set animator
             anim.SetBool("isJumping", false);
@@ -107,8 +119,14 @@ public class BetterMovement : MonoBehaviour
 
                 if (slideCooldown < 0.0f)
                 {
-                    if (isCrouching && isCrouching)
+                    if (isCrouching)
                     {
+                        if (!GetComponent<AudioSource>())
+                        {
+                            var onSlide = onSlideClips[new Random().Next(onSlideClips.Count)];
+                            Destroy(AudioUtility.CreateSFX(onSlide, transform, 0, volume: 0.05f), onSlide.length);
+                        }
+                        
                         isSliding = true;
                         lastMoveDir = moveDir;
                         controller.height = 1;
@@ -153,6 +171,22 @@ public class BetterMovement : MonoBehaviour
             }
 
         }
+
+        if (ignoreTriggers)
+        {
+            if (Time.time > timeLastBounce + 1.0f)
+                ignoreTriggers = false;
+        }
+
+        if (isFlying)
+        {
+            if (Time.time > timeLastBounce + timeToSpendFlying)
+            {
+                GetComponent<CharacterController>().enabled = false;
+                returnFromStun();
+                isFlying = false;
+            }
+        }
     }
     
     private void OnGUI()
@@ -165,11 +199,14 @@ public class BetterMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.GetComponent<EnemyController>())
+        bool isEnemy = collision.gameObject.GetComponent<EnemyController>() != null || collision.gameObject.CompareTag("Enemy");
+        bool isEnemyAttack = collision.gameObject.CompareTag("EnemyAttack");
+        if (isEnemy || isEnemyAttack)
         {
-            if (isSliding)
+            if (isSliding && isEnemy)
             {
-                AudioUtility.CreateSFX(onStun, transform.position, 0);
+                var onStun = onStunClips[new Random().Next(onStunClips.Count)];
+                Destroy(AudioUtility.CreateSFX(onStun, transform, 0, volume: 0.08f), onStun.length);
                 Debug.Log("Enemy stun");
                 collision.gameObject.GetComponent<EnemyController>().stun(); 
             }
@@ -185,10 +222,13 @@ public class BetterMovement : MonoBehaviour
     
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+
         if (hit.gameObject.tag == "RobotArmHead")
         {
             stun(this.gameObject);
         }
+
+
 
         if (isSliding)
         {
@@ -217,13 +257,23 @@ public class BetterMovement : MonoBehaviour
             
         }
     }
-    
+
     void stun( GameObject player)
     {
         if (isInvulnerable) return;
         playerAlive = false;
         player.GetComponent<CapsuleCollider>().enabled = false;
         player.GetComponent<CharacterController>().enabled = false;
+        anim.GetComponent<Animator>().enabled = false;
+    }
+
+    public void flyRagdoll(GameObject player)
+    {
+        if (isInvulnerable) return;
+        timeLastBounce = Time.time;
+        isFlying = true;
+        player.GetComponent<CapsuleCollider>().enabled = false;
+        //player.GetComponent<CharacterController>().enabled = false;
         anim.GetComponent<Animator>().enabled = false;
     }
 
@@ -239,9 +289,14 @@ public class BetterMovement : MonoBehaviour
     void die(GameObject player)
     {
         if (isInvulnerable) return;
+        var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
+        Destroy(AudioUtility.CreateSFX(onDie, transform, 0, volume: 0.05f), onDie.length);
         player.GetComponent<CapsuleCollider>().enabled = false;
         player.GetComponent<CharacterController>().enabled = false;
         anim.GetComponent<Animator>().enabled = false;
-        FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name);
+        ((Func<Task>)(async () =>{ // Async call to restore prev conditions
+            await Task.Delay(3000); // the time the player is lying ragdolled
+            FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name);
+        }))();
     }
 }

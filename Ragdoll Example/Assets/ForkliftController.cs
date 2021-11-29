@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Interactions;
 using Sound;
+using UI;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,6 +26,7 @@ public class ForkliftController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FindObjectOfType<GameController>().bossCombat = true;
         for (int i = 0; i < GetComponentsInChildren <ParticleSystem>().Length; i++)
         {
             GetComponentsInChildren<ParticleSystem>()[i].enableEmission = false;
@@ -35,7 +37,7 @@ public class ForkliftController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
-            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
+            Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -51,7 +53,7 @@ public class ForkliftController : MonoBehaviour
         if (Time.time > (lastHitTime + 3.0f))
         {
             lastHitTime = Time.time;
-            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
+            Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
             hp--;
             if (hp == 2)
                 GetComponentInChildren<ParticleSystem>().enableEmission = true;
@@ -60,16 +62,23 @@ public class ForkliftController : MonoBehaviour
                     GetComponentsInChildren<ParticleSystem>()[i].enableEmission = true;
             else if (hp <= 0)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().enemySlain();
+                FindObjectOfType<GameController>().bossCombat = false;
+                FindObjectOfType<GameController>().enemySlain();
+                FindObjectOfType<ScoreController>().EnemyKilled();
+                FindObjectOfType<ScoreController>().EnemyKilled();
+                FindObjectOfType<ScoreController>().EnemyKilled();
+                FindObjectOfType<ScoreController>().EnemyKilled();
+                
+
                 GameObject deathExplosion = Instantiate(deathParticles, GetComponentInChildren<ParticleSystem>().transform.position, Quaternion.identity);
                 deathExplosion.transform.localScale = new Vector3(30, 30, 30);
-                AudioUtility.CreateSFX(onDeath, transform.position, 1f, 15f);
+                Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);
 
                 for (int i = 0; i < GetComponentsInChildren<MeshRenderer>().Length; i++)
                 {
                     GameObject d = Instantiate(deathParticles, GetComponentsInChildren<MeshRenderer>()[i].transform.position, Quaternion.identity);
                     d.transform.localScale = new Vector3(30, 30, 30);
-                    AudioUtility.CreateSFX(onDeath, transform.position, 1f, 15f);
+                    Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);
 
                     GameObject f = Instantiate(fireParticles, GetComponentsInChildren<MeshRenderer>()[i].transform.position, Quaternion.identity);
                     f.transform.localScale = new Vector3(30, 30, 30);
@@ -88,6 +97,6 @@ public class ForkliftController : MonoBehaviour
 
     public void futileHit()
     {
-        AudioUtility.CreateSFX(onHit, transform.position, 1f, 15f);
+        Destroy(AudioUtility.CreateSFX(onHit, transform, 1f), onHit.length);
     }
 }

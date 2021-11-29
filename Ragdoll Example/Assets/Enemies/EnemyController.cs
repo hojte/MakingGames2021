@@ -8,10 +8,16 @@ public class EnemyController : MonoBehaviour
 {
     [Header("Sounds")]
     [Tooltip("Sound played when recieving damages")]
-    public AudioClip onDamage;
+    public AudioClip onDie;
     public GameObject enemyPrefab; 
     private bool isStunned = false;
-    public GameObject rig; 
+    public GameObject rig;
+    bool isCatapulted = false;
+    bool beenCatapulted = false;
+    float timeOfCatapult = 0.0f;
+    Vector3 catapultDirection;
+    float returnFromCatapultTimer = 0;
+    public AudioClip midairScream;
 
     private float returnFromStunTimer =0f;
     // Start is called before the first frame update
@@ -35,7 +41,26 @@ public class EnemyController : MonoBehaviour
             }
         }
         if(Input.GetKeyDown(KeyCode.Keypad1))
-            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
+            Destroy(AudioUtility.CreateSFX(onDie, transform, 1f), onDie.length);
+
+        if (beenCatapulted)
+            if (Time.time > (timeOfCatapult + 0.1))
+            {
+                GetComponent<Rigidbody>().AddForce(800 * catapultDirection, ForceMode.Impulse);
+                beenCatapulted = false;
+                Destroy(AudioUtility.CreateSFX(midairScream, transform, 1f, volume: 1f), midairScream.length);
+            }
+
+        if (isCatapulted)
+        {
+            returnFromCatapultTimer += Time.deltaTime;
+            if (returnFromCatapultTimer > 6f)
+            {
+                returnFromStun();
+                returnFromCatapultTimer = 0;
+                isCatapulted = false;
+            }
+        }
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -80,7 +105,7 @@ public class EnemyController : MonoBehaviour
 
      void die()
     {
-        AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
+        Destroy(AudioUtility.CreateSFX(onDie, transform, 1f, volume: 0.7f), onDie.length);
         FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
@@ -96,13 +121,26 @@ public class EnemyController : MonoBehaviour
         setRigidBodyState(false);
         setColliderState(true);
     }
+
+    public void getCatapulted(Vector3 forceDirection)
+    {
+        isCatapulted = true;
+        GetComponent<Animator>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+        beenCatapulted = true;
+        timeOfCatapult = Time.time;
+        catapultDirection = forceDirection;
+        //setRigidBodyState(false);
+        //setColliderState(true);
+    }
     void returnFromStun()
     {
 
         var clone = Instantiate(
             (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Enemies/AIEnemy.prefab", typeof(GameObject)),rig.transform.position, transform.rotation); 
         clone.GetComponent<Animator>().enabled = true;
-        clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab; 
+        clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab;
+        clone.GetComponent<AIController>().inCombat = true;
         
         Destroy(this.gameObject);
         isStunned = false;

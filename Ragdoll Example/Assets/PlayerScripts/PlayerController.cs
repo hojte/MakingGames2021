@@ -1,4 +1,6 @@
-﻿using Interactions;
+﻿using System.Collections.Generic;
+using Interactions;
+using Interactions.Shop;
 using Sound;
 using UnityEditor;
 using UnityEngine;
@@ -9,7 +11,7 @@ namespace PlayerScripts
     {
         [Header("Sounds")]
         [Tooltip("Sound on throw")]
-        public AudioClip onThrow;
+        public List<AudioClip> onThrowClips;
         public GameObject testSpawnObject;
         private Throwable _throwSlot;
         public Vector3 throwablePosition;
@@ -34,29 +36,52 @@ namespace PlayerScripts
         {
             UpdateThrow();
             UpdateDoor();
+            UpdateBuy();
+        }
+
+        private void UpdateBuy()
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Physics.Raycast(mouseRay, out var hit,25);
+                if (!hit.collider)
+                {
+                    print("no hit on shop interaction");
+                    return;
+                }
+
+                print("hit a: "+hit.transform.name);
+                var shopItemCast = hit.collider.gameObject.GetComponent<ShopItemController>();
+                if (shopItemCast)
+                {
+                    shopItemCast.BuyPickup();
+                }
+            }
         }
 
         private void UpdateThrow()
         {
             throwablePosition = transform.position;
-            throwablePosition.y += 9;
+            throwablePosition.y += 10;
             
             if (_gameController.debugMode && Input.GetKey(KeyCode.Keypad0))
             {
                 Instantiate(testSpawnObject, throwablePosition, Quaternion.LookRotation(_mainCam.forward, _mainCam.up));
             }
-            if (_throwSlot && !Input.GetButtonDown("Fire2"))
+            if (_throwSlot && !Input.GetButtonDown("Fire1"))
             { // Update position of filled throwSlot
                 _throwSlot.transform.position = throwablePosition;
                 _throwSlot.rigidbody.angularVelocity = Vector3.zero;
                 _throwSlot.rigidbody.rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
             }
-            else if (_throwSlot && Input.GetButtonDown("Fire2"))
+            else if (_throwSlot && Input.GetButtonDown("Fire1"))
             { // Throw Item
-                AudioUtility.CreateSFX(onThrow, transform.position, 1);
+                var onThrow = onThrowClips[new System.Random().Next(onThrowClips.Count)];
+                Destroy(AudioUtility.CreateSFX(onThrow, transform, 0, volume: 0.05f), onThrow.length);
                 _throwSlot.rigidbody.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
                 _throwSlot.DisableEffects();
-                
+                _throwSlot.setHasBeenPickedUp(true);
                 _throwSlot = null;
                 _trajectoryRenderer.draw = false;
             }
@@ -76,15 +101,16 @@ namespace PlayerScripts
         private bool TryTakeNearbyItem()
         {
             var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
             if (_throwSlot != null) return false;
             if (Physics.Raycast(mouseRay, out var hit, 20f))
             {
+                print("raycast hit a: "+hit.transform.name);
                 var throwable = hit.transform.GetComponent<Throwable>();
                 if (throwable != null)
                 {
                     _throwSlot = throwable;
                     _throwSlot.EnableEffects();
+                    
                     return true; 
                 }
             }
