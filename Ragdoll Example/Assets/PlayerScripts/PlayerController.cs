@@ -81,6 +81,7 @@ namespace PlayerScripts
                 Destroy(AudioUtility.CreateSFX(onThrow, transform, 0, volume: 0.05f), onThrow.length);
                 _throwSlot.rigidbody.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
                 _throwSlot.DisableEffects();
+                _throwSlot.setHasBeenPickedUp(true);
                 _throwSlot = null;
                 _trajectoryRenderer.draw = false;
             }
@@ -109,6 +110,7 @@ namespace PlayerScripts
                 {
                     _throwSlot = throwable;
                     _throwSlot.EnableEffects();
+                    
                     return true; 
                 }
             }
