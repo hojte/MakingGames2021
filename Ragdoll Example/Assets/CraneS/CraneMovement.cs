@@ -9,12 +9,14 @@ public class CraneMovement : MonoBehaviour
 
    
 
-    private Transform _player; 
+    private Transform _player;
+    private Animator anim; 
 
   
     void Start()
     {
         _player = FindObjectOfType<PlayerController>().transform;
+        anim = this.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -24,42 +26,22 @@ public class CraneMovement : MonoBehaviour
         {
             _player = FindObjectOfType<PlayerController>().transform;
         }
-
         Vector3 relativePos = _player.position - plate.position;
         relativePos.y = 0;
-
-        // the second argument, upwards, defaults to Vector3.up
-        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-        plate.rotation = rotation;
         
-        
-        /*
-        flipTimeCounter += Time.deltaTime; 
-       // rotate1.RotateAround(rotate1.position, rotate1.up, Time.deltaTime * speed);
-        
-        
-        if (tip1Flip)
-        {
-            tip1.Rotate(Vector3.left * Time.deltaTime * speed);
-            tip2.Rotate(Vector3.left * Time.deltaTime * (speed/2));
-        }
-        else
-        {
-            tip1.Rotate(Vector3.right * Time.deltaTime * speed);
-            tip2.Rotate(Vector3.right * Time.deltaTime * (speed/2));
-        }
+            // the second argument, upwards, defaults to Vector3.up
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up*Time.deltaTime);
+            plate.rotation = rotation;
 
-        if (flipTime<flipTimeCounter )
-        {
-            //flipTime = 1.5; //To make it rotate all the way back 
-            tip1Flip = !tip1Flip;
-            flipTimeCounter = 0; 
-        }
-       
-*/
-
-
-
+            float dist = Vector3.Distance(_player.position, plate.position);
+            if (dist < 31)
+            {
+                anim.SetBool("isAttacking", true);
+            }
+            else
+            {
+                anim.SetBool("isAttacking", false);
+            }
 
 
     }
