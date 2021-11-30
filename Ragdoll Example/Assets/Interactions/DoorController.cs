@@ -33,6 +33,7 @@ namespace Interactions
 
         private void Update()
         {
+            if (_gameController == null) _gameController = FindObjectOfType<GameController>();
             if (isLockedOnCombat && _gameController.getEnemiesInCombat() > 0) doorLocked = true;
             else doorLocked = false;
             SetClosed(doorClosed);
