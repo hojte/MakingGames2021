@@ -50,6 +50,7 @@ public class BetterMovement : MonoBehaviour
     public GameObject lookAtMePivot; 
 
     private bool playerAlive = true;
+    private bool disableMovement = false;
     public float respawnTime = 0.0f;
     public GameObject vCam;
 
@@ -72,7 +73,7 @@ public class BetterMovement : MonoBehaviour
     void Update()
     {
         
-        if (playerAlive && !isFlying)
+        if (playerAlive && !isFlying && !disableMovement)
         { 
             //Set animator
             anim.SetBool("isJumping", false);
@@ -298,10 +299,14 @@ public class BetterMovement : MonoBehaviour
     }
     void die(GameObject player)
     {
-        playerAlive = false;
+        disableMovement = true;
         FindObjectOfType<ScoreController>().PlayerDied();
-        var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
-        Destroy(AudioUtility.CreateSFX(onDie, transform, 0, volume: 0.05f), onDie.length);
+        if (onDieClips.Count > 0)
+        {
+            var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
+            Destroy(AudioUtility.CreateSFX(onDie, transform, 0, volume: 0.05f), onDie.length);
+        }
+        
         player.GetComponent<CapsuleCollider>().enabled = false;
         player.GetComponent<CharacterController>().enabled = false;
         anim.GetComponent<Animator>().enabled = false;

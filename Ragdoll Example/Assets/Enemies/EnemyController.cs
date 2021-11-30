@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Keypad1) && onDieClips.Count>0)
         {
             var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
             Destroy(AudioUtility.CreateSFX(onDie, transform, 1f), onDie.length);
@@ -54,8 +54,12 @@ public class EnemyController : MonoBehaviour
             {
                 GetComponent<Rigidbody>().AddForce(800 * catapultDirection, ForceMode.Impulse);
                 beenCatapulted = false;
-                var midairScream = midairScreams[new System.Random().Next(midairScreams.Count)];
-                Destroy(AudioUtility.CreateSFX(midairScream, transform, 1f, volume: 1f), midairScream.length);
+                if (midairScreams.Count > 0)
+                {
+                    var midairScream = midairScreams[new System.Random().Next(midairScreams.Count)];
+                    Destroy(AudioUtility.CreateSFX(midairScream, transform, 1f, volume: 1f), midairScream.length);
+                }
+                
             }
 
         if (isCatapulted)
@@ -112,8 +116,12 @@ public class EnemyController : MonoBehaviour
 
      void die()
     {
-        var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
-        Destroy(AudioUtility.CreateSFX(onDie, transform, 1f, volume: 0.7f), onDie.length);
+        if (onDieClips.Count > 0)
+        {
+            var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
+            Destroy(AudioUtility.CreateSFX(onDie, transform, 1f, volume: 0.7f), onDie.length);
+        }
+        
         FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
