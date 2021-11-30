@@ -49,6 +49,7 @@ public class BetterMovement : MonoBehaviour
     public GameObject lookAtMePivot; 
 
     private bool playerAlive = true;
+    private bool disableMovement = false;
     public float respawnTime = 0.0f;
     public GameObject vCam;
 
@@ -71,7 +72,7 @@ public class BetterMovement : MonoBehaviour
     void Update()
     {
         
-        if (playerAlive && !isFlying)
+        if (playerAlive && !isFlying && !disableMovement)
         { 
             //Set animator
             anim.SetBool("isJumping", false);
@@ -292,7 +293,7 @@ public class BetterMovement : MonoBehaviour
     }
     void die(GameObject player)
     {
-        playerAlive = false;
+        disableMovement = true;
         FindObjectOfType<ScoreController>().PlayerDied();
         if (onDieClips.Count > 0)
         {
