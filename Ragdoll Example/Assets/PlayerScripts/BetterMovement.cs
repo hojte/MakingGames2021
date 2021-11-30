@@ -190,7 +190,7 @@ public class BetterMovement : MonoBehaviour
         {
             if (Time.time > timeLastBounce + timeToSpendFlying)
             {
-                GetComponent<CharacterController>().enabled = false;
+                controller.enabled = false;
                 returnFromStun();
                 isFlying = false;
             }
@@ -278,8 +278,9 @@ public class BetterMovement : MonoBehaviour
         anim.GetComponent<Animator>().enabled = false;
     }
 
-    public void flyRagdoll(GameObject player)
+    public void flyRagdoll(GameObject player, float time)
     {
+        timeToSpendFlying = time;
         if (isInvulnerable) return;
         timeLastBounce = Time.time;
         isFlying = true;
