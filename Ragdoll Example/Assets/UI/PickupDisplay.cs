@@ -17,7 +17,7 @@ namespace UI
 
         private void Awake()
         {
-            _buttonPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/PickupButton.prefab", typeof(GameObject));
+            _buttonPrefab = Resources.Load<GameObject>("Prefabs/PickupButton");
         }
 
         private void Update()

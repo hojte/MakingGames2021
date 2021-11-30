@@ -54,13 +54,13 @@ public class GameController : MonoBehaviour
         _cinemachineVirtualCamera.m_Follow = _camLookAtMe;
         _cinemachineVirtualCamera.m_LookAt = _camLookAtMe;
         
-        DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/Crosshair.prefab", typeof(GameObject))));
-        DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/ScoreUtil.prefab", typeof(GameObject))));
-        DontDestroyOnLoad(Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/UI/PickupCanvas.prefab", typeof(GameObject))));
+        DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/Crosshair")));
+        DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/ScoreUtil")));
+        DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/PickupCanvas")));
         Light currentLight = FindObjectOfType<Light>();
         if (!currentLight && forceSun)
             DontDestroyOnLoad(
-                Instantiate((GameObject)AssetDatabase.LoadAssetAtPath("Assets/ForceSun.prefab", typeof(GameObject))));
+                Instantiate(Resources.Load<GameObject>("Prefabs/ForceSun")));
         DontDestroyOnLoad(gameObject);
     }
 
