@@ -121,7 +121,7 @@ public class BetterMovement : MonoBehaviour
 
                 if (slideTimerTrigger < 0.0f)
                 {
-                    if (isCrouching)
+                    if (isCrouching && groundedPlayer)
                     {
                         if (!GetComponent<AudioSource>())
                         {
@@ -131,14 +131,19 @@ public class BetterMovement : MonoBehaviour
                         
                         isSliding = true;
                         lastMoveDir = moveDir;
-                        controller.height = 1;
+                        controller.height = 0.3f;
+                        
+                       
+                       
                     }
                 }
             }
 
             //Sliding
-            if (isSliding)
+            if (isSliding && groundedPlayer)
             {
+                if(transform.rotation.x> -70)
+                    transform.Rotate(Vector3.right*-85);
                 slideTimer += Time.deltaTime;
                 controller.Move(lastMoveDir.normalized * slideSpeed * Time.deltaTime);
                 if (slideTimer > slideTimerMax)
