@@ -97,6 +97,8 @@ public class GameController : MonoBehaviour
             }
             
         }
+        if (Input.GetKeyDown(KeyCode.KeypadPlus)) AudioUtility.masterAudioAmplify += 0.05f;
+        if (Input.GetKeyDown(KeyCode.KeypadMinus)) AudioUtility.masterAudioAmplify -= 0.05f;
     }
 
     public void LoadScene(string sceneName)

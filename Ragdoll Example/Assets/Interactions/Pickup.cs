@@ -15,13 +15,13 @@ namespace Interactions
         None,
         /*Instant*/
         SpeedBoost, // Coffee ability (for 20 seconds)
-        ScoreIncrement, // score++!
+        ScoreBoost, // score++!
         ScoreDecrement, // score--!
-        SlowDown, // After noon slowdown / no running at work / etc. (for 10 seconds)
+        Overworked, // After noon slowdown / no running at work / etc. (for 10 seconds)
         JumpBoost, // Helping hand / jump boost / boots on fire (for 3 jumps)
         Undetectability, // disguise (for 10 seconds)
         Invulnerability, // punch out (for 10 seconds)
-        JetPack, // jetpack... (limited fuel)
+        JetPack, // jetpack - catapulted in the air
     }
     public class Pickup : MonoBehaviour
     {
@@ -155,7 +155,7 @@ namespace Interactions
             print("picked up a "+pickupType);
             switch (pickupType)
             {
-                case PickupType.ScoreIncrement:
+                case PickupType.ScoreBoost:
                     _scoreController.Pickup(true);
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     if (useInstantly) _pickupDisplay.RemovePickup(this);
@@ -165,7 +165,7 @@ namespace Interactions
                     if (useInstantly) _pickupDisplay.RemovePickup(this);
                     _scoreController.Pickup(false);
                     break;
-                case PickupType.SlowDown:
+                case PickupType.Overworked:
                     _playerMovement.walkingSpeed -= slowDownValue;
                     _playerMovement.runSpeed -= slowDownValue;
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
@@ -253,7 +253,7 @@ namespace Interactions
                     return undetectedRestoreTime;
                 case PickupType.JumpBoost:
                     return jumpBoostRestoreTime;
-                case PickupType.SlowDown:
+                case PickupType.Overworked:
                     return slowDownRestoreTime;
                 case PickupType.SpeedBoost:
                     return speedBoostRestoreTime;
