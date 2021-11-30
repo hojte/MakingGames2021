@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
 {
     [Header("Sounds")]
     [Tooltip("Sound played when recieving damages")]
-    public AudioClip onDamage;
+    public AudioClip onDie;
     public GameObject enemyPrefab; 
     private bool isStunned = false;
     public GameObject rig; 
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
             }
         }
         if(Input.GetKeyDown(KeyCode.Keypad1))
-            AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
+            Destroy(AudioUtility.CreateSFX(onDie, transform, 1f), onDie.length);
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour
 
      void die()
     {
-        AudioUtility.CreateSFX(onDamage, transform.position, 1f, 15f);
+        Destroy(AudioUtility.CreateSFX(onDie, transform, 1f, volume: 0.7f), onDie.length);
         FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;

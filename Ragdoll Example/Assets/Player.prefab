@@ -823,155 +823,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!1 &5865603164527345245
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5865603164527345244}
-  - component: {fileID: 5865603164527345246}
-  - component: {fileID: 5865603164527345247}
-  m_Layer: 0
-  m_Name: BallisticTrajectory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5865603164527345244
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5865603164527345245}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.369, y: 11.29, z: 0.429}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5865603165609474757}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &5865603164527345246
-LineRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5865603164527345245}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.27719116
-        value: 0.549181
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0.36078432}
-      key1: {r: 0.8679245, g: 0.09416164, b: 0.09416164, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_UseWorldSpace: 1
-  m_Loop: 0
---- !u!114 &5865603164527345247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5865603164527345245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8cc6f1ea4e30034694d0988be69040a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPosition: {x: 0, y: 0, z: 0}
-  startVelocity: {x: 0, y: 3.64, z: 8.3}
-  trajectoryVertDist: 0.25
-  maxCurveLength: 75
-  _debugAlwaysDrawTrajectory: 0
-  throwItem: {fileID: 1818965474932572222, guid: 4c86a6aad3920b74f968518af9392b0a,
-    type: 3}
-  draw: 0
 --- !u!1 &5865603164577730119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,7 +1742,6 @@ Transform:
   m_Children:
   - {fileID: 5865603164577730118}
   - {fileID: 5865603163710802547}
-  - {fileID: 5865603164527345244}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1907,19 +1757,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b074d62b8220e4c4e8cdaec8cab959e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onSlide: {fileID: 8300000, guid: d6071fcfd9058134fb76bf5dd7cfc5da, type: 3}
-  onStun: {fileID: 8300000, guid: 908657b7778660b4787c440adaa23fd7, type: 3}
+  onSlideClips:
+  - {fileID: 8300000, guid: 412870639434a47968dd109f0ceda7c5, type: 3}
+  onStunClips:
+  - {fileID: 8300000, guid: 5bb727b6ed8f74941b1a55424d8518fd, type: 3}
+  - {fileID: 8300000, guid: b3aa0e61c989740c2ad957f9d6101704, type: 3}
+  onDieClips:
+  - {fileID: 8300000, guid: 38ca4b08f620040ae84b1a33e97519b7, type: 3}
+  - {fileID: 8300000, guid: ceeb689117f0f4360909bb103693e7e4, type: 3}
   controller: {fileID: 5865603165609474758}
-  playerSpeed: 10
+  walkingSpeed: 10
   runSpeed: 15
+  jumpHeight: 3
   turnSmoothTime: 0.1
-  cam: {fileID: 0}
   slideSpeed: 17
   slideTimerMax: 0.6
   lookAtMePivot: {fileID: 5865603165150125870}
   respawnTime: 0
   vCam: {fileID: 0}
   spawnPosition: {fileID: 5865603164051604703}
+  isInvulnerable: 0
 --- !u!143 &5865603165609474758
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1964,9 +1821,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da27c0dfb324876816135eb98a12db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onThrow: {fileID: 8300000, guid: 8c69e678ceae21a40a21fbf28285da09, type: 3}
+  onThrowClips:
+  - {fileID: 8300000, guid: 7023e773071d44676b823a46b4989a34, type: 3}
+  - {fileID: 8300000, guid: 0f8a3b1a0dd57448a80335fa9b14883a, type: 3}
+  - {fileID: 8300000, guid: fd33e15d8347742aca815a18524f27cf, type: 3}
+  - {fileID: 8300000, guid: 8ee2c5009d1ed4151b543c30b3a53784, type: 3}
   testSpawnObject: {fileID: 0}
-  _throwSlot: {fileID: 0}
   throwablePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &5865603165629652366
 GameObject:

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -6,31 +9,19 @@ namespace Sound
 {
     public static class AudioUtility
     {
-        public static void CreateSFX(AudioClip clip, Vector3 position, float spatialBlend, float rolloffDistanceMin = 1f)
+        public static AudioSource CreateSFX(AudioClip clip, Transform transform, float spatialBlend, float volume = 0.5f, float rolloffDistanceMin = 1f, float rolloffDistanceMax = 100f, bool loop = false)
         {
-            if (!clip) return;
-            GameObject impactSFXInstance = new GameObject();
-            impactSFXInstance.transform.position = position;
-            AudioSource source = impactSFXInstance.AddComponent<AudioSource>();
+            if (!clip) return null;
+            AudioSource source = transform.gameObject.AddComponent<AudioSource>();
             source.clip = clip;
             source.spatialBlend = spatialBlend;
             source.minDistance = rolloffDistanceMin;
+            source.maxDistance = rolloffDistanceMax;
             source.mute = Object.FindObjectOfType<GameController>().muteSound;
+            source.volume = volume;
+            source.loop = loop;
             source.Play();
-
-            TimedSelfDestruct timedSelfDestruct = impactSFXInstance.AddComponent<TimedSelfDestruct>();
-            timedSelfDestruct.lifeTime = clip.length;
-        }
-        public static void CreateMainSFX(AudioClip clip)
-        {
-            if (clip == null) Console.WriteLine("No audio supplied");
-            GameObject SFXInstance = new GameObject();
-            AudioSource source = SFXInstance.AddComponent<AudioSource>();
-            source.clip = clip;
-            source.spatialBlend = 0;
-            source.loop = true;
-            source.mute = Object.FindObjectOfType<GameController>().muteSound;
-            source.Play();
+            return source;
         }
     }
 }

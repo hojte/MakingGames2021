@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PlayerScripts;
@@ -10,6 +11,8 @@ namespace Interactions
 {
     public enum PickupType
     {
+        Random,
+        None,
         /*Instant*/
         SpeedBoost, // Coffee ability (for 20 seconds)
         ScoreIncrement, // score++!
@@ -26,6 +29,9 @@ namespace Interactions
         public bool useInstantly = true;
         [Tooltip("The type of the pickup")]
         public PickupType pickupType;
+        [Tooltip("The cost of buying the item in the shop (score is used as currency)")]
+        public int ShopPrice = 5;
+        
         [Tooltip("Sound played on pickup")]
         public AudioClip pickupSFX;
 
@@ -93,7 +99,7 @@ namespace Interactions
             transform.Rotate(Vector3.up, rotatingSpeed * Time.deltaTime, Space.Self);
 
             if (Input.GetKeyDown(KeyCode.R) && isPickedUp && timeOfActivation==0 && buttonController.isQuickSelected)
-                HandlePickup();
+                UsePickup();
             if (timeOfActivation > 0) // Has been used
             {
                 timeLeft = GetCurrentRestoreTime()/1000 - (Time.time - timeOfActivation);
@@ -109,26 +115,37 @@ namespace Interactions
         private void OnTriggerEnter(Collider other)
         {
             PlayerController playerController = other.GetComponent<PlayerController>();
-
             if (playerController == null) return;
+            OnPickup();
+        }
+
+        public void OnPickup()
+        {
             if (pickupSFX)
             {
-                AudioUtility.CreateSFX(pickupSFX, transform.position, 0f);
+                Destroy(AudioUtility.CreateSFX(pickupSFX, transform, 0f, volume: 0.08f), pickupSFX.length);
             }
 
             isPickedUp = true;
             DontDestroyOnLoad(gameObject); // We need to save what pickups we are bringing to next level
-            if (useInstantly) HandlePickup();
+            if (useInstantly) UsePickup();
             else _pickupDisplay.AddPickup(this);
-                
+
             // Remove visuals
             Destroy(pickupRigidbody);
             Destroy(m_Collider);
             Destroy(GetComponent<Renderer>());
-            Destroy(transform.GetChild(0).gameObject); // particle system
+            try
+            {
+                Destroy(transform.GetChild(0).gameObject); // particle system
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("no particle system to destroy");
+            }
         }
 
-        private void HandlePickup()
+        private void UsePickup()
         {
             timeOfActivation = Time.time;
             print("picked up a "+pickupType);
@@ -136,8 +153,12 @@ namespace Interactions
             {
                 case PickupType.ScoreIncrement:
                     _scoreController.Pickup(true);
+                    if (useInstantly) _pickupDisplay.AddPickup(this);
+                    if (useInstantly) _pickupDisplay.RemovePickup(this);
                     break;
                 case PickupType.ScoreDecrement:
+                    if (useInstantly) _pickupDisplay.AddPickup(this);
+                    if (useInstantly) _pickupDisplay.RemovePickup(this);
                     _scoreController.Pickup(false);
                     break;
                 case PickupType.SlowDown:
