@@ -31,14 +31,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2205717943217812105}
   - {fileID: 4075701857656041832}
   m_Father: {fileID: 5197721066666515198}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 333.92, y: 0}
-  m_SizeDelta: {x: -686.1814, y: -67.337555}
+  m_AnchoredPosition: {x: 312.2, y: 0}
+  m_SizeDelta: {x: -642.79486, y: -67.337555}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3621821418413509949
 CanvasRenderer:
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_ChildAlignment: 2
   m_StartCorner: 1
   m_StartAxis: 1
-  m_CellSize: {x: 80, y: 27.75}
+  m_CellSize: {x: 119.9, y: 44.8}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 1
@@ -144,7 +145,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 2205717943217812105}
   - {fileID: 635091649659129848}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -239,17 +239,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8107738864802125499}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5197721066666515198}
+  m_Father: {fileID: 635091649659129848}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 333.92, y: 154.94}
-  m_SizeDelta: {x: 50.43457, y: 15.208252}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2533447603195677436
 CanvasRenderer:
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.6
+  m_fontSize: 34.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -372,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 2016138128520947163, guid: ba9a0128f1940204fb52616d29237bb6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2016138128520947163, guid: ba9a0128f1940204fb52616d29237bb6,
         type: 3}
@@ -477,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 5474673101004298603, guid: ba9a0128f1940204fb52616d29237bb6,
         type: 3}
       propertyPath: m_fontSize
-      value: 24.8
+      value: 40.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba9a0128f1940204fb52616d29237bb6, type: 3}
