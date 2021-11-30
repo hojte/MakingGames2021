@@ -7,7 +7,6 @@ using Interactions;
 using PlayerScripts;
 using Sound;
 using UI;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,8 +30,6 @@ public class GameController : MonoBehaviour
     public int enemiesInCombat = 0;
 
     public float levelStartTime;
-    public float levelCompleteTime;
-    public Vector3 checkPoint;
 
     private ScoreController _scoreController;
     private List<DoorController> _doorControllers;
@@ -68,7 +65,7 @@ public class GameController : MonoBehaviour
     {
         _doorControllers = FindObjectsOfType<DoorController>().ToList();
         _scoreController = FindObjectOfType<ScoreController>();
-        levelStartTime = Time.time; // todo move statement to when player moves out of startRoom
+        levelStartTime = Time.time; // todo maybe move statement to when player moves out of startRoom
         _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.03f);
     }
 
