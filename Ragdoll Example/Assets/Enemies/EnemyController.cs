@@ -137,7 +137,7 @@ public class EnemyController : MonoBehaviour
     {
 
         var clone = Instantiate(
-            (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Enemies/AIEnemy.prefab", typeof(GameObject)),rig.transform.position, transform.rotation); 
+            Resources.Load<GameObject>("Prefabs/AIEnemy"), rig.transform.position, transform.rotation); 
         clone.GetComponent<Animator>().enabled = true;
         clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab;
         clone.GetComponent<AIController>().inCombat = true;

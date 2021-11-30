@@ -34,7 +34,7 @@ namespace Interactions.Shop
             if (pickupToSellInSlot3 == PickupType.Random) pickupToSellInSlot3 = (PickupType)values.GetValue(random.Next(2, values.Length));
             
             GameObject pickupPrefab =
-                (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Interactions/PickupItem.prefab", typeof(GameObject));
+                Resources.Load<GameObject>("Prefabs/PickupItem");
             
             var tmpPickup = Instantiate(pickupPrefab).GetComponent<Pickup>();
             tmpPickup.RemoveVisuals();

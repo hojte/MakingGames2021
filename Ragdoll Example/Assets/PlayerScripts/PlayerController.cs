@@ -24,12 +24,11 @@ namespace PlayerScripts
             _gameController = FindObjectOfType<GameController>();
             _mainCam = Camera.main.transform;
             var btRendererPrefab =
-                (GameObject)AssetDatabase.LoadAssetAtPath("Assets/PlayerScripts/BallisticTrajectory.prefab",
-                    typeof(GameObject));
+                Resources.Load<GameObject>("Prefabs/BallisticTrajectory");
             Instantiate(btRendererPrefab, transform).GetComponent<BallisticTrajectoryRenderer>();
             _trajectoryRenderer = Instantiate(btRendererPrefab, transform).GetComponent<BallisticTrajectoryRenderer>();
             if (testSpawnObject == null)
-                testSpawnObject = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Ball.prefab", typeof(GameObject));
+                testSpawnObject = Resources.Load<GameObject>("Prefabs/Ball");
         }
 
         private void Update()
