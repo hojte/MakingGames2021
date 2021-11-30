@@ -1,4 +1,5 @@
-﻿using Interactions;
+﻿using System.Collections.Generic;
+using Interactions;
 using Sound;
 using UnityEditor;
 using UnityEngine;
@@ -7,8 +8,8 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [Header("Sounds")]
-    [Tooltip("Sound played when recieving damages")]
-    public AudioClip onDie;
+    [Tooltip("Sounds played when dying")]
+    public List<AudioClip> onDieClips;
     public GameObject enemyPrefab; 
     private bool isStunned = false;
     public GameObject rig;
@@ -17,7 +18,7 @@ public class EnemyController : MonoBehaviour
     float timeOfCatapult = 0.0f;
     Vector3 catapultDirection;
     float returnFromCatapultTimer = 0;
-    public AudioClip midairScream;
+    public List<AudioClip> midairScreams;
 
     private float returnFromStunTimer =0f;
     // Start is called before the first frame update
@@ -40,14 +41,20 @@ public class EnemyController : MonoBehaviour
                 returnFromStunTimer = 0;
             }
         }
-        if(Input.GetKeyDown(KeyCode.Keypad1))
+
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
             Destroy(AudioUtility.CreateSFX(onDie, transform, 1f), onDie.length);
+        }
+            
 
         if (beenCatapulted)
             if (Time.time > (timeOfCatapult + 0.1))
             {
                 GetComponent<Rigidbody>().AddForce(800 * catapultDirection, ForceMode.Impulse);
                 beenCatapulted = false;
+                var midairScream = midairScreams[new System.Random().Next(midairScreams.Count)];
                 Destroy(AudioUtility.CreateSFX(midairScream, transform, 1f, volume: 1f), midairScream.length);
             }
 
@@ -105,6 +112,7 @@ public class EnemyController : MonoBehaviour
 
      void die()
     {
+        var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
         Destroy(AudioUtility.CreateSFX(onDie, transform, 1f, volume: 0.7f), onDie.length);
         FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);

@@ -10,9 +10,9 @@ public class ForkliftController : MonoBehaviour
 {
     [Header("Sounds")]
     [Tooltip("Sound played when recieving damages")]
-    public AudioClip onDamage;
-    public AudioClip onHit;
-    public AudioClip onDeath;
+    public List<AudioClip> onDamageClips;
+    public List<AudioClip> onHitClips;
+    public List<AudioClip> onDeathClips;
     public GameObject enemyPrefab;
     private bool isStunned = false;
     float lastHitTime = 0.0f;
@@ -37,7 +37,11 @@ public class ForkliftController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            var onDamage = onDamageClips[new System.Random().Next(onDamageClips.Count)];
             Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
+        }
+            
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -53,6 +57,7 @@ public class ForkliftController : MonoBehaviour
         if (Time.time > (lastHitTime + 3.0f))
         {
             lastHitTime = Time.time;
+            var onDamage = onDamageClips[new System.Random().Next(onDamageClips.Count)];
             Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
             hp--;
             if (hp == 2)
@@ -72,6 +77,7 @@ public class ForkliftController : MonoBehaviour
 
                 GameObject deathExplosion = Instantiate(deathParticles, GetComponentInChildren<ParticleSystem>().transform.position, Quaternion.identity);
                 deathExplosion.transform.localScale = new Vector3(30, 30, 30);
+                var onDeath = onDeathClips[new System.Random().Next(onDeathClips.Count)];
                 Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);
 
                 for (int i = 0; i < GetComponentsInChildren<MeshRenderer>().Length; i++)
@@ -97,6 +103,7 @@ public class ForkliftController : MonoBehaviour
 
     public void futileHit()
     {
+        var onHit = onHitClips[new System.Random().Next(onHitClips.Count)];
         Destroy(AudioUtility.CreateSFX(onHit, transform, 1f), onHit.length);
     }
 }
