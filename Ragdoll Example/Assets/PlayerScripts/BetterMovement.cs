@@ -284,7 +284,7 @@ public class BetterMovement : MonoBehaviour
     void returnFromStun()
     {
         var clone = Instantiate(
-            (GameObject) AssetDatabase.LoadAssetAtPath("Assets/Player.prefab", typeof(GameObject)),spawnPosition.transform.position, transform.rotation);
+            Resources.Load<GameObject>("Prefabs/Player"),spawnPosition.transform.position, transform.rotation);
         vCam.GetComponent<CinemachineVirtualCamera>().LookAt = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         vCam.GetComponent<CinemachineVirtualCamera>().Follow = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         clone.GetComponent<BetterMovement>().cam = cam;
