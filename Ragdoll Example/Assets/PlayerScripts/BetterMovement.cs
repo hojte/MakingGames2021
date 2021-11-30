@@ -42,7 +42,8 @@ public class BetterMovement : MonoBehaviour
     public float slideSpeed = 20; // slide speed
     private Vector3 slideForward; // direction of slide
     private float slideTimer = 0.0f;
-    private float slideCooldown = 0.0f;
+    private float slideTimerTrigger = 0.0f;
+    public float slideCooldown; 
     public float slideTimerMax = 2.5f; // time while sliding
     private bool isSliding = false;
     Vector3 lastMoveDir;
@@ -83,7 +84,7 @@ public class BetterMovement : MonoBehaviour
             groundedPlayer = controller.isGrounded;
             isRunning = Input.GetKey(KeyCode.LeftShift);
             bool isCrouching = Input.GetKey(KeyCode.C);
-            slideCooldown -= Time.deltaTime;
+            slideTimerTrigger -= Time.deltaTime;
 
             if (groundedPlayer && playerVelocity.y < 0)
             {
@@ -119,9 +120,9 @@ public class BetterMovement : MonoBehaviour
                     controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
                 }
 
-                if (slideCooldown < 0.0f)
+                if (slideTimerTrigger < 0.0f)
                 {
-                    if (isCrouching)
+                    if (isCrouching && groundedPlayer)
                     {
                         if (!GetComponent<AudioSource>())
                         {
@@ -131,21 +132,26 @@ public class BetterMovement : MonoBehaviour
                         
                         isSliding = true;
                         lastMoveDir = moveDir;
-                        controller.height = 1;
+                        controller.height = 0.3f;
+                        
+                       
+                       
                     }
                 }
             }
 
             //Sliding
-            if (isSliding)
+            if (isSliding && groundedPlayer)
             {
+                if(transform.rotation.x> -70)
+                    transform.Rotate(Vector3.right*-85);
                 slideTimer += Time.deltaTime;
                 controller.Move(lastMoveDir.normalized * slideSpeed * Time.deltaTime);
                 if (slideTimer > slideTimerMax)
                 {
                     controller.height = initialHeight;
                     slideTimer = 0;
-                    slideCooldown = 1f;
+                    slideTimerTrigger = slideCooldown;
                     isSliding = false;
                 }
             }
