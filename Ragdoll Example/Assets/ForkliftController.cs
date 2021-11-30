@@ -36,7 +36,7 @@ public class ForkliftController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Keypad2) && onDamageClips.Count>0)
         {
             var onDamage = onDamageClips[new System.Random().Next(onDamageClips.Count)];
             Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
@@ -57,8 +57,12 @@ public class ForkliftController : MonoBehaviour
         if (Time.time > (lastHitTime + 3.0f))
         {
             lastHitTime = Time.time;
-            var onDamage = onDamageClips[new System.Random().Next(onDamageClips.Count)];
-            Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
+            if (onDamageClips.Count > 0)
+            {
+                var onDamage = onDamageClips[new System.Random().Next(onDamageClips.Count)];
+                Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
+            }
+            
             hp--;
             if (hp == 2)
                 GetComponentInChildren<ParticleSystem>().enableEmission = true;
@@ -77,14 +81,23 @@ public class ForkliftController : MonoBehaviour
 
                 GameObject deathExplosion = Instantiate(deathParticles, GetComponentInChildren<ParticleSystem>().transform.position, Quaternion.identity);
                 deathExplosion.transform.localScale = new Vector3(30, 30, 30);
-                var onDeath = onDeathClips[new System.Random().Next(onDeathClips.Count)];
-                Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);
+                if (onDeathClips.Count > 0)
+                {
+                    var onDeath = onDeathClips[new System.Random().Next(onDeathClips.Count)];
+                    Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);
+                }
+                
 
                 for (int i = 0; i < GetComponentsInChildren<MeshRenderer>().Length; i++)
                 {
                     GameObject d = Instantiate(deathParticles, GetComponentsInChildren<MeshRenderer>()[i].transform.position, Quaternion.identity);
                     d.transform.localScale = new Vector3(30, 30, 30);
-                    Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);
+                    if (onDeathClips.Count > 0)
+                    {
+                        var onDeath = onDeathClips[new System.Random().Next(onHitClips.Count)];
+                        Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);
+                    }
+                    
 
                     GameObject f = Instantiate(fireParticles, GetComponentsInChildren<MeshRenderer>()[i].transform.position, Quaternion.identity);
                     f.transform.localScale = new Vector3(30, 30, 30);
@@ -103,7 +116,11 @@ public class ForkliftController : MonoBehaviour
 
     public void futileHit()
     {
-        var onHit = onHitClips[new System.Random().Next(onHitClips.Count)];
-        Destroy(AudioUtility.CreateSFX(onHit, transform, 1f), onHit.length);
+        if (onHitClips.Count > 0)
+        {
+            var onHit = onHitClips[new System.Random().Next(onHitClips.Count)];
+                    Destroy(AudioUtility.CreateSFX(onHit, transform, 1f), onHit.length);
+        }
+        
     }
 }

@@ -76,8 +76,12 @@ namespace PlayerScripts
             }
             else if (_throwSlot && Input.GetButtonDown("Fire1"))
             { // Throw Item
-                var onThrow = onThrowClips[new System.Random().Next(onThrowClips.Count)];
-                Destroy(AudioUtility.CreateSFX(onThrow, transform, 0, volume: 0.05f), onThrow.length);
+                if (onThrowClips.Count > 0)
+                {
+                    var onThrow = onThrowClips[new System.Random().Next(onThrowClips.Count)];
+                    Destroy(AudioUtility.CreateSFX(onThrow, transform, 0, volume: 0.05f), onThrow.length);
+                }
+                
                 _throwSlot.rigidbody.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
                 _throwSlot.DisableEffects();
                 _throwSlot.setHasBeenPickedUp(true);

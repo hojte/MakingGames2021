@@ -34,8 +34,12 @@ namespace Interactions
                         deathExplosion.transform.localScale = new Vector3(30, 30, 30);
                         Destroy(gameObject);
                     }
-                    var onDestructionSound = onDestructionSoundClips[new System.Random().Next(onDestructionSoundClips.Count)];
-                    Destroy(AudioUtility.CreateSFX(onDestructionSound, transform, 1f), onDestructionSound.length);
+                    if (onDestructionSoundClips.Count > 0)
+                    {
+            var onDestructionSound = onDestructionSoundClips[new System.Random().Next(onDestructionSoundClips.Count)];
+                                Destroy(AudioUtility.CreateSFX(onDestructionSound, transform, 1f), onDestructionSound.length);
+                    }
+                    
                 }
 
         }
