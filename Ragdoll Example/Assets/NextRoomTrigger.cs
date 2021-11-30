@@ -14,7 +14,7 @@ public class NextRoomTrigger : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             FindObjectOfType<ScoreController>().LevelCompleted();
-            SceneManager.LoadScene(sceneToLoad);
+            FindObjectOfType<GameController>().LoadScene(sceneToLoad);
         }
         
     }
