@@ -292,6 +292,7 @@ public class BetterMovement : MonoBehaviour
     }
     void die(GameObject player)
     {
+        playerAlive = false;
         FindObjectOfType<ScoreController>().PlayerDied();
         var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
         Destroy(AudioUtility.CreateSFX(onDie, transform, 0, volume: 0.05f), onDie.length);
