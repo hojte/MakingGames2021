@@ -28,10 +28,8 @@ namespace UI
             {
                 int framerate = Mathf.RoundToInt((float)m_AccumulatedFrameCount / m_AccumulatedDeltaTime);
                 uiText.text = "Score: " + playerScore + "(" + shopBalance + ")" +
-                              "\nFramerate: " + framerate +
-                              "\n-Volume " + AudioUtility.masterAudioAmplify + "+";
-
-                m_AccumulatedDeltaTime = 0f;
+                              "\nFramerate: " + framerate;
+                              m_AccumulatedDeltaTime = 0f;
                 m_AccumulatedFrameCount = 0;
             }
         }

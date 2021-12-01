@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
     private bool combatMusicPlaying;
     public bool bossCombat;
     private AudioSource _audioSource;
+    private float _amplifyStep = 0.1f;
     private void Awake()
     {
         // QuickFix for duplicate Controllers:
@@ -95,15 +96,21 @@ public class GameController : MonoBehaviour
             
         }
 
-        if (Input.GetKey(KeyCode.KeypadPlus))
+        if (Input.GetKey(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Plus))
         {
-            AudioUtility.masterAudioAmplify += 0.1f;
+            _amplifyStep = AudioUtility.masterAudioAmplify < 1 ? 0.1f : 0.1f;
+            AudioUtility.masterAudioAmplify += _amplifyStep;
+            AudioUtility.masterAudioAmplify = (float)Math.Round(AudioUtility.masterAudioAmplify, 2);
+            if (AudioUtility.masterAudioAmplify <= 0) AudioUtility.masterAudioAmplify = 0.01f;
             _audioSource.volume = 0.04f * AudioUtility.masterAudioAmplify;
         }
 
-        if (Input.GetKey(KeyCode.KeypadMinus))
+        if (Input.GetKey(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus))
         {
-            AudioUtility.masterAudioAmplify -= 0.1f;
+            _amplifyStep = AudioUtility.masterAudioAmplify < 1 ? 0.1f : 0.1f; 
+            AudioUtility.masterAudioAmplify -= _amplifyStep;
+            AudioUtility.masterAudioAmplify = (float)Math.Round(AudioUtility.masterAudioAmplify, 2);
+            if (AudioUtility.masterAudioAmplify <= 0) AudioUtility.masterAudioAmplify = 0.01f;
             _audioSource.volume = 0.04f * AudioUtility.masterAudioAmplify;
         }
     }
