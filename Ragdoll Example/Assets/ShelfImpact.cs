@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ShelfImpact : MonoBehaviour
 {
-
+    private bool hasBeenTilted = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +23,13 @@ public class ShelfImpact : MonoBehaviour
         Throwable throwable = collision.gameObject.gameObject.GetComponent<Throwable>();
         if (throwable && throwable.canTiltShelves)
         {
-            
-            this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            if (!hasBeenTilted)
+            {
+                //this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                this.gameObject.GetComponent<Rigidbody>().mass = this.gameObject.GetComponent<Rigidbody>().mass / 2.0f;
+                hasBeenTilted = true;
+            }
+
         }
         else if (collision.gameObject.GetComponent<PlayerController>())
         {

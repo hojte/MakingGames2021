@@ -58,6 +58,7 @@ public class ForkliftAI : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Vector3.Distance(transform.position, Player.position));
         if (!Player) Player = FindObjectOfType<PlayerController>().transform;
         if (agent.enabled)
         {
@@ -68,7 +69,7 @@ public class ForkliftAI : MonoBehaviour
                     if (!inCombat)
                     {
                         inCombat = true;
-                        timeOfLastCharge = -25 - Time.time;
+                        timeOfLastCharge = Time.time - 25;
                     }
 
                     if (!isCharging && Time.time > timeOfLastCharge + chargeCooldown)

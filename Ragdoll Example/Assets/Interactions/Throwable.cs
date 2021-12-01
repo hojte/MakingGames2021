@@ -69,5 +69,10 @@ namespace Interactions
         {
             hasBeenPickedUp = status;
         }
+
+        public bool getHasBeenPickedUp()
+        {
+            return hasBeenPickedUp;
+        }
     }
 }

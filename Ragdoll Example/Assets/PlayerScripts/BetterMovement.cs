@@ -264,6 +264,9 @@ public class BetterMovement : MonoBehaviour
 
                 // Apply the push
                 body.velocity = pushDir * 6;
+
+                if (hit.collider.gameObject.GetComponent<Throwable>())
+                    hit.collider.gameObject.GetComponent<Throwable>().setHasBeenPickedUp(true);
             }
             
         }
