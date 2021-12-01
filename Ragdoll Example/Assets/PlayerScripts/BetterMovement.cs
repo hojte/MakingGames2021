@@ -222,8 +222,8 @@ public class BetterMovement : MonoBehaviour
 
             else if (!isInvulnerable)
             {
-                stun( gameObject);
-                // die(gameObject);
+                // stun( gameObject);
+                die(gameObject);
             }
         }
     }
