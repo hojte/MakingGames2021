@@ -77,18 +77,14 @@ public class EnemyController : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("Collision");
         if (collision.gameObject.GetComponent<Throwable>()) {
-            //Debug.Log("Collision Item");
-            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
+            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1 && collision.gameObject.GetComponent<Throwable>().getHasBeenPickedUp())
                 die();
         }
 
         if (collision.gameObject.tag == "Shelf") {
-            //Debug.Log("Collision shelf");
-            if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false)
+            if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false && collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5)
             {
-                //Debug.Log("Collision Moving Shelf");
                 die();
             }
         }
