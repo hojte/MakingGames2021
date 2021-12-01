@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cinemachine;
 using Interactions;
+using PlayerScripts;
 using Sound;
 using UI;
 using UnityEditor;
@@ -42,13 +43,15 @@ public class BetterMovement : MonoBehaviour
     public float slideSpeed = 20; // slide speed
     private Vector3 slideForward; // direction of slide
     private float slideTimer = 0.0f;
-    private float slideCooldown = 0.0f;
+    private float slideTimerTrigger = 0.0f;
+    public float slideCooldown; 
     public float slideTimerMax = 2.5f; // time while sliding
     private bool isSliding = false;
     Vector3 lastMoveDir;
     public GameObject lookAtMePivot; 
 
     private bool playerAlive = true;
+    private bool disableMovement = false;
     public float respawnTime = 0.0f;
     public GameObject vCam;
 
@@ -71,7 +74,7 @@ public class BetterMovement : MonoBehaviour
     void Update()
     {
         
-        if (playerAlive && !isFlying)
+        if (playerAlive && !isFlying && !disableMovement)
         { 
             //Set animator
             anim.SetBool("isJumping", false);
@@ -82,7 +85,7 @@ public class BetterMovement : MonoBehaviour
             groundedPlayer = controller.isGrounded;
             isRunning = Input.GetKey(KeyCode.LeftShift);
             bool isCrouching = Input.GetKey(KeyCode.C);
-            slideCooldown -= Time.deltaTime;
+            slideTimerTrigger -= Time.deltaTime;
 
             if (groundedPlayer && playerVelocity.y < 0)
             {
@@ -118,9 +121,9 @@ public class BetterMovement : MonoBehaviour
                     controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
                 }
 
-                if (slideCooldown < 0.0f)
+                if (slideTimerTrigger < 0.0f)
                 {
-                    if (isCrouching)
+                    if (isCrouching && groundedPlayer)
                     {
                         if (!GetComponent<AudioSource>())
                         {
@@ -130,21 +133,26 @@ public class BetterMovement : MonoBehaviour
                         
                         isSliding = true;
                         lastMoveDir = moveDir;
-                        controller.height = 1;
+                        controller.height = 0.3f;
+                        
+                       
+                       
                     }
                 }
             }
 
             //Sliding
-            if (isSliding)
+            if (isSliding && groundedPlayer)
             {
+                if(transform.rotation.x> -70)
+                    transform.Rotate(Vector3.right*-85);
                 slideTimer += Time.deltaTime;
                 controller.Move(lastMoveDir.normalized * slideSpeed * Time.deltaTime);
                 if (slideTimer > slideTimerMax)
                 {
                     controller.height = initialHeight;
                     slideTimer = 0;
-                    slideCooldown = 1f;
+                    slideTimerTrigger = slideCooldown;
                     isSliding = false;
                 }
             }
@@ -183,7 +191,7 @@ public class BetterMovement : MonoBehaviour
         {
             if (Time.time > timeLastBounce + timeToSpendFlying)
             {
-                GetComponent<CharacterController>().enabled = false;
+                controller.enabled = false;
                 returnFromStun();
                 isFlying = false;
             }
@@ -264,6 +272,8 @@ public class BetterMovement : MonoBehaviour
     void stun( GameObject player)
     {
         if (isInvulnerable) return;
+        Destroy(GetComponent<PlayerController>());
+
         FindObjectOfType<ScoreController>().PlayerStunned();
         playerAlive = false;
         player.GetComponent<CapsuleCollider>().enabled = false;
@@ -271,8 +281,9 @@ public class BetterMovement : MonoBehaviour
         anim.GetComponent<Animator>().enabled = false;
     }
 
-    public void flyRagdoll(GameObject player)
+    public void flyRagdoll(GameObject player, float time)
     {
+        timeToSpendFlying = time;
         if (isInvulnerable) return;
         timeLastBounce = Time.time;
         isFlying = true;
@@ -292,7 +303,8 @@ public class BetterMovement : MonoBehaviour
     }
     void die(GameObject player)
     {
-        playerAlive = false;
+        Destroy(GetComponent<PlayerController>());
+        disableMovement = true;
         FindObjectOfType<ScoreController>().PlayerDied();
         if (onDieClips.Count > 0)
         {

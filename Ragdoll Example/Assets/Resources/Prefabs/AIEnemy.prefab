@@ -81,11 +81,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0633924f653d99d4f832064b8f3e736b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDie: {fileID: 8300000, guid: 289b3c78224c971489e229b57f49e8a6, type: 3}
+  onDieClips: []
   enemyPrefab: {fileID: 2828262322656647411, guid: 64179099dd82a014eb35d8ec5dcebd5d,
     type: 3}
   rig: {fileID: 8333150319336822578}
-  midairScream: {fileID: 8300000, guid: 0da2fceb3f83afe45831c770f47fab6d, type: 3}
+  midairScreams: []
 --- !u!114 &1020908734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +124,21 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &506746481211178771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828262322656647411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b7698ec50c85c44a849a968dc1d57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compassMarkerPrefab: {fileID: 4125838790012652590, guid: 513785daf84f2a243b0cda079e6835cd,
+    type: 3}
+  textDirection: 
 --- !u!54 &1236633030
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -38,23 +38,25 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
     public Rigidbody throwItem;
     Rigidbody clone;
     public bool draw = false;
+    private PlayerController _playerController;
     
-
-
-    /// Method called on initialization.
     private void Awake()
     {
         // Get line renderer reference
         line = GetComponent<LineRenderer>();
         ClearTrajectory();
         _mainCam = Camera.main.transform;
-        
     }
 
-    /// Method called on every frame.
     private void Update()
     {
-        playPos = GetComponentInParent<PlayerController>().throwablePosition;
+        if(_playerController == null) _playerController = GetComponentInParent<PlayerController>();
+        if (!_playerController)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        playPos = _playerController.throwablePosition;
         // Draw trajectory while pressing button
         if (draw || _debugAlwaysDrawTrajectory)
         {
@@ -67,24 +69,19 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
             // Clear trajectory
             ClearTrajectory();
         }
-        
-        //this.startPosition = pPos;
-
-
         rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
 
         //very expensive //todo --> make better
+        if (!throwItem) return;
         clone = Instantiate(throwItem, playPos, rotation);
         //Optimizing performance by disabling collision
         clone.GetComponent<Rigidbody>().detectCollisions = false;
-
+            
         clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
         //this.startVelocity = clone.velocity;
         SetBallisticValues(playPos, clone.velocity);
-
-
+            
         Destroy(clone.gameObject);
-        
     }
     /// Sets ballistic values for trajectory.
   
@@ -136,6 +133,4 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
         // Hide line
         line.positionCount = 0;
     }
-
-
 }

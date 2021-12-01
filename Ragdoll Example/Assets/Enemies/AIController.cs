@@ -5,6 +5,7 @@ using PlayerScripts;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class AIController : MonoBehaviour
@@ -23,6 +24,9 @@ public class AIController : MonoBehaviour
     public bool patrollingEnemy = false;
     bool firstHalfOfPatrol = true;
     Vector3 spawnPoint;
+    
+    public UnityAction onDetectedTarget;
+    public UnityAction onLostTarget;
 
 
     void Start()
@@ -55,6 +59,7 @@ public class AIController : MonoBehaviour
             {
                 if (!inCombat)
                 {
+                    onDetectedTarget?.Invoke();
                     inCombat = true;
                     FindObjectOfType<GameController>().newEnemyInCombat();
                 }
@@ -86,6 +91,7 @@ public class AIController : MonoBehaviour
                 }
                 else
                 {
+                    onLostTarget?.Invoke();
                     //transform.position += transform.forward * moveSpeed * Time.deltaTime;
                     patrollingWayPoint.y = transform.position.y;
 
@@ -94,8 +100,6 @@ public class AIController : MonoBehaviour
                         // when the distance between us and the target is less than 3
                         // create a new way point target
                         Wander();
-
-
                     }
                 }
             }

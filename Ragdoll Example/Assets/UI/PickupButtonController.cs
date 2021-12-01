@@ -20,7 +20,7 @@ public class PickupButtonController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        _textMeshProUGUI.text = pickup.pickupType+":\n"+pickup.timeLeft.ToString().Split('.')[0];
+        _textMeshProUGUI.text = pickup.pickupType+"\n"+pickup.timeLeft.ToString().Split('.')[0];
 
         var image = GetComponent<Image>();
         if (pickup.timeOfActivation!=0) image.color = new Color(0f, 1f, 0f, 0.4f);

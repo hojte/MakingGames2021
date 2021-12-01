@@ -51,10 +51,16 @@ namespace UI
             playerScore += increment?4:-3;
             shopBalance += increment?4:-3;
         }
-        public void LevelCompleted()
+        public void LevelCompleted(int expectedTimeForCompletion)
         {
-            playerScore += 8;
-            shopBalance += 8;
+            var levelStartTime = FindObjectOfType<GameController>().levelStartTime;
+            var completionTime = Time.time - levelStartTime;
+            var ratio = expectedTimeForCompletion / completionTime;
+            
+            int scoreToAdd = (int)(8 * ratio);
+            print("level completed in "+completionTime+ "secs! Expected time is "+expectedTimeForCompletion+"secs which gives a ratio of "+ratio+" final score to add is "+scoreToAdd);
+            playerScore += scoreToAdd;
+            shopBalance += scoreToAdd;
         }
 
         public bool BuyAmount(int amount)

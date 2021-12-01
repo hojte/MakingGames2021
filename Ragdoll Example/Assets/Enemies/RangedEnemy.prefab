@@ -773,6 +773,7 @@ GameObject:
   - component: {fileID: 1020908734}
   - component: {fileID: 1020908741}
   - component: {fileID: 3745925612690652729}
+  - component: {fileID: 4216804831320542834}
   m_Layer: 0
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -897,10 +898,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0633924f653d99d4f832064b8f3e736b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDie: {fileID: 8300000, guid: 29511c3f9182afd4082bbe61528d271b, type: 3}
+  onDieClips: []
   enemyPrefab: {fileID: 0}
   rig: {fileID: 0}
-  midairScream: {fileID: 8300000, guid: 29511c3f9182afd4082bbe61528d271b, type: 3}
+  midairScreams: []
 --- !u!114 &1020908734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,6 +954,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwable: {fileID: 1818965474932572216, guid: a1ac4cff32b53954fb6edc99088e1d1e,
     type: 3}
+--- !u!114 &4216804831320542834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828262322656647411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b7698ec50c85c44a849a968dc1d57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compassMarkerPrefab: {fileID: 4125838790012652590, guid: 513785daf84f2a243b0cda079e6835cd,
+    type: 3}
+  textDirection: 
 --- !u!1 &2994283840309560362
 GameObject:
   m_ObjectHideFlags: 0

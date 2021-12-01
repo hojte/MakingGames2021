@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PlayerScripts;
@@ -21,7 +20,7 @@ namespace Interactions
         JumpBoost, // Helping hand / jump boost / boots on fire (for 3 jumps)
         Undetectability, // disguise (for 10 seconds)
         Invulnerability, // punch out (for 10 seconds)
-        JetPack, // jetpack - catapulted in the air
+        Airbag, // airbag - catapulted in the air
     }
     public class Pickup : MonoBehaviour
     {
@@ -92,6 +91,8 @@ namespace Interactions
         
         private void Update()
         {
+            if (_pickupDisplay == null) _pickupDisplay = FindObjectOfType<PickupDisplay>();
+
             if (_playerMovement == null) _playerMovement = FindObjectOfType<BetterMovement>();
             float bobbingAnimationPhase = ((Mathf.Sin(Time.time * verticalBobFrequency) * 0.5f) + 0.5f) * bobbingAmount;
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
@@ -127,7 +128,7 @@ namespace Interactions
 
             isPickedUp = true;
             DontDestroyOnLoad(gameObject); // We need to save what pickups we are bringing to next level
-            if (useInstantly) UsePickup();
+            if (useInstantly || pickupType == PickupType.Random) UsePickup();
             else _pickupDisplay.AddPickup(this);
 
             RemoveVisuals();
@@ -231,6 +232,11 @@ namespace Interactions
                         if (useInstantly) _pickupDisplay.RemovePickup(this);
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
+                    break;
+                case PickupType.Airbag:
+                    var forceDirection = _playerMovement.transform.forward*0.5f + _playerMovement.transform.up*1.45f;
+                    _playerMovement.gameObject.GetComponent<BetterMovement>().flyRagdoll(_playerMovement.gameObject, 3); // too bad return from ragdoll
+                    _playerMovement.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, 150);
                     break;
                 case PickupType.Random:
                     var values = Enum.GetValues(typeof(PickupType));
