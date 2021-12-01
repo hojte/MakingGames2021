@@ -3913,6 +3913,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7151689814693795176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6190526947261233861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b7698ec50c85c44a849a968dc1d57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compassMarkerPrefab: {fileID: 5587066761853311987, guid: 17f7957746eb62b4fa1ebe22ad280c34,
+    type: 3}
+  textDirection: 
 --- !u!1001 &5134194698099066127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4017,6 +4032,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 895f77e270206164ea88784ad119563c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13f6086d930ab9a4fad4f5faebaaac7c, type: 3}
+--- !u!1 &6190526947261233861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1344739647223152586, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5134194698099066127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6190526947261233860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1344739647223152587, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
