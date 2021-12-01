@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cinemachine;
 using Interactions;
+using PlayerScripts;
 using Sound;
 using UI;
 using UnityEditor;
@@ -300,6 +301,7 @@ public class BetterMovement : MonoBehaviour
     }
     void die(GameObject player)
     {
+        Destroy(GetComponent<PlayerController>());
         disableMovement = true;
         FindObjectOfType<ScoreController>().PlayerDied();
         if (onDieClips.Count > 0)

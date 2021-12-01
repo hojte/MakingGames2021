@@ -54,7 +54,13 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
     /// Method called on every frame.
     private void Update()
     {
-        playPos = GetComponentInParent<PlayerController>().throwablePosition;
+        var playerController = GetComponentInParent<PlayerController>();
+        if (!playerController)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        playPos = playerController.throwablePosition;
         // Draw trajectory while pressing button
         if (draw || _debugAlwaysDrawTrajectory)
         {
@@ -74,17 +80,19 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
         rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
 
         //very expensive //todo --> make better
+        if (!throwItem) return;
         clone = Instantiate(throwItem, playPos, rotation);
         //Optimizing performance by disabling collision
         clone.GetComponent<Rigidbody>().detectCollisions = false;
-
+            
         clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
         //this.startVelocity = clone.velocity;
         SetBallisticValues(playPos, clone.velocity);
-
-
+            
+            
         Destroy(clone.gameObject);
-        
+
+
     }
     /// Sets ballistic values for trajectory.
   
