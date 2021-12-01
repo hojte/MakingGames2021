@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 3572934362972487067}
   - component: {fileID: 5114009390884499000}
   - component: {fileID: 6671658426989904044}
+  - component: {fileID: 7960275680206033705}
   m_Layer: 2
   m_Name: shelf_high
   m_TagString: Shelf
@@ -266,3 +267,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.055, y: 0.045, z: 0.03}
   m_Center: {x: 0, y: 0.000000001862645, z: 0}
+--- !u!114 &7960275680206033705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3316437616586027457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc26f3fb2daf4deaa93f556afcf7dd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsToPlay: []
+  muteSound: 0
+  playOnCollision: 0
+  playOnAwake: 0
+  playInLoop: 0
+  volume: 0.01
+  spatialBlend: 0
+  minDistance: 1
+  maxDistance: 100
