@@ -83,7 +83,7 @@ public class EnemyController : MonoBehaviour
         }
 
         if (collision.gameObject.tag == "Shelf") {
-            if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false && collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5)
+            if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false && collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1.0)
             {
                 die();
             }
