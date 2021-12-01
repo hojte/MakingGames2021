@@ -38,29 +38,25 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
     public Rigidbody throwItem;
     Rigidbody clone;
     public bool draw = false;
+    private PlayerController _playerController;
     
-
-
-    /// Method called on initialization.
     private void Awake()
     {
         // Get line renderer reference
         line = GetComponent<LineRenderer>();
         ClearTrajectory();
         _mainCam = Camera.main.transform;
-        
     }
 
-    /// Method called on every frame.
     private void Update()
     {
-        var playerController = GetComponentInParent<PlayerController>();
-        if (!playerController)
+        if(_playerController == null) _playerController = GetComponentInParent<PlayerController>();
+        if (!_playerController)
         {
             Destroy(gameObject);
             return;
         }
-        playPos = playerController.throwablePosition;
+        playPos = _playerController.throwablePosition;
         // Draw trajectory while pressing button
         if (draw || _debugAlwaysDrawTrajectory)
         {
@@ -73,10 +69,6 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
             // Clear trajectory
             ClearTrajectory();
         }
-        
-        //this.startPosition = pPos;
-
-
         rotation = Quaternion.LookRotation(_mainCam.forward, _mainCam.up);
 
         //very expensive //todo --> make better
@@ -89,10 +81,7 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
         //this.startVelocity = clone.velocity;
         SetBallisticValues(playPos, clone.velocity);
             
-            
         Destroy(clone.gameObject);
-
-
     }
     /// Sets ballistic values for trajectory.
   
@@ -144,6 +133,4 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
         // Hide line
         line.positionCount = 0;
     }
-
-
 }

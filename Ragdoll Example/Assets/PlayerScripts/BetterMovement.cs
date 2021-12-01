@@ -222,8 +222,8 @@ public class BetterMovement : MonoBehaviour
 
             else if (!isInvulnerable)
             {
-                // stun( gameObject);
-                die(gameObject);
+                stun( gameObject);
+                // die(gameObject);
             }
         }
     }
@@ -272,6 +272,8 @@ public class BetterMovement : MonoBehaviour
     void stun( GameObject player)
     {
         if (isInvulnerable) return;
+        Destroy(GetComponent<PlayerController>());
+
         FindObjectOfType<ScoreController>().PlayerStunned();
         playerAlive = false;
         player.GetComponent<CapsuleCollider>().enabled = false;
