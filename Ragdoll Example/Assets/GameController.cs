@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour
         _cinemachineVirtualCamera.m_LookAt = _camLookAtMe;
         
         DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/Crosshair")));
-        DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/ScoreUtil")));
+        // DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/ScoreUtil")));
         DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/PickupCanvas")));
         Light currentLight = FindObjectOfType<Light>();
         if (!currentLight && forceSun)
@@ -98,6 +98,8 @@ public class GameController : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        FindObjectOfType<Compass>().Reset(_cinemachineVirtualCamera);
+
         DestroyActivePickups();
         ((Func<Task>)(async () =>{
             var loadScene = SceneManager.LoadSceneAsync(sceneName);

@@ -13,7 +13,7 @@ namespace UI
 
         private void Start()
         {
-            uiText = GetComponentInChildren<TextMeshProUGUI>();
+            uiText = GetComponent<TextMeshProUGUI>();
         }
 
         private void Update()

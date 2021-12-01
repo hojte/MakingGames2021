@@ -4,6 +4,7 @@ using Sound;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class EnemyController : MonoBehaviour
     Vector3 catapultDirection;
     float returnFromCatapultTimer = 0;
     public List<AudioClip> midairScreams;
+
 
     private float returnFromStunTimer =0f;
     // Start is called before the first frame update
@@ -121,7 +123,8 @@ public class EnemyController : MonoBehaviour
             var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
             Destroy(AudioUtility.CreateSFX(onDie, transform, 1f, volume: 0.7f), onDie.length);
         }
-        
+
+        GetComponent<CompassElement>().UnregisterFromCompass();
         FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;
