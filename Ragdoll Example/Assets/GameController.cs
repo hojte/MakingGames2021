@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour
         _cinemachineVirtualCamera.m_Follow = _camLookAtMe;
         _cinemachineVirtualCamera.m_LookAt = _camLookAtMe;
         
-        DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/Crosshair")));
+        // DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/Crosshair")));
         // DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/ScoreUtil")));
         // DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/PickupCanvas")));
         Light currentLight = FindObjectOfType<Light>();

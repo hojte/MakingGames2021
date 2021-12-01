@@ -70,7 +70,7 @@ public class Compass : MonoBehaviour
 
             if (angle > -visibilityAngle / 2 && angle < visibilityAngle / 2)
             {
-                element.Value.canvasGroup.alpha = 0.8f;
+                element.Value.canvasGroup.alpha = 0.6f;
                 element.Value.canvasGroup.transform.localPosition = new Vector2(m_WidthMultiplier * angle, heightDifference + m_heightOffset);
                 element.Value.canvasGroup.transform.localScale = Vector3.one * Mathf.Lerp(1, minScale, distanceRatio);
             }
@@ -79,17 +79,6 @@ public class Compass : MonoBehaviour
                 element.Value.canvasGroup.alpha = 0;
             }
         }
-    }
-
-    public void ResetList(CinemachineVirtualCamera cinemachineVirtualCamera)
-    {
-        // var tmp = new Dictionary<Transform, CompassMarker> (m_ElementsDictionnary);
-        // foreach (var keyValuePair in tmp)
-        // {
-        //     if(!keyValuePair.Value.isDirection)
-        //         UnregisterCompassElement(keyValuePair.Key);
-        // }
-        virtualCameraTransform = cinemachineVirtualCamera.transform;
     }
 
     public void RegisterCompassElement(Transform element, CompassMarker marker)
