@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.45122817, g: 0.4643408, b: 0.49056602, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -57,7 +57,7 @@ LightmapSettings:
     serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 1
-    m_AtlasSize: 1024
+    m_AtlasSize: 512
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -19831,7 +19831,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120822283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 136.26573, y: 7.2926574, z: -174.62793}
+  m_LocalPosition: {x: 136.26573, y: 5.8726583, z: -176.02794}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -26479,12 +26479,12 @@ PrefabInstance:
     - target: {fileID: 914573952199862799, guid: f29518e54769c87408e9836a944ea2cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 914573952199862799, guid: f29518e54769c87408e9836a944ea2cf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -171.4
+      value: -172.8
       objectReference: {fileID: 0}
     - target: {fileID: 914573952199862799, guid: f29518e54769c87408e9836a944ea2cf,
         type: 3}
@@ -31993,7 +31993,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh549108
+  m_Name: pb_Mesh2901382
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -40286,12 +40286,12 @@ PrefabInstance:
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.039124
+      value: 6.619124
       objectReference: {fileID: 0}
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -182.9
+      value: -184.3
       objectReference: {fileID: 0}
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
