@@ -135,19 +135,19 @@ Light:
   m_GameObject: {fileID: 3484022053617339295}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 0
+  m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8867924, g: 0.8324136, b: 0.72365606, a: 1}
   m_Intensity: 5
-  m_Range: 52.88
+  m_Range: 52.435516
   m_SpotAngle: 122.2
   m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.543
     m_Bias: 0
     m_NormalBias: 0.4
     m_NearPlane: 10
