@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 6624241396124383010}
   - component: {fileID: 3958076182835300885}
   - component: {fileID: -6035481680606802984}
+  - component: {fileID: 1520583083717254147}
   m_Layer: 2
   m_Name: boss_shelf
   m_TagString: Shelf
@@ -249,3 +250,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c195c83a8f2ce64a8aeeb77ae24b2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1520583083717254147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935328212649966456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc26f3fb2daf4deaa93f556afcf7dd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsToPlay:
+  - {fileID: 8300000, guid: 4ee33ce6663a74cca9738b42f40d4d31, type: 3}
+  - {fileID: 8300000, guid: 61813060556a14428b57bd292c2eeb0a, type: 3}
+  - {fileID: 8300000, guid: 00fc68a8a01de4cbf83a4664a9d01e3e, type: 3}
+  - {fileID: 8300000, guid: b6f9391b5cd3c429d898bc5ff2f8ce20, type: 3}
+  - {fileID: 8300000, guid: 36cd2466c194c41c689c7519c37362ed, type: 3}
+  muteSound: 0
+  playOnCollision: 1
+  playOnAwake: 0
+  playInLoop: 0
+  volume: 0.3
+  spatialBlend: 0
+  minDistance: 1
+  maxDistance: 100

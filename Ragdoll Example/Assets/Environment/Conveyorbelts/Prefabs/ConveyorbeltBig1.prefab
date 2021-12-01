@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &7669586957027172210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389433656009760109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc26f3fb2daf4deaa93f556afcf7dd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsToPlay:
+  - {fileID: 8300000, guid: 29fd6914ddd28411db0ea1bde6b5d5a7, type: 3}
+  muteSound: 0
+  playOnCollision: 0
+  playOnAwake: 1
+  playInLoop: 1
+  volume: 0.01
+  spatialBlend: 0
+  minDistance: 1
+  maxDistance: 100
 --- !u!1 &7818856332896459759
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  direction: {x: 0, y: 0, z: 0}
   onBelt: []
 --- !u!1001 &2272395167923314748
 PrefabInstance:
@@ -150,6 +171,12 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 404be76ce08902f49b8782c6f2b2319d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9838ecd14a802844a7f3f94cac1bee7, type: 3}
+--- !u!1 &1389433656009760109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f9838ecd14a802844a7f3f94cac1bee7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2272395167923314748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1730387351934289879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f9838ecd14a802844a7f3f94cac1bee7,

@@ -126,3 +126,11 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   speedPenalty: 0
   canTiltShelves: 0
+  breaksOnHit: 0
+  onDestructionParticles: {fileID: 0}
+  onDestructionSoundClips:
+  - {fileID: 8300000, guid: 43fb6584a8941439285216b65abaf17c, type: 3}
+  - {fileID: 8300000, guid: 4601ec83029a14e5cbb39455bb649cd8, type: 3}
+  - {fileID: 8300000, guid: 727470d3f2e7b4dc1a9ea3163f269536, type: 3}
+  - {fileID: 8300000, guid: 696645cf19cdf4fcb9a5a1212177d801, type: 3}
+  - {fileID: 8300000, guid: 1dfe1a50e1e334918817303b12566546, type: 3}

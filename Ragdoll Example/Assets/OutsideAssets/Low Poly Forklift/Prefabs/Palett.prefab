@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1235989380558620454}
   - component: {fileID: 9020997631409945726}
   - component: {fileID: 7387947926030094103}
+  - component: {fileID: 983707419862603302}
   m_Layer: 0
   m_Name: Palett
   m_TagString: Item
@@ -110,3 +111,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.315822, y: 0.70879114, z: 6.55069}
   m_Center: {x: 0, y: 0.35439354, z: 0}
+--- !u!114 &983707419862603302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731801658567534323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc26f3fb2daf4deaa93f556afcf7dd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsToPlay: []
+  muteSound: 0
+  playOnCollision: 1
+  playOnAwake: 0
+  playInLoop: 0
+  volume: 0.01
+  spatialBlend: 0
+  minDistance: 1
+  maxDistance: 20
