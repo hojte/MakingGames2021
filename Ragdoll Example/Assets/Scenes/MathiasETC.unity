@@ -315,7 +315,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh175814
+  m_Name: pb_Mesh-4791258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -748,7 +748,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1348
+  m_Name: pb_Mesh-4789938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2894,10 +2894,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2130226827944643209, guid: e04d5ae3a86fe8740aebc222836ba29f,
+        type: 3}
+      propertyPath: playerScore
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130226827944643209, guid: e04d5ae3a86fe8740aebc222836ba29f,
+        type: 3}
+      propertyPath: shopBalance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2533803925186017812, guid: e04d5ae3a86fe8740aebc222836ba29f,
         type: 3}
       propertyPath: m_Name
       value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577008947705661485, guid: e04d5ae3a86fe8740aebc222836ba29f,
+        type: 3}
+      propertyPath: playerScore
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577008947705661485, guid: e04d5ae3a86fe8740aebc222836ba29f,
+        type: 3}
+      propertyPath: shopBalance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5312459707907304726, guid: e04d5ae3a86fe8740aebc222836ba29f,
         type: 3}
@@ -3328,7 +3348,7 @@ PrefabInstance:
     - target: {fileID: 315967380691623354, guid: ec8b6e79e7ce3034298eeb4b8f0f6558,
         type: 3}
       propertyPath: pickupToSellInSlot1
-      value: 2
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 315967380691623354, guid: ec8b6e79e7ce3034298eeb4b8f0f6558,
         type: 3}

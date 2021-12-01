@@ -20,7 +20,7 @@ public class CompassMarker : MonoBehaviour
     [Tooltip("Text content for the direction")]
     public TMPro.TextMeshProUGUI textContent;
 
-    AIController m_EnemyController;
+    public AIController m_EnemyController;
 
     public void Initialize(CompassElement compassElement, string textDirection)
     {

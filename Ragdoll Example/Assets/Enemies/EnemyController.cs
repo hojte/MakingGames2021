@@ -34,6 +34,9 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Keypad3))
+            GetComponent<CompassElement>().RegisterFromCompass();
+
         if (isStunned)
         {
             returnFromStunTimer += Time.deltaTime;

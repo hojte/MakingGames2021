@@ -92,6 +92,8 @@ namespace Interactions
         
         private void Update()
         {
+            if (_pickupDisplay == null) _pickupDisplay = FindObjectOfType<PickupDisplay>();
+
             if (_playerMovement == null) _playerMovement = FindObjectOfType<BetterMovement>();
             float bobbingAnimationPhase = ((Mathf.Sin(Time.time * verticalBobFrequency) * 0.5f) + 0.5f) * bobbingAmount;
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;

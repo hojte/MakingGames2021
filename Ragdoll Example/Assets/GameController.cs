@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
     public float levelStartTime;
 
     private ScoreController _scoreController;
+    private PickupDisplay _pickupDisplay;
     private List<DoorController> _doorControllers;
     public CinemachineVirtualCamera _cinemachineVirtualCamera;
     public Transform _camLookAtMe;
@@ -53,7 +54,7 @@ public class GameController : MonoBehaviour
         
         DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/Crosshair")));
         // DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/ScoreUtil")));
-        DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/PickupCanvas")));
+        // DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/PickupCanvas")));
         Light currentLight = FindObjectOfType<Light>();
         if (!currentLight && forceSun)
             DontDestroyOnLoad(
@@ -65,6 +66,8 @@ public class GameController : MonoBehaviour
     {
         _doorControllers = FindObjectsOfType<DoorController>().ToList();
         _scoreController = FindObjectOfType<ScoreController>();
+        DontDestroyOnLoad(_scoreController);
+        DontDestroyOnLoad(FindObjectOfType<PickupDisplay>());
         levelStartTime = Time.time; // todo maybe move statement to when player moves out of startRoom
         _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.03f);
     }
@@ -98,7 +101,7 @@ public class GameController : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        FindObjectOfType<Compass>().Reset(_cinemachineVirtualCamera);
+        // FindObjectOfType<Compass>().ResetList(_cinemachineVirtualCamera);
 
         DestroyActivePickups();
         ((Func<Task>)(async () =>{

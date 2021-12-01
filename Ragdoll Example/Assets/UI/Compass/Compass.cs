@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Compass : MonoBehaviour
 {
+    public int makerCount;
+    
     public RectTransform compasRect;
     public float visibilityAngle = 180f;
     public float heightDifferenceMultiplier = 2f;
@@ -13,7 +15,7 @@ public class Compass : MonoBehaviour
 
     public GameObject MarkerDirectionPrefab;
 
-    public Transform virtualCameraTransform;
+    Transform virtualCameraTransform;
     Dictionary<Transform, CompassMarker> m_ElementsDictionnary = new Dictionary<Transform, CompassMarker>();
 
     float m_WidthMultiplier;
@@ -30,12 +32,18 @@ public class Compass : MonoBehaviour
 
     void Update()
     {
+        makerCount = m_ElementsDictionnary.Count;
         foreach (var element in m_ElementsDictionnary)
         {
             float distanceRatio = 1;
             float heightDifference = 0;
             float angle;
-            if(element.Key.transform == null) UnregisterCompassElement(element.Key.transform);
+            if (element.Key == null)
+            {
+                UnregisterCompassElement(element.Key);
+                print("force unregistered " + element.Key);
+                return;
+            }
             if(virtualCameraTransform == null) virtualCameraTransform = FindObjectOfType<CinemachineVirtualCamera>().transform;
             if (element.Value.isDirection)
             {
@@ -62,7 +70,7 @@ public class Compass : MonoBehaviour
 
             if (angle > -visibilityAngle / 2 && angle < visibilityAngle / 2)
             {
-                element.Value.canvasGroup.alpha = 1;
+                element.Value.canvasGroup.alpha = 0.8f;
                 element.Value.canvasGroup.transform.localPosition = new Vector2(m_WidthMultiplier * angle, heightDifference + m_heightOffset);
                 element.Value.canvasGroup.transform.localScale = Vector3.one * Mathf.Lerp(1, minScale, distanceRatio);
             }
@@ -73,25 +81,32 @@ public class Compass : MonoBehaviour
         }
     }
 
-    public void Reset(CinemachineVirtualCamera cinemachineVirtualCamera)
+    public void ResetList(CinemachineVirtualCamera cinemachineVirtualCamera)
     {
-        var tmp = new Dictionary<Transform, CompassMarker> (m_ElementsDictionnary);
-        foreach (var keyValuePair in tmp)
-        {
-            UnregisterCompassElement(keyValuePair.Key.transform);
-        }
+        // var tmp = new Dictionary<Transform, CompassMarker> (m_ElementsDictionnary);
+        // foreach (var keyValuePair in tmp)
+        // {
+        //     if(!keyValuePair.Value.isDirection)
+        //         UnregisterCompassElement(keyValuePair.Key);
+        // }
         virtualCameraTransform = cinemachineVirtualCamera.transform;
     }
 
     public void RegisterCompassElement(Transform element, CompassMarker marker)
     {
-        marker.transform.SetParent(compasRect);
-
+        if (m_ElementsDictionnary.ContainsKey(element))
+        {
+            print("Already added to elements: "+element);
+            return;
+        }
         m_ElementsDictionnary.Add(element, marker);
+        print("added: " + element);
+        marker.transform.SetParent(compasRect);
     }
 
     public void UnregisterCompassElement(Transform element)
     {
+        print("remove: "+element);
         if (m_ElementsDictionnary.TryGetValue(element, out CompassMarker marker) && marker.canvasGroup != null)
             Destroy(marker.canvasGroup.gameObject);
         m_ElementsDictionnary.Remove(element);
