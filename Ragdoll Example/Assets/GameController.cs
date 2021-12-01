@@ -52,9 +52,6 @@ public class GameController : MonoBehaviour
         _cinemachineVirtualCamera.m_Follow = _camLookAtMe;
         _cinemachineVirtualCamera.m_LookAt = _camLookAtMe;
         
-        // DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/Crosshair")));
-        // DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/ScoreUtil")));
-        // DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/PickupCanvas")));
         Light currentLight = FindObjectOfType<Light>();
         if (!currentLight && forceSun)
             DontDestroyOnLoad(
@@ -69,7 +66,7 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(_scoreController);
         DontDestroyOnLoad(FindObjectOfType<PickupDisplay>());
         levelStartTime = Time.time; // todo maybe move statement to when player moves out of startRoom
-        _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.03f);
+        _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.04f);
     }
 
     void Update()
@@ -97,14 +94,22 @@ public class GameController : MonoBehaviour
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.KeypadPlus)) AudioUtility.masterAudioAmplify += 0.05f;
-        if (Input.GetKeyDown(KeyCode.KeypadMinus)) AudioUtility.masterAudioAmplify -= 0.05f;
+
+        if (Input.GetKey(KeyCode.KeypadPlus))
+        {
+            AudioUtility.masterAudioAmplify += 0.1f;
+            _audioSource.volume = 0.04f * AudioUtility.masterAudioAmplify;
+        }
+
+        if (Input.GetKey(KeyCode.KeypadMinus))
+        {
+            AudioUtility.masterAudioAmplify -= 0.1f;
+            _audioSource.volume = 0.04f * AudioUtility.masterAudioAmplify;
+        }
     }
 
     public void LoadScene(string sceneName)
     {
-        // FindObjectOfType<Compass>().ResetList(_cinemachineVirtualCamera);
-
         DestroyActivePickups();
         ((Func<Task>)(async () =>{
             var loadScene = SceneManager.LoadSceneAsync(sceneName);
