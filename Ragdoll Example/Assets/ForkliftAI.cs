@@ -78,6 +78,7 @@ public class ForkliftAI : MonoBehaviour
                         beginningOfCharge = Time.time;
                         agent.isStopped = true;
                         anim.SetBool("isCharging", true);
+                        Debug.Log("test");
                         agent.destination = Player.position + (Player.position - transform.position) + new Vector3(0,20,0);
                     }
 
@@ -94,13 +95,14 @@ public class ForkliftAI : MonoBehaviour
                             agent.speed = 125;
                             agent.acceleration = 1000;
                             timeOfLastCharge = Time.time;
+                            anim.SetBool("isCharging", false);
 
-                            if (Time.time > beginningOfCharge + chargeChannelDuration * 2)
+                            if (Time.time > beginningOfCharge + chargeChannelDuration * 2 || Vector3.Distance(agent.destination,transform.position) < 4)
                             {
                                 agent.speed = baseSpeed;
                                 isCharging = false;
                                 isCompletingCharge = false;
-                                anim.SetBool("isCharging", false);
+                                
                                 anim.SetBool("isMoving", false);
                                 lift.transform.localRotation = defaultLiftRotation;
                             }
@@ -113,7 +115,7 @@ public class ForkliftAI : MonoBehaviour
                         {
                             agent.destination = Player.position;
 
-                            if (anim.GetBool("isMoving") == false){
+                            if (anim.GetBool("isMoving") == false && !isStunned){
                                 anim.SetBool("isMoving", true);
                             }
 
@@ -204,6 +206,7 @@ public class ForkliftAI : MonoBehaviour
             timeOfLastStun = Time.time;
             agent.isStopped = true;
             Debug.Log("boss stunned");
+            anim.SetBool("isMoving", false);
         }
     }
 
