@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 1882381209710389692}
   - component: {fileID: 8966927995317950212}
   - component: {fileID: 1676551226302340842}
-  - component: {fileID: 8181344721964402125}
   m_Layer: 0
-  m_Name: Carton_01 (4)
+  m_Name: Carton_Heavy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,22 +128,4 @@ MonoBehaviour:
   canTiltShelves: 1
   breaksOnHit: 0
   onDestructionParticles: {fileID: 0}
-  onDestructionSound: {fileID: 0}
---- !u!114 &8181344721964402125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4399494309677638976}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfa27242ef14c37b433526375e877a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
-  speedPenalty: 0
-  canTiltShelves: 0
-  breaksOnHit: 0
-  onDestructionParticles: {fileID: 0}
-  onDestructionSound: {fileID: 0}
+  onDestructionSoundClips: []
