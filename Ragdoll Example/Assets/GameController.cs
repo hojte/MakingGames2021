@@ -101,7 +101,8 @@ public class GameController : MonoBehaviour
             _amplifyStep = AudioUtility.masterAudioAmplify < 1 ? 0.1f : 0.1f;
             AudioUtility.masterAudioAmplify += _amplifyStep;
             AudioUtility.masterAudioAmplify = (float)Math.Round(AudioUtility.masterAudioAmplify, 2);
-            if (AudioUtility.masterAudioAmplify <= 0) AudioUtility.masterAudioAmplify = 0.01f;
+            if (AudioUtility.masterAudioAmplify >= 40.1f) AudioUtility.masterAudioAmplify = 40f;
+
             _audioSource.volume = 0.04f * AudioUtility.masterAudioAmplify;
         }
 
@@ -110,7 +111,7 @@ public class GameController : MonoBehaviour
             _amplifyStep = AudioUtility.masterAudioAmplify < 1 ? 0.1f : 0.1f; 
             AudioUtility.masterAudioAmplify -= _amplifyStep;
             AudioUtility.masterAudioAmplify = (float)Math.Round(AudioUtility.masterAudioAmplify, 2);
-            if (AudioUtility.masterAudioAmplify <= 0) AudioUtility.masterAudioAmplify = 0.01f;
+            if (AudioUtility.masterAudioAmplify <= -0.01f) AudioUtility.masterAudioAmplify = 0.0f;
             _audioSource.volume = 0.04f * AudioUtility.masterAudioAmplify;
         }
     }

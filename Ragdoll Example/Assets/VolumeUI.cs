@@ -8,6 +8,6 @@ public class VolumeUI : MonoBehaviour
 
     void Update()
     {
-        _uiText.text = AudioUtility.masterAudioAmplify.ToString();
+        _uiText.text = "- Vol: " +AudioUtility.masterAudioAmplify+ " +";
     }
 }
