@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 9
   m_IsActive: 1
 --- !u!4 &4632245330311850
 Transform:
@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.565
+      value: 2.572
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -179,6 +179,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floorstrip_blue (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8590779259978240553, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779260590744663, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd8d410649cb724197b0645a00b7004, type: 3}
 --- !u!4 &9222424454962016807 stripped
@@ -202,17 +212,17 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.008
+      value: 0.0087
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.494
+      value: 2.488
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -222,12 +232,12 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.516
+      value: 2.5061
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.45554492
+      value: 0.44463527
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -237,7 +247,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.89021283
+      value: 0.8957117
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -252,7 +262,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 125.8
+      value: 127.2
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -263,6 +273,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floorstrip_blue (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779259978240553, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779260590744663, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd8d410649cb724197b0645a00b7004, type: 3}
@@ -349,6 +369,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floorstrip_blue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8590779259978240553, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779260590744663, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd8d410649cb724197b0645a00b7004, type: 3}
 --- !u!4 &5624563846272604987 stripped
@@ -382,7 +412,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.435
+      value: 0.426
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -434,6 +464,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floorstrip_blue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8590779259978240553, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779260590744663, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd8d410649cb724197b0645a00b7004, type: 3}
 --- !u!4 &2739212592700381406 stripped
@@ -457,7 +497,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -467,7 +507,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.499
+      value: 2.4861
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -477,12 +517,12 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5056
+      value: 0.5171
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.35673797
+      value: -0.38348946
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -492,7 +532,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9342045
+      value: 0.9235453
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -507,7 +547,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 221.8
+      value: 225.1
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -518,6 +558,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floorstrip_blue (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779259978240553, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779260590744663, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd8d410649cb724197b0645a00b7004, type: 3}
@@ -604,6 +654,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floorstrip_blue (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8590779259978240553, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779260590744663, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd8d410649cb724197b0645a00b7004, type: 3}
 --- !u!4 &871857138647311434 stripped
@@ -627,7 +687,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -637,7 +697,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.489
+      value: 0.4883
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -647,12 +707,12 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.507
+      value: 2.5066
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.34447905
+      value: -0.36893576
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -662,7 +722,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.938794
+      value: 0.9294549
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -677,7 +737,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 220.3
+      value: 223.3
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -688,6 +748,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floorstrip_blue (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779259978240553, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779260590744663, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd8d410649cb724197b0645a00b7004, type: 3}
@@ -712,7 +782,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -722,7 +792,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4871
+      value: 0.491
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -732,7 +802,7 @@ PrefabInstance:
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4938
+      value: 0.5024
       objectReference: {fileID: 0}
     - target: {fileID: 8590779259978240552, guid: 3fd8d410649cb724197b0645a00b7004,
         type: 3}
@@ -773,6 +843,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floorstrip_blue (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779259978240553, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590779260590744663, guid: 3fd8d410649cb724197b0645a00b7004,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd8d410649cb724197b0645a00b7004, type: 3}
