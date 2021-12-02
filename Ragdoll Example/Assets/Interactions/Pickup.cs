@@ -71,7 +71,11 @@ namespace Interactions
         private Vector3 m_StartPosition;
         private Rigidbody pickupRigidbody;
 
-
+        private void Awake()
+        {
+            pickupRigidbody = GetComponent<Rigidbody>();
+            m_Collider = GetComponent<Collider>();
+        }
 
         private void Start()
         {
@@ -81,8 +85,7 @@ namespace Interactions
             _gameController = FindObjectOfType<GameController>();
             
             
-            pickupRigidbody = GetComponent<Rigidbody>();
-            m_Collider = GetComponent<Collider>();
+            
             pickupRigidbody.isKinematic = true;
             m_Collider.isTrigger = true;
             m_StartPosition = transform.position;

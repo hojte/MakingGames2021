@@ -33,7 +33,7 @@ public class AIController : MonoBehaviour
     {
         if (!TargetObject)
         {
-            TargetObject = FindObjectOfType<PlayerController>().transform;
+            TargetObject = FindObjectOfType<PlayerController>()?.transform;
         }
         agent = GetComponent<NavMeshAgent>();
         if (patrollingEnemy)
@@ -51,7 +51,7 @@ public class AIController : MonoBehaviour
         agent.speed = moveSpeed;
         if (TargetObject == null)
         {
-            TargetObject = FindObjectOfType<PlayerController>().transform; 
+            TargetObject = FindObjectOfType<PlayerController>()?.transform; 
         }
 
         if (agent.enabled)
