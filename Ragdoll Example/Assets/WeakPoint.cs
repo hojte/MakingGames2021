@@ -22,7 +22,7 @@ public class WeakPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.gameObject.GetComponent<Throwable>() && Time.time > (timeOfLastHit + damageIntakeCooldown))
+        if (other.gameObject.GetComponent<Throwable>() && other.gameObject.GetComponent<Throwable>().getHasBeenPickedUp() && Time.time > (timeOfLastHit + damageIntakeCooldown))
         {
             Debug.Log("hit registered");
             GetComponentInParent<ForkliftController>().die();
