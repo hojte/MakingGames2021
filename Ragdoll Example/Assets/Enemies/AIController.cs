@@ -12,8 +12,10 @@ public class AIController : MonoBehaviour
 
     public Transform TargetObject;
     int moveSpeed = 4;
+    [SerializeField] // Created to change in the editor for testing purposes
     int maxDist = 20;
     int minDist = 5;
+    [SerializeField] // Created to change in the editor for testing purposes
     int aggroRange = 30;
     public bool inCombat = false;
     public Vector3 patrollingWayPoint;
