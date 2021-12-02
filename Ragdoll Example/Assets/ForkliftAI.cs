@@ -94,13 +94,14 @@ public class ForkliftAI : MonoBehaviour
                             agent.speed = 125;
                             agent.acceleration = 1000;
                             timeOfLastCharge = Time.time;
+                            anim.SetBool("isCharging", false);
 
                             if (Time.time > beginningOfCharge + chargeChannelDuration * 2)
                             {
                                 agent.speed = baseSpeed;
                                 isCharging = false;
                                 isCompletingCharge = false;
-                                anim.SetBool("isCharging", false);
+                                
                                 anim.SetBool("isMoving", false);
                                 lift.transform.localRotation = defaultLiftRotation;
                             }
