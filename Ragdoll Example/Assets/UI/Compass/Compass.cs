@@ -41,7 +41,7 @@ public class Compass : MonoBehaviour
             if (element.Key == null)
             {
                 UnregisterCompassElement(element.Key);
-                print("force unregistered " + element.Key);
+                // print("force unregistered " + element.Key);
                 return;
             }
             if(virtualCameraTransform == null) virtualCameraTransform = FindObjectOfType<CinemachineVirtualCamera>().transform;
@@ -85,17 +85,15 @@ public class Compass : MonoBehaviour
     {
         if (m_ElementsDictionnary.ContainsKey(element))
         {
-            print("Already added to elements: "+element);
+            // print("Already added to elements: "+element);
             return;
         }
         m_ElementsDictionnary.Add(element, marker);
-        print("added: " + element);
         marker.transform.SetParent(compasRect);
     }
 
     public void UnregisterCompassElement(Transform element)
     {
-        print("remove: "+element);
         if (m_ElementsDictionnary.TryGetValue(element, out CompassMarker marker) && marker.canvasGroup != null)
             Destroy(marker.canvasGroup.gameObject);
         m_ElementsDictionnary.Remove(element);
