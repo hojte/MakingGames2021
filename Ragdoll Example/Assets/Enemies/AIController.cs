@@ -15,7 +15,7 @@ public class AIController : MonoBehaviour
     int moveSpeed = 4;
     int maxDist = 30;
     int minDist = 5;
-    int aggroRange = 45;
+    public int aggroRange = 45;
     public bool inCombat = false;
     public Vector3 patrollingWayPoint;
     int newWayPointDistance = 10;
