@@ -12,7 +12,7 @@ public class AIController : MonoBehaviour
 {
 
     public Transform TargetObject;
-    int moveSpeed = 4;
+    public int moveSpeed = 8;
     int maxDist = 30;
     int minDist = 5;
     int aggroRange = 45;
@@ -48,6 +48,7 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
+        agent.speed = moveSpeed;
         if (TargetObject == null)
         {
             TargetObject = FindObjectOfType<PlayerController>().transform; 
