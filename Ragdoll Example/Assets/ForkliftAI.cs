@@ -20,7 +20,7 @@ public class ForkliftAI : MonoBehaviour
     Vector3 spawnPoint;
     private Animator anim;
     float timeOfLastCharge = -25;
-    float chargeCooldown = 30;
+    public float chargeCooldown = 30;
     bool isCharging = false;
     float beginningOfCharge = 0;
     float chargeChannelDuration = 3.3f;
@@ -28,7 +28,7 @@ public class ForkliftAI : MonoBehaviour
     bool isStunned = false;
     float timeOfLastStun = 0;
     float stunDuration = 5;
-    float baseSpeed = 15;
+    public float baseSpeed = 15;
     GameObject lift;
     Quaternion defaultLiftRotation;
     private GameController _gameController;
@@ -69,7 +69,7 @@ public class ForkliftAI : MonoBehaviour
                     if (!inCombat)
                     {
                         inCombat = true;
-                        timeOfLastCharge = Time.time - 25;
+                        timeOfLastCharge = Time.time - (chargeCooldown-5);
                     }
 
                     if (!isCharging && Time.time > timeOfLastCharge + chargeCooldown)
@@ -205,6 +205,11 @@ public class ForkliftAI : MonoBehaviour
             agent.isStopped = true;
             Debug.Log("boss stunned");
         }
+    }
+
+    public bool isForkliftCharging()
+    {
+        return (isCompletingCharge || isCharging);
     }
     
 }
