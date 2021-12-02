@@ -7,6 +7,7 @@ using UnityEngine;
 public class ShelfImpact : MonoBehaviour
 {
     private bool hasBeenTilted = false;
+    public float massModifier = 2.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class ShelfImpact : MonoBehaviour
             if (!hasBeenTilted)
             {
                 //this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-                this.gameObject.GetComponent<Rigidbody>().mass = this.gameObject.GetComponent<Rigidbody>().mass / 2.0f;
+                this.gameObject.GetComponent<Rigidbody>().mass = this.gameObject.GetComponent<Rigidbody>().mass / massModifier;
                 hasBeenTilted = true;
             }
 

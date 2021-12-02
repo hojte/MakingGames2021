@@ -10,7 +10,7 @@ public class ForkliftAI : MonoBehaviour
     public Transform Player;
     int maxDist = 20;
     int minDist = 5;
-    int aggroRange = 90;
+    public int aggroRange = 90;
     bool inCombat = false;
     public Vector3 patrollingWayPoint;
     NavMeshAgent agent;
