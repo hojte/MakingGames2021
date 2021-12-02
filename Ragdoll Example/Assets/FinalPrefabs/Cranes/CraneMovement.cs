@@ -10,7 +10,8 @@ public class CraneMovement : MonoBehaviour
    
 
     private Transform _player;
-    private Animator anim; 
+    private Animator anim;
+    public float attackRange; 
 
   
     void Start()
@@ -34,7 +35,7 @@ public class CraneMovement : MonoBehaviour
             plate.rotation = rotation;
 
             float dist = Vector3.Distance(_player.position, plate.position);
-            if (dist < 31)
+            if (dist < attackRange)
             {
                 anim.SetBool("isAttacking", true);
             }
