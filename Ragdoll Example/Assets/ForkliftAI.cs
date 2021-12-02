@@ -206,5 +206,10 @@ public class ForkliftAI : MonoBehaviour
             Debug.Log("boss stunned");
         }
     }
+
+    public bool isForkliftCharging()
+    {
+        return (isCompletingCharge || isCharging);
+    }
     
 }

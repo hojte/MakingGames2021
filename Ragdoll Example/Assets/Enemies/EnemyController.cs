@@ -91,7 +91,12 @@ public class EnemyController : MonoBehaviour
                 die();
             }
         }
-       
+
+        if (collision.gameObject.GetComponent<ForkliftAI>())
+        {
+            if (collision.gameObject.GetComponent<ForkliftAI>().isForkliftCharging())
+                stun();
+        }
     }
 
     /*private void OnCollisionStay(Collision collision)
