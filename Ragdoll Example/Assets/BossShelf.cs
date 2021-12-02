@@ -18,8 +18,10 @@ public class BossShelf : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("HeavyItem") || collision.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("test");
             this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
         else if (collision.gameObject.CompareTag("Player"))

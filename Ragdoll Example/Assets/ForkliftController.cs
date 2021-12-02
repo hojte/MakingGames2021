@@ -16,7 +16,7 @@ public class ForkliftController : MonoBehaviour
     public GameObject enemyPrefab;
     private bool isStunned = false;
     float lastHitTime = 0.0f;
-    int hp = 3;
+    public int hp = 3;
     public GameObject deathParticles;
     public GameObject fireParticles;
     public GameObject smokeParticles;
