@@ -58,7 +58,6 @@ public class ForkliftAI : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Vector3.Distance(transform.position, Player.position));
         if (!Player) Player = FindObjectOfType<PlayerController>().transform;
         if (agent.enabled)
         {
