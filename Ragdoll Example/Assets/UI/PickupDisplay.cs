@@ -74,7 +74,6 @@ namespace UI
             if (selectBackwards) pickups.Reverse();
             
             if (quickCandidate == null || quickCandidate == _currentQuickPickup) return;
-            print("update next quick yay");
             _currentQuickPickup.buttonController.isQuickSelected = false;
             quickCandidate.buttonController.isQuickSelected = true;
             _currentQuickPickup = quickCandidate;

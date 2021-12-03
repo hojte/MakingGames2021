@@ -39,6 +39,8 @@ namespace Interactions
         public bool isPickedUp;
         
         [Header("Pickup Effects")]
+        [Tooltip("Force to add from airbag")]
+        public float airbagForceValue = 200f;
         [Tooltip("The time for slowdown effect to be restored")]
         public int slowDownRestoreTime = 5000;
         public int slowDownValue = 5;
@@ -83,8 +85,13 @@ namespace Interactions
             _scoreController = FindObjectOfType<ScoreController>();
             _playerMovement = FindObjectOfType<BetterMovement>();
             _gameController = FindObjectOfType<GameController>();
-            
-            
+
+            if (_gameController.pickedUpPickups.Contains(this))
+            {
+                print("didn't respawn "+transform.name);
+                Destroy(gameObject);
+                return;
+            }
             
             pickupRigidbody.isKinematic = true;
             m_Collider.isTrigger = true;
@@ -124,6 +131,7 @@ namespace Interactions
 
         public void OnPickup()
         {
+            _gameController.pickedUpPickups.Add(this);
             if (pickupSFX)
             {
                 Destroy(AudioUtility.CreateSFX(pickupSFX, transform, 0f, volume: 0.08f), pickupSFX.length);
@@ -237,8 +245,8 @@ namespace Interactions
                     break;
                 case PickupType.Airbag:
                     var forceDirection = _playerMovement.transform.forward*0.5f + _playerMovement.transform.up*1.45f;
-                    _playerMovement.gameObject.GetComponent<BetterMovement>().flyRagdoll(_playerMovement.gameObject, 3); // too bad return from ragdoll
-                    _playerMovement.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, 150);
+                    _playerMovement.gameObject.GetComponent<BetterMovement>().flyRagdoll(_playerMovement.gameObject, 10);
+                    _playerMovement.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, airbagForceValue);
                     break;
                 case PickupType.Random:
                     var values = Enum.GetValues(typeof(PickupType));
@@ -274,6 +282,15 @@ namespace Interactions
         {
             buttonController = bController;
             buttonController.pickup = this;
+        }
+
+        public override bool Equals(object other)
+        {
+            Pickup rhs = other as Pickup;
+            bool isEqX = !(rhs is null) && Math.Abs(transform.position.x - rhs.transform.position.x) < 0.1f;
+            bool isEqY = Math.Abs(transform.position.z - rhs.transform.position.z) < 0.1f;
+            // bool isEqType = pickupType == rhs.pickupType;
+            return isEqX && isEqY;
         }
     }
 }

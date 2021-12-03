@@ -6,7 +6,6 @@ using Interactions;
 using PlayerScripts;
 using Sound;
 using UI;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
@@ -57,7 +56,7 @@ public class BetterMovement : MonoBehaviour
 
     public GameObject spawnPosition; 
     public bool isInvulnerable = false;
-    bool isFlying = false;
+    public bool isFlying = false;
     bool ignoreTriggers = true;
     float timeLastBounce = 0;
     public float timeToSpendFlying = 6.0f;
@@ -284,25 +283,26 @@ public class BetterMovement : MonoBehaviour
         anim.GetComponent<Animator>().enabled = false;
     }
 
-    public void flyRagdoll(GameObject player, float time)
+    public void flyRagdoll(GameObject player, float timeCap)
     {
-        timeToSpendFlying = time;
+        // FindObjectOfType<CinemachineVirtualCamera>().Follow = spawnPosition.transform; // follow ragdoll. it's bad...
+        timeToSpendFlying = timeCap;
         if (isInvulnerable) return;
         timeLastBounce = Time.time;
         isFlying = true;
         player.GetComponent<CapsuleCollider>().enabled = false;
         //player.GetComponent<CharacterController>().enabled = false;
-        anim.GetComponent<Animator>().enabled = false;
+        anim.enabled = false;
     }
 
-    void returnFromStun()
+    public void returnFromStun()
     {
         var clone = Instantiate(
             Resources.Load<GameObject>("Prefabs/Player"),spawnPosition.transform.position, transform.rotation);
         vCam.GetComponent<CinemachineVirtualCamera>().LookAt = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         vCam.GetComponent<CinemachineVirtualCamera>().Follow = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         clone.GetComponent<BetterMovement>().cam = cam;
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
     void die(GameObject player)
     {

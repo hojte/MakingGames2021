@@ -899,8 +899,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onDieClips: []
-  enemyPrefab: {fileID: 0}
-  rig: {fileID: 0}
+  enemyPrefab: {fileID: 2828262322656647411}
+  rig: {fileID: 4057410879026312657}
   midairScreams: []
 --- !u!114 &1020908734
 MonoBehaviour:
@@ -915,9 +915,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetObject: {fileID: 0}
+  moveSpeed: 8
+  maxDist: 30
+  aggroRange: 45
   inCombat: 0
   patrollingWayPoint: {x: 0, y: 0, z: 0}
   patrollingEnemy: 0
+  standingStillEnemy: 1
 --- !u!195 &1020908741
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -952,6 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db77c10408240d340a367bd4307f01aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileSpeed: 3000
   throwable: {fileID: 1818965474932572216, guid: a1ac4cff32b53954fb6edc99088e1d1e,
     type: 3}
 --- !u!114 &4216804831320542834
