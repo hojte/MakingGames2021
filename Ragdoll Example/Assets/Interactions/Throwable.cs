@@ -12,6 +12,7 @@ namespace Interactions
         public int speedPenalty = 0;
         public bool canTiltShelves = false;
         public bool breaksOnHit = false;
+        [SerializeField]
         bool hasBeenPickedUp = false;
         float timeOfHit = 0f;
         bool hasHit = false;
@@ -27,7 +28,7 @@ namespace Interactions
         private void Update()
         {
             if (hasHit)
-                if(Time.time > timeOfHit + 0.05)
+                if (Time.time > timeOfHit + 0.05)
                 {
                     if (onDestructionParticles != null)
                     {
@@ -37,10 +38,10 @@ namespace Interactions
                     }
                     if (onDestructionSoundClips.Count > 0)
                     {
-            var onDestructionSound = onDestructionSoundClips[new System.Random().Next(onDestructionSoundClips.Count)];
-                                Destroy(AudioUtility.CreateSFX(onDestructionSound, transform, 1f), onDestructionSound.length);
+                        var onDestructionSound = onDestructionSoundClips[new System.Random().Next(onDestructionSoundClips.Count)];
+                        Destroy(AudioUtility.CreateSFX(onDestructionSound, transform, 1f), onDestructionSound.length);
                     }
-                    
+
                 }
 
         }
