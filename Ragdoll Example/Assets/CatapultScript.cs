@@ -29,7 +29,7 @@ public class CatapultScript : MonoBehaviour
 
         if (other.gameObject.GetComponent<EnemyController>())
         {
-            Debug.Log(forceDirection);
+            // Debug.Log(forceDirection);
             
             other.gameObject.GetComponent<EnemyController>().getCatapulted(forceDirection);
             //other.gameObject.GetComponent<Rigidbody>().AddForce(800 * forceDirection, ForceMode.Impulse);
