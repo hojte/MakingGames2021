@@ -39,6 +39,8 @@ namespace Interactions
         public bool isPickedUp;
         
         [Header("Pickup Effects")]
+        [Tooltip("Force to add from airbag")]
+        public float airbagForceValue = 200f;
         [Tooltip("The time for slowdown effect to be restored")]
         public int slowDownRestoreTime = 5000;
         public int slowDownValue = 5;
@@ -237,8 +239,8 @@ namespace Interactions
                     break;
                 case PickupType.Airbag:
                     var forceDirection = _playerMovement.transform.forward*0.5f + _playerMovement.transform.up*1.45f;
-                    _playerMovement.gameObject.GetComponent<BetterMovement>().flyRagdoll(_playerMovement.gameObject, 5); // too bad return from ragdoll
-                    _playerMovement.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, 180);
+                    _playerMovement.gameObject.GetComponent<BetterMovement>().flyRagdoll(_playerMovement.gameObject, 10);
+                    _playerMovement.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, airbagForceValue);
                     break;
                 case PickupType.Random:
                     var values = Enum.GetValues(typeof(PickupType));

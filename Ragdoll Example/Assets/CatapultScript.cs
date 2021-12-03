@@ -18,7 +18,7 @@ public class CatapultScript : MonoBehaviour
         {
             Debug.Log(forceDirection);
             other.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, 500);
-            other.gameObject.GetComponent<BetterMovement>().flyRagdoll(other.gameObject, 6);
+            other.gameObject.GetComponent<BetterMovement>().flyRagdoll(other.gameObject, 10);
         }
         
         if (other.gameObject.GetComponent<Throwable>())

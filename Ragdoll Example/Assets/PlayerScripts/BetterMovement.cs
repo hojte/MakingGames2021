@@ -283,9 +283,10 @@ public class BetterMovement : MonoBehaviour
         anim.GetComponent<Animator>().enabled = false;
     }
 
-    public void flyRagdoll(GameObject player, float time)
+    public void flyRagdoll(GameObject player, float timeCap)
     {
-        timeToSpendFlying = time;
+        // FindObjectOfType<CinemachineVirtualCamera>().Follow = spawnPosition.transform; // follow ragdoll. it's bad...
+        timeToSpendFlying = timeCap;
         if (isInvulnerable) return;
         timeLastBounce = Time.time;
         isFlying = true;
