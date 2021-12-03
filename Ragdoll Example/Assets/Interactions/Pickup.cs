@@ -131,7 +131,10 @@ namespace Interactions
 
         public void OnPickup()
         {
-            _gameController.pickedUpPickups.Add(this);
+            var Go = new GameObject().AddComponent<Pickup>();
+            Go.transform.position = transform.position;
+            Go.RemoveVisuals();
+            _gameController.pickedUpPickups.Add(Go);
             if (pickupSFX)
             {
                 Destroy(AudioUtility.CreateSFX(pickupSFX, transform, 0f, volume: 0.08f), pickupSFX.length);
