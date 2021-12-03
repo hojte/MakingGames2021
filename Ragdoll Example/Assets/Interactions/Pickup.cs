@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PlayerScripts;
@@ -14,14 +13,14 @@ namespace Interactions
         Random,
         None,
         /*Instant*/
-        SpeedBoost, // Coffee ability (for 20 seconds)
-        ScoreIncrement, // score++!
-        ScoreDecrement, // score--!
-        SlowDown, // After noon slowdown / no running at work / etc. (for 10 seconds)
-        JumpBoost, // Helping hand / jump boost / boots on fire (for 3 jumps)
-        Undetectability, // disguise (for 10 seconds)
-        Invulnerability, // punch out (for 10 seconds)
-        JetPack, // jetpack... (limited fuel)
+        CoffeeShock, // Coffee ability (for 20 seconds)
+        ScoreBoost, // score++!
+        // ScoreDecrement, // score--!
+        Overworked, // After noon slowdown to enemies
+        SpringBoots, // Helping hand / jump boost / boots on fire (for 3 jumps)
+        Disguise, // disguise (for 10 seconds)
+        PunchedOut, // punch out (for 10 seconds)
+        Airbag, // airbag - catapulted in the air
     }
     public class Pickup : MonoBehaviour
     {
@@ -72,7 +71,11 @@ namespace Interactions
         private Vector3 m_StartPosition;
         private Rigidbody pickupRigidbody;
 
-
+        private void Awake()
+        {
+            pickupRigidbody = GetComponent<Rigidbody>();
+            m_Collider = GetComponent<Collider>();
+        }
 
         private void Start()
         {
@@ -82,8 +85,7 @@ namespace Interactions
             _gameController = FindObjectOfType<GameController>();
             
             
-            pickupRigidbody = GetComponent<Rigidbody>();
-            m_Collider = GetComponent<Collider>();
+            
             pickupRigidbody.isKinematic = true;
             m_Collider.isTrigger = true;
             m_StartPosition = transform.position;
@@ -92,6 +94,8 @@ namespace Interactions
         
         private void Update()
         {
+            if (_pickupDisplay == null) _pickupDisplay = FindObjectOfType<PickupDisplay>();
+
             if (_playerMovement == null) _playerMovement = FindObjectOfType<BetterMovement>();
             float bobbingAnimationPhase = ((Mathf.Sin(Time.time * verticalBobFrequency) * 0.5f) + 0.5f) * bobbingAmount;
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
@@ -127,7 +131,7 @@ namespace Interactions
 
             isPickedUp = true;
             DontDestroyOnLoad(gameObject); // We need to save what pickups we are bringing to next level
-            if (useInstantly) UsePickup();
+            if (useInstantly || pickupType == PickupType.Random) UsePickup();
             else _pickupDisplay.AddPickup(this);
 
             RemoveVisuals();
@@ -155,28 +159,27 @@ namespace Interactions
             print("picked up a "+pickupType);
             switch (pickupType)
             {
-                case PickupType.ScoreIncrement:
+                case PickupType.ScoreBoost:
                     _scoreController.Pickup(true);
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     if (useInstantly) _pickupDisplay.RemovePickup(this);
                     break;
-                case PickupType.ScoreDecrement:
-                    if (useInstantly) _pickupDisplay.AddPickup(this);
-                    if (useInstantly) _pickupDisplay.RemovePickup(this);
-                    _scoreController.Pickup(false);
-                    break;
-                case PickupType.SlowDown:
-                    _playerMovement.walkingSpeed -= slowDownValue;
-                    _playerMovement.runSpeed -= slowDownValue;
+                // case PickupType.ScoreDecrement:
+                //     if (useInstantly) _pickupDisplay.AddPickup(this);
+                //     if (useInstantly) _pickupDisplay.RemovePickup(this);
+                //     _scoreController.Pickup(false);
+                //     break;
+                case PickupType.Overworked:
+                    var normalSpeed = FindObjectOfType<AIController>().moveSpeed;
+                    FindObjectsOfType<AIController>().ToList().ForEach(x => x.moveSpeed = 4);
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(slowDownRestoreTime);
-                        _playerMovement.walkingSpeed += slowDownValue; 
-                        _playerMovement.runSpeed += slowDownValue;
+                        FindObjectsOfType<AIController>().ToList().ForEach(x => x.moveSpeed = normalSpeed);
                         if (useInstantly) _pickupDisplay.RemovePickup(this);
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
-                case PickupType.SpeedBoost:
+                case PickupType.CoffeeShock:
                     _playerMovement.walkingSpeed += speedBoostValue;
                     _playerMovement.runSpeed += speedBoostValue;
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
@@ -187,7 +190,7 @@ namespace Interactions
                     }))();
                     if (useInstantly)  _pickupDisplay.AddPickup(this);
                     break;
-                case PickupType.JumpBoost:
+                case PickupType.SpringBoots:
                     _playerMovement.jumpHeight += jumpBoostValue;
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(jumpBoostRestoreTime);
@@ -196,7 +199,7 @@ namespace Interactions
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
-                case PickupType.Undetectability:
+                case PickupType.Disguise:
                     var tmpGO = Instantiate(new GameObject(), new Vector3(-300000,-300000, -300000), Quaternion.identity);
                     FindObjectsOfType<AIController>().ToList().ForEach(x =>
                     { // todo will need to be reapplied if scene is reloaded
@@ -223,7 +226,7 @@ namespace Interactions
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
                     break;
-                case PickupType.Invulnerability: 
+                case PickupType.PunchedOut: 
                     _playerMovement.isInvulnerable = true;
                     ((Func<Task>)(async () =>{ // Async call to restore prev conditions
                         await Task.Delay(invulnerabilityRestoreTime);    
@@ -231,6 +234,11 @@ namespace Interactions
                         if (useInstantly) _pickupDisplay.RemovePickup(this);
                     }))();
                     if (useInstantly) _pickupDisplay.AddPickup(this);
+                    break;
+                case PickupType.Airbag:
+                    var forceDirection = _playerMovement.transform.forward*0.5f + _playerMovement.transform.up*1.45f;
+                    _playerMovement.gameObject.GetComponent<BetterMovement>().flyRagdoll(_playerMovement.gameObject, 3); // too bad return from ragdoll
+                    _playerMovement.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, 150);
                     break;
                 case PickupType.Random:
                     var values = Enum.GetValues(typeof(PickupType));
@@ -247,15 +255,15 @@ namespace Interactions
         {
             switch (pickupType)
             {
-                case PickupType.Invulnerability:
+                case PickupType.PunchedOut:
                     return invulnerabilityRestoreTime;
-                case PickupType.Undetectability:
+                case PickupType.Disguise:
                     return undetectedRestoreTime;
-                case PickupType.JumpBoost:
+                case PickupType.SpringBoots:
                     return jumpBoostRestoreTime;
-                case PickupType.SlowDown:
+                case PickupType.Overworked:
                     return slowDownRestoreTime;
-                case PickupType.SpeedBoost:
+                case PickupType.CoffeeShock:
                     return speedBoostRestoreTime;
                 default:
                     return 0;

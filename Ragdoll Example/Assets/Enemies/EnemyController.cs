@@ -4,6 +4,7 @@ using Sound;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class EnemyController : MonoBehaviour
     float returnFromCatapultTimer = 0;
     public List<AudioClip> midairScreams;
 
+
     private float returnFromStunTimer =0f;
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,9 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Keypad3))
+            GetComponent<CompassElement>().RegisterFromCompass();
+
         if (isStunned)
         {
             returnFromStunTimer += Time.deltaTime;
@@ -75,22 +80,23 @@ public class EnemyController : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("Collision");
         if (collision.gameObject.GetComponent<Throwable>()) {
-            //Debug.Log("Collision Item");
-            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
+            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1 && collision.gameObject.GetComponent<Throwable>().getHasBeenPickedUp())
                 die();
         }
 
         if (collision.gameObject.tag == "Shelf") {
-            //Debug.Log("Collision shelf");
-            if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false)
+            if (collision.gameObject.GetComponent<Rigidbody>().isKinematic == false && collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1.0)
             {
-                //Debug.Log("Collision Moving Shelf");
                 die();
             }
         }
-       
+
+        if (collision.gameObject.GetComponent<ForkliftAI>())
+        {
+            if (collision.gameObject.GetComponent<ForkliftAI>().isForkliftCharging())
+                stun();
+        }
     }
 
     /*private void OnCollisionStay(Collision collision)
@@ -121,7 +127,8 @@ public class EnemyController : MonoBehaviour
             var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];
             Destroy(AudioUtility.CreateSFX(onDie, transform, 1f, volume: 0.7f), onDie.length);
         }
-        
+
+        GetComponent<CompassElement>().UnregisterFromCompass();
         FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);
         GetComponent<Animator>().enabled = false;

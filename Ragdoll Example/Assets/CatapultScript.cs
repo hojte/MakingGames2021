@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using PlayerScripts;
 using Interactions;
 
@@ -13,12 +11,6 @@ public class CatapultScript : MonoBehaviour
         forceDirection = (transform.Find("endPoint").gameObject.transform.position - transform.Find("startingPoint").gameObject.transform.position).normalized;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("entry");
@@ -26,12 +18,12 @@ public class CatapultScript : MonoBehaviour
         {
             Debug.Log(forceDirection);
             other.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, 500);
-            other.gameObject.GetComponent<BetterMovement>().flyRagdoll(other.gameObject);
+            other.gameObject.GetComponent<BetterMovement>().flyRagdoll(other.gameObject, 6);
         }
         
         if (other.gameObject.GetComponent<Throwable>())
         {
-            Debug.Log("entry2");
+            Debug.Log("entry2" + forceDirection);
             other.gameObject.GetComponent<Rigidbody>().AddForce(3000*forceDirection, ForceMode.Impulse);
         }
 

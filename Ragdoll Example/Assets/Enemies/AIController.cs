@@ -5,18 +5,17 @@ using PlayerScripts;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class AIController : MonoBehaviour
 {
 
     public Transform TargetObject;
-    int moveSpeed = 4;
-    [SerializeField] // Created to change in the editor for testing purposes
-    int maxDist = 20;
+    public int moveSpeed = 8;
+    int maxDist = 30;
     int minDist = 5;
-    [SerializeField] // Created to change in the editor for testing purposes
-    int aggroRange = 30;
+    public int aggroRange = 45;
     public bool inCombat = false;
     public Vector3 patrollingWayPoint;
     int newWayPointDistance = 10;
@@ -25,30 +24,42 @@ public class AIController : MonoBehaviour
     public bool patrollingEnemy = false;
     bool firstHalfOfPatrol = true;
     Vector3 spawnPoint;
+    public bool standingStillEnemy = true;
+    
+    public UnityAction onDetectedTarget;
+    public UnityAction onLostTarget;
 
 
     void Start()
     {
         if (!TargetObject)
         {
-            TargetObject = FindObjectOfType<PlayerController>().transform;
+            TargetObject = FindObjectOfType<PlayerController>()?.transform;
         }
         agent = GetComponent<NavMeshAgent>();
         if (patrollingEnemy)
         {
             spawnPoint = transform.position;
-            patrollingWayPoint = spawnPoint + new Vector3(20, 0, 0);
+            //patrollingWayPoint = spawnPoint + new Vector3(20, 0, 0);
         }
         else
-            Wander();
+        {
+            if (standingStillEnemy)
+            {
+
+            }
+            else
+                Wander();
+        }
 
     }
 
     void Update()
     {
+        agent.speed = moveSpeed;
         if (TargetObject == null)
         {
-            TargetObject = FindObjectOfType<PlayerController>().transform; 
+            TargetObject = FindObjectOfType<PlayerController>()?.transform; 
         }
 
         if (agent.enabled)
@@ -57,6 +68,7 @@ public class AIController : MonoBehaviour
             {
                 if (!inCombat)
                 {
+                    onDetectedTarget?.Invoke();
                     inCombat = true;
                     FindObjectOfType<GameController>().newEnemyInCombat();
                 }
@@ -88,15 +100,21 @@ public class AIController : MonoBehaviour
                 }
                 else
                 {
-                    //transform.position += transform.forward * moveSpeed * Time.deltaTime;
-                    patrollingWayPoint.y = transform.position.y;
-
-                    if (Vector3.Distance(transform.position, patrollingWayPoint) <= 3)
+                    if (!standingStillEnemy)
                     {
-                        // when the distance between us and the target is less than 3
-                        // create a new way point target
-                        Wander();
+                        onLostTarget?.Invoke();
+                        //transform.position += transform.forward * moveSpeed * Time.deltaTime;
+                        patrollingWayPoint.y = transform.position.y;
 
+                        if (Vector3.Distance(transform.position, patrollingWayPoint) <= 3)
+                        {
+                            // when the distance between us and the target is less than 3
+                            // create a new way point target
+                            Wander();
+                        }
+                    }
+                    else
+                    {
 
                     }
                 }

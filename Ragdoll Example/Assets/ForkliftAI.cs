@@ -10,7 +10,7 @@ public class ForkliftAI : MonoBehaviour
     public Transform Player;
     int maxDist = 20;
     int minDist = 5;
-    int aggroRange = 90;
+    public int aggroRange = 90;
     bool inCombat = false;
     public Vector3 patrollingWayPoint;
     NavMeshAgent agent;
@@ -20,7 +20,7 @@ public class ForkliftAI : MonoBehaviour
     Vector3 spawnPoint;
     private Animator anim;
     float timeOfLastCharge = -25;
-    float chargeCooldown = 30;
+    public float chargeCooldown = 30;
     bool isCharging = false;
     float beginningOfCharge = 0;
     float chargeChannelDuration = 3.3f;
@@ -28,7 +28,7 @@ public class ForkliftAI : MonoBehaviour
     bool isStunned = false;
     float timeOfLastStun = 0;
     float stunDuration = 5;
-    float baseSpeed = 15;
+    public float baseSpeed = 15;
     GameObject lift;
     Quaternion defaultLiftRotation;
     private GameController _gameController;
@@ -68,7 +68,7 @@ public class ForkliftAI : MonoBehaviour
                     if (!inCombat)
                     {
                         inCombat = true;
-                        timeOfLastCharge = -25 - Time.time;
+                        timeOfLastCharge = Time.time - (chargeCooldown-5);
                     }
 
                     if (!isCharging && Time.time > timeOfLastCharge + chargeCooldown)
@@ -77,6 +77,7 @@ public class ForkliftAI : MonoBehaviour
                         beginningOfCharge = Time.time;
                         agent.isStopped = true;
                         anim.SetBool("isCharging", true);
+                        Debug.Log("test");
                         agent.destination = Player.position + (Player.position - transform.position) + new Vector3(0,20,0);
                     }
 
@@ -93,13 +94,14 @@ public class ForkliftAI : MonoBehaviour
                             agent.speed = 125;
                             agent.acceleration = 1000;
                             timeOfLastCharge = Time.time;
+                            anim.SetBool("isCharging", false);
 
-                            if (Time.time > beginningOfCharge + chargeChannelDuration * 2)
+                            if (Time.time > beginningOfCharge + chargeChannelDuration * 2 || Vector3.Distance(agent.destination,transform.position) < 4)
                             {
                                 agent.speed = baseSpeed;
                                 isCharging = false;
                                 isCompletingCharge = false;
-                                anim.SetBool("isCharging", false);
+                                
                                 anim.SetBool("isMoving", false);
                                 lift.transform.localRotation = defaultLiftRotation;
                             }
@@ -112,7 +114,7 @@ public class ForkliftAI : MonoBehaviour
                         {
                             agent.destination = Player.position;
 
-                            if (anim.GetBool("isMoving") == false){
+                            if (anim.GetBool("isMoving") == false && !isStunned){
                                 anim.SetBool("isMoving", true);
                             }
 
@@ -203,7 +205,13 @@ public class ForkliftAI : MonoBehaviour
             timeOfLastStun = Time.time;
             agent.isStopped = true;
             Debug.Log("boss stunned");
+            anim.SetBool("isMoving", false);
         }
+    }
+
+    public bool isForkliftCharging()
+    {
+        return (isCompletingCharge || isCharging);
     }
     
 }

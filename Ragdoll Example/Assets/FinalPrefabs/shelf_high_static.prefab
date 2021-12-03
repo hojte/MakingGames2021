@@ -25,8 +25,8 @@ GameObject:
   - component: {fileID: 3787951340784061975}
   - component: {fileID: 3386531148903555203}
   m_Layer: 2
-  m_Name: shelf_high (21)
-  m_TagString: Shelf
+  m_Name: shelf_high_static
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
@@ -210,8 +210,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05081888, y: 0.0006743012, z: 0.020818882}
-  m_Center: {x: 0, y: -0.019685518, z: 0}
+  m_Size: {x: 0.05081888, y: 0.009108838, z: 0.020818882}
+  m_Center: {x: 0, y: -0.01690721, z: 0}
 --- !u!65 &7650766145277816607
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aaa84602d4f01d46842830783ac3894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  massModifier: 2
 --- !u!65 &3386531148903555203
 BoxCollider:
   m_ObjectHideFlags: 0

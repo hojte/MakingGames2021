@@ -13,6 +13,7 @@ namespace Interactions.Shop
         public PickupType pickupToSellInSlot1 = PickupType.Random;
         public PickupType pickupToSellInSlot2 = PickupType.Random;
         public PickupType pickupToSellInSlot3 = PickupType.Random;
+        public GameObject pickupPrefab;
         public int discountOnItems;
         void Start()
         {
@@ -33,8 +34,8 @@ namespace Interactions.Shop
             if (pickupToSellInSlot2 == PickupType.Random) pickupToSellInSlot2 = (PickupType)values.GetValue(random.Next(2, values.Length));
             if (pickupToSellInSlot3 == PickupType.Random) pickupToSellInSlot3 = (PickupType)values.GetValue(random.Next(2, values.Length));
             
-            GameObject pickupPrefab =
-                Resources.Load<GameObject>("Prefabs/PickupItem");
+            // GameObject pickupPrefab =
+            //     Resources.Load<GameObject>("Prefabs/PickupItem");
             
             var tmpPickup = Instantiate(pickupPrefab).GetComponent<Pickup>();
             tmpPickup.RemoveVisuals();

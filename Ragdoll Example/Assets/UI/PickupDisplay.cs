@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Interactions;
-using UnityEditor;
 using UnityEngine;
 
 namespace UI
@@ -35,6 +34,8 @@ namespace UI
         public void AddPickup(Pickup pickup)
         {
             pickup.SetButtonController(Instantiate(_buttonPrefab, transform).GetComponent<PickupButtonController>());
+            pickup.transform.SetParent(transform);
+            DontDestroyOnLoad(pickup.gameObject);
             pickups.Add(pickup);
             ValidateQuickSelect();
         }
@@ -62,7 +63,6 @@ namespace UI
         }
         private void NewQuickSelect(bool selectBackwards = false)
         {
-            
             ValidateQuickSelect();
             bool SelectNextPickup(Pickup x) => !x.useInstantly && x != _currentQuickPickup && pickups.IndexOf(x) > pickups.IndexOf(_currentQuickPickup) && x.timeOfActivation==0;
 

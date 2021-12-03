@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Sound;
+using TMPro;
 using UnityEngine;
 
 namespace UI
@@ -26,10 +27,9 @@ namespace UI
             if (m_AccumulatedDeltaTime >= 0.5f) // time to update Score board
             {
                 int framerate = Mathf.RoundToInt((float)m_AccumulatedFrameCount / m_AccumulatedDeltaTime);
-                uiText.text = "Score: "+playerScore+ "("+shopBalance+")"+
-                              "\nFramerate: "+ framerate;
-
-                m_AccumulatedDeltaTime = 0f;
+                uiText.text = "Score: " + playerScore + "(" + shopBalance + ")" +
+                              "\nFramerate: " + framerate;
+                              m_AccumulatedDeltaTime = 0f;
                 m_AccumulatedFrameCount = 0;
             }
         }

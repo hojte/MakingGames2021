@@ -32,12 +32,14 @@ public class GameController : MonoBehaviour
     public float levelStartTime;
 
     private ScoreController _scoreController;
+    private PickupDisplay _pickupDisplay;
     private List<DoorController> _doorControllers;
     public CinemachineVirtualCamera _cinemachineVirtualCamera;
     public Transform _camLookAtMe;
     private bool combatMusicPlaying;
     public bool bossCombat;
     private AudioSource _audioSource;
+    private float _amplifyStep = 0.1f;
     private void Awake()
     {
         // QuickFix for duplicate Controllers:
@@ -51,9 +53,6 @@ public class GameController : MonoBehaviour
         _cinemachineVirtualCamera.m_Follow = _camLookAtMe;
         _cinemachineVirtualCamera.m_LookAt = _camLookAtMe;
         
-        DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/Crosshair")));
-        DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/ScoreUtil")));
-        DontDestroyOnLoad(Instantiate(Resources.Load<GameObject>("Prefabs/PickupCanvas")));
         Light currentLight = FindObjectOfType<Light>();
         if (!currentLight && forceSun)
             DontDestroyOnLoad(
@@ -65,8 +64,10 @@ public class GameController : MonoBehaviour
     {
         _doorControllers = FindObjectsOfType<DoorController>().ToList();
         _scoreController = FindObjectOfType<ScoreController>();
+        DontDestroyOnLoad(_scoreController);
+        DontDestroyOnLoad(FindObjectOfType<PickupDisplay>());
         levelStartTime = Time.time; // todo maybe move statement to when player moves out of startRoom
-        _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.03f);
+        _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.04f);
     }
 
     void Update()
@@ -93,6 +94,25 @@ public class GameController : MonoBehaviour
                 combatMusicPlaying = false;
             }
             
+        }
+
+        if (Input.GetKey(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Plus))
+        {
+            _amplifyStep = AudioUtility.masterAudioAmplify < 1 ? 0.1f : 0.1f;
+            AudioUtility.masterAudioAmplify += _amplifyStep;
+            AudioUtility.masterAudioAmplify = (float)Math.Round(AudioUtility.masterAudioAmplify, 2);
+            if (AudioUtility.masterAudioAmplify >= 40.1f) AudioUtility.masterAudioAmplify = 40f;
+
+            _audioSource.volume = 0.04f * AudioUtility.masterAudioAmplify;
+        }
+
+        if (Input.GetKey(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus))
+        {
+            _amplifyStep = AudioUtility.masterAudioAmplify < 1 ? 0.1f : 0.1f; 
+            AudioUtility.masterAudioAmplify -= _amplifyStep;
+            AudioUtility.masterAudioAmplify = (float)Math.Round(AudioUtility.masterAudioAmplify, 2);
+            if (AudioUtility.masterAudioAmplify <= -0.01f) AudioUtility.masterAudioAmplify = 0.0f;
+            _audioSource.volume = 0.04f * AudioUtility.masterAudioAmplify;
         }
     }
 
