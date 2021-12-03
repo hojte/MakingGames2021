@@ -13,6 +13,7 @@ public class AIController : MonoBehaviour
 
     public Transform TargetObject;
     public int moveSpeed = 8;
+    [SerializeField]
     int maxDist = 30;
     int minDist = 5;
     public int aggroRange = 45;
@@ -25,7 +26,7 @@ public class AIController : MonoBehaviour
     bool firstHalfOfPatrol = true;
     Vector3 spawnPoint;
     public bool standingStillEnemy = true;
-    
+
     public UnityAction onDetectedTarget;
     public UnityAction onLostTarget;
 
@@ -59,7 +60,7 @@ public class AIController : MonoBehaviour
         agent.speed = moveSpeed;
         if (TargetObject == null)
         {
-            TargetObject = FindObjectOfType<PlayerController>()?.transform; 
+            TargetObject = FindObjectOfType<PlayerController>()?.transform;
         }
 
         if (agent.enabled)
