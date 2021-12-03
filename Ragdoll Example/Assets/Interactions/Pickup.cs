@@ -85,8 +85,13 @@ namespace Interactions
             _scoreController = FindObjectOfType<ScoreController>();
             _playerMovement = FindObjectOfType<BetterMovement>();
             _gameController = FindObjectOfType<GameController>();
-            
-            
+
+            if (_gameController.pickedUpPickups.Contains(this))
+            {
+                print("didn't respawn "+transform.name);
+                Destroy(gameObject);
+                return;
+            }
             
             pickupRigidbody.isKinematic = true;
             m_Collider.isTrigger = true;
@@ -126,6 +131,7 @@ namespace Interactions
 
         public void OnPickup()
         {
+            _gameController.pickedUpPickups.Add(this);
             if (pickupSFX)
             {
                 Destroy(AudioUtility.CreateSFX(pickupSFX, transform, 0f, volume: 0.08f), pickupSFX.length);
@@ -276,6 +282,15 @@ namespace Interactions
         {
             buttonController = bController;
             buttonController.pickup = this;
+        }
+
+        public override bool Equals(object other)
+        {
+            Pickup rhs = other as Pickup;
+            bool isEqX = !(rhs is null) && Math.Abs(transform.position.x - rhs.transform.position.x) < 0.1f;
+            bool isEqY = Math.Abs(transform.position.z - rhs.transform.position.z) < 0.1f;
+            // bool isEqType = pickupType == rhs.pickupType;
+            return isEqX && isEqY;
         }
     }
 }

@@ -13,7 +13,7 @@ public class CatapultScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("entry");
+        // Debug.Log("entry");
         if (other.gameObject.GetComponent<PlayerController>())
         {
             Debug.Log(forceDirection);
@@ -23,7 +23,7 @@ public class CatapultScript : MonoBehaviour
         
         if (other.gameObject.GetComponent<Throwable>())
         {
-            Debug.Log("entry2" + forceDirection);
+            // Debug.Log("entry2" + forceDirection);
             other.gameObject.GetComponent<Rigidbody>().AddForce(3000*forceDirection, ForceMode.Impulse);
         }
 
