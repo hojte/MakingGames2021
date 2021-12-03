@@ -237,8 +237,8 @@ namespace Interactions
                     break;
                 case PickupType.Airbag:
                     var forceDirection = _playerMovement.transform.forward*0.5f + _playerMovement.transform.up*1.45f;
-                    _playerMovement.gameObject.GetComponent<BetterMovement>().flyRagdoll(_playerMovement.gameObject, 3); // too bad return from ragdoll
-                    _playerMovement.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, 150);
+                    _playerMovement.gameObject.GetComponent<BetterMovement>().flyRagdoll(_playerMovement.gameObject, 5); // too bad return from ragdoll
+                    _playerMovement.gameObject.GetComponent<ForceSimulator>().AddImpact(forceDirection, 180);
                     break;
                 case PickupType.Random:
                     var values = Enum.GetValues(typeof(PickupType));

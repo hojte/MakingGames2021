@@ -186,15 +186,15 @@ public class BetterMovement : MonoBehaviour
                 ignoreTriggers = false;
         }
 
-        // if (isFlying)
-        // {
-        //     if (Time.time > timeLastBounce + timeToSpendFlying)
-        //     {
-        //         controller.enabled = false;
-        //         returnFromStun();
-        //         isFlying = false;
-        //     }
-        // }
+        if (isFlying)
+        {
+            if (Time.time > timeLastBounce + timeToSpendFlying)
+            {
+                controller.enabled = false;
+                returnFromStun();
+                isFlying = false;
+            }
+        }
     }
     
     private void OnGUI()
@@ -285,16 +285,16 @@ public class BetterMovement : MonoBehaviour
 
     public void flyRagdoll(GameObject player, float time)
     {
-        // timeToSpendFlying = time;
+        timeToSpendFlying = time;
         if (isInvulnerable) return;
-        // timeLastBounce = Time.time;
+        timeLastBounce = Time.time;
         isFlying = true;
         player.GetComponent<CapsuleCollider>().enabled = false;
-        player.GetComponent<CharacterController>().enabled = false;
-        anim.GetComponent<Animator>().enabled = false;
+        //player.GetComponent<CharacterController>().enabled = false;
+        anim.enabled = false;
     }
 
-     public void returnFromStun() // todo fix multi players
+    public void returnFromStun()
     {
         var clone = Instantiate(
             Resources.Load<GameObject>("Prefabs/Player"),spawnPosition.transform.position, transform.rotation);

@@ -27,6 +27,7 @@ public class ReturnFromFlying : MonoBehaviour
                 if (++_smoothCounter > 20)
                 {
                     _betterMovement.returnFromStun();
+                    _betterMovement.isFlying = false;
                 }
             } 
 
