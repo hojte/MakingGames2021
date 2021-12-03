@@ -24,6 +24,7 @@ public class AIController : MonoBehaviour
     public bool patrollingEnemy = false;
     bool firstHalfOfPatrol = true;
     Vector3 spawnPoint;
+    public bool standingStillEnemy = true;
     
     public UnityAction onDetectedTarget;
     public UnityAction onLostTarget;
@@ -42,7 +43,14 @@ public class AIController : MonoBehaviour
             //patrollingWayPoint = spawnPoint + new Vector3(20, 0, 0);
         }
         else
-            Wander();
+        {
+            if (standingStillEnemy)
+            {
+
+            }
+            else
+                Wander();
+        }
 
     }
 
@@ -92,15 +100,22 @@ public class AIController : MonoBehaviour
                 }
                 else
                 {
-                    onLostTarget?.Invoke();
-                    //transform.position += transform.forward * moveSpeed * Time.deltaTime;
-                    patrollingWayPoint.y = transform.position.y;
-
-                    if (Vector3.Distance(transform.position, patrollingWayPoint) <= 3)
+                    if (!standingStillEnemy)
                     {
-                        // when the distance between us and the target is less than 3
-                        // create a new way point target
-                        Wander();
+                        onLostTarget?.Invoke();
+                        //transform.position += transform.forward * moveSpeed * Time.deltaTime;
+                        patrollingWayPoint.y = transform.position.y;
+
+                        if (Vector3.Distance(transform.position, patrollingWayPoint) <= 3)
+                        {
+                            // when the distance between us and the target is less than 3
+                            // create a new way point target
+                            Wander();
+                        }
+                    }
+                    else
+                    {
+
                     }
                 }
             }
