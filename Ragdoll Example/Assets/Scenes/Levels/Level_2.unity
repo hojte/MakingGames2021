@@ -2260,7 +2260,7 @@ PrefabInstance:
     - target: {fileID: 5134194698158365179, guid: 0e817b0fdbd072f4393d0f9ffd451fbc,
         type: 3}
       propertyPath: sceneToLoad
-      value: MandelLevel2
+      value: Level_2
       objectReference: {fileID: 0}
     - target: {fileID: 5134194698158365179, guid: 0e817b0fdbd072f4393d0f9ffd451fbc,
         type: 3}
@@ -2284,8 +2284,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5134194698158365181, guid: 0e817b0fdbd072f4393d0f9ffd451fbc,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 5134194698158365181, guid: 0e817b0fdbd072f4393d0f9ffd451fbc,
+        type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.71
+      value: 7.73
       objectReference: {fileID: 0}
     - target: {fileID: 5134194698343452005, guid: 0e817b0fdbd072f4393d0f9ffd451fbc,
         type: 3}
@@ -27038,7 +27043,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-7507956
+  m_Name: pb_Mesh-7949358
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
