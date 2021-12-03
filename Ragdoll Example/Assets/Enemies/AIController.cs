@@ -39,7 +39,7 @@ public class AIController : MonoBehaviour
         if (patrollingEnemy)
         {
             spawnPoint = transform.position;
-            patrollingWayPoint = spawnPoint + new Vector3(20, 0, 0);
+            //patrollingWayPoint = spawnPoint + new Vector3(20, 0, 0);
         }
         else
             Wander();
