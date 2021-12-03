@@ -6,7 +6,6 @@ using Interactions;
 using PlayerScripts;
 using Sound;
 using UI;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
@@ -302,7 +301,7 @@ public class BetterMovement : MonoBehaviour
         vCam.GetComponent<CinemachineVirtualCamera>().LookAt = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         vCam.GetComponent<CinemachineVirtualCamera>().Follow = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         clone.GetComponent<BetterMovement>().cam = cam;
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
     void die(GameObject player)
     {
