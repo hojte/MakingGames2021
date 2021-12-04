@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 447563774217782817}
   - component: {fileID: 8662442351102081932}
   m_Layer: 0
-  m_Name: Carton_03
+  m_Name: Spawned_Carton_Light
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,5 +127,6 @@ MonoBehaviour:
   speedPenalty: 1
   canTiltShelves: 0
   breaksOnHit: 0
+  hasBeenPickedUp: 1
   onDestructionParticles: {fileID: 0}
-  onDestructionSound: {fileID: 0}
+  onDestructionSoundClips: []
