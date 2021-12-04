@@ -63,6 +63,12 @@ public class AIController : MonoBehaviour
             TargetObject = FindObjectOfType<PlayerController>()?.transform;
         }
 
+        if (TargetObject == null)
+        {
+            print("AI: no player to attack...!!");
+            return;
+        }
+
         if (agent.enabled)
         {
             if ((Vector3.Distance(transform.position, TargetObject.position) < aggroRange) || inCombat)

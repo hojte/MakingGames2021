@@ -12,12 +12,13 @@ public class PressurePlate : MonoBehaviour
     void Start()
     {
         GetComponent<Renderer>().material.color = Color.gray;
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = FindObjectOfType<PlayerController>().transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerTransform == null) playerTransform = FindObjectOfType<PlayerController>().transform;
         if (playerTransform.hasChanged)
             if (Vector3.Distance(playerTransform.position, transform.position) < (transform.localScale.magnitude-4.0f))
             {

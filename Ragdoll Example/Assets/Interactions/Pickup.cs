@@ -86,12 +86,12 @@ namespace Interactions
             _playerMovement = FindObjectOfType<BetterMovement>();
             _gameController = FindObjectOfType<GameController>();
 
-            if (_gameController.pickedUpPickups.Contains(this))
-            {
-                print("didn't respawn "+transform.name);
-                Destroy(gameObject);
-                return;
-            }
+            // if (_gameController.pickedUpPickups.Contains(this)) // no respawn impl
+            // {
+            //     print("didn't respawn "+transform.name);
+            //     Destroy(gameObject);
+            //     return;
+            // }
             
             pickupRigidbody.isKinematic = true;
             m_Collider.isTrigger = true;
@@ -131,10 +131,10 @@ namespace Interactions
 
         public void OnPickup()
         {
-            var Go = new GameObject().AddComponent<Pickup>();
+            /*var Go = new GameObject().AddComponent<Pickup>(); // no respawn impl
             Go.transform.position = transform.position;
             Go.RemoveVisuals();
-            _gameController.pickedUpPickups.Add(Go);
+            _gameController.pickedUpPickups.Add(Go);*/
             if (pickupSFX)
             {
                 Destroy(AudioUtility.CreateSFX(pickupSFX, transform, 0f, volume: 0.08f), pickupSFX.length);
@@ -287,13 +287,14 @@ namespace Interactions
             buttonController.pickup = this;
         }
 
-        public override bool Equals(object other)
-        {
-            Pickup rhs = other as Pickup;
-            bool isEqX = !(rhs is null) && Math.Abs(transform.position.x - rhs.transform.position.x) < 0.1f;
-            bool isEqY = Math.Abs(transform.position.z - rhs.transform.position.z) < 0.1f;
-            // bool isEqType = pickupType == rhs.pickupType;
-            return isEqX && isEqY;
-        }
+        // public override bool Equals(object other)
+        // {
+        //     Pickup rhs = other as Pickup;
+        //     if (other == null) return this == null;
+        //     bool isEqX = !(rhs is null) && Math.Abs(transform.position.x - rhs.transform.position.x) < 0.1f;
+        //     bool isEqY = Math.Abs(transform.position.z - rhs.transform.position.z) < 0.1f;
+        //     // bool isEqType = pickupType == rhs.pickupType;
+        //     return isEqX && isEqY;
+        // }
     }
 }
