@@ -1654,7 +1654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020908734, guid: 131f2b79dfeec1042a6fd49f4ffd5f79, type: 3}
       propertyPath: maxDist
-      value: 35
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1020908734, guid: 131f2b79dfeec1042a6fd49f4ffd5f79, type: 3}
       propertyPath: aggroRange
@@ -1814,6 +1814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745925612690652729, guid: 131f2b79dfeec1042a6fd49f4ffd5f79,
+        type: 3}
+      propertyPath: projectileSpeed
+      value: 3500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 131f2b79dfeec1042a6fd49f4ffd5f79, type: 3}
