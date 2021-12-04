@@ -235,8 +235,19 @@ public class BetterMovement : MonoBehaviour
 
         if (hit.gameObject.tag == "RobotArmHead")
         {
-            stun(this.gameObject);
+            die(gameObject);
         }
+        if (hit.gameObject.tag == "Conveyorbelt")
+        {
+            Vector3 forward = hit.gameObject.transform.TransformDirection(Vector3.left);
+            playerVelocity = forward*5;
+        }
+        else
+        {
+            playerVelocity = Vector3.zero;
+        }
+
+        
 
 
 
