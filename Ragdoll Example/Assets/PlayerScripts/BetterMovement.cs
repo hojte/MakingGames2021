@@ -61,6 +61,8 @@ public class BetterMovement : MonoBehaviour
     float timeLastBounce = 0;
     public float timeToSpendFlying = 6.0f;
 
+    private bool onBelt = false; 
+
     private void Start()
     {
         initialHeight = controller.height;
@@ -122,7 +124,7 @@ public class BetterMovement : MonoBehaviour
 
                 if (slideTimerTrigger < 0.0f)
                 {
-                    if (isCrouching && groundedPlayer)
+                    if (isCrouching && groundedPlayer && !onBelt)
                     {
                         if (!GetComponent<AudioSource>())
                         {
@@ -133,9 +135,7 @@ public class BetterMovement : MonoBehaviour
                         isSliding = true;
                         lastMoveDir = moveDir;
                         controller.height = 0.3f;
-                        
-                       
-                       
+                 
                     }
                 }
             }
@@ -157,10 +157,11 @@ public class BetterMovement : MonoBehaviour
             }
 
             // Changes the height position of the player..
-            if (Input.GetButtonDown("Jump") && groundedPlayer)
+            if (Input.GetButtonDown("Jump") && (groundedPlayer || onBelt))
             {
                 anim.SetBool("isJumping", true);
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                onBelt = false;
             }
 
             //Gravity
@@ -237,13 +238,18 @@ public class BetterMovement : MonoBehaviour
         {
             die(gameObject);
         }
+
+        
         if (hit.gameObject.tag == "Conveyorbelt")
         {
+            onBelt = true; 
             Vector3 forward = hit.gameObject.transform.TransformDirection(Vector3.left);
             playerVelocity = forward*5;
         }
         else
         {
+            onBelt = false; 
+            //groundedPlayer = false;
             playerVelocity = Vector3.zero;
         }
 
