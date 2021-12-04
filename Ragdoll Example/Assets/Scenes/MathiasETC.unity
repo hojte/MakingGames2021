@@ -218,7 +218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62655130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0394733, y: 2.1926622, z: -48.467987}
+  m_LocalPosition: {x: -2.8227944, y: 2.1926637, z: -48.468}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -315,7 +315,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-34788
+  m_Name: pb_Mesh-14027554
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -563,7 +563,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104684487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7495699, y: 2.9391236, z: -54.6}
+  m_LocalPosition: {x: -0.2938733, y: 2.9391236, z: -54.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 792592248}
@@ -743,7 +743,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9993388
+  m_Name: pb_Mesh-14026004
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3735,7 +3735,7 @@ PrefabInstance:
     - target: {fileID: 5134194698158365179, guid: 3867d5d25d072204f81cedcff412b963,
         type: 3}
       propertyPath: sceneToLoad
-      value: level2WithWalls
+      value: Level_2
       objectReference: {fileID: 0}
     - target: {fileID: 5134194698158365181, guid: 3867d5d25d072204f81cedcff412b963,
         type: 3}

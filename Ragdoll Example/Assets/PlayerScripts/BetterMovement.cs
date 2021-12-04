@@ -295,10 +295,12 @@ public class BetterMovement : MonoBehaviour
         anim.enabled = false;
     }
 
-    public void returnFromStun()
+    public void returnFromStun(Vector3 onPosition = new Vector3())
     {
+        if (onPosition == new Vector3())
+            onPosition = spawnPosition.transform.position;
         var clone = Instantiate(
-            Resources.Load<GameObject>("Prefabs/Player"),spawnPosition.transform.position, transform.rotation);
+            Resources.Load<GameObject>("Prefabs/Player"),onPosition, transform.rotation);
         vCam.GetComponent<CinemachineVirtualCamera>().LookAt = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         vCam.GetComponent<CinemachineVirtualCamera>().Follow = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         clone.GetComponent<BetterMovement>().cam = cam;
@@ -320,7 +322,10 @@ public class BetterMovement : MonoBehaviour
         anim.GetComponent<Animator>().enabled = false;
         ((Func<Task>)(async () =>{ // Async call to restore prev conditions
             await Task.Delay(3000); // the time the player is lying ragdolled
-            FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name);
+            var pos = GameObject.Find("SpawnLocation").transform.position;
+            returnFromStun(pos);
+            
+            // FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name); // dont reload is bugs alot of shit
         }))();
     }
 }

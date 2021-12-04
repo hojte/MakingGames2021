@@ -3322,7 +3322,7 @@ PrefabInstance:
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 135.92952
+      value: 139.56569
       objectReference: {fileID: 0}
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
@@ -16767,7 +16767,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408459623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 135.54688, y: 7.292657, z: -174.62791}
+  m_LocalPosition: {x: 137.2758, y: 7.292665, z: -174.62798}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -18995,6 +18995,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 220253349}
+    - target: {fileID: 5134194698158365179, guid: 3867d5d25d072204f81cedcff412b963,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: bossLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 5134194698343452005, guid: 3867d5d25d072204f81cedcff412b963,
         type: 3}
       propertyPath: m_Name

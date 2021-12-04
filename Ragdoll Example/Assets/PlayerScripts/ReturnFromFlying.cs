@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ReturnFromFlying : MonoBehaviour
 {
@@ -20,10 +19,10 @@ public class ReturnFromFlying : MonoBehaviour
     {
         if (_betterMovement.isFlying)
         {
-            print("head collision: " + other.transform.name);
+            // print("head collision: " + other.transform.name);
             if (!other.transform.GetComponent<CharacterJoint>()) // body parts
             {
-                print("correct collision: "+other.transform.name);
+                // print("correct collision: "+other.transform.name);
                 if (++_smoothCounter > 20)
                 {
                     _betterMovement.returnFromStun();
