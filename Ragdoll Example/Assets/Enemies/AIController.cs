@@ -13,7 +13,6 @@ public class AIController : MonoBehaviour
 
     public Transform TargetObject;
     public int moveSpeed = 8;
-    [SerializeField]
     int maxDist = 30;
     int minDist = 5;
     public int aggroRange = 45;
@@ -25,8 +24,7 @@ public class AIController : MonoBehaviour
     public bool patrollingEnemy = false;
     bool firstHalfOfPatrol = true;
     Vector3 spawnPoint;
-    public bool standingStillEnemy = true;
-
+    
     public UnityAction onDetectedTarget;
     public UnityAction onLostTarget;
 
@@ -35,23 +33,16 @@ public class AIController : MonoBehaviour
     {
         if (!TargetObject)
         {
-            TargetObject = FindObjectOfType<PlayerController>()?.transform;
+            TargetObject = FindObjectOfType<PlayerController>().transform;
         }
         agent = GetComponent<NavMeshAgent>();
         if (patrollingEnemy)
         {
             spawnPoint = transform.position;
-            //patrollingWayPoint = spawnPoint + new Vector3(20, 0, 0);
+            patrollingWayPoint = spawnPoint + new Vector3(20, 0, 0);
         }
         else
-        {
-            if (standingStillEnemy)
-            {
-
-            }
-            else
-                Wander();
-        }
+            Wander();
 
     }
 
@@ -60,13 +51,7 @@ public class AIController : MonoBehaviour
         agent.speed = moveSpeed;
         if (TargetObject == null)
         {
-            TargetObject = FindObjectOfType<PlayerController>()?.transform;
-        }
-
-        if (TargetObject == null)
-        {
-            print("AI: no player to attack...!!");
-            return;
+            TargetObject = FindObjectOfType<PlayerController>().transform; 
         }
 
         if (agent.enabled)
@@ -107,22 +92,15 @@ public class AIController : MonoBehaviour
                 }
                 else
                 {
-                    if (!standingStillEnemy)
-                    {
-                        onLostTarget?.Invoke();
-                        //transform.position += transform.forward * moveSpeed * Time.deltaTime;
-                        patrollingWayPoint.y = transform.position.y;
+                    onLostTarget?.Invoke();
+                    //transform.position += transform.forward * moveSpeed * Time.deltaTime;
+                    patrollingWayPoint.y = transform.position.y;
 
-                        if (Vector3.Distance(transform.position, patrollingWayPoint) <= 3)
-                        {
-                            // when the distance between us and the target is less than 3
-                            // create a new way point target
-                            Wander();
-                        }
-                    }
-                    else
+                    if (Vector3.Distance(transform.position, patrollingWayPoint) <= 3)
                     {
-
+                        // when the distance between us and the target is less than 3
+                        // create a new way point target
+                        Wander();
                     }
                 }
             }

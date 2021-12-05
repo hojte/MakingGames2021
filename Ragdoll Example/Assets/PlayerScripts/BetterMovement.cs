@@ -6,6 +6,7 @@ using Interactions;
 using PlayerScripts;
 using Sound;
 using UI;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
@@ -56,13 +57,10 @@ public class BetterMovement : MonoBehaviour
 
     public GameObject spawnPosition; 
     public bool isInvulnerable = false;
-    public bool isFlying = false;
+    bool isFlying = false;
     bool ignoreTriggers = true;
     float timeLastBounce = 0;
     public float timeToSpendFlying = 6.0f;
-
-    private bool onBelt = false;
-    private bool rotate = false;
 
     private void Start()
     {
@@ -125,7 +123,7 @@ public class BetterMovement : MonoBehaviour
 
                 if (slideTimerTrigger < 0.0f)
                 {
-                    if (isCrouching && groundedPlayer && !onBelt)
+                    if (isCrouching && groundedPlayer)
                     {
                         if (!GetComponent<AudioSource>())
                         {
@@ -136,12 +134,9 @@ public class BetterMovement : MonoBehaviour
                         isSliding = true;
                         lastMoveDir = moveDir;
                         controller.height = 0.3f;
-                        gameObject.transform.eulerAngles = new Vector3(
-                            -85,
-                            gameObject.transform.eulerAngles.y,
-                            gameObject.transform.eulerAngles.z
-                        );
-                 
+                        
+                       
+                       
                     }
                 }
             }
@@ -149,17 +144,12 @@ public class BetterMovement : MonoBehaviour
             //Sliding
             if (isSliding && groundedPlayer)
             {
-                gameObject.transform.eulerAngles = new Vector3(
-                    -85,
-                    gameObject.transform.eulerAngles.y,
-                    gameObject.transform.eulerAngles.z
-                );
-                
+                if(transform.rotation.x> -70)
+                    transform.Rotate(Vector3.right*-85);
                 slideTimer += Time.deltaTime;
                 controller.Move(lastMoveDir.normalized * slideSpeed * Time.deltaTime);
                 if (slideTimer > slideTimerMax)
                 {
-                    //rotate = false;
                     controller.height = initialHeight;
                     slideTimer = 0;
                     slideTimerTrigger = slideCooldown;
@@ -168,11 +158,10 @@ public class BetterMovement : MonoBehaviour
             }
 
             // Changes the height position of the player..
-            if (Input.GetButtonDown("Jump") && (groundedPlayer || onBelt))
+            if (Input.GetButtonDown("Jump") && groundedPlayer)
             {
                 anim.SetBool("isJumping", true);
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-                onBelt = false;
             }
 
             //Gravity
@@ -247,24 +236,8 @@ public class BetterMovement : MonoBehaviour
 
         if (hit.gameObject.tag == "RobotArmHead")
         {
-            die(gameObject);
+            stun(this.gameObject);
         }
-
-        
-        if (hit.gameObject.tag == "Conveyorbelt")
-        {
-            onBelt = true; 
-            Vector3 forward = hit.gameObject.transform.TransformDirection(Vector3.left);
-            playerVelocity = forward*5;
-        }
-        else
-        {
-            onBelt = false; 
-            //groundedPlayer = false;
-            playerVelocity = Vector3.zero;
-        }
-
-        
 
 
 
@@ -311,28 +284,25 @@ public class BetterMovement : MonoBehaviour
         anim.GetComponent<Animator>().enabled = false;
     }
 
-    public void flyRagdoll(GameObject player, float timeCap)
+    public void flyRagdoll(GameObject player, float time)
     {
-        // FindObjectOfType<CinemachineVirtualCamera>().Follow = spawnPosition.transform; // follow ragdoll. it's bad...
-        timeToSpendFlying = timeCap;
+        timeToSpendFlying = time;
         if (isInvulnerable) return;
         timeLastBounce = Time.time;
         isFlying = true;
         player.GetComponent<CapsuleCollider>().enabled = false;
         //player.GetComponent<CharacterController>().enabled = false;
-        anim.enabled = false;
+        anim.GetComponent<Animator>().enabled = false;
     }
 
-    public void returnFromStun(Vector3 onPosition = new Vector3())
+    void returnFromStun()
     {
-        if (onPosition == new Vector3())
-            onPosition = spawnPosition.transform.position;
         var clone = Instantiate(
-            Resources.Load<GameObject>("Prefabs/Player"),onPosition, transform.rotation);
+            Resources.Load<GameObject>("Prefabs/Player"),spawnPosition.transform.position, transform.rotation);
         vCam.GetComponent<CinemachineVirtualCamera>().LookAt = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         vCam.GetComponent<CinemachineVirtualCamera>().Follow = clone.GetComponent<BetterMovement>().lookAtMePivot.transform;
         clone.GetComponent<BetterMovement>().cam = cam;
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
     void die(GameObject player)
     {
@@ -350,10 +320,7 @@ public class BetterMovement : MonoBehaviour
         anim.GetComponent<Animator>().enabled = false;
         ((Func<Task>)(async () =>{ // Async call to restore prev conditions
             await Task.Delay(3000); // the time the player is lying ragdolled
-            var pos = GameObject.Find("SpawnLocation").transform.position;
-            returnFromStun(pos);
-            
-            // FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name); // dont reload is bugs alot of shit
+            FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name);
         }))();
     }
 }

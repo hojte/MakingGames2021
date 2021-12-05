@@ -40,8 +40,6 @@ public class GameController : MonoBehaviour
     public bool bossCombat;
     private AudioSource _audioSource;
     private float _amplifyStep = 0.1f;
-
-    public List<Pickup> pickedUpPickups = new List<Pickup>();
     private void Awake()
     {
         // QuickFix for duplicate Controllers:
@@ -74,8 +72,6 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F4)) // button to reset level
-            LoadScene(SceneManager.GetActiveScene().name);
         if (enemiesInCombat > 0)
         {
             if (!combatMusicPlaying)
