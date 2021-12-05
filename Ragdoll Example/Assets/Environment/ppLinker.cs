@@ -5,13 +5,18 @@ using Interactions;
 
 public class ppLinker : MonoBehaviour
 {
+
+    [HideInInspector]
+    public int numSpawned = 0;
+    public int maxToSpawn = 3;
+
     //What to do when the linked PP is being pressured
     public void startOfInteraction()
     {
         // Example of use:
-        if (gameObject.GetComponent<DoorController>())
+        if (gameObject.GetComponent<TowerSpawnerController>() && numSpawned <= maxToSpawn - 1)
         {
-            gameObject.GetComponent<DoorController>().SetClosed(false);
+            gameObject.GetComponent<TowerSpawnerController>().startSpawning = true;
         }
     }
 
@@ -19,9 +24,9 @@ public class ppLinker : MonoBehaviour
     public void endOfInteraction()
     {
         // Example of use:
-        if (gameObject.GetComponent<DoorController>())
+        if (gameObject.GetComponent<TowerSpawnerController>())
         {
-            gameObject.GetComponent<DoorController>().SetClosed(true);
+            gameObject.GetComponent<TowerSpawnerController>().startSpawning = false;
         }
     }
 }

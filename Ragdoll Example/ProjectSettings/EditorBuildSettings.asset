@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Levels/level1WithWalls.unity
+    path: Assets/Scenes/Levels/old level1/level1WithWalls.unity
     guid: f6015d2d1d4fbae43b958da358bb09bf
   - enabled: 1
     path: Assets/Scenes/MathiasETC.unity
     guid: 33c9788cee0b8ba45b0a9ad59fb75c3b
   - enabled: 1
+    path: Assets/Scenes/Levels/Level_2.unity
+    guid: fa9cca6c8e9c8e84f97e0dd56717adf8
+  - enabled: 1
     path: Assets/Scenes/Levels/level2WithWalls.unity
     guid: 26dfee1b2bee47f43bfc00e4ebb2d04a
+  - enabled: 1
+    path: Assets/Scenes/Levels/bossLevel.unity
+    guid: 4e0738c3ca759044d87a9d2b94054202
   m_configObjects: {}
