@@ -30,6 +30,8 @@ public class AIController : MonoBehaviour
     public UnityAction onDetectedTarget;
     public UnityAction onLostTarget;
 
+    public ParticleSystem onDetectVFX;
+
 
     void Start()
     {
@@ -75,6 +77,7 @@ public class AIController : MonoBehaviour
             {
                 if (!inCombat)
                 {
+                    if(!onDetectVFX.isPlaying) onDetectVFX.Play();
                     onDetectedTarget?.Invoke();
                     inCombat = true;
                     FindObjectOfType<GameController>().newEnemyInCombat();
@@ -107,9 +110,10 @@ public class AIController : MonoBehaviour
                 }
                 else
                 {
+                    if (onDetectVFX.isPlaying) onDetectVFX.Stop();
+                    onLostTarget?.Invoke();
                     if (!standingStillEnemy)
                     {
-                        onLostTarget?.Invoke();
                         //transform.position += transform.forward * moveSpeed * Time.deltaTime;
                         patrollingWayPoint.y = transform.position.y;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sound;
+using UnityEditor;
 
 namespace Interactions
 {
@@ -20,9 +21,28 @@ namespace Interactions
         public List<AudioClip> onDestructionSoundClips;
         bool thrownOffShelf = false;
 
+        public bool isLookedAt;
+        private Outline _outline;
+
         private void Start()
         {
             rigidbody = GetComponent<Rigidbody>();
+            _outline = gameObject.AddComponent<Outline>();
+            _outline.OutlineMode = Outline.Mode.OutlineVisible;
+            _outline.OutlineColor = Color.blue;
+            _outline.enabled = false;
+        }
+
+        private void OnMouseOver()
+        {
+            isLookedAt = true;
+            _outline.enabled = true;
+        }
+
+        private void OnMouseExit()
+        {
+            isLookedAt = false;
+            _outline.enabled = false;
         }
 
         private void Update()
@@ -71,7 +91,6 @@ namespace Interactions
                 timeOfHit = Time.time;
             }
         }
-
 
         private void OnCollisionExit(Collision collision)
         {
