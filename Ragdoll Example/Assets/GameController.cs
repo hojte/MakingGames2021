@@ -41,7 +41,9 @@ public class GameController : MonoBehaviour
     private AudioSource _audioSource;
     private float _amplifyStep = 0.1f;
 
-    public List<Pickup> pickedUpPickups = new List<Pickup>();
+    // public List<Pickup> pickedUpPickups = new List<Pickup>();
+    public Dictionary<string, int> levelToScore = new Dictionary<string, int>();
+
     private void Awake()
     {
         // QuickFix for duplicate Controllers:
@@ -75,7 +77,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F4)) // button to reset level
-            LoadScene(SceneManager.GetActiveScene().name, false);
+            LoadScene("LevelSelection", true);
         if (enemiesInCombat > 0)
         {
             if (!combatMusicPlaying)
@@ -122,6 +124,13 @@ public class GameController : MonoBehaviour
 
     public void LoadScene(string sceneName, bool isNewLevel)
     {
+        if (isNewLevel)
+        {
+            levelToScore.TryGetValue(SceneManager.GetActiveScene().name, out var highScore);
+            if (highScore < _scoreController.playerScore) // is new high score?
+                levelToScore[SceneManager.GetActiveScene().name] = _scoreController.playerScore;
+        }
+        _scoreController.ResetScore();
         DestroyPickups(isNewLevel);
         ((Func<Task>)(async () =>{
             var loadScene = SceneManager.LoadSceneAsync(sceneName);

@@ -74,5 +74,11 @@ namespace UI
             playerScore -= 2;
             shopBalance -= 2;
         }
+
+        public void ResetScore()
+        {
+            playerScore = 0;
+            // shopBalance = 0;
+        }
     }
 }
