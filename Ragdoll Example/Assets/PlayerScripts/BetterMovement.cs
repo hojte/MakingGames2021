@@ -350,10 +350,9 @@ public class BetterMovement : MonoBehaviour
         anim.GetComponent<Animator>().enabled = false;
         ((Func<Task>)(async () =>{ // Async call to restore prev conditions
             await Task.Delay(3000); // the time the player is lying ragdolled
-            var pos = GameObject.Find("SpawnLocation").transform.position;
-            returnFromStun(pos);
-            
-            // FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name); // dont reload is bugs alot of shit
+            // var pos = GameObject.Find("SpawnLocation").transform.position;
+            // returnFromStun(pos);
+            FindObjectOfType<GameController>().LoadScene(SceneManager.GetActiveScene().name, false);
         }))();
     }
 }

@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F4)) // button to reset level
-            LoadScene(SceneManager.GetActiveScene().name);
+            LoadScene(SceneManager.GetActiveScene().name, false);
         if (enemiesInCombat > 0)
         {
             if (!combatMusicPlaying)
@@ -120,9 +120,9 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName, bool isNewLevel)
     {
-        DestroyActivePickups();
+        DestroyPickups(isNewLevel);
         ((Func<Task>)(async () =>{
             var loadScene = SceneManager.LoadSceneAsync(sceneName);
             while (!loadScene.isDone)
@@ -168,13 +168,13 @@ public class GameController : MonoBehaviour
         return enemiesInCombat;
     }
     
-    private void DestroyActivePickups()
+    private void DestroyPickups(bool onlyActive = true)
     {
         List<Pickup> toRemove = new List<Pickup>();
         var pickupDisplay = FindObjectOfType<PickupDisplay>();
         FindObjectOfType<PickupDisplay>().pickups.ForEach(pickup =>
         {
-            if (pickup.timeOfActivation > 0) {
+            if (pickup.timeOfActivation > 0 || !onlyActive) {
                 toRemove.Add(pickup); // cant alter list while iterating thought it
                 Destroy(pickup.buttonController.gameObject);
                 Destroy(pickup.gameObject);
