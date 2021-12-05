@@ -61,7 +61,8 @@ public class BetterMovement : MonoBehaviour
     float timeLastBounce = 0;
     public float timeToSpendFlying = 6.0f;
 
-    private bool onBelt = false; 
+    private bool onBelt = false;
+    private bool rotate = false;
 
     private void Start()
     {
@@ -135,6 +136,11 @@ public class BetterMovement : MonoBehaviour
                         isSliding = true;
                         lastMoveDir = moveDir;
                         controller.height = 0.3f;
+                        gameObject.transform.eulerAngles = new Vector3(
+                            -85,
+                            gameObject.transform.eulerAngles.y,
+                            gameObject.transform.eulerAngles.z
+                        );
                  
                     }
                 }
@@ -143,12 +149,17 @@ public class BetterMovement : MonoBehaviour
             //Sliding
             if (isSliding && groundedPlayer)
             {
-                if(transform.rotation.x> -70)
-                    transform.Rotate(Vector3.right*-85);
+                gameObject.transform.eulerAngles = new Vector3(
+                    -85,
+                    gameObject.transform.eulerAngles.y,
+                    gameObject.transform.eulerAngles.z
+                );
+                
                 slideTimer += Time.deltaTime;
                 controller.Move(lastMoveDir.normalized * slideSpeed * Time.deltaTime);
                 if (slideTimer > slideTimerMax)
                 {
+                    //rotate = false;
                     controller.height = initialHeight;
                     slideTimer = 0;
                     slideTimerTrigger = slideCooldown;
