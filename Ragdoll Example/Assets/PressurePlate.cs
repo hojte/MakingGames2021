@@ -20,12 +20,12 @@ public class PressurePlate : MonoBehaviour
     {
         if (playerTransform == null) playerTransform = FindObjectOfType<PlayerController>().transform;
         if (playerTransform.hasChanged)
-            if (Vector3.Distance(playerTransform.position, transform.position) < (transform.localScale.magnitude-4.0f))
+            if (Vector3.Distance(playerTransform.position, transform.position) < (transform.localScale.magnitude - 4.0f))
             {
                 linkedGameObject.GetComponent<ppLinker>().startOfInteraction();
                 GetComponent<Renderer>().material.color = Color.green;
             }
-        else
+            else
             {
             }
     }
