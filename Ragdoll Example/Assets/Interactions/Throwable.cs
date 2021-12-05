@@ -12,11 +12,13 @@ namespace Interactions
         public int speedPenalty = 0;
         public bool canTiltShelves = false;
         public bool breaksOnHit = false;
+        [SerializeField]
         bool hasBeenPickedUp = false;
         float timeOfHit = 0f;
         bool hasHit = false;
         public GameObject onDestructionParticles = null;
         public List<AudioClip> onDestructionSoundClips;
+        bool thrownOffShelf = false;
 
         private void Start()
         {
@@ -26,7 +28,7 @@ namespace Interactions
         private void Update()
         {
             if (hasHit)
-                if(Time.time > timeOfHit + 0.1)
+                if (Time.time > timeOfHit + 0.05)
                 {
                     if (onDestructionParticles != null)
                     {
@@ -36,10 +38,10 @@ namespace Interactions
                     }
                     if (onDestructionSoundClips.Count > 0)
                     {
-            var onDestructionSound = onDestructionSoundClips[new System.Random().Next(onDestructionSoundClips.Count)];
-                                Destroy(AudioUtility.CreateSFX(onDestructionSound, transform, 1f), onDestructionSound.length);
+                        var onDestructionSound = onDestructionSoundClips[new System.Random().Next(onDestructionSoundClips.Count)];
+                        Destroy(AudioUtility.CreateSFX(onDestructionSound, transform, 1f), onDestructionSound.length);
                     }
-                    
+
                 }
 
         }
@@ -63,8 +65,21 @@ namespace Interactions
                 hasHit = true;
                 timeOfHit = Time.time;
             }
+            else if (breaksOnHit && collision.gameObject.CompareTag("Ground") && thrownOffShelf)
+            {
+                hasHit = true;
+                timeOfHit = Time.time;
+            }
         }
 
+
+        private void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.GetComponent<BossShelf>())
+            {
+                thrownOffShelf = true;
+            }
+        }
         public void setHasBeenPickedUp(bool status)
         {
             hasBeenPickedUp = status;
