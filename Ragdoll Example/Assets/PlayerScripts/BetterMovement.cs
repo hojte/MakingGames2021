@@ -125,7 +125,7 @@ public class BetterMovement : MonoBehaviour
 
                 if (slideTimerTrigger < 0.0f)
                 {
-                    if (isCrouching && (groundedPlayer || onBelt))
+                    if (isCrouching && groundedPlayer && !onBelt)
                     {
                         if (!GetComponent<AudioSource>())
                         {
@@ -147,7 +147,7 @@ public class BetterMovement : MonoBehaviour
             }
 
             //Sliding
-            if (isSliding && (groundedPlayer || onBelt))
+            if (isSliding && groundedPlayer)
             {
                 gameObject.transform.eulerAngles = new Vector3(
                     -85,
