@@ -13,6 +13,9 @@ namespace Interactions.Shop
         private TextMeshPro _textMeshDescription;
         public Pickup pickup;
         private int _index = -1;
+        
+        public bool isLookedAt;
+        private Outline _outline;
 
         private void Awake()
         {
@@ -20,7 +23,31 @@ namespace Interactions.Shop
             _scoreController = FindObjectOfType<ScoreController>();
             _textMeshDescription = transform.Find("ItemDescription").GetComponent<TextMeshPro>();
             _textMeshPrice = transform.Find("ItemCost").GetComponent<TextMeshPro>();
+            
+            _outline = gameObject.AddComponent<Outline>();
+            _outline.OutlineMode = Outline.Mode.OutlineAll;
+            _outline.OutlineColor = Color.blue;
+            _outline.enabled = false;
         }
+        private void OnMouseOver()
+        {
+            if (Vector3.Distance(Camera.main.transform.position, transform.position) < 25)
+            {
+                isLookedAt = true; 
+                _outline.enabled = true;
+            }
+            else
+            {
+                isLookedAt = false; 
+                _outline.enabled = false;
+            }
+        }
+        private void OnMouseExit()
+        {
+            isLookedAt = false;
+            _outline.enabled = false;
+        }
+
 
         public void SetShopItem(Pickup setPickup, int price)
         {

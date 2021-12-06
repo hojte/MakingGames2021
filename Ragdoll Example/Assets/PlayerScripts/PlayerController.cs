@@ -122,13 +122,13 @@ namespace PlayerScripts
 
         private void UpdateDoor()
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetButtonDown("Fire2"))
             {
                 var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Physics.Raycast(mouseRay, out var hit,25);
+                Physics.Raycast(mouseRay, out var hit,30);
                 if (!hit.collider)
                 {
-                    print("no hit on door E pressed");
+                    // print("no hit on door pressed");
                     return;
                 }
 

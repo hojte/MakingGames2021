@@ -35,8 +35,17 @@ namespace Interactions
 
         private void OnMouseOver()
         {
-            isLookedAt = true;
-            _outline.enabled = true;
+            if (Vector3.Distance(Camera.main.transform.position, transform.position) < 55)
+            {
+                isLookedAt = true; 
+                _outline.enabled = true;
+            }
+            else
+            {
+                isLookedAt = false; 
+                _outline.enabled = false;
+            }
+            
         }
 
         private void OnMouseExit()
