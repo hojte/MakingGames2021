@@ -16,6 +16,7 @@ public class NextRoomTrigger : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>())
         {
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
             FindObjectOfType<ScoreController>().LevelCompleted(expectedSecondsToCompleteLevel);
             FindObjectOfType<GameController>().LoadScene(sceneToLoad, true);
         }
