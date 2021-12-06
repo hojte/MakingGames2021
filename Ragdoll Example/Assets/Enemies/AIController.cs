@@ -73,7 +73,7 @@ public class AIController : MonoBehaviour
 
         if (agent.enabled)
         {
-            if ((Vector3.Distance(transform.position, TargetObject.position) < aggroRange) || inCombat)
+            if ((Vector3.Distance(transform.position, TargetObject.position) < aggroRange) || inCombat) // todo inCombat fucks aggrorange up
             {
                 if (!inCombat)
                 {
@@ -102,6 +102,8 @@ public class AIController : MonoBehaviour
             }
             else
             {
+                if (onDetectVFX.isPlaying) onDetectVFX.Stop();
+                onLostTarget?.Invoke();
                 if (patrollingEnemy)
                 {
                     patrollingWayPoint.y = transform.position.y;
@@ -130,6 +132,11 @@ public class AIController : MonoBehaviour
                     }
                 }
             }
+        }
+        else
+        {
+            if (onDetectVFX.isPlaying) onDetectVFX.Stop();
+            onLostTarget?.Invoke();
         }
     }
 
