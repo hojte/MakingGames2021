@@ -29,7 +29,7 @@ public class BetterMovement : MonoBehaviour
     public float walkingSpeed = 10.0f;
     public float runSpeed = 15.0f;
     public float jumpHeight = 3.0f;
-    private float gravityValue = -60.81f;
+    private float gravityValue = -90.81f;
 
     private float initialHeight; 
     
