@@ -31,7 +31,7 @@ namespace Interactions.Shop
         }
         private void OnMouseOver()
         {
-            if (Vector3.Distance(Camera.main.transform.position, transform.position) < 25 && pickup.pickupType != PickupType.None)
+            if (Vector3.Distance(Camera.main.transform.position, transform.position) < 40 && pickup.pickupType != PickupType.None)
             {
                 isLookedAt = true; 
                 _outline.enabled = true;
