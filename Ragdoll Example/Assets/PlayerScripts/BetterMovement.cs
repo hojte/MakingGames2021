@@ -29,7 +29,7 @@ public class BetterMovement : MonoBehaviour
     public float walkingSpeed = 10.0f;
     public float runSpeed = 15.0f;
     public float jumpHeight = 3.0f;
-    private float gravityValue = -60.81f;
+    private float gravityValue = -90.81f;
 
     private float initialHeight; 
     
@@ -63,7 +63,8 @@ public class BetterMovement : MonoBehaviour
 
     private bool onBelt = false;
     private bool rotate = false;
-    private bool canMove = false; 
+    private bool canMove = false;
+    private bool onShelf = false; 
 
     private void Start()
     {
@@ -175,7 +176,7 @@ public class BetterMovement : MonoBehaviour
             }
 
             // Changes the height position of the player..
-            if (Input.GetButtonDown("Jump") && (groundedPlayer || onBelt))
+            if (Input.GetButtonDown("Jump") && (groundedPlayer || onBelt || onShelf))
             {
                 anim.SetBool("isJumping", true);
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
@@ -186,6 +187,7 @@ public class BetterMovement : MonoBehaviour
                 
 
                 onBelt = false;
+                onShelf = false; 
             }
 
             //Gravity
@@ -251,10 +253,17 @@ public class BetterMovement : MonoBehaviour
             }
         }
     }
+
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "SlideShelf") {
+            Debug.Log("Fuuck");
+        }
+    }
     
-    
-    
-    
+
+
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
 
@@ -268,7 +277,7 @@ public class BetterMovement : MonoBehaviour
         {
             onBelt = true; 
             Vector3 forward = hit.gameObject.transform.TransformDirection(Vector3.left);
-            playerVelocity = forward*5;
+            playerVelocity = forward*15;
         }
         else
         {
@@ -283,9 +292,22 @@ public class BetterMovement : MonoBehaviour
 
         }
         else
-            canMove = true; 
+            canMove = true;
+        if (hit.gameObject.tag == "Shelf")
+        {
+            onShelf = true;
 
-        
+        }
+        else
+            onShelf = false;
+
+        if (hit.gameObject.tag == "SlideShelf")
+        {
+            Debug.Log("Fuuck");
+            die(gameObject);
+
+        }
+
 
 
 
