@@ -642,9 +642,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &94442118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3304,9 +3306,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &337639601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3322,17 +3326,17 @@ PrefabInstance:
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 139.56569
+      value: 136.61224
       objectReference: {fileID: 0}
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.039124
+      value: 9.090998
       objectReference: {fileID: 0}
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -182.9
+      value: -191.4
       objectReference: {fileID: 0}
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
@@ -3646,9 +3650,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &365032291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4945,9 +4951,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &465345832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5046,7 +5054,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1558821883}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 77.5, y: 0, z: 0}
 --- !u!108 &466439680
 Light:
@@ -6936,9 +6944,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &602620176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10576,9 +10586,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &954341649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10910,9 +10922,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &973687752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11598,9 +11612,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &1061194784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13701,9 +13717,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1 &1201134016
 GameObject:
   m_ObjectHideFlags: 0
@@ -13804,7 +13822,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-14082768
+  m_Name: pb_Mesh-29712522
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16137,9 +16155,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &1367565341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16737,9 +16757,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1 &1408459623
 GameObject:
   m_ObjectHideFlags: 0
@@ -16767,7 +16789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408459623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 137.2758, y: 7.292665, z: -174.62798}
+  m_LocalPosition: {x: 135.5861, y: 7.292657, z: -174.62791}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -17330,9 +17352,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &1457028658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18071,9 +18095,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1 &1498254138
 GameObject:
   m_ObjectHideFlags: 0
@@ -19837,9 +19863,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &1703053307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20120,9 +20148,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &1728971226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22655,9 +22685,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &2039816806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23477,9 +23509,11 @@ MonoBehaviour:
   speedPenalty: 3
   canTiltShelves: 1
   breaksOnHit: 1
+  hasBeenPickedUp: 0
   onDestructionParticles: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b,
     type: 3}
   onDestructionSoundClips: []
+  isLookedAt: 0
 --- !u!1001 &2083564881
 PrefabInstance:
   m_ObjectHideFlags: 0
