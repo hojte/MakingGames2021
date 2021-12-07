@@ -55,7 +55,16 @@ namespace Interactions
             {
                 if (_gameController == null) _gameController = FindObjectOfType<GameController>();
                 if (isLockedOnCombat && _gameController.getEnemiesInCombat() > 0) doorLocked = true;
-                else doorLocked = false;
+                else
+                {
+                    if (levelName == "bossLevel")
+                    {
+                        doorLocked = false;
+                        transform.parent.position = new Vector3(900, 900, 900);
+                    }
+                    else
+                        doorLocked = false;
+                }
                 SetClosed(doorClosed);
                 if (doorLocked) GetComponent<Renderer>().material.color = Color.red;
                 else GetComponent<Renderer>().material.color = Color.green;
@@ -66,21 +75,27 @@ namespace Interactions
 
         private void OnMouseOver()
         {
-            if (Vector3.Distance(Camera.main.transform.position, transform.position) < 30 && !doorLocked)
+            if (levelName != "bossLevel")
             {
-                isLookedAt = true;
-                _outline.enabled = true;
-            }
-            else
-            {
-                isLookedAt = false;
-                _outline.enabled = false;
+                if (Vector3.Distance(Camera.main.transform.position, transform.position) < 30 && !doorLocked)
+                {
+                    isLookedAt = true;
+                    _outline.enabled = true;
+                }
+                else
+                {
+                    isLookedAt = false;
+                    _outline.enabled = false;
+                }
             }
         }
         private void OnMouseExit()
         {
-            isLookedAt = false;
-            _outline.enabled = false;
+            if (levelName != "bossLevel")
+            {
+                isLookedAt = false;
+                _outline.enabled = false;
+            }
         }
 
         void levelSelectorDoor()

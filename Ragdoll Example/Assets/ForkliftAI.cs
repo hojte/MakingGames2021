@@ -20,8 +20,8 @@ public class ForkliftAI : MonoBehaviour
     bool firstHalfOfPatrol = true;
     Vector3 spawnPoint;
     private Animator anim;
-    float timeOfLastCharge = -25;
-    public float chargeCooldown = 30;
+    float timeOfLastCharge = -15;
+    public float chargeCooldown = 20;
     bool isCharging = false;
     float beginningOfCharge = 0;
     float chargeChannelDuration = 3.3f;
@@ -184,9 +184,6 @@ public class ForkliftAI : MonoBehaviour
                 }
             }
         }
-
-        if (_gameController.enemiesInCombat <= 0)
-            _gameController.newEnemyInCombat();
     }
 
     void Wander()
