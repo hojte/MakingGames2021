@@ -24,6 +24,7 @@ public class BetterMovement : MonoBehaviour
     
     private Animator anim;
     public CharacterController controller;
+    PlayerController playerController;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     public float walkingSpeed = 10.0f;
@@ -77,6 +78,8 @@ public class BetterMovement : MonoBehaviour
 
     void Update()
     {
+        if (!playerController)
+            playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         if (playerAlive && !isFlying && !disableMovement)
         {
@@ -129,7 +132,7 @@ public class BetterMovement : MonoBehaviour
 
                 if (slideTimerTrigger < 0.0f)
                 {
-                    if (isCrouching && (groundedPlayer || onBelt))
+                    if (isCrouching && (groundedPlayer || onBelt) && !playerController.getThrowSlot())
                     {
                         if (!GetComponent<AudioSource>())
                         {

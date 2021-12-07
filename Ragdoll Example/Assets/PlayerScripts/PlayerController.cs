@@ -139,5 +139,10 @@ namespace PlayerScripts
                     doorCast.SetClosed(!doorCast.GetClosed());  
             }
         }
+
+        public Throwable getThrowSlot()
+        {
+            return _throwSlot;
+        }
     }
 }

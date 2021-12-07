@@ -661,7 +661,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d7b1ca769738aec41a2b572103248c6e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 402014a02bb864c5b8daa32a80383c90, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -795,7 +795,7 @@ MonoBehaviour:
   onBossCombat: {fileID: 8300000, guid: e66cc6b93dc414fc98a57a981abe5b56, type: 3}
   muteSound: 0
   debugMode: 0
-  forceSun: 1
+  forceSun: 0
   enemiesInCombat: 0
   levelStartTime: 0
   _cinemachineVirtualCamera: {fileID: 0}
