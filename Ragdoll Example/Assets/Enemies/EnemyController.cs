@@ -157,7 +157,8 @@ public class EnemyController : MonoBehaviour
     public void getCatapulted(Vector3 forceDirection)
     {
         isCatapulted = true;
-        GetComponent<Animator>().enabled = false;
+        GetComponentInChildren<Animator>().enabled = false;
+
         GetComponent<NavMeshAgent>().enabled = false;
         beenCatapulted = true;
         timeOfCatapult = Time.time;

@@ -79,7 +79,7 @@ public class BetterMovement : MonoBehaviour
     void Update()
     {
         if (!playerController)
-            playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+                playerController = FindObjectOfType<PlayerController>();
 
         if (playerAlive && !isFlying && !disableMovement)
         {
