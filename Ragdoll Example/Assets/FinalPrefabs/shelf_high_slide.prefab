@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5273898521815167675}
   - component: {fileID: 8566877237256522821}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4363793786009359584}
   - component: {fileID: 3088100665028439089}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3312573247613845184}
   - component: {fileID: 6393860921882629474}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 86533575564426222}
   - component: {fileID: 4745109597640060545}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5407002373118799701}
   - component: {fileID: 5427237510735622651}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3741406748383876932}
   - component: {fileID: 3091350818122710196}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7908021345751131658}
   - component: {fileID: 7930603133316463000}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3943884637066423154}
   - component: {fileID: 379716101782150292}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 7755901356889468507}
   - component: {fileID: 1630707403736227401}
   - component: {fileID: 5731154635268841498}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: shelf_high_slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,3 +469,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aaa84602d4f01d46842830783ac3894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  massModifier: 2

@@ -17,7 +17,12 @@ public class ConveyorBelt : MonoBehaviour
     {
         for (int i = 0; i < onBelt.Count; i++)
         {
-            onBelt[i].transform.position -= transform.right * Time.deltaTime * speed; 
+            try
+            {
+                onBelt[i].transform.position -= transform.right * Time.deltaTime * speed;
+            }
+            catch (Exception e) { 
+            }
         }
     }
 
