@@ -20,13 +20,15 @@ public class ForkliftController : MonoBehaviour
     public GameObject deathParticles;
     public GameObject fireParticles;
     public GameObject smokeParticles;
+    private GameController _gameController;
 
 
     private float returnFromStunTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<GameController>().bossCombat = true;
+        _gameController = FindObjectOfType<GameController>();
+        _gameController.bossCombat = true;
         for (int i = 0; i < GetComponentsInChildren <ParticleSystem>().Length; i++)
         {
             GetComponentsInChildren<ParticleSystem>()[i].enableEmission = false;
@@ -41,7 +43,10 @@ public class ForkliftController : MonoBehaviour
             var onDamage = onDamageClips[new System.Random().Next(onDamageClips.Count)];
             Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
         }*/
-            
+
+        if (_gameController.enemiesInCombat < 1 && hp > 0)
+            _gameController.newEnemyInCombat();
+
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -117,6 +122,7 @@ public class ForkliftController : MonoBehaviour
             
         }
     }
+
 
     public void futileHit()
     {

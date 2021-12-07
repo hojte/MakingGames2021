@@ -86,6 +86,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("enemies in combat" + enemiesInCombat);
         if(Input.GetKeyDown(KeyCode.F4)) // button to reset level
             LoadScene("LevelSelection", true);
         if (enemiesInCombat > 0)

@@ -58,7 +58,10 @@ namespace Interactions
                 else
                 {
                     if (levelName == "bossLevel")
-                        transform.parent.rotation = Quaternion.Euler(0, 90, 0);
+                    {
+                        doorLocked = false;
+                        transform.parent.position = new Vector3(900, 900, 900);
+                    }
                     else
                         doorLocked = false;
                 }
@@ -72,21 +75,27 @@ namespace Interactions
 
         private void OnMouseOver()
         {
-            if (Vector3.Distance(Camera.main.transform.position, transform.position) < 30 && !doorLocked)
+            if (levelName != "bossLevel")
             {
-                isLookedAt = true;
-                _outline.enabled = true;
-            }
-            else
-            {
-                isLookedAt = false;
-                _outline.enabled = false;
+                if (Vector3.Distance(Camera.main.transform.position, transform.position) < 30 && !doorLocked)
+                {
+                    isLookedAt = true;
+                    _outline.enabled = true;
+                }
+                else
+                {
+                    isLookedAt = false;
+                    _outline.enabled = false;
+                }
             }
         }
         private void OnMouseExit()
         {
-            isLookedAt = false;
-            _outline.enabled = false;
+            if (levelName != "bossLevel")
+            {
+                isLookedAt = false;
+                _outline.enabled = false;
+            }
         }
 
         void levelSelectorDoor()

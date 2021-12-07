@@ -184,9 +184,6 @@ public class ForkliftAI : MonoBehaviour
                 }
             }
         }
-
-        if (_gameController.enemiesInCombat <= 0)
-            _gameController.newEnemyInCombat();
     }
 
     void Wander()
