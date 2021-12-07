@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Interactions
 {
@@ -12,6 +13,8 @@ namespace Interactions
         
         public bool isLookedAt;
         private Outline _outline;
+        private string levelName;
+        public string linkedLevelName;
 
         private void Start()
         {
@@ -22,6 +25,8 @@ namespace Interactions
             _outline.OutlineColor = Color.blue;
             _outline.enabled = false;
             _outline.OutlineWidth = 3f;
+
+            levelName = SceneManager.GetActiveScene().name;
         }
 
         public void SetClosed(bool close)
@@ -41,12 +46,17 @@ namespace Interactions
 
         private void Update()
         {
-            if (_gameController == null) _gameController = FindObjectOfType<GameController>();
-            if (isLockedOnCombat && _gameController.getEnemiesInCombat() > 0) doorLocked = true;
-            else doorLocked = false;
-            SetClosed(doorClosed);
-            if (doorLocked) GetComponent<Renderer>().material.color = Color.red;
-            else GetComponent<Renderer>().material.color = Color.green;
+            if (levelName != "LevelSelection")
+            {
+                if (_gameController == null) _gameController = FindObjectOfType<GameController>();
+                if (isLockedOnCombat && _gameController.getEnemiesInCombat() > 0) doorLocked = true;
+                else doorLocked = false;
+                SetClosed(doorClosed);
+                if (doorLocked) GetComponent<Renderer>().material.color = Color.red;
+                else GetComponent<Renderer>().material.color = Color.green;
+            }
+            else
+                levelSelectorDoor();
         }
 
         private void OnMouseOver()
@@ -67,5 +77,19 @@ namespace Interactions
             isLookedAt = false;
             _outline.enabled = false;
         }
+
+        void levelSelectorDoor()
+        {
+            doorLocked = true;
+
+            if (PlayerPrefs.GetInt(linkedLevelName) == 1)
+            { // Linked level has been completed by the player
+                transform.parent.rotation = transform.parent.parent.rotation * Quaternion.Euler(0, -90, 0);
+            }
+            else
+                transform.parent.rotation = transform.parent.parent.rotation;
+        }
     }
+
+    
 }
