@@ -112,7 +112,7 @@ public class GameController : MonoBehaviour
             
         }
 
-        if (Input.GetKey(KeyCode.KeypadPlus) || Input.GetKey(KeyCode.Plus) || Input.GetKey(KeyCode.Equals))
+        if (Input.GetKey(KeyCode.KeypadPlus) || Input.GetKey(KeyCode.Plus) || Input.GetKey(KeyCode.Equals) || Input.GetKey(KeyCode.F6))
         {
             _amplifyStep = AudioUtility.masterAudioAmplify < 1 ? 0.1f : 0.1f;
             AudioUtility.masterAudioAmplify += _amplifyStep;
@@ -122,7 +122,7 @@ public class GameController : MonoBehaviour
             _audioSource.volume = 0.02f * AudioUtility.masterAudioAmplify;
         }
 
-        if (Input.GetKey(KeyCode.KeypadMinus) || Input.GetKey(KeyCode.Minus))
+        if (Input.GetKey(KeyCode.KeypadMinus) || Input.GetKey(KeyCode.Minus) || Input.GetKey(KeyCode.F5))
         {
             _amplifyStep = AudioUtility.masterAudioAmplify < 1 ? 0.1f : 0.1f; 
             AudioUtility.masterAudioAmplify -= _amplifyStep;
