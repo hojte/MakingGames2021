@@ -76,8 +76,16 @@ public class BallisticTrajectoryRenderer : MonoBehaviour
         clone = Instantiate(throwItem, playPos, rotation);
         //Optimizing performance by disabling collision
         clone.GetComponent<Rigidbody>().detectCollisions = false;
-            
-        clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30);
+        Debug.Log("MASS: " + clone.mass);
+        if (clone.mass < 100)
+        {
+            clone.mass *= 30;
+        }
+        else
+        {
+            clone.mass = clone.mass / 100;
+        }
+        clone.velocity = clone.transform.TransformDirection(Vector3.forward * 30* Mathf.Clamp01(1 - clone.drag+0.2f));
         //this.startVelocity = clone.velocity;
         SetBallisticValues(playPos, clone.velocity);
             
