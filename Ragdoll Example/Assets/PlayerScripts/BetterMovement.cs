@@ -63,6 +63,7 @@ public class BetterMovement : MonoBehaviour
 
     private bool onBelt = false;
     private bool rotate = false;
+    private bool canMove = false; 
 
     private void Start()
     {
@@ -75,16 +76,18 @@ public class BetterMovement : MonoBehaviour
 
     void Update()
     {
-        
+
         if (playerAlive && !isFlying && !disableMovement)
-        { 
+        {
+            groundedPlayer = controller.isGrounded;
+
             //Set animator
             anim.SetBool("isJumping", false);
             anim.SetBool("isRunning", false);
             anim.SetBool("isWalking", false);
 
 
-            groundedPlayer = controller.isGrounded;
+            
             isRunning = Input.GetKey(KeyCode.LeftShift);
             bool isCrouching = Input.GetKey(KeyCode.C);
             slideTimerTrigger -= Time.deltaTime;
@@ -110,14 +113,14 @@ public class BetterMovement : MonoBehaviour
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
                 //Walking
-                if (!isRunning)
+                if (!isRunning && canMove)
                 {
                     anim.SetBool("isWalking", true);
                     controller.Move(moveDir.normalized * walkingSpeed * Time.deltaTime);
                 }
 
                 //Walking
-                if (isRunning)
+                if (isRunning && canMove)
                 {
                     anim.SetBool("isRunning", true);
                     controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
@@ -176,6 +179,7 @@ public class BetterMovement : MonoBehaviour
             {
                 anim.SetBool("isJumping", true);
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+
                 onBelt = false;
             }
 
@@ -267,6 +271,14 @@ public class BetterMovement : MonoBehaviour
             //groundedPlayer = false;
             playerVelocity = Vector3.zero;
         }
+
+        if (hit.gameObject.tag == "Wall")
+        {
+            canMove = false;
+
+        }
+        else
+            canMove = true; 
 
         
 
