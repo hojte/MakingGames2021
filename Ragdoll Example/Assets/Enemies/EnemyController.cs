@@ -20,9 +20,6 @@ public class EnemyController : MonoBehaviour
     Vector3 catapultDirection;
     float returnFromCatapultTimer = 0;
     public List<AudioClip> midairScreams;
-    
-    public ParticleSystem onStunnedVFX;
-
 
 
     private float returnFromStunTimer =0f;
@@ -42,17 +39,12 @@ public class EnemyController : MonoBehaviour
 
         if (isStunned)
         {
-            if(!onStunnedVFX.isPlaying) onStunnedVFX.Play();
             returnFromStunTimer += Time.deltaTime;
             if (returnFromStunTimer > 3f)
             {
                 returnFromStun();
                 returnFromStunTimer = 0;
             }
-        }
-        else
-        {
-            if (onStunnedVFX.isPlaying) onStunnedVFX.Stop();
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad1) && onDieClips.Count>0)
