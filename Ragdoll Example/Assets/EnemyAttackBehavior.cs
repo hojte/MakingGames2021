@@ -25,7 +25,7 @@ public class EnemyAttackBehavior : MonoBehaviour
                 if (onDestructionParticles != null)
                 {
                     GameObject deathExplosion = Instantiate(onDestructionParticles, gameObject.transform.position, Quaternion.identity);
-                    deathExplosion.transform.localScale = new Vector3(10, 10, 10);
+                    deathExplosion.transform.localScale = new Vector3(1, 1, 1);
                     Destroy(gameObject);
                 }
                 if (onDestructionSoundClips.Count > 0)
