@@ -68,8 +68,13 @@ public class GameController : MonoBehaviour
     {
         _doorControllers = FindObjectsOfType<DoorController>().ToList();
         _scoreController = FindObjectOfType<ScoreController>();
-        DontDestroyOnLoad(_scoreController);
-        DontDestroyOnLoad(FindObjectOfType<PickupDisplay>());
+
+        if (_scoreController)
+            DontDestroyOnLoad(_scoreController);
+
+        if (FindObjectOfType<PickupDisplay>())
+            DontDestroyOnLoad(FindObjectOfType<PickupDisplay>());
+
         levelStartTime = Time.time; // todo maybe move statement to when player moves out of startRoom
         _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.04f);
     }
@@ -127,10 +132,13 @@ public class GameController : MonoBehaviour
         if (isNewLevel)
         {
             levelToScore.TryGetValue(SceneManager.GetActiveScene().name, out var highScore);
-            if (highScore < _scoreController.playerScore) // is new high score?
+            if (_scoreController && highScore < _scoreController.playerScore) // is new high score?
                 levelToScore[SceneManager.GetActiveScene().name] = _scoreController.playerScore;
         }
-        _scoreController.ResetScore();
+
+        if (_scoreController)
+            _scoreController.ResetScore();
+
         DestroyPickups(isNewLevel);
         ((Func<Task>)(async () =>{
             var loadScene = SceneManager.LoadSceneAsync(sceneName);
@@ -181,14 +189,19 @@ public class GameController : MonoBehaviour
     {
         List<Pickup> toRemove = new List<Pickup>();
         var pickupDisplay = FindObjectOfType<PickupDisplay>();
-        FindObjectOfType<PickupDisplay>().pickups.ForEach(pickup =>
+        if (FindObjectOfType<PickupDisplay>())
         {
-            if (pickup.timeOfActivation > 0 || !onlyActive) {
-                toRemove.Add(pickup); // cant alter list while iterating thought it
-                Destroy(pickup.buttonController.gameObject);
-                Destroy(pickup.gameObject);
-            }
-        });
-        toRemove.ForEach(pickup=>pickupDisplay.RemovePickup(pickup)); 
+            FindObjectOfType<PickupDisplay>().pickups.ForEach(pickup =>
+            {
+                if (pickup.timeOfActivation > 0 || !onlyActive)
+                {
+                    toRemove.Add(pickup); // cant alter list while iterating thought it
+                    Destroy(pickup.buttonController.gameObject);
+                    Destroy(pickup.gameObject);
+                }
+            });
+
+            toRemove.ForEach(pickup => pickupDisplay.RemovePickup(pickup));
+        }
     }
 }
