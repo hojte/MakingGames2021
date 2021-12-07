@@ -42,6 +42,8 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         if (patrollingEnemy)
         {
+            gameObject.GetComponentInChildren<Animator>().SetBool("isPatroling", true);
+
             spawnPoint = transform.position;
             //patrollingWayPoint = spawnPoint + new Vector3(20, 0, 0);
         }
@@ -80,6 +82,8 @@ public class AIController : MonoBehaviour
                     if(!onDetectVFX.isPlaying) onDetectVFX.Play();
                     onDetectedTarget?.Invoke();
                     inCombat = true;
+                    gameObject.GetComponentInChildren<Animator>().SetBool("isPatroling", false);
+                    gameObject.GetComponentInChildren<Animator>().SetBool("isChasing", true);
                     FindObjectOfType<GameController>().newEnemyInCombat();
                 }
 

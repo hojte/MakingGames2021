@@ -22,6 +22,8 @@ public class EnemyController : MonoBehaviour
     public List<AudioClip> midairScreams;
     
     public ParticleSystem onStunnedVFX;
+    public Animator anim;
+
 
 
 
@@ -133,16 +135,20 @@ public class EnemyController : MonoBehaviour
         GetComponent<CompassElement>().UnregisterFromCompass();
         FindObjectOfType<GameController>().enemySlain();
         //Destroy(gameObject, 7f);
-        GetComponent<Animator>().enabled = false;
+        //GetComponent<Animator>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
         setRigidBodyState(false);
         setColliderState(true);
+        anim.enabled = false;
+
     }
     public void stun()
     {
         if(!onStunnedVFX.isPlaying) onStunnedVFX.Play();
         isStunned = true; 
-        GetComponent<Animator>().enabled = false;
+        //GetComponent<Animator>().enabled = false;
+        anim.enabled = false;
+
         GetComponent<NavMeshAgent>().enabled = false;
         setRigidBodyState(false);
         setColliderState(true);
@@ -165,9 +171,12 @@ public class EnemyController : MonoBehaviour
 
         var clone = Instantiate(
             Resources.Load<GameObject>("Prefabs/AIEnemy"), rig.transform.position, transform.rotation); 
-        clone.GetComponent<Animator>().enabled = true;
+        clone.GetComponentInChildren<Animator>().enabled = true;
         clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab;
         clone.GetComponent<AIController>().inCombat = true;
+        clone.GetComponentInChildren<Animator>().SetBool("isChasing", true);
+
+
 
         isStunned = false;
         Destroy(this.gameObject);
