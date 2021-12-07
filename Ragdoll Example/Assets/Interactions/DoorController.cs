@@ -24,7 +24,7 @@ namespace Interactions
             _outline.OutlineMode = Outline.Mode.OutlineAll;
             _outline.OutlineColor = Color.blue;
             _outline.enabled = false;
-            _outline.OutlineWidth = 3f;
+            _outline.OutlineWidth = 15f;
 
             levelName = SceneManager.GetActiveScene().name;
         }
