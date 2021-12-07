@@ -63,7 +63,8 @@ public class BetterMovement : MonoBehaviour
 
     private bool onBelt = false;
     private bool rotate = false;
-    private bool canMove = false; 
+    private bool canMove = false;
+    private bool onShelf = false; 
 
     private void Start()
     {
@@ -175,12 +176,13 @@ public class BetterMovement : MonoBehaviour
             }
 
             // Changes the height position of the player..
-            if (Input.GetButtonDown("Jump") && (groundedPlayer || onBelt))
+            if (Input.GetButtonDown("Jump") && (groundedPlayer || onBelt || onShelf))
             {
                 anim.SetBool("isJumping", true);
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
 
                 onBelt = false;
+                onShelf = false; 
             }
 
             //Gravity
@@ -278,9 +280,16 @@ public class BetterMovement : MonoBehaviour
 
         }
         else
-            canMove = true; 
+            canMove = true;
+        if (hit.gameObject.tag == "Shelf")
+        {
+            onShelf = true;
 
-        
+        }
+        else
+            onShelf = false;
+
+
 
 
 
