@@ -36,11 +36,11 @@ public class ForkliftController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad2) && onDamageClips.Count>0)
+        /*if (Input.GetKeyDown(KeyCode.Keypad2) && onDamageClips.Count>0)
         {
             var onDamage = onDamageClips[new System.Random().Next(onDamageClips.Count)];
             Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
-        }
+        }*/
             
     }
     void OnCollisionEnter(Collision collision)
