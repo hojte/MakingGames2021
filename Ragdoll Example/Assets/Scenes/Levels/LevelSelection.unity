@@ -854,6 +854,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7947269297359553635, guid: d054c5a2fb1d8f747839e56df104925f,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: bossLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 7947269297359553637, guid: d054c5a2fb1d8f747839e56df104925f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -966,7 +971,7 @@ PrefabInstance:
     - target: {fileID: 1344739647982059237, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
         type: 3}
       propertyPath: linkedLevelName
-      value: Level_2
+      value: Level_1
       objectReference: {fileID: 0}
     - target: {fileID: 1344739647982059239, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
         type: 3}
@@ -1245,6 +1250,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7947269297359553635, guid: d054c5a2fb1d8f747839e56df104925f,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: Level_2
+      objectReference: {fileID: 0}
     - target: {fileID: 7947269297359553637, guid: d054c5a2fb1d8f747839e56df104925f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1357,7 +1367,7 @@ PrefabInstance:
     - target: {fileID: 1344739647982059237, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
         type: 3}
       propertyPath: linkedLevelName
-      value: Level_1
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1344739647982059239, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
         type: 3}
@@ -1446,7 +1456,7 @@ PrefabInstance:
     - target: {fileID: 1344739647982059237, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
         type: 3}
       propertyPath: linkedLevelName
-      value: bossLevel
+      value: Level_3
       objectReference: {fileID: 0}
     - target: {fileID: 1344739647982059239, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
         type: 3}
@@ -1530,7 +1540,7 @@ PrefabInstance:
     - target: {fileID: 1344739647982059237, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
         type: 3}
       propertyPath: linkedLevelName
-      value: Level_3
+      value: Level_2
       objectReference: {fileID: 0}
     - target: {fileID: 1344739647982059239, guid: 13f6086d930ab9a4fad4f5faebaaac7c,
         type: 3}
@@ -1646,6 +1656,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947269297359553635, guid: d054c5a2fb1d8f747839e56df104925f,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: Level_3
       objectReference: {fileID: 0}
     - target: {fileID: 7947269297359553637, guid: d054c5a2fb1d8f747839e56df104925f,
         type: 3}
@@ -2210,6 +2225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947269297359553635, guid: d054c5a2fb1d8f747839e56df104925f,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: Level_1
       objectReference: {fileID: 0}
     - target: {fileID: 7947269297359553637, guid: d054c5a2fb1d8f747839e56df104925f,
         type: 3}

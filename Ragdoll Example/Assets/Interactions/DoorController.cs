@@ -82,7 +82,7 @@ namespace Interactions
         {
             doorLocked = true;
 
-            if (PlayerPrefs.GetInt(linkedLevelName) == 1)
+            if (PlayerPrefs.GetInt(linkedLevelName) == 1 || linkedLevelName == "")
             { // Linked level has been completed by the player
                 transform.parent.rotation = transform.parent.parent.rotation * Quaternion.Euler(0, -90, 0);
             }

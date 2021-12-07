@@ -27,7 +27,7 @@ public class ForkliftAI : MonoBehaviour
     bool isCompletingCharge = false;
     bool isStunned = false;
     float timeOfLastStun = 0;
-    float stunDuration = 5;
+    public float stunDuration = 5;
     public float baseSpeed = 15;
     GameObject lift;
     Quaternion defaultLiftRotation;
