@@ -338,7 +338,10 @@ public class BetterMovement : MonoBehaviour
     {
         Destroy(GetComponent<PlayerController>());
         disableMovement = true;
-        FindObjectOfType<ScoreController>().PlayerDied();
+
+        if (FindObjectOfType<ScoreController>())
+            FindObjectOfType<ScoreController>().PlayerDied();
+
         if (onDieClips.Count > 0)
         {
             var onDie = onDieClips[new System.Random().Next(onDieClips.Count)];

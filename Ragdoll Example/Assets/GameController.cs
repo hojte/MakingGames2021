@@ -174,7 +174,9 @@ public class GameController : MonoBehaviour
         if (enemiesInCombat > 0)
         {
             enemiesInCombat--;
-            _scoreController.EnemyKilled();
+
+            if (_scoreController)
+                _scoreController.EnemyKilled();
             
         }
         Debug.Log("enemy killed");
