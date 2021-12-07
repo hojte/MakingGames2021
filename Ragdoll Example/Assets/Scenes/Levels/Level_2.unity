@@ -9870,7 +9870,7 @@ PrefabInstance:
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.901971
+      value: 5.5122547
       objectReference: {fileID: 0}
     - target: {fileID: 2274797027457391620, guid: dce28d1a63abea444a4fafb6ad00b896,
         type: 3}
@@ -9932,6 +9932,11 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 1415169691}
+    - target: {fileID: 2274797027457391675, guid: dce28d1a63abea444a4fafb6ad00b896,
+        type: 3}
+      propertyPath: m_Lens.FarClipPlane
+      value: 220
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dce28d1a63abea444a4fafb6ad00b896, type: 3}
 --- !u!4 &1025127107 stripped
@@ -13955,7 +13960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443337089}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -187.47443, y: 239.80486, z: 77.25628}
+  m_LocalPosition: {x: -188.62999, y: 239.80486, z: 77.25629}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1847702407}
@@ -14027,7 +14032,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 600
+  far clip plane: 220
   field of view: 40
   orthographic: 0
   orthographic size: 5

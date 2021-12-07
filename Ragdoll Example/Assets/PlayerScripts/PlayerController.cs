@@ -43,7 +43,7 @@ namespace PlayerScripts
             if (Input.GetButtonDown("Fire2"))
             {
                 var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Physics.Raycast(mouseRay, out var hit,25);
+                Physics.Raycast(mouseRay, out var hit,40);
                 if (!hit.collider)
                 {
                     print("no hit on shop interaction");

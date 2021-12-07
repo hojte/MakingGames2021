@@ -113,14 +113,14 @@ public class BetterMovement : MonoBehaviour
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
                 //Walking
-                if (!isRunning && canMove)
+                if (!isRunning && (canMove || groundedPlayer))
                 {
                     anim.SetBool("isWalking", true);
                     controller.Move(moveDir.normalized * walkingSpeed * Time.deltaTime);
                 }
 
                 //Walking
-                if (isRunning && canMove)
+                if (isRunning && (canMove || groundedPlayer))
                 {
                     anim.SetBool("isRunning", true);
                     controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
@@ -179,6 +179,11 @@ public class BetterMovement : MonoBehaviour
             {
                 anim.SetBool("isJumping", true);
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                if (!canMove) {
+                    Vector3 forward = gameObject.transform.TransformDirection(Vector3.forward);
+                    playerVelocity += forward * 10;
+                }
+                
 
                 onBelt = false;
             }
