@@ -8,6 +8,8 @@ public class PressurePlate : MonoBehaviour
 {
     Transform playerTransform;
     public GameObject linkedGameObject;
+    public GameObject linkedGameObject2;
+    public bool twoLinkedObjects = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class PressurePlate : MonoBehaviour
             {
                 linkedGameObject.GetComponent<ppLinker>().startOfInteraction();
                 GetComponent<Renderer>().material.color = Color.green;
+                if (twoLinkedObjects) { linkedGameObject2.GetComponent<ppLinker>().startOfInteraction(); }
             }
             else
             {
@@ -36,6 +39,7 @@ public class PressurePlate : MonoBehaviour
         {
             linkedGameObject.GetComponent<ppLinker>().startOfInteraction();
             GetComponent<Renderer>().material.color = Color.green;
+            if (twoLinkedObjects) { linkedGameObject2.GetComponent<ppLinker>().startOfInteraction(); }
         }
     }
 
@@ -45,6 +49,7 @@ public class PressurePlate : MonoBehaviour
         {
             linkedGameObject.GetComponent<ppLinker>().endOfInteraction();
             GetComponent<Renderer>().material.color = Color.gray;
+            if (twoLinkedObjects) { linkedGameObject2.GetComponent<ppLinker>().startOfInteraction(); }
         }
     }
 }
