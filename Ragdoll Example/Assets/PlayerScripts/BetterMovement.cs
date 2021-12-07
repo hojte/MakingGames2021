@@ -265,7 +265,7 @@ public class BetterMovement : MonoBehaviour
         {
             onBelt = true; 
             Vector3 forward = hit.gameObject.transform.TransformDirection(Vector3.left);
-            playerVelocity = forward*5;
+            playerVelocity = forward*15;
         }
         else
         {
