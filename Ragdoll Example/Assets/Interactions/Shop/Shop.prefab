@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 3665021097836180329}
   - component: {fileID: 1249018616070409866}
   - component: {fileID: 315967380691623354}
+  - component: {fileID: 245416045702098847}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -214,6 +215,18 @@ MonoBehaviour:
   pickupPrefab: {fileID: 3790298623345755494, guid: 43b4426f6cbf85f41a507bb2db8e61bb,
     type: 3}
   discountOnItems: 0
+--- !u!114 &245416045702098847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084072514901016979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09813c92468ec7845ad94851b1878a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3886987708636149942
 GameObject:
   m_ObjectHideFlags: 0

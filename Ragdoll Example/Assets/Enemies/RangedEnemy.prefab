@@ -923,8 +923,7 @@ MonoBehaviour:
   patrollingWayPoint: {x: 0, y: 0, z: 0}
   patrollingEnemy: 0
   standingStillEnemy: 1
-  onDetectVFX: {fileID: 8855434715677272938, guid: 1bc9e4f49c67a6a41af3e7cb3d30bb43,
-    type: 3}
+  onDetectVFX: {fileID: 2234032702919748734}
 --- !u!195 &1020908741
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -959,7 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db77c10408240d340a367bd4307f01aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 3000
+  projectileSpeed: 2500
   throwable: {fileID: 1818965474932572216, guid: a1ac4cff32b53954fb6edc99088e1d1e,
     type: 3}
 --- !u!114 &4216804831320542834
@@ -2246,6 +2245,12 @@ PrefabInstance:
 --- !u!4 &2234032702919748729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8855434715677272941, guid: 1bc9e4f49c67a6a41af3e7cb3d30bb43,
+    type: 3}
+  m_PrefabInstance: {fileID: 7342048390604654356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2234032702919748734 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8855434715677272938, guid: 1bc9e4f49c67a6a41af3e7cb3d30bb43,
     type: 3}
   m_PrefabInstance: {fileID: 7342048390604654356}
   m_PrefabAsset: {fileID: 0}
