@@ -159,7 +159,11 @@ public class BetterMovement : MonoBehaviour
                 controller.Move(lastMoveDir.normalized * slideSpeed * Time.deltaTime);
                 if (slideTimer > slideTimerMax)
                 {
-                    //rotate = false;
+                    gameObject.transform.eulerAngles = new Vector3(
+                    0,
+                    gameObject.transform.eulerAngles.y,
+                    gameObject.transform.eulerAngles.z
+                );
                     controller.height = initialHeight;
                     slideTimer = 0;
                     slideTimerTrigger = slideCooldown;
