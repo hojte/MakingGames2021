@@ -6,6 +6,7 @@ using Cinemachine;
 using Interactions;
 using PlayerScripts;
 using Sound;
+using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -107,6 +108,7 @@ public class GameController : MonoBehaviour
         if (enemiesInCombat == 0)
         {
                 var gameWon = PlayerPrefs.GetInt("bossLevel") == 1 && SceneManager.GetActiveScene().name == "LevelSelection";
+                transform.Find("MainHUD").Find("WinText").GetComponent<TextMeshProUGUI>().color = gameWon? Color.green : Color.clear;
                 if (_audioSource.clip.name != onGameWon.name && gameWon)
                 {
                     _audioSource.clip = onGameWon;
