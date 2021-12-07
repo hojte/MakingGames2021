@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     [Tooltip("Sounds played when dying")]
     public List<AudioClip> onDieClips;
     public GameObject enemyPrefab; 
-    private bool isStunned = false;
+    public bool isStunned = false;
     public GameObject rig;
     bool isCatapulted = false;
     bool beenCatapulted = false;
@@ -25,13 +25,12 @@ public class EnemyController : MonoBehaviour
 
 
 
-    private float returnFromStunTimer =0f;
+    public float returnFromStunTimer =0f;
     // Start is called before the first frame update
     void Start()
     {
         setRigidBodyState(true);
         setColliderState(false);
-
     }
 
     // Update is called once per frame
@@ -42,17 +41,12 @@ public class EnemyController : MonoBehaviour
 
         if (isStunned)
         {
-            if(!onStunnedVFX.isPlaying) onStunnedVFX.Play();
             returnFromStunTimer += Time.deltaTime;
             if (returnFromStunTimer > 3f)
             {
                 returnFromStun();
                 returnFromStunTimer = 0;
             }
-        }
-        else
-        {
-            if (onStunnedVFX.isPlaying) onStunnedVFX.Stop();
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad1) && onDieClips.Count>0)
@@ -146,6 +140,7 @@ public class EnemyController : MonoBehaviour
     }
     public void stun()
     {
+        if(!onStunnedVFX.isPlaying) onStunnedVFX.Play();
         isStunned = true; 
         GetComponent<Animator>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
@@ -166,16 +161,16 @@ public class EnemyController : MonoBehaviour
     }
     void returnFromStun()
     {
+        onStunnedVFX.Stop();
 
         var clone = Instantiate(
             Resources.Load<GameObject>("Prefabs/AIEnemy"), rig.transform.position, transform.rotation); 
         clone.GetComponent<Animator>().enabled = true;
         clone.GetComponent<EnemyController>().enemyPrefab = enemyPrefab;
         clone.GetComponent<AIController>().inCombat = true;
-        
-        Destroy(this.gameObject);
+
         isStunned = false;
-        
+        Destroy(this.gameObject);
     }
     
     void setRigidBodyState(bool state)
