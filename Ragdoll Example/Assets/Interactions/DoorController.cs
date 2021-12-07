@@ -46,6 +46,11 @@ namespace Interactions
 
         private void Update()
         {
+            if (_outline == null)
+            {
+                _outline = gameObject.GetComponent<Outline>();
+            }
+
             if (levelName != "LevelSelection")
             {
                 if (_gameController == null) _gameController = FindObjectOfType<GameController>();
