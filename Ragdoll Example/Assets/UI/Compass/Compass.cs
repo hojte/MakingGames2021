@@ -58,7 +58,7 @@ public class Compass : MonoBehaviour
                 Vector3 playerForward = Vector3.ProjectOnPlane(virtualCameraTransform.forward, Vector3.up);
                 angle = Vector3.SignedAngle(playerForward, targetDir, Vector3.up);
 
-                Vector3 adjustedCameraPos = new Vector3(cameraPosition.x, cameraPosition.y - 6, cameraPosition.z);
+                Vector3 adjustedCameraPos = new Vector3(cameraPosition.x, cameraPosition.y - 10, cameraPosition.z);
                 Vector3 directionVector = element.Key.transform.position - adjustedCameraPos;
 
                 heightDifference = (directionVector.y) * heightDifferenceMultiplier;
