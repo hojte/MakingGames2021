@@ -60,7 +60,7 @@ public class ForkliftController : MonoBehaviour
             if (onDamageClips.Count > 0)
             {
                 var onDamage = onDamageClips[new System.Random().Next(onDamageClips.Count)];
-                Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
+                Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f,  1f, rolloffDistanceMin:25f), onDamage.length);
             }
             
             hp--;
@@ -84,7 +84,7 @@ public class ForkliftController : MonoBehaviour
                 if (onDeathClips.Count > 0)
                 {
                     var onDeath = onDeathClips[new System.Random().Next(onDeathClips.Count)];
-                    Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);
+                    Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f, 1f, rolloffDistanceMin:25f), onDeath.length); // todo needs death clip
                 }
                 
 
@@ -94,8 +94,8 @@ public class ForkliftController : MonoBehaviour
                     d.transform.localScale = new Vector3(30, 30, 30);
                     if (onDeathClips.Count > 0)
                     {
-                        var onDeath = onDeathClips[new System.Random().Next(onHitClips.Count)];
-                        Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f), onDeath.length);
+                        var onDeath = onDeathClips[new System.Random().Next(onDeathClips.Count)];
+                        Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f, 1f, rolloffDistanceMin:25f), onDeath.length);
                     }
                     
 
@@ -119,7 +119,8 @@ public class ForkliftController : MonoBehaviour
         if (onHitClips.Count > 0)
         {
             var onHit = onHitClips[new System.Random().Next(onHitClips.Count)];
-                    Destroy(AudioUtility.CreateSFX(onHit, transform, 1f), onHit.length);
+            var tmpGo = Instantiate(new GameObject("soundDummy"), transform);
+            Destroy(AudioUtility.CreateSFX(onHit, tmpGo.transform, 1f,  1f, rolloffDistanceMin:25f), onHit.length);
         }
         
     }
