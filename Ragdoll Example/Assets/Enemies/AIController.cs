@@ -75,10 +75,10 @@ public class AIController : MonoBehaviour
         {
             if ((Vector3.Distance(transform.position, TargetObject.position) < aggroRange) || inCombat) // todo inCombat fucks aggrorange up
             {
+                if(!onDetectVFX.isPlaying) onDetectVFX.Play();
+                onDetectedTarget?.Invoke();
                 if (!inCombat)
                 {
-                    if(!onDetectVFX.isPlaying) onDetectVFX.Play();
-                    onDetectedTarget?.Invoke();
                     inCombat = true;
                     FindObjectOfType<GameController>().newEnemyInCombat();
                 }
