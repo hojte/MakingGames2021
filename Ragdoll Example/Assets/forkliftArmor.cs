@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Interactions;
 
 public class forkliftArmor : MonoBehaviour
 {
@@ -19,7 +20,11 @@ public class forkliftArmor : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Item") || collision.gameObject.CompareTag("HeavyItem"))
-            GetComponentInParent<ForkliftController>().futileHit();
+            if (!collision.gameObject.GetComponent<Throwable>().getHasHitBoss())
+            {
+                GetComponentInParent<ForkliftController>().futileHit();
+                Debug.Log("beep");
+            }
     }
     
 }
