@@ -20,7 +20,9 @@ public class GameController : MonoBehaviour
     public AudioClip onCombat;
     [Tooltip("Sound played continuously while in boss combat")]
     public AudioClip onBossCombat;
-    [Tooltip("Mute all sound")]
+    [Tooltip("game win music")]
+    public AudioClip onGameWon;
+    [Tooltip("Sound played continuously while in normal combat")]
     public bool muteSound;
     [Header("MISC")]
     [Tooltip("Toggle global debug for entire game to show/do various things")]
@@ -103,13 +105,19 @@ public class GameController : MonoBehaviour
             _doorControllers.ForEach(door => door.doorLocked = false);
         if (enemiesInCombat == 0)
         {
-            if (combatMusicPlaying)
-            {
-                _audioSource.clip = onOutOfCombat;
-                _audioSource.Play();
-                combatMusicPlaying = false;
-            }
-            
+                var gameWon = PlayerPrefs.GetInt("bossLevel") == 1 && SceneManager.GetActiveScene().name == "LevelSelection";
+                if (_audioSource.clip.name != onGameWon.name && gameWon)
+                {
+                    _audioSource.clip = onGameWon;
+                    _audioSource.Play();
+                    combatMusicPlaying = false;
+                }
+                if (!gameWon && _audioSource.clip.name != onOutOfCombat.name)
+                {
+                    _audioSource.clip = onOutOfCombat;
+                    _audioSource.Play();
+                    combatMusicPlaying = false;
+                }
         }
 
         if (Input.GetKey(KeyCode.KeypadPlus) || Input.GetKey(KeyCode.Plus) || Input.GetKey(KeyCode.Equals) || Input.GetKey(KeyCode.F6))

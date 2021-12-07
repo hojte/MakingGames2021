@@ -84,7 +84,7 @@ public class ForkliftController : MonoBehaviour
                 if (onDeathClips.Count > 0)
                 {
                     var onDeath = onDeathClips[new System.Random().Next(onDeathClips.Count)];
-                    Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f, 1f, rolloffDistanceMin:25f), onDeath.length); // todo needs death clip
+                    Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f, 1f, rolloffDistanceMin:25f), onDeath.length);
                 }
                 
 
