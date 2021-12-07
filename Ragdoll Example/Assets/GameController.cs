@@ -9,6 +9,7 @@ using Sound;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -40,9 +41,11 @@ public class GameController : MonoBehaviour
     public bool bossCombat;
     private AudioSource _audioSource;
     private float _amplifyStep = 0.1f;
+    private Image _imageHelp;
 
     // public List<Pickup> pickedUpPickups = new List<Pickup>();
     public Dictionary<string, int> levelToScore = new Dictionary<string, int>();
+    
 
     private void Awake()
     {
@@ -66,6 +69,8 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        _imageHelp = transform.Find("MainHUD").Find("InfoAndHelp").GetComponent<Image>();
+        _imageHelp.enabled = false;
         _doorControllers = FindObjectsOfType<DoorController>().ToList();
         _scoreController = FindObjectOfType<ScoreController>();
 
@@ -124,6 +129,13 @@ public class GameController : MonoBehaviour
             AudioUtility.masterAudioAmplify = (float)Math.Round(AudioUtility.masterAudioAmplify, 2);
             if (AudioUtility.masterAudioAmplify <= -0.01f) AudioUtility.masterAudioAmplify = 0.0f;
             _audioSource.volume = 0.02f * AudioUtility.masterAudioAmplify;
+        }
+
+        Time.timeScale = _imageHelp.enabled ? 0 : 1;
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            _imageHelp.enabled = !_imageHelp.enabled;
         }
     }
 
