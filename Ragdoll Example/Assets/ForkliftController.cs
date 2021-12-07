@@ -73,10 +73,14 @@ public class ForkliftController : MonoBehaviour
             {
                 FindObjectOfType<GameController>().bossCombat = false;
                 FindObjectOfType<GameController>().enemySlain();
-                FindObjectOfType<ScoreController>().EnemyKilled();
-                FindObjectOfType<ScoreController>().EnemyKilled();
-                FindObjectOfType<ScoreController>().EnemyKilled();
-                FindObjectOfType<ScoreController>().EnemyKilled();
+
+                if (FindObjectOfType<ScoreController>())
+                {
+                    FindObjectOfType<ScoreController>().EnemyKilled();
+                    FindObjectOfType<ScoreController>().EnemyKilled();
+                    FindObjectOfType<ScoreController>().EnemyKilled();
+                    FindObjectOfType<ScoreController>().EnemyKilled();
+                }
                 
 
                 GameObject deathExplosion = Instantiate(deathParticles, GetComponentInChildren<ParticleSystem>().transform.position, Quaternion.identity);

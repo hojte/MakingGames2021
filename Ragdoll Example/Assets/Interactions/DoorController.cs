@@ -55,7 +55,13 @@ namespace Interactions
             {
                 if (_gameController == null) _gameController = FindObjectOfType<GameController>();
                 if (isLockedOnCombat && _gameController.getEnemiesInCombat() > 0) doorLocked = true;
-                else doorLocked = false;
+                else
+                {
+                    if (levelName == "bossLevel")
+                        transform.parent.rotation = Quaternion.Euler(0, 90, 0);
+                    else
+                        doorLocked = false;
+                }
                 SetClosed(doorClosed);
                 if (doorLocked) GetComponent<Renderer>().material.color = Color.red;
                 else GetComponent<Renderer>().material.color = Color.green;
