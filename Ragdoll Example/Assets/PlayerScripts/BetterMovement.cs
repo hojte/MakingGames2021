@@ -248,10 +248,17 @@ public class BetterMovement : MonoBehaviour
             }
         }
     }
+
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "SlideShelf") {
+            Debug.Log("Fuuck");
+        }
+    }
     
-    
-    
-    
+
+
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
 
@@ -289,6 +296,12 @@ public class BetterMovement : MonoBehaviour
         else
             onShelf = false;
 
+        if (hit.gameObject.tag == "SlideShelf")
+        {
+            Debug.Log("Fuuck");
+            die(gameObject);
+
+        }
 
 
 

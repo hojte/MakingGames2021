@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 3091350818122710196}
   m_Layer: 2
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: SlideShelf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,8 +262,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15.142271, y: 0.21420892, z: 6.0367913}
-  m_Center: {x: -0.004807711, y: 0.0969182, z: -0.006250621}
+  m_Size: {x: 15.142633, y: 0.18097173, z: 3.760492}
+  m_Center: {x: -0.0048079495, y: 0.11353898, z: -0.0031884913}
 --- !u!1 &3500816721192644231
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,8 +306,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15.142271, y: 0.21420892, z: 6.0367913}
-  m_Center: {x: -0.004807711, y: 0.0969182, z: -0.006250621}
+  m_Size: {x: 15.142619, y: 1.1976681, z: 3.4187946}
+  m_Center: {x: -0.0048079495, y: 0.59756446, z: -0.10763295}
 --- !u!1 &7326637611085540327
 GameObject:
   m_ObjectHideFlags: 0
