@@ -355,7 +355,7 @@ public class BetterMovement : MonoBehaviour
         clone.GetComponent<BetterMovement>().cam = cam;
         Destroy(gameObject);
     }
-    void die(GameObject player)
+    public void die(GameObject player)
     {
         Destroy(GetComponent<PlayerController>());
         disableMovement = true;

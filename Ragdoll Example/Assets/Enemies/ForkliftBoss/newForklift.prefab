@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 8589804807353496571}
   - component: {fileID: 8589804807353496570}
   - component: {fileID: 138121821911528369}
+  - component: {fileID: 4155948009729191311}
   m_Layer: 0
   m_Name: newForklift
   m_TagString: Enemy
@@ -474,6 +475,12 @@ MonoBehaviour:
   aggroRange: 90
   patrollingWayPoint: {x: 0, y: 0, z: 0}
   patrollingEnemy: 0
+  chargeCooldown: 30
+  stunDuration: 5
+  baseSpeed: 15
+  chargeSound: {fileID: 8300000, guid: fdd66ba487aa69847bb2528b873ebabe, type: 3}
+  engineClipSound: {fileID: 8300000, guid: 2e75136bea7b0334aba6b6cc11ea0e0b, type: 3}
+  crashSound: {fileID: 8300000, guid: 633a18c6b74d8464d9aa902cb8804946, type: 3}
 --- !u!114 &138121821911528369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +499,28 @@ MonoBehaviour:
   pulseSpeed: 0.3
   speed: 3
   timer: 0
+--- !u!114 &4155948009729191311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8589804807353496575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc26f3fb2daf4deaa93f556afcf7dd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsToPlay:
+  - {fileID: 8300000, guid: 2e75136bea7b0334aba6b6cc11ea0e0b, type: 3}
+  muteSound: 0
+  playOnCollision: 0
+  playOnAwake: 1
+  playInLoop: 1
+  volume: 0.3
+  spatialBlend: 0
+  minDistance: 1
+  maxDistance: 100
 --- !u!54 &8589804807132807113
 Rigidbody:
   m_ObjectHideFlags: 0

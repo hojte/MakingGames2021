@@ -4,6 +4,7 @@ using PlayerScripts;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using Sound;
 public class ForkliftAI : MonoBehaviour
 {
 
@@ -32,6 +33,10 @@ public class ForkliftAI : MonoBehaviour
     GameObject lift;
     Quaternion defaultLiftRotation;
     private GameController _gameController;
+    public AudioClip chargeSound;
+    public AudioClip engineClipSound;
+    private AudioSource engineSound;
+    public AudioClip crashSound;
     void Start()
     {
         _gameController = FindObjectOfType<GameController>();
@@ -58,6 +63,9 @@ public class ForkliftAI : MonoBehaviour
 
     void Update()
     {
+        if (!engineSound)
+            engineSound = gameObject.GetComponent<Audio>().GetComponent<AudioSource>();
+
         if (!Player) Player = FindObjectOfType<PlayerController>().transform;
         if (agent.enabled)
         {
@@ -77,8 +85,11 @@ public class ForkliftAI : MonoBehaviour
                         beginningOfCharge = Time.time;
                         agent.isStopped = true;
                         anim.SetBool("isCharging", true);
-                        Debug.Log("test");
                         agent.destination = Player.position + (Player.position - transform.position) + new Vector3(0,20,0);
+                        engineSound.Stop();
+                        engineSound.clip = chargeSound;
+                        engineSound.loop = false;
+                        engineSound.Play();
                     }
 
                     if (isCharging)
@@ -104,6 +115,13 @@ public class ForkliftAI : MonoBehaviour
                                 
                                 anim.SetBool("isMoving", false);
                                 lift.transform.localRotation = defaultLiftRotation;
+                                if (engineSound != null)
+                                {
+                                    engineSound.Stop();
+                                    engineSound.clip = engineClipSound;
+                                    engineSound.loop = true;
+                                    engineSound.Play();
+                                }
                             }
                         }
 
@@ -206,6 +224,11 @@ public class ForkliftAI : MonoBehaviour
             agent.isStopped = true;
             Debug.Log("boss stunned");
             anim.SetBool("isMoving", false);
+
+            engineSound.Stop();
+            engineSound.clip = crashSound;
+            engineSound.loop = false;
+            engineSound.Play();
         }
     }
 
