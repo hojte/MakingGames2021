@@ -7,10 +7,10 @@ public class RoomSelector : MonoBehaviour
     private GameController _gameController;
     void Start()
     {
-        _gameController = FindObjectOfType<GameController>();
+        /*_gameController = FindObjectOfType<GameController>();
         GetComponentInChildren<NextRoomTrigger>().sceneToLoad = levelName;
         transform.Find("LevelText").GetComponentInChildren<TextMeshPro>().text = levelName;
         _gameController.levelToScore.TryGetValue(levelName, out var highScore); 
-        transform.Find("HighScore").GetComponentInChildren<TextMeshPro>().text = "High score: " + highScore;
+        transform.Find("HighScore").GetComponentInChildren<TextMeshPro>().text = "High score: " + highScore;*/
     }
 }

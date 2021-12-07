@@ -20,6 +20,7 @@ namespace Interactions
         public GameObject onDestructionParticles = null;
         public List<AudioClip> onDestructionSoundClips;
         bool thrownOffShelf = false;
+        bool hasHitBoss = true;
 
         public bool isLookedAt;
         private Outline _outline;
@@ -116,6 +117,16 @@ namespace Interactions
         public bool getHasBeenPickedUp()
         {
             return hasBeenPickedUp;
+        }
+
+        public bool getHasHitBoss()
+        {
+            return hasHitBoss;
+        }
+
+        public void setHasHitBoss(bool newStatus)
+        {
+            hasHitBoss = newStatus;
         }
     }
 }

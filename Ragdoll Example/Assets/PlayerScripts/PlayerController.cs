@@ -85,6 +85,7 @@ namespace PlayerScripts
                 _throwSlot.rigidbody.velocity = _throwSlot.transform.TransformDirection(Vector3.forward * 30);
                 _throwSlot.DisableEffects();
                 _throwSlot.setHasBeenPickedUp(true);
+                _throwSlot.setHasHitBoss(false);
                 _throwSlot = null;
                 _trajectoryRenderer.draw = false;
             }
