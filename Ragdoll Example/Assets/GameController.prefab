@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2454878848220835489}
   - component: {fileID: 2304280876998818322}
   - component: {fileID: 3142762686978737924}
+  - component: {fileID: 2948142671527248406}
   m_Layer: 5
   m_Name: PickupDisplay
   m_TagString: Untagged
@@ -115,6 +116,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickups: []
+--- !u!114 &2948142671527248406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416716859171522409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09813c92468ec7845ad94851b1878a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &566702905826236879
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +216,7 @@ GameObject:
   - component: {fileID: 7742221444411869661}
   - component: {fileID: 3328060772212790217}
   - component: {fileID: 4577008947705661485}
+  - component: {fileID: 4858688906883779117}
   m_Layer: 5
   m_Name: ScorePanel
   m_TagString: Untagged
@@ -305,6 +319,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScore: 0
   shopBalance: 0
+--- !u!114 &4858688906883779117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594925750818830561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09813c92468ec7845ad94851b1878a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &665219504103587123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +1598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4878648333894589211}
+  - component: {fileID: 2865792087625466815}
   m_Layer: 5
   m_Name: UsePickupInfo
   m_TagString: Untagged
@@ -1600,6 +1627,18 @@ RectTransform:
   m_AnchoredPosition: {x: 822.33, y: 0}
   m_SizeDelta: {x: 137.66998, y: 40}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &2865792087625466815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6512013998757311550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09813c92468ec7845ad94851b1878a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6797617735791149068
 GameObject:
   m_ObjectHideFlags: 0
