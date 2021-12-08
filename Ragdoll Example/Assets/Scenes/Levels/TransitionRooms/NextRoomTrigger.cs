@@ -17,7 +17,7 @@ public class NextRoomTrigger : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>())
         {
             PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
-            PlayerPrefs.SetInt("bossLevel", 0);
+            // PlayerPrefs.SetInt("bossLevel", 0);
 
             if (FindObjectOfType<ScoreController>())
                 FindObjectOfType<ScoreController>().LevelCompleted(expectedSecondsToCompleteLevel);
