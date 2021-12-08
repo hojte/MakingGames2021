@@ -44,8 +44,8 @@ public class ForkliftController : MonoBehaviour
             Destroy(AudioUtility.CreateSFX(onDamage, transform, 1f), onDamage.length);
         }*/
 
-        if (_gameController.enemiesInCombat < 1 && hp > 0)
-            _gameController.newEnemyInCombat();
+        /*if (_gameController.enemiesInCombat < 1 && hp > 0)
+            _gameController.newEnemyInCombat();*/
 
     }
     void OnCollisionEnter(Collision collision)

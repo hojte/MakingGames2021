@@ -44,8 +44,7 @@ public class ForkliftAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = this.GetComponentInChildren<Animator>();
 
-        _gameController.bossCombat = true;
-        _gameController.newEnemyInCombat();
+        
         if (patrollingEnemy)
         {
             spawnPoint = transform.position;
@@ -76,6 +75,8 @@ public class ForkliftAI : MonoBehaviour
                     if (!inCombat)
                     {
                         inCombat = true;
+                        _gameController.bossCombat = true;
+                        _gameController.newEnemyInCombat();
                         timeOfLastCharge = Time.time - (chargeCooldown-5);
                     }
 
