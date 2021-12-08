@@ -32,8 +32,9 @@ public class BetterMovement : MonoBehaviour
     public float jumpHeight = 3.0f;
     private float gravityValue = -90.81f;
 
-    private float initialHeight; 
-    
+    private float initialHeight;
+
+
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
     private Transform cam;
@@ -70,6 +71,7 @@ public class BetterMovement : MonoBehaviour
     private void Start()
     {
         initialHeight = controller.height;
+
         anim = this.GetComponentInChildren<Animator>();
         cam = Camera.main.transform;
         vCam = GameObject.Find("CM vcam1");
@@ -79,7 +81,7 @@ public class BetterMovement : MonoBehaviour
     void Update()
     {
         if (!playerController)
-            playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+                playerController = FindObjectOfType<PlayerController>();
 
         if (playerAlive && !isFlying && !disableMovement)
         {
@@ -89,9 +91,10 @@ public class BetterMovement : MonoBehaviour
             anim.SetBool("isJumping", false);
             anim.SetBool("isRunning", false);
             anim.SetBool("isWalking", false);
+            anim.SetBool("isSlideing", false);
 
 
-            
+
             isRunning = Input.GetKey(KeyCode.LeftShift);
             bool isCrouching = Input.GetKey(KeyCode.C);
             slideTimerTrigger -= Time.deltaTime;
@@ -139,16 +142,19 @@ public class BetterMovement : MonoBehaviour
                             var onSlide = onSlideClips[new Random().Next(onSlideClips.Count)];
                             Destroy(AudioUtility.CreateSFX(onSlide, transform, 0, volume: 0.05f), onSlide.length);
                         }
-                        
+                        anim.SetBool("isSlideing", true);
+
                         isSliding = true;
                         lastMoveDir = moveDir;
                         controller.height = 0.3f;
-                        gameObject.transform.eulerAngles = new Vector3(
-                            -85,
-                            gameObject.transform.eulerAngles.y,
-                            gameObject.transform.eulerAngles.z
-                        );
-                 
+
+                        /* gameObject.transform.eulerAngles = new Vector3(
+                             -85,
+                             gameObject.transform.eulerAngles.y,
+                             gameObject.transform.eulerAngles.z
+                         );
+                        */
+
                     }
                 }
             }
@@ -156,21 +162,30 @@ public class BetterMovement : MonoBehaviour
             //Sliding
             if (isSliding && (groundedPlayer|| onBelt))
             {
+                anim.SetBool("isSlideing", true);
+
+                //anim.SetBool("isSlideing", true);
+                /*
                 gameObject.transform.eulerAngles = new Vector3(
                     -85,
                     gameObject.transform.eulerAngles.y,
                     gameObject.transform.eulerAngles.z
                 );
-                
+                */
+
                 slideTimer += Time.deltaTime;
                 controller.Move(lastMoveDir.normalized * slideSpeed * Time.deltaTime);
                 if (slideTimer > slideTimerMax)
                 {
+                    anim.SetBool("isSlideing", false);
+                    /*
                     gameObject.transform.eulerAngles = new Vector3(
                     0,
                     gameObject.transform.eulerAngles.y,
                     gameObject.transform.eulerAngles.z
                 );
+                    */
+
                     controller.height = initialHeight;
                     slideTimer = 0;
                     slideTimerTrigger = slideCooldown;
@@ -257,13 +272,6 @@ public class BetterMovement : MonoBehaviour
         }
     }
 
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "SlideShelf") {
-            Debug.Log("Fuuck");
-        }
-    }
     
 
 
@@ -306,7 +314,6 @@ public class BetterMovement : MonoBehaviour
 
         if (hit.gameObject.tag == "SlideShelf")
         {
-            Debug.Log("Fuuck");
             die(gameObject);
 
         }
