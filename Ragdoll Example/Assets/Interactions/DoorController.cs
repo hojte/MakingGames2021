@@ -15,6 +15,7 @@ namespace Interactions
         private Outline _outline;
         private string levelName;
         public string linkedLevelName;
+        public Vector3 startingPos;
 
         private void Start()
         {
@@ -27,6 +28,7 @@ namespace Interactions
             _outline.OutlineWidth = 15f;
 
             levelName = SceneManager.GetActiveScene().name;
+            startingPos = transform.parent.transform.position;
         }
 
         public void SetClosed(bool close)
@@ -54,7 +56,11 @@ namespace Interactions
             if (levelName != "LevelSelection")
             {
                 if (_gameController == null) _gameController = FindObjectOfType<GameController>();
-                if (isLockedOnCombat && _gameController.getEnemiesInCombat() > 0) doorLocked = true;
+                if (isLockedOnCombat && _gameController.getEnemiesInCombat() > 0)
+                {
+                    doorLocked = true;
+                    transform.parent.transform.position = startingPos;
+                }
                 else
                 {
                     if (levelName == "bossLevel")
