@@ -3783,7 +3783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &322958237
 Transform:
   m_ObjectHideFlags: 0
@@ -19185,6 +19185,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CealingLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3484022053083730842, guid: 4679dccee4966b949bc86f2bfd0a7295,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3484022053617339294, guid: 4679dccee4966b949bc86f2bfd0a7295,
         type: 3}
