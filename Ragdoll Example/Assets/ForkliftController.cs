@@ -93,7 +93,7 @@ public class ForkliftController : MonoBehaviour
                 if (onDeathClips.Count > 0)
                 {
                     var onDeath = onDeathClips[new System.Random().Next(onDeathClips.Count)];
-                    Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f, 1f, rolloffDistanceMin:25f), onDeath.length);
+                    Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f, 0.075f, rolloffDistanceMin:25f), onDeath.length);
                 }
                 
 
@@ -104,7 +104,7 @@ public class ForkliftController : MonoBehaviour
                     if (onDeathClips.Count > 0)
                     {
                         var onDeath = onDeathClips[new System.Random().Next(onDeathClips.Count)];
-                        Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f, 1f, rolloffDistanceMin:25f), onDeath.length);
+                        Destroy(AudioUtility.CreateSFX(onDeath, transform, 1f, 0.075f, rolloffDistanceMin:25f), onDeath.length);
                     }
                     
 
