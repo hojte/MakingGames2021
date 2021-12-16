@@ -20,6 +20,12 @@ public class replayableItems : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (PlayerPrefs.GetInt(linkedLevelName) == 0)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+            gameObject.SetActive(true);
     }
 }
