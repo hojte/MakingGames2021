@@ -86,6 +86,8 @@ public class GameController : MonoBehaviour
 
         levelStartTime = Time.time; // todo maybe move statement to when player moves out of startRoom
         _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.04f);
+
+        // Telemtry bootup
         playerID = PlayerPrefs.GetString("PlayerID");
         if (playerID == "")
         {
@@ -93,9 +95,12 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetString("PlayerID", playerID);
         }
         print("saved playerid: " + PlayerPrefs.GetString("PlayerID"));
+        PlayerPrefs.SetInt("Level_1", 1);
+        PlayerPrefs.SetInt("Level_3", 1);
 
-        //Telemetry.SetGameVersion("A");
-        //Telemetry.SetPlayerID(PlayerPrefs.GetString("PlayerID"));
+        Telemetry.SetPlayerID(PlayerPrefs.GetString("PlayerID"));
+        Telemetry.SetGameVersion("A");
+        Telemetry.SetEnemyCount(30);
     }
 
     void Update()
@@ -158,6 +163,11 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             _imageHelp.enabled = !_imageHelp.enabled;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            Telemetry.openForm();
         }
     }
 

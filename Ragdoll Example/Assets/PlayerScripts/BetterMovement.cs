@@ -391,11 +391,22 @@ public class BetterMovement : MonoBehaviour
     {
         Destroy(GetComponent<PlayerController>());
         disableMovement = true;
-
-        int playerDeaths = PlayerPrefs.GetInt("PlayerDeaths");
-        playerDeaths += 1;
-        PlayerPrefs.SetInt("PlayerDeaths", playerDeaths);
-        print("ADDED PLAYER DEATH: " + PlayerPrefs.GetInt("PlayerDeaths"));
+        if (SceneManager.GetActiveScene().name == "Level_4")
+        {
+            int playerDeaths = PlayerPrefs.GetInt("PlayerDeaths");
+            playerDeaths += 1;
+            PlayerPrefs.SetInt("PlayerDeaths", playerDeaths);
+            print("ADDED PLAYER DEATH: " + PlayerPrefs.GetInt("PlayerDeaths"));
+            Telemetry.SetDeaths(PlayerPrefs.GetInt("PlayerDeaths"));
+        }
+        else
+        {
+            int playerDeaths = PlayerPrefs.GetInt("PlayerDeaths_Training");
+            playerDeaths += 1;
+            PlayerPrefs.SetInt("PlayerDeaths_Training", playerDeaths);
+            print("ADDED PLAYER TRAINING DEATH: " + PlayerPrefs.GetInt("PlayerDeaths_Training"));
+            Telemetry.SetDeaths_Training(PlayerPrefs.GetInt("PlayerDeaths_Training"));
+        }
 
         if (FindObjectOfType<ScoreController>())
             FindObjectOfType<ScoreController>().PlayerDied();
