@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
 
     // public List<Pickup> pickedUpPickups = new List<Pickup>();
     public Dictionary<string, int> levelToScore = new Dictionary<string, int>();
+    public string playerID;
     
 
     private void Awake()
@@ -85,11 +86,21 @@ public class GameController : MonoBehaviour
 
         levelStartTime = Time.time; // todo maybe move statement to when player moves out of startRoom
         _audioSource = AudioUtility.CreateSFX(onOutOfCombat, transform, 0, loop: true, volume: 0.04f);
+        playerID = PlayerPrefs.GetString("PlayerID");
+        if (playerID == "")
+        {
+            playerID = "" + DateTime.Now.Ticks;
+            PlayerPrefs.SetString("PlayerID", playerID);
+        }
+        print("saved playerid: " + PlayerPrefs.GetString("PlayerID"));
+
+        //Telemetry.SetGameVersion("A");
+        //Telemetry.SetPlayerID(PlayerPrefs.GetString("PlayerID"));
     }
 
     void Update()
     {
-        Debug.Log("enemies in combat" + enemiesInCombat);
+        //Debug.Log("enemies in combat" + enemiesInCombat);
         if(Input.GetKeyDown(KeyCode.F4)) // button to reset level
             LoadScene("LevelSelection", true);
         if (enemiesInCombat > 0)

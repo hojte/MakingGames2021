@@ -392,6 +392,11 @@ public class BetterMovement : MonoBehaviour
         Destroy(GetComponent<PlayerController>());
         disableMovement = true;
 
+        int playerDeaths = PlayerPrefs.GetInt("PlayerDeaths");
+        playerDeaths += 1;
+        PlayerPrefs.SetInt("PlayerDeaths", playerDeaths);
+        print("ADDED PLAYER DEATH: " + PlayerPrefs.GetInt("PlayerDeaths"));
+
         if (FindObjectOfType<ScoreController>())
             FindObjectOfType<ScoreController>().PlayerDied();
 
