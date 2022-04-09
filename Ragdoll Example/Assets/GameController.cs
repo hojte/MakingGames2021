@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour
         }
         print("saved playerid: " + PlayerPrefs.GetString("PlayerID"));
         PlayerPrefs.SetInt("Level_1", 1);
-        PlayerPrefs.SetInt("Level_3", 1);
+        //PlayerPrefs.SetInt("Level_3", 1);
 
         Telemetry.SetPlayerID(PlayerPrefs.GetString("PlayerID"));
         Telemetry.SetGameVersion("A");

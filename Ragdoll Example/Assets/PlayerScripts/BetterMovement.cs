@@ -391,7 +391,7 @@ public class BetterMovement : MonoBehaviour
     {
         Destroy(GetComponent<PlayerController>());
         disableMovement = true;
-        if (SceneManager.GetActiveScene().name == "Level_4")
+        if (SceneManager.GetActiveScene().name.Contains("Level_4"))
         {
             int playerDeaths = PlayerPrefs.GetInt("PlayerDeaths");
             playerDeaths += 1;

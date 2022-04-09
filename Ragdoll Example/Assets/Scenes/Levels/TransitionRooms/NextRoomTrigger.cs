@@ -18,13 +18,18 @@ public class NextRoomTrigger : MonoBehaviour
         {
             PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
             // PlayerPrefs.SetInt("bossLevel", 0);
+            if (SceneManager.GetActiveScene().name.Contains("Level_4")){
+                Telemetry.FinishedGame();
+                Telemetry.openForm();
+            }
+            else {
+                int randomizer = UnityEngine.Random.Range(1, 7);
+                if (FindObjectOfType<ScoreController>())
+                    FindObjectOfType<ScoreController>().LevelCompleted(expectedSecondsToCompleteLevel);
 
-            int randomizer = UnityEngine.Random.Range(1, 7);
-            if (FindObjectOfType<ScoreController>())
-                FindObjectOfType<ScoreController>().LevelCompleted(expectedSecondsToCompleteLevel);
-
-            Telemetry.SetEnemyCount(randomizer);
-            FindObjectOfType<GameController>().LoadScene(sceneToLoad + randomizer.ToString(), true);
+                Telemetry.SetEnemyCount(randomizer);
+                FindObjectOfType<GameController>().LoadScene(sceneToLoad + randomizer.ToString(), true);
+            }
         }
         
     }
