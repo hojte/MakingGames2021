@@ -100,7 +100,6 @@ public class GameController : MonoBehaviour
 
         Telemetry.SetPlayerID(PlayerPrefs.GetString("PlayerID"));
         Telemetry.SetGameVersion("A");
-        Telemetry.SetEnemyCount(30);
     }
 
     void Update()

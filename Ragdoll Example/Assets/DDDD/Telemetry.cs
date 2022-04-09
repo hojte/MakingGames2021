@@ -39,6 +39,7 @@ public class Telemetry : MonoBehaviour
     public static int deaths_training = 0;
     public static int deaths = 0;
     public static int enemyCount = 0;
+    public static int completionTime = 0;
     public static IEnumerator SubitGoogleForm(LevelData lvlData)
     {
         //These lines make sure that you are not going to have any comma/dot problems. 
@@ -73,7 +74,9 @@ public class Telemetry : MonoBehaviour
 
     public static void openForm()
     {
-        Application.OpenURL($"https://docs.google.com/forms/d/e/1FAIpQLSc2FTh_uSVQIIRBtngsfl5TdqApQ4_HhMM0aTuhbrc7k12Icg/viewform?&entry.159802043={Telemetry.playerID}&entry.1650724599={Telemetry.enemyCount}&entry.38789385={Telemetry.deaths}&entry.726257956={Telemetry.deaths_training}");
+        var levelStartTime = FindObjectOfType<GameController>().levelStartTime;
+        completionTime = (int)(Time.time - levelStartTime);
+        Application.OpenURL($"https://docs.google.com/forms/d/e/1FAIpQLSc2FTh_uSVQIIRBtngsfl5TdqApQ4_HhMM0aTuhbrc7k12Icg/viewform?&entry.159802043={Telemetry.playerID}&entry.1650724599={Telemetry.enemyCount}&entry.38789385={Telemetry.deaths}&entry.726257956={Telemetry.deaths_training}&entry.863979029={Telemetry.completionTime}");
     }
 
     public static void GenerateNewRunID()

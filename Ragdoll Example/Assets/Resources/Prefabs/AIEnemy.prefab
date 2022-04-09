@@ -155,6 +155,18 @@ MonoBehaviour:
   compassMarkerPrefab: {fileID: 4125838790012652590, guid: 513785daf84f2a243b0cda079e6835cd,
     type: 3}
   textDirection: 
+--- !u!114 &7228644585353404952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828262322656647411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50c69b8e9f24234fa1e45ab9a1cb4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &1236633030
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1900,9 +1912,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3134901477925922210}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &626313407117512486 stripped
+--- !u!1 &2828262322656647411 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: -6687716866853246332, guid: 5c0b28c84bf166e47a04f9320c84f2c9,
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5c0b28c84bf166e47a04f9320c84f2c9,
     type: 3}
   m_PrefabInstance: {fileID: 3134901477925922210}
   m_PrefabAsset: {fileID: 0}
@@ -1924,9 +1936,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3134901477925922210}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2828262322656647411 stripped
+--- !u!1 &626313407117512486 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5c0b28c84bf166e47a04f9320c84f2c9,
+  m_CorrespondingSourceObject: {fileID: -6687716866853246332, guid: 5c0b28c84bf166e47a04f9320c84f2c9,
     type: 3}
   m_PrefabInstance: {fileID: 3134901477925922210}
   m_PrefabAsset: {fileID: 0}
