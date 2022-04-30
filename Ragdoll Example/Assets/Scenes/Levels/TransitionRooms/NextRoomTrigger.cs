@@ -23,7 +23,7 @@ public class NextRoomTrigger : MonoBehaviour
                 Telemetry.openForm();
             }
             else {
-                int randomizer = UnityEngine.Random.Range(1, 7);
+                int randomizer = 7;
                 if (FindObjectOfType<ScoreController>())
                     FindObjectOfType<ScoreController>().LevelCompleted(expectedSecondsToCompleteLevel);
 
